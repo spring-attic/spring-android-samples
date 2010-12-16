@@ -70,7 +70,6 @@ public class HomeController {
 			states.add(new State("COLORADO", "CO"));
 			states.add(new State("CONNECTICUT", "CT"));
 			states.add(new State("DELAWARE", "DE"));
-			states.add(new State("DISTRICT OF COLUMBIA", "DC"));
 			states.add(new State("FLORIDA", "FL"));
 			states.add(new State("GEORGIA", "GA"));
 			states.add(new State("HAWAII", "HI"));
@@ -101,7 +100,6 @@ public class HomeController {
 			states.add(new State("OKLAHOMA", "OK"));
 			states.add(new State("OREGON", "OR"));
 			states.add(new State("PENNSYLVANIA", "PA"));
-			states.add(new State("PUERTO RICO", "PR"));
 			states.add(new State("RHODE ISLAND", "RI"));
 			states.add(new State("SOUTH CAROLINA", "SC"));
 			states.add(new State("SOUTH DAKOTA", "SD"));
