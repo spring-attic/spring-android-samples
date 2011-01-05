@@ -10,5 +10,5 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="target/android-classes"/>
 </classpath>

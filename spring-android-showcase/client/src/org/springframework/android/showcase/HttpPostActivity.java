@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import android.app.Activity;
@@ -91,8 +91,8 @@ public class HttpPostActivity extends Activity
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 				
-				// The SimpleClientHttpRequestFactory uses the java.net package to make network requests
-				restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
+				// The HttpComponentsClientHttpRequestFactory uses the org.apache.http package to make network requests
+				restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 				
 				// Add the message parameter and its value 
 				Map<String, String> postParams = Collections.singletonMap("message", "this is a test post message");

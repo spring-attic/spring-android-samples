@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import android.app.ListActivity;
@@ -118,8 +118,8 @@ public class HttpGetActivity extends ListActivity
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 				
-				// The SimpleClientHttpRequestFactory uses the java.net package to make network requests
-				restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
+				// The HttpComponentsClientHttpRequestFactory uses the org.apache.http package to make network requests
+				restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 				
 				// The URL for making the GET request
 				final String url = "http://10.0.2.2:8080/spring-android-showcase/states";
