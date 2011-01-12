@@ -34,8 +34,6 @@
 				<version>${maven-android-plugin-version}</version>
 				<configuration>
 					<sdk>
-						<!-- This value is defined in ${user.home}/.m2/settings.xml -->
-						<path>${android.home}</path>
 						<platform>${android-platform}</platform>
 					</sdk>
 					<emulator>
