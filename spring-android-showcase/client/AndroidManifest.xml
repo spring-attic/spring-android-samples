@@ -17,18 +17,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity 
-        	android:name=".CommonsLoggingActivity" />
-        
-        <activity
-        	android:name=".RestTemplateActivity" />
-        
+                
 		<activity
         	android:name=".HttpGetActivity" />
         	
         <activity
         	android:name=".HttpPostActivity" />
+        	
+       	<activity
+        	android:name=".RssActivity" />
+        	
+        <activity
+        	android:name=".RssChannelActivity" />
+        
+        <activity
+        	android:name=".RssSyndFeedActivity" />
+        	
+       	<activity
+        	android:name=".AtomActivity" />
+        	
+        <activity
+        	android:name=".AtomFeedActivity" />
+        	
+        <activity
+        	android:name=".AtomSyndFeedActivity" />
+        	        	
         
     </application>
 

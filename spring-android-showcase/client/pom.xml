@@ -15,13 +15,14 @@
 	</organization>
   	
   	<properties>
-  		<android-platform>4</android-platform>
+  		<android-platform>3</android-platform>
+  		<android-emulator>3</android-emulator>
   		<maven-android-plugin-version>2.8.3</maven-android-plugin-version>
   		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
-  		<com.google.android-version>1.6_r2</com.google.android-version>
-		<org.springframework.android-version>1.0.0.BUILD-SNAPSHOT</org.springframework.android-version>
-		<commons-httpclient-version>3.1</commons-httpclient-version>		
+  		<com.google.android-version>1.5_r4</com.google.android-version>
+		<org.springframework.android-version>1.0.0.BUILD-SNAPSHOT</org.springframework.android-version>		
 		<org.codehaus.jackson-version>1.6.2</org.codehaus.jackson-version>
+		<android-rome-version>1.0.0-r2</android-rome-version>
 	</properties>
 	
 	<build>
@@ -37,7 +38,7 @@
 						<platform>${android-platform}</platform>
 					</sdk>
 					<emulator>
-						<avd>4</avd>
+						<avd>${android-emulator}</avd>
 					</emulator>
 					<deleteConflictingFiles>true</deleteConflictingFiles>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
@@ -69,9 +70,21 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
+		<dependency>
+			<!-- Using Rome for Rss and Atom feeds -->
+  			<groupId>com.google.code.android-rome-feed-reader</groupId>
+  			<artifactId>android-rome-feed-reader</artifactId>
+  			<version>${android-rome-version}</version>
+		</dependency>
 	</dependencies>
   	
 	<repositories>
+		<!-- For developing with Android Rome -->
+		<repository>
+			<id>android-rome-feed-reader-repository</id>
+			<name>Android ROME Feed Reader Repository</name>
+			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
+		</repository>
 		<!-- For testing against latest Spring snapshots -->
 		<repository>
 			<id>org.springframework.maven.snapshot</id>

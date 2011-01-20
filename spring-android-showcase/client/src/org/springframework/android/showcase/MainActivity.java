@@ -36,12 +36,20 @@ public class MainActivity extends ListActivity
 		switch(position) 
 		{
 	      	case 0:
-			    intent.setClass(this, CommonsLoggingActivity.class);
+			    intent.setClass(this, HttpGetActivity.class);
 			    startActivity(intent);
 	      		break;
 	      	case 1:
-			    intent.setClass(this, RestTemplateActivity.class);
+			    intent.setClass(this, HttpPostActivity.class);
 			    startActivity(intent);
+	      		break;
+	      	case 2:
+	      		intent.setClass(this, RssActivity.class);
+	      		startActivity(intent);
+	      		break;
+	      	case 3:
+	      		intent.setClass(this, AtomActivity.class);
+	      		startActivity(intent);
 	      		break;
 	      	default:
 	      		break;

@@ -3,24 +3,27 @@
 
     <string name="app_name">S2Android Showcase</string>
     
+    <string name="text_rss_description">RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
+    RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an abstracted object model.</string>
+    
+    <string name="text_atom_description">ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
+    AtomFeedHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an abstracted object model.</string>
+    
 	<string-array name="main_options">
-        <item>Commons Logging</item>
-        <item>RestTemplate</item>
-    </string-array>
-    
-    <string-array name="commons_logging_options">
-    	<item>All Logs</item>
-    	<item>Trace Log</item>
-  		<item>Debug Log</item>
-  		<item>Info Log</item>
-  		<item>Warn Log</item>
-  		<item>Error Log</item>
-  		<item>Fatal Log</item>
-    </string-array>
-    
-    <string-array name="rest_template_options">
-    	<item>HTTP GET</item>
-    	<item>HTTP POST</item>
-    </string-array>
-    
+        <item>HTTP GET</item>
+        <item>HTTP POST</item>
+    	<item>RSS</item>
+		<item>ATOM</item>
+	</string-array>
+            
+	<string-array name="rss_activity_options">
+		<item>SyndFeed</item>
+		<item>RssChannel</item>
+	</string-array>
+	
+	<string-array name="atom_activity_options">
+		<item>SyndFeed</item>
+		<item>AtomFeed</item>
+	</string-array>
+	
 </resources>

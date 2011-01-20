@@ -1,28 +1,20 @@
 package org.springframework.android.showcase;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.SimpleAdapter;
 
-public class HttpGetActivity extends ListActivity 
+public class HttpGetActivity extends AsyncListActivity 
 {
-	private static final String TAG = "HttpGetActivity";
-	private ProgressDialog _progressDialog;
+	protected String TAG = "HttpGetActivity";
 	
 	
 	//***************************************
@@ -46,11 +38,7 @@ public class HttpGetActivity extends ListActivity
 	
 	//***************************************
     // Private methods
-    //***************************************
-	
-	/**
-	 * Displays the list of states in the UI 
-	 */
+    //*************************************** 
 	private void refreshStates(List<State> statesList) 
 	{	
 		if (statesList == null) 
@@ -78,25 +66,6 @@ public class HttpGetActivity extends ListActivity
 		this.setListAdapter(adapter);
 	}
 	
-	private void showLoadingProgressDialog() 
-	{
-		_progressDialog = ProgressDialog.show(this, "",  "Loading. Please wait...", true);
-	}
-		
-	private void dismissProgressDialog() 
-	{
-		if (_progressDialog != null) {
-			_progressDialog.dismiss();
-		}
-	}
-	
-	private void logException(Exception e) 
-	{
-		Log.e(TAG, e.getMessage(), e);
-		Writer result = new StringWriter();
-		e.printStackTrace(new PrintWriter(result));
-	}
-	
 	
 	//***************************************
     // Private classes
@@ -117,10 +86,7 @@ public class HttpGetActivity extends ListActivity
 			{
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-				
-				// The HttpComponentsClientHttpRequestFactory uses the org.apache.http package to make network requests
-				restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-				
+								
 				// The URL for making the GET request
 				final String url = "http://10.0.2.2:8080/spring-android-showcase/states";
 				
