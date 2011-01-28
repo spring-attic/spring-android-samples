@@ -17,11 +17,11 @@
   	<properties>
   		<android-platform>3</android-platform>
   		<android-emulator>3</android-emulator>
-  		<maven-android-plugin-version>2.8.3</maven-android-plugin-version>
+  		<maven-android-plugin-version>2.8.4</maven-android-plugin-version>
   		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
-  		<com.google.android-version>1.5_r4</com.google.android-version>
-		<org.springframework.android-version>1.0.0.BUILD-SNAPSHOT</org.springframework.android-version>		
-		<org.codehaus.jackson-version>1.6.2</org.codehaus.jackson-version>
+  		<android-version>1.5_r4</android-version>
+		<spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
+		<jackson-version>1.7.1</jackson-version>
 		<android-rome-version>1.0.0-r2</android-rome-version>
 	</properties>
 	
@@ -56,22 +56,22 @@
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${com.google.android-version}</version>
+			<version>${android-version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-rest-template</artifactId>
-			<version>${org.springframework.android-version}</version>
+			<version>${spring-android-version}</version>
 		</dependency>
 		<dependency>
-			<!-- Using jackson for json marshaling -->
+			<!-- Using Jackson for JSON marshaling -->
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${org.codehaus.jackson-version}</version>
+			<version>${jackson-version}</version>
 		</dependency>
 		<dependency>
-			<!-- Using Rome for Rss and Atom feeds -->
+			<!-- Using ROME for RSS and ATOM feeds -->
   			<groupId>com.google.code.android-rome-feed-reader</groupId>
   			<artifactId>android-rome-feed-reader</artifactId>
   			<version>${android-rome-version}</version>
