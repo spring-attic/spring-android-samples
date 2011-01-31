@@ -8,18 +8,11 @@
      >
 
      <TextView  
-         android:id="@+id/name"
+         android:id="@+id/state_name"
          android:textSize="16sp"
          android:textStyle="bold"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" 
          />
 
-     <TextView 
-         android:id="@+id/abbreviation"
-         android:textSize="14sp"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" 
-         />
-         
  </LinearLayout>

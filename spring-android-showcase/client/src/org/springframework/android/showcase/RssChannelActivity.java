@@ -18,7 +18,7 @@ import android.widget.ListView;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Channel;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item;
 
-public class RssChannelActivity extends AsyncListActivity 
+public class RssChannelActivity extends AbstractAsyncListActivity 
 {
 	protected String TAG = "RssChannelActivity";
 	

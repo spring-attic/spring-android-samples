@@ -20,7 +20,7 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Ent
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Feed;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Link;
 
-public class AtomFeedActivity extends AsyncListActivity 
+public class AtomFeedActivity extends AbstractAsyncListActivity 
 {
 	protected String TAG = "AtomFeedActivity";
 	

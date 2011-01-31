@@ -3,6 +3,9 @@
 
     <string name="app_name">S2Android Showcase</string>
     
+    <string name="text_http_get_description">Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use the 
+    SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
+    
     <string name="text_rss_description">RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
     RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an abstracted object model.</string>
     
@@ -14,6 +17,11 @@
         <item>HTTP POST</item>
     	<item>RSS</item>
 		<item>ATOM</item>
+	</string-array>
+	
+	<string-array name="http_activity_options">
+		<item>JSON</item>
+		<item>XML</item>
 	</string-array>
             
 	<string-array name="rss_activity_options">

@@ -34,10 +34,21 @@ public class HomeController {
 	/** 
 	 * @return A JSON array of states
 	 */
-	@RequestMapping(value="states", method=RequestMethod.GET)
-	public @ResponseBody List<State> fetchStates() {		
-		logger.info("fetching states");
+	@RequestMapping(value="states-json", method=RequestMethod.GET)
+	public @ResponseBody List<State> fetchStatesJson() {		
+		logger.info("fetching states json");
 		return getStates();
+	}
+	
+	/** 
+	 * @return A XML array of states
+	 */
+	@RequestMapping(value="states-xml", method=RequestMethod.GET)
+	public @ResponseBody StateList fetchStatesXml() {		
+		logger.info("fetching states xml");
+		List<State> states = getStates();
+		StateList stateList = new StateList(states);
+		return stateList;
 	}
 	
 	/**

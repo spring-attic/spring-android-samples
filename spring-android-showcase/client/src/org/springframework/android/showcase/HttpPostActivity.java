@@ -1,26 +1,19 @@
 package org.springframework.android.showcase;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.Collections;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class HttpPostActivity extends Activity 
+public class HttpPostActivity extends AbstractAsyncActivity 
 {
 	private static final String TAG = "HttpPostActivity";
-	private ProgressDialog _progressDialog;
 	
 	
 	//***************************************
@@ -44,26 +37,7 @@ public class HttpPostActivity extends Activity
 	
 	//***************************************
     // Private methods
-    //***************************************
-	private void showLoadingProgressDialog() 
-	{
-		_progressDialog = ProgressDialog.show(this, "",  "Loading. Please wait...", true);
-	}
-		
-	private void dismissProgressDialog() 
-	{
-		if (_progressDialog != null) {
-			_progressDialog.dismiss();
-		}
-	}
-	
-	private void logException(Exception e) 
-	{
-		Log.e(TAG, e.getMessage(), e);
-		Writer result = new StringWriter();
-		e.printStackTrace(new PrintWriter(result));
-	}
-	
+    //***************************************	
 	private void showResult(String result)
 	{
 		// display a notification to the user with the response message
@@ -90,9 +64,6 @@ public class HttpPostActivity extends Activity
 			{
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-				
-				// The HttpComponentsClientHttpRequestFactory uses the org.apache.http package to make network requests
-				restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 				
 				// Add the message parameter and its value 
 				Map<String, String> postParams = Collections.singletonMap("message", "this is a test post message");

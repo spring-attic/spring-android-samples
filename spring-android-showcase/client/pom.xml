@@ -4,27 +4,28 @@
 	
 	<groupId>org.springframework.android</groupId>
 	<artifactId>showcase</artifactId>
-  	<version>1.0.0.BUILD-SNAPSHOT</version>
-  	<packaging>apk</packaging>
-    <name>spring-android-showcase-client</name>
-    <url>http://www.springsource.org</url>
-    
-    <organization>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<packaging>apk</packaging>
+	<name>spring-android-showcase-client</name>
+	<url>http://www.springsource.org</url>
+
+	<organization>
 		<name>SpringSource</name>
 		<url>http://www.springsource.org</url>
 	</organization>
-  	
-  	<properties>
-  		<android-platform>3</android-platform>
-  		<android-emulator>3</android-emulator>
-  		<maven-android-plugin-version>2.8.4</maven-android-plugin-version>
-  		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
-  		<android-version>1.5_r4</android-version>
+
+	<properties>
+		<android-platform>3</android-platform>
+		<android-emulator>3</android-emulator>
+		<maven-android-plugin-version>2.8.4</maven-android-plugin-version>
+		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
+		<android-version>1.5_r4</android-version>
 		<spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
 		<jackson-version>1.7.1</jackson-version>
+		<simple-version>2.4.1</simple-version>
 		<android-rome-version>1.0.0-r2</android-rome-version>
 	</properties>
-	
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<finalName>${project.artifactId}</finalName>
@@ -71,13 +72,29 @@
 			<version>${jackson-version}</version>
 		</dependency>
 		<dependency>
+			<!-- Using Simple for XML marshaling -->
+			<groupId>org.simpleframework</groupId>
+			<artifactId>simple-xml</artifactId>
+			<version>${simple-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>stax</artifactId>
+					<groupId>stax</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>stax-api</artifactId>
+					<groupId>stax</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
 			<!-- Using ROME for RSS and ATOM feeds -->
-  			<groupId>com.google.code.android-rome-feed-reader</groupId>
-  			<artifactId>android-rome-feed-reader</artifactId>
-  			<version>${android-rome-version}</version>
+			<groupId>com.google.code.android-rome-feed-reader</groupId>
+			<artifactId>android-rome-feed-reader</artifactId>
+			<version>${android-rome-version}</version>
 		</dependency>
 	</dependencies>
-  	
+
 	<repositories>
 		<!-- For developing with Android Rome -->
 		<repository>

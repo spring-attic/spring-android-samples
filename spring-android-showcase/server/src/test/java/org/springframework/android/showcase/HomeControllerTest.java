@@ -15,10 +15,10 @@ public class HomeControllerTest {
 	
 	@Test
 	public void homePageFetchStates() {		
-		List<State> states = controller.fetchStates();
+		List<State> states = controller.fetchStatesJson();
 		assertNotNull(states);
 		assertEquals(50, states.size());
-		assertEquals("Alabama", states.get(0).getName());
+		assertEquals("ALABAMA", states.get(0).getName());
 	}
 
 	@Test

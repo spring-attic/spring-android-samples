@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -20,9 +19,9 @@ public class RestTemplateActivity extends ListActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		String[] options = getResources().getStringArray(R.array.rest_template_options);
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
-		setListAdapter(arrayAdapter);
+//		String[] options = getResources().getStringArray(R.array.rest_template_options);
+//		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
+//		setListAdapter(arrayAdapter);
 		
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 	    alertDialog.setTitle("To run examples...");
@@ -52,7 +51,7 @@ public class RestTemplateActivity extends ListActivity
 		switch(position) 
 		{
 	      	case 0:
-			    intent.setClass(this, HttpGetActivity.class);
+			    intent.setClass(this, HttpGetJsonActivity.class);
 			    startActivity(intent);
 	      		break;
 	      	case 1:

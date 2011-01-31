@@ -21,6 +21,12 @@
 		<activity
         	android:name=".HttpGetActivity" />
         	
+		<activity
+        	android:name=".HttpGetJsonActivity" />
+        	
+		<activity
+        	android:name=".HttpGetXmlActivity" />
+        	
         <activity
         	android:name=".HttpPostActivity" />
         	

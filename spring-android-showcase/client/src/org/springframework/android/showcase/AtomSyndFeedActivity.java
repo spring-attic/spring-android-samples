@@ -19,7 +19,7 @@ import android.widget.ListView;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndEntry;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndFeed;
 
-public class AtomSyndFeedActivity extends AsyncListActivity 
+public class AtomSyndFeedActivity extends AbstractAsyncListActivity 
 {
 	protected String TAG = "AtomSyndFeedActivity";
 	
