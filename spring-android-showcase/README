@@ -1,0 +1,46 @@
+**********************************
+* SpringSource Android Showcase
+**********************************
+
+Introduction
+This project requires set up Android SDK, command line tools, Maven, the Maven Android Plugin, and Android Maven artifacts such as Spring dependencies. This document walks step by step throught that setup.
+
+Development Environment
+http://developer.android.com/sdk/index.html
+The Android SDK is required for developing Android applications. As mentioned earlier, Google provides command line tools, and an Eclipse plugin for building Android applications, however you are not restricted to only those options.
+The Maven Android Plugin makes use of the Android SDK command line tools to compile and deploy the app to the emulator, so there is no need for a separate IDE setup or configuration.
+
+Add Android to your Path
+Example: a .bash_profile on a Mac:
+$ export ANDROID_HOME=~/android-sdk-mac_x86
+$ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+Configure an Android Virtual Device
+http://developer.android.com/guide/developing/tools/avd.html
+Open the Android SDK and AVD Manager window
+$ android
+Select Virtual devices in the left hand column and click the New_ button
+Enter 8 in the Name field
+Select Android 2.2 API Level 8 in the Target selector
+Click Create AVD to finish
+
+Build and Run the Server app
+$ cd /spring-android-showcase/server
+$ mvn clean install
+Deploy to TC Server
+Start the server
+
+Configure the Android Client
+Open /spring-android-showcase/client/res/values/strings.xml
+Note: base_uri uses host 10.0.2.2. Do not use localhost as the android emulator uses it. 10.0.2.2 us the redirect.
+
+Build and Run the Android Client
+$ cd /spring-android-showcase/client
+$ mvn clean install
+$ mvn android:emulator-start
+Ensure the emulator is fully initialized and ready or the deploy will fail.
+$ mvn android:deploy
+View Logging
+$ adb logcat
+
+Congratulations!
