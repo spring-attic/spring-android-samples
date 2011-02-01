@@ -3,6 +3,8 @@ package org.springframework.android.showcase;
 import java.util.Collections;
 import java.util.Map;
 
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -67,13 +69,12 @@ public class HttpPostActivity extends AbstractAsyncActivity
 				
 				// Add the message parameter and its value 
 				Map<String, String> postParams = Collections.singletonMap("message", "this is a test post message");
-				
-				// The URL for making the POST request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/sendmessage/";
-				
+				 
+                String base_uri = getString(R.string.base_uri);
+
 				// Make the network request, posting the message, expecting a
 				// String in response from the server
-				ResponseEntity<String> response = restTemplate.postForEntity(url, postParams, String.class);
+				ResponseEntity<String> response = restTemplate.postForEntity(base_uri + "/sendmessage/", postParams, String.class);
 				
 				// Log and return the response body
 				Log.i(TAG, response.getBody());

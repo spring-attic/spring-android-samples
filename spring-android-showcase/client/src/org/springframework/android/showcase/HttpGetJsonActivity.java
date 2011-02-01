@@ -66,12 +66,11 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 			{
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-								
-				// The URL for making the GET request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/states-json";
-				
+
+                String base_uri = getString(R.string.base_uri);
+                  
 				// Initiate the HTTP GET request, expecting an array of State objects in response
-				State[] states = restTemplate.getForObject(url, State[].class);
+				State[] states = restTemplate.getForObject(base_uri + "/states-json", State[].class);
 				
 				// convert the array to a list and return it
 				return Arrays.asList(states);

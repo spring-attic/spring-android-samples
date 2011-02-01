@@ -65,12 +65,11 @@ public class HttpGetXmlActivity extends AbstractAsyncListActivity
 			{
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-								
-				// The URL for making the GET request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/states-xml";
-				
+
+                String base_uri = getString(R.string.base_uri);
+
 				// Initiate the HTTP GET request
-				StateList stateList = restTemplate.getForObject(url, StateList.class);
+				StateList stateList = restTemplate.getForObject(base_uri + "/states-xml", StateList.class);
 				
 				return stateList.getStates();
 			} 

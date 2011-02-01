@@ -116,10 +116,10 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity
 				restTemplate.setMessageConverters(messageConverters);
 								
 				// The URL for making the request
-				final String url = "http://blog.springsource.com/feed";
+                String feed_url = getString(R.string.rss_feed_url);
 				
 				// Initiate the request and return the results
-				return restTemplate.getForObject(url, SyndFeed.class);
+				return restTemplate.getForObject(feed_url, SyndFeed.class);
 			} 
 			catch(Exception e) 
 			{
