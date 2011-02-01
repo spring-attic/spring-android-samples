@@ -39,4 +39,9 @@ public class State
 	{
 		this.abbreviation = abbreviation;
 	}
+	
+	public String getFormattedName()
+	{
+		return this.getName() + " (" + this.getAbbreviation() + ")";
+	}
 }

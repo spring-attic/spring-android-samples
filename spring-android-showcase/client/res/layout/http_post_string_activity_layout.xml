@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_centerVertical="true"
+    >
+    		
+	<TextView
+        android:id="@+id/label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="14dip"
+        android:text="Enter message text:"
+        />
+		
+	<EditText
+		android:id="@+id/edit_text_message"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:padding="8dip"
+		android:singleLine="true"
+		/>
+	
+	<Button
+		android:id="@+id/button_post_string"
+		android:text="Send"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
+	
+</LinearLayout>

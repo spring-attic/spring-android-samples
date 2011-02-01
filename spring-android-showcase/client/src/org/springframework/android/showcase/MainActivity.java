@@ -40,14 +40,18 @@ public class MainActivity extends ListActivity
 			    startActivity(intent);
 	      		break;
 	      	case 1:
-			    intent.setClass(this, HttpPostActivity.class);
+	      		intent.setClass(this, HttpGetParametersActivity.class);
 			    startActivity(intent);
 	      		break;
 	      	case 2:
+			    intent.setClass(this, HttpPostActivity.class);
+			    startActivity(intent);
+	      		break;
+	      	case 3:
 	      		intent.setClass(this, RssActivity.class);
 	      		startActivity(intent);
 	      		break;
-	      	case 3:
+	      	case 4:
 	      		intent.setClass(this, AtomActivity.class);
 	      		startActivity(intent);
 	      		break;

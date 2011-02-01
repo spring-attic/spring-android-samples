@@ -27,8 +27,14 @@
 		<activity
         	android:name=".HttpGetXmlActivity" />
         	
+		<activity
+        	android:name=".HttpGetParametersActivity" />
+        	
         <activity
         	android:name=".HttpPostActivity" />
+        	
+        <activity
+        	android:name=".HttpPostStringActivity" />
         	
        	<activity
         	android:name=".RssActivity" />

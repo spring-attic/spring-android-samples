@@ -55,7 +55,7 @@ public class RestTemplateActivity extends ListActivity
 			    startActivity(intent);
 	      		break;
 	      	case 1:
-			    intent.setClass(this, HttpPostActivity.class);
+			    intent.setClass(this, HttpPostStringActivity.class);
 			    startActivity(intent);
 	      		break;
 	      	default:

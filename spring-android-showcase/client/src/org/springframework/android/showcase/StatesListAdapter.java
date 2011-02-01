@@ -46,9 +46,8 @@ public class StatesListAdapter extends BaseAdapter
 			view = _layoutInflater.inflate(R.layout.states_list_item, parent, false);
 		}
 
-		TextView t = (TextView) view.findViewById(R.id.state_name);
-		String formattedName = state.getName() + " (" + state.getAbbreviation() + ")"; 
-		t.setText(formattedName);
+		TextView t = (TextView) view.findViewById(R.id.state_name); 
+		t.setText(state.getFormattedName());
 		
 		return view;
 	}

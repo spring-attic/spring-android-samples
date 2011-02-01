@@ -3,6 +3,11 @@ package org.springframework.android.showcase;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -64,17 +69,27 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 		{
 			try 
 			{
+				// The URL for making the GET request
+				final String url = "http://10.0.2.2:8080/spring-android-showcase/states";
+				
+				// Set the header to "Accept=application/json"
+				HttpHeaders requestHeaders = new HttpHeaders();
+				requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+				
+				// Populate the headers in an HttpEntity object to use for the request
+				HttpEntity<String> requestEntity = new HttpEntity<String>(requestHeaders);
+				
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-								
-				// The URL for making the GET request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/states-json";
 				
-				// Initiate the HTTP GET request, expecting an array of State objects in response
-				State[] states = restTemplate.getForObject(url, State[].class);
+				// Perform the HTTP GET request
+				ResponseEntity<State[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State[].class);
+				
+				// If you don't need to set the Accept header, you can simplify the request with the getForObject() method
+				// State[] states = restTemplate.getForObject(url, State[].class);
 				
 				// convert the array to a list and return it
-				return Arrays.asList(states);
+				return Arrays.asList(responseEntity.getBody());
 			} 
 			catch(Exception e) 
 			{

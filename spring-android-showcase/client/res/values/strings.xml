@@ -3,25 +3,42 @@
 
     <string name="app_name">S2Android Showcase</string>
     
-    <string name="text_http_get_description">Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use the 
+    <string name="text_http_get_description">These examples retrieve a list of states from the 
+    example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use 
+    the SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
+    
+    <string name="text_http_get_parameters_description">These examples pass a parameter to the 
+    RestTemplate instance to retrieve a state by its abbreviation. Use the 
+    MappingJacksonHttpMessageConverter to marshal JSON objects or use the 
     SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
     
-    <string name="text_rss_description">RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
-    RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an abstracted object model.</string>
+    <string name="text_http_post_description">These examples make HTTP POST requests to the server.</string>
     
-    <string name="text_atom_description">ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
-    AtomFeedHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an abstracted object model.</string>
+    <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.com. 
+    RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific 
+    RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an 
+    abstracted object model.</string>
+    
+    <string name="text_atom_description">These examples retrieve the ATOM feed from 
+    jira.springframework.org. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter 
+    or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports 
+    RSS and ATOM using an abstracted object model.</string>
     
 	<string-array name="main_options">
         <item>HTTP GET</item>
+        <item>HTTP GET with parameters</item>
         <item>HTTP POST</item>
     	<item>RSS</item>
 		<item>ATOM</item>
 	</string-array>
 	
-	<string-array name="http_activity_options">
+	<string-array name="http_get_activity_options">
 		<item>JSON</item>
 		<item>XML</item>
+	</string-array>
+	
+	<string-array name="http_post_activity_options">
+		<item>String</item>
 	</string-array>
             
 	<string-array name="rss_activity_options">

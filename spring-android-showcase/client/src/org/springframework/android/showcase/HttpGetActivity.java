@@ -21,7 +21,7 @@ public class HttpGetActivity extends Activity
 		
 		this.setContentView(R.layout.http_get_activity_layout);
 		
-		String[] options = getResources().getStringArray(R.array.http_activity_options);
+		String[] options = getResources().getStringArray(R.array.http_get_activity_options);
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
 		ListView listView = (ListView) this.findViewById(R.id.http_get_activity_options_list);
 		listView.setAdapter(arrayAdapter);

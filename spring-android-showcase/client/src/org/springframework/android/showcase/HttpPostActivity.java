@@ -1,21 +1,16 @@
 package org.springframework.android.showcase;
 
-import java.util.Collections;
-import java.util.Map;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
-import android.os.AsyncTask;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class HttpPostActivity extends AbstractAsyncActivity 
+public class HttpPostActivity extends Activity 
 {
-	private static final String TAG = "HttpPostActivity";
-	
-	
+
 	//***************************************
     // Activity methods
     //***************************************
@@ -23,82 +18,32 @@ public class HttpPostActivity extends AbstractAsyncActivity
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-	}
-	
-	@Override
-	public void onStart()
-	{
-		super.onStart();
 		
-		// when this activity starts, initiate an asynchronous POST request,
-		new PostMessageTask().execute();
-	}
-	
-	
-	//***************************************
-    // Private methods
-    //***************************************	
-	private void showResult(String result)
-	{
-		// display a notification to the user with the response message
-		Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-	}
-	
-	
-	//***************************************
-    // Private classes
-    //***************************************
-	private class PostMessageTask extends AsyncTask<Void, Void, String> 
-	{	
-		@Override
-		protected void onPreExecute() 
-		{
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
+		this.setContentView(R.layout.http_post_activity_layout);
 		
-		@Override
-		protected String doInBackground(Void... params) 
-		{
-			try 
-			{
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
-				
-				// Add the message parameter and its value 
-				Map<String, String> postParams = Collections.singletonMap("message", "this is a test post message");
-				
-				// The URL for making the POST request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/sendmessage/";
-				
-				// Make the network request, posting the message, expecting a
-				// String in response from the server
-				ResponseEntity<String> response = restTemplate.postForEntity(url, postParams, String.class);
-				
-				// Log and return the response body
-				Log.i(TAG, response.getBody());
-				return response.getBody();				
-			} 
-			catch(Exception e) 
-			{
-				logException(e);
-			} 
-			
-			return null;
-		}
+		String[] options = getResources().getStringArray(R.array.http_post_activity_options);
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
+		ListView listView = (ListView) this.findViewById(R.id.http_post_activity_options_list);
+		listView.setAdapter(arrayAdapter);
 		
-		@Override
-		protected void onPostExecute(String result) 
-		{
-			// after the network request completes, hid the progress indicator
-			dismissProgressDialog();
-			
-			// return the response body to the calling class
-			showResult(result);
-		}
+		listView.setOnItemClickListener(
+				new AdapterView.OnItemClickListener() 
+				{
+					public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) 
+					{
+						Intent intent = new Intent();
+						
+						switch(position)
+						{
+							case 0:
+								intent.setClass(parentView.getContext(), HttpPostStringActivity.class);
+								startActivity(intent);
+								break;
+							default:
+								break;
+						}
+					}
+				}
+			);
 	}
-	
-	
-	
-
 }
