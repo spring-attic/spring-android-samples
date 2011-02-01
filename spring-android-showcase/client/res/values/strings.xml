@@ -2,6 +2,10 @@
 <resources>
 
     <string name="app_name">S2Android Showcase</string>
+ 
+    <string name="base_uri">http://10.0.2.2:8080/spring-android-showcase</string>
+
+    <string name="feed_url">http://blog.springsource.com/feed</string>
     
     <string name="text_http_get_description">Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use the 
     SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
