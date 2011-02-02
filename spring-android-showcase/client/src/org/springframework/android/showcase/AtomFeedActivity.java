@@ -108,7 +108,7 @@ public class AtomFeedActivity extends AbstractAsyncListActivity
 				// Configure the ATOM message converter
 				AtomFeedHttpMessageConverter converter = new AtomFeedHttpMessageConverter();
 				List<MediaType> mediaTypes = new ArrayList<MediaType>();
-				mediaTypes.add(new MediaType("application", "xml"));
+				mediaTypes.add(MediaType.APPLICATION_XML);
 				converter.setSupportedMediaTypes(mediaTypes);
 				
 				// Add the ATOM message converter to the RestTemplate instance

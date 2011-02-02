@@ -1,5 +1,8 @@
 package org.springframework.android.showcase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 
 public class HttpGetParametersActivity extends AbstractAsyncActivity 
 {
+	protected String TAG = "HttpGetParametersActivity";
+	
 
 	//***************************************
     // Activity methods
@@ -30,19 +35,25 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
 		
 		// Initiate the request for JSON data when the JSON button is pushed
 		final Button buttonJson = (Button) findViewById(R.id.button_json);
-		buttonJson.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	new DownloadStateTask().execute(MediaType.APPLICATION_JSON);
-            }
-        });
+		buttonJson.setOnClickListener(new View.OnClickListener() 
+			{
+            	public void onClick(View v) 
+            	{
+            		new DownloadStateTask().execute(MediaType.APPLICATION_JSON);
+            	}
+			}
+		);
         
 		// Initiate the request for XML data when the XML button is pushed
 		final Button buttonXml = (Button) findViewById(R.id.button_xml);
-		buttonXml.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	new DownloadStateTask().execute(MediaType.APPLICATION_XML);
-            }
-        });
+		buttonXml.setOnClickListener(new View.OnClickListener() 
+			{
+            	public void onClick(View v) 
+            	{
+            		new DownloadStateTask().execute(MediaType.APPLICATION_XML);
+            	}
+			}
+		);
 	}
 	
 	
@@ -87,7 +98,7 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
 		{
 			try 
 			{
-				if (params.length == 0)
+				if (params.length <= 0)
 				{
 					return null;
 				}
@@ -97,14 +108,15 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
 				// The URL for making the GET request
 				final String url = "http://10.0.2.2:8080/spring-android-showcase/state/{abbreviation}";
 				
-				// Set the header for requesting JSON data
-				// The media type is passed in via the method parameter from the button click event
+				// Set the Accept header for "application/json" or "application/xml"
 				HttpHeaders requestHeaders = new HttpHeaders();
-				requestHeaders.setContentType(mediaType);
+				List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+				acceptableMediaTypes.add(mediaType);
+				requestHeaders.setAccept(acceptableMediaTypes);
 				
 				// Populate the headers in an HttpEntity object to use for the request
-				HttpEntity<String> requestEntity = new HttpEntity<String>(requestHeaders);
-								
+				HttpEntity<Object> requestEntity = new HttpEntity<Object>(requestHeaders);
+																
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 				

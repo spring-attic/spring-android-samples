@@ -72,7 +72,7 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 				// The URL for making the GET request
 				final String url = "http://10.0.2.2:8080/spring-android-showcase/states";
 				
-				// Set the header to "Accept=application/json"
+				// Set the Content-Type header to "application/json"
 				HttpHeaders requestHeaders = new HttpHeaders();
 				requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 				
@@ -84,10 +84,7 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 				
 				// Perform the HTTP GET request
 				ResponseEntity<State[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State[].class);
-				
-				// If you don't need to set the Accept header, you can simplify the request with the getForObject() method
-				// State[] states = restTemplate.getForObject(url, State[].class);
-				
+								
 				// convert the array to a list and return it
 				return Arrays.asList(responseEntity.getBody());
 			} 

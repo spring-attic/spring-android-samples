@@ -10,7 +10,7 @@ import android.util.Log;
 
 public abstract class AbstractAsyncListActivity extends ListActivity implements AsyncActivity
 {	
-	protected String TAG = "AsyncListActivity";
+	protected String TAG = "AbstractAsyncListActivity";
 	private ProgressDialog _progressDialog;
 	
 	public void showLoadingProgressDialog() 
@@ -20,7 +20,8 @@ public abstract class AbstractAsyncListActivity extends ListActivity implements 
 		
 	public void dismissProgressDialog() 
 	{
-		if (_progressDialog != null) {
+		if (_progressDialog != null) 
+		{
 			_progressDialog.dismiss();
 		}
 	}

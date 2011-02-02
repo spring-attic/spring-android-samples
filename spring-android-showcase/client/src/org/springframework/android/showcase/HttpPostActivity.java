@@ -39,6 +39,10 @@ public class HttpPostActivity extends Activity
 								intent.setClass(parentView.getContext(), HttpPostStringActivity.class);
 								startActivity(intent);
 								break;
+							case 1:
+								intent.setClass(parentView.getContext(), HttpPostJsonXmlActivity.class);
+								startActivity(intent);
+								break;
 							default:
 								break;
 						}

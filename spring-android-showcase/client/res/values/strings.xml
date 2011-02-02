@@ -39,6 +39,7 @@
 	
 	<string-array name="http_post_activity_options">
 		<item>String</item>
+		<item>JSON and XML</item>
 	</string-array>
             
 	<string-array name="rss_activity_options">

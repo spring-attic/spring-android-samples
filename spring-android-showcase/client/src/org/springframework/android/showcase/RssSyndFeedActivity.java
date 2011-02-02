@@ -40,12 +40,6 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity
 		new DownloadRssFeedTask().execute();
 	}
 	
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-	}
-	
 	
 	//***************************************
     // ListActivity methods
@@ -58,6 +52,7 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity
 			return;
 		}
 		
+		// Open the selected RSS item in the browser
 		SyndEntry entry = (SyndEntry) _feed.getEntries().get(position);
 		String link = entry.getLink(); 
 		Log.i(TAG, link);
@@ -107,7 +102,7 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity
 				// Configure the SyndFeed message converter.
 				SyndFeedHttpMessageConverter converter = new SyndFeedHttpMessageConverter();
 				List<MediaType> mediaTypes = new ArrayList<MediaType>();
-				mediaTypes.add(new MediaType("text", "xml"));
+				mediaTypes.add(MediaType.TEXT_XML);
 				converter.setSupportedMediaTypes(mediaTypes);
 				
 				// Add the SyndFeed message converter to the RestTemplate instance

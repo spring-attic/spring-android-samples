@@ -36,6 +36,9 @@
         <activity
         	android:name=".HttpPostStringActivity" />
         	
+        <activity
+        	android:name=".HttpPostJsonXmlActivity" />
+        	
        	<activity
         	android:name=".RssActivity" />
         	

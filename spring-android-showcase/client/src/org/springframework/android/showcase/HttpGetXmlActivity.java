@@ -71,7 +71,7 @@ public class HttpGetXmlActivity extends AbstractAsyncListActivity
 				// The URL for making the GET request
 				final String url = "http://10.0.2.2:8080/spring-android-showcase/states";
 				
-				// Add "Accept=application/xml" to the HTTP headers
+				// Set the Content-Type header to "application/xml"
 				HttpHeaders requestHeaders = new HttpHeaders();
 				requestHeaders.setContentType(MediaType.APPLICATION_XML);
 				
@@ -84,9 +84,6 @@ public class HttpGetXmlActivity extends AbstractAsyncListActivity
 				// Perform the HTTP GET request
 				ResponseEntity<StateList> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, StateList.class);
 				
-				// If you don't need to set the Accept header, you can simplify the request with the getForObject() method
-				// StateList stateList = restTemplate.getForObject(url, StateList.class);
-
 				// Return the list of states
 				StateList stateList = responseEntity.getBody();
 

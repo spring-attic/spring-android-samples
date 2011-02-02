@@ -3,9 +3,7 @@ package org.springframework.android.showcase;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 
@@ -23,10 +21,9 @@ public class HomeControllerTest {
 
 	@Test
 	public void homePageSubmitMessage() {
-		Map<String,String> body = new HashMap<String,String>();
-		body.put("message", "unit test message");
-		String response = controller.sendMessage(body);
-		assertEquals("It worked!", response);
+		String message = "unit test message";
+		String response = controller.sendMessage(message);
+		assertEquals("String message received! Your message: " + message, response);
 	}
 
 }

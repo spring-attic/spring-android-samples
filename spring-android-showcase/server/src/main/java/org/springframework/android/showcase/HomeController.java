@@ -2,7 +2,6 @@ package org.springframework.android.showcase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,51 +38,93 @@ public class HomeController {
 	 */
 	@RequestMapping(value="states", method=RequestMethod.GET, headers="Accept=application/json")
 	public @ResponseBody List<State> fetchStatesJson() {		
-		logger.info("fetching states json");
+		logger.info("fetching JSON states");
 		return getStates();
 	}
 	
 	/** 
 	 * Retrieve a list of states. Accepts a GET request for XML
 	 *  
-	 * @return A XML array of states
+	 * @return An XML array of states
 	 */
 	@RequestMapping(value="states", method=RequestMethod.GET, headers="Accept=application/xml")
 	public @ResponseBody StateList fetchStatesXml() {		
-		logger.info("fetching states xml");
+		logger.info("fetching XML states");
 		List<State> states = getStates();
 		StateList stateList = new StateList(states);
 		return stateList;
 	}
 	
 	/** 
-	 * Retrieve a single state. Accepts a GET request for JSON or XML with a parameter for the state abbreviation
+	 * Retrieve a single state. Accepts a GET request for JSON with a parameter for the state abbreviation
 	 * 
 	 * @param abbreviation
 	 * 			contains the state abbreviation to use when finding
 	 * 			the corresponding state
 	 * 
-	 * @return A JSON or XML state depending on the request header
+	 * @return A JSON state
 	 */
-	@RequestMapping(value="state/{abbreviation}", method=RequestMethod.GET, headers="Accept=application/json, application/xml")
-	public @ResponseBody State fetchStateJson(@PathVariable String abbreviation) {		
-		logger.info("fetching state");
+	@RequestMapping(value="state/{abbreviation}", method=RequestMethod.GET, headers="Accept=application/json")
+	public @ResponseBody State fetchStateJson(@PathVariable String abbreviation) {	
+		logger.info("fetching JSON state");
+		return getStateByAbbreviation(abbreviation);
+	}
+	
+	/** 
+	 * Retrieve a single state. Accepts a GET request for XML with a parameter for the state abbreviation
+	 * 
+	 * @param abbreviation
+	 * 			contains the state abbreviation to use when finding
+	 * 			the corresponding state
+	 * 
+	 * @return An XML state
+	 */
+	@RequestMapping(value="state/{abbreviation}", method=RequestMethod.GET, headers="Accept=application/xml")
+	public @ResponseBody State fetchStateXml(@PathVariable String abbreviation) {	
+		logger.info("fetching XML state");
 		return getStateByAbbreviation(abbreviation);
 	}
 	
 	/**
-	 * Accepts a POST request with a message parameter
+	 * Accepts a POST request with a plain text message parameter
 	 * 
 	 * @param body
 	 *           contains the body of the POST request
 	 *           
 	 * @return a string with the result of the POST
 	 */
-	@RequestMapping(value="sendmessage", method=RequestMethod.POST)
-	public @ResponseBody String sendMessage(@RequestBody Map<String, String> body) {
-		String message = body.get("message");
-		logger.info("message: " + message);
-		return "It worked! Your message: " + message;
+	@RequestMapping(value="sendmessage", method=RequestMethod.POST, headers="Content-Type=text/plain")
+	public @ResponseBody String sendMessage(@RequestBody String message) {
+		logger.info("String message: " + message);
+		return "String message received! Your message: " + message;
+	}
+	
+	/**
+	 * Accepts a POST request with a JSON message parameter
+	 * 
+	 * @param message
+	 *           serialized Message object
+	 *           
+	 * @return a string with the result of the POST
+	 */
+	@RequestMapping(value="sendmessage", method=RequestMethod.POST, headers="Content-Type=application/json")
+	public @ResponseBody String sendMessageJson(@RequestBody Message message) {
+		logger.info("JSON message: " + message.toString());
+		return "JSON message received! Your message: " + message.toString();
+	}
+	
+	/**
+	 * Accepts a POST request with an XML message parameter
+	 * 
+	 * @param message
+	 *           serialized Message object
+	 *           
+	 * @return a string with the result of the POST
+	 */
+	@RequestMapping(value="sendmessage", method=RequestMethod.POST, headers="Content-Type=application/xml")
+	public @ResponseBody String sendMessageXml(@RequestBody Message message) {
+		logger.info("XML message: " + message.toString());
+		return "XML message received! Your message: " + message.toString();
 	}
 	
 	

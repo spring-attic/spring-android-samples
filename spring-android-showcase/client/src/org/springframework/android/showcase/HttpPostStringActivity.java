@@ -1,9 +1,5 @@
 package org.springframework.android.showcase;
 
-import java.util.Collections;
-import java.util.Map;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -30,11 +26,14 @@ public class HttpPostStringActivity extends AbstractAsyncActivity
 		
 		// Initiate the POST request when the button is clicked
 		final Button button = (Button) findViewById(R.id.button_post_string);
-		button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	new PostMessageTask().execute();
-            }
-        });
+		button.setOnClickListener(new View.OnClickListener() 
+			{
+            	public void onClick(View v) 
+            	{
+            		new PostMessageTask().execute();
+            	}
+			}
+		);
 	}
 		
 	
@@ -53,7 +52,7 @@ public class HttpPostStringActivity extends AbstractAsyncActivity
     //***************************************
 	private class PostMessageTask extends AsyncTask<Void, Void, String> 
 	{	
-		private String _message;
+		private String _text;
 		
 		@Override
 		protected void onPreExecute() 
@@ -64,7 +63,7 @@ public class HttpPostStringActivity extends AbstractAsyncActivity
 			// retrieve the message text from the EditText field
 			EditText editText = (EditText) findViewById(R.id.edit_text_message);
 			
-			_message = editText.getText().toString();
+			_text = editText.getText().toString();
 		}
 		
 		@Override
@@ -73,19 +72,16 @@ public class HttpPostStringActivity extends AbstractAsyncActivity
 			try 
 			{
 				// The URL for making the POST request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/sendmessage/";
-				
-				// Create a Map for the POST parameters, and add the message parameter and its value 
-				Map<String, String> postParams = Collections.singletonMap("message", _message);
-				
+				final String url = "http://10.0.2.2:8080/spring-android-showcase/sendmessage";
+
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 				
 				// Make the network request, posting the message, expecting a String in response from the server
-				ResponseEntity<String> response = restTemplate.postForEntity(url, postParams, String.class);
+				String response = restTemplate.postForObject(url, _text, String.class);
 				
 				// Return the response body to display to the user
-				return response.getBody();		
+				return response;
 			} 
 			catch(Exception e) 
 			{

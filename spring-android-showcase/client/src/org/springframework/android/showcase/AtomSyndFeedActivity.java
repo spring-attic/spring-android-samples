@@ -114,7 +114,7 @@ public class AtomSyndFeedActivity extends AbstractAsyncListActivity
 				// Configure the SyndFeed message converter.
 				SyndFeedHttpMessageConverter converter = new SyndFeedHttpMessageConverter();
 				List<MediaType> mediaTypes = new ArrayList<MediaType>();
-				mediaTypes.add(new MediaType("application", "xml"));
+				mediaTypes.add(MediaType.APPLICATION_XML);
 				converter.setSupportedMediaTypes(mediaTypes);
 				
 				// Add the SyndFeed message converter to the RestTemplate instance

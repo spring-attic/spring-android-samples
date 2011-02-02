@@ -39,24 +39,19 @@ public class RssChannelActivity extends AbstractAsyncListActivity
 		new DownloadRssFeedTask().execute();
 	}
 	
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-	}
-	
 	
 	//***************************************
     // ListActivity methods
     //***************************************
 	@Override
-	protected void onListItemClick (ListView l, View v, int position, long id)
+	protected void onListItemClick(ListView l, View v, int position, long id)
 	{
 		if (_channel == null)
 		{
 			return;
 		}
 		
+		// Open the selected RSS item in the browser
 		Item item = (Item) _channel.getItems().get(position);
 		String uri = item.getUri();
 		Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(uri));
@@ -105,7 +100,7 @@ public class RssChannelActivity extends AbstractAsyncListActivity
 				// Configure the RSS message converter.
 				RssChannelHttpMessageConverter converter = new RssChannelHttpMessageConverter();
 				List<MediaType> mediaTypes = new ArrayList<MediaType>();
-				mediaTypes.add(new MediaType("text", "xml"));
+				mediaTypes.add(MediaType.TEXT_XML);
 				converter.setSupportedMediaTypes(mediaTypes);
 				
 				// Add the RSS message converter to the RestTemplate instance
