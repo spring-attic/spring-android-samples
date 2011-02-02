@@ -72,7 +72,7 @@ public class HttpPostStringActivity extends AbstractAsyncActivity
 			try 
 			{
 				// The URL for making the POST request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/sendmessage";
+				final String url = getString(R.string.base_uri) + "/sendmessage";
 
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();

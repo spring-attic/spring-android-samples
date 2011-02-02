@@ -106,7 +106,7 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
 				MediaType mediaType = params[0];
 				
 				// The URL for making the GET request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/state/{abbreviation}";
+				final String url = getString(R.string.base_uri) + "/state/{abbreviation}";
 				
 				// Set the Accept header for "application/json" or "application/xml"
 				HttpHeaders requestHeaders = new HttpHeaders();

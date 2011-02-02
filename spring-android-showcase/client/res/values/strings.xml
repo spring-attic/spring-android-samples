@@ -2,6 +2,12 @@
 <resources>
 
     <string name="app_name">S2Android Showcase</string>
+ 
+    <string name="base_uri">http://10.0.2.2:8080/spring-android-showcase</string>
+
+    <string name="rss_feed_url">http://blog.springsource.com/feed</string>
+
+    <string name="atom_feed_url">https://jira.springframework.org/plugins/servlet/streams</string>
     
     <string name="text_http_get_description">These examples retrieve a list of states from the 
     example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use 

@@ -70,7 +70,7 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 			try 
 			{
 				// The URL for making the GET request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/states";
+				final String url = getString(R.string.base_uri) + "/states";
 				
 				// Set the Content-Type header to "application/json"
 				HttpHeaders requestHeaders = new HttpHeaders();

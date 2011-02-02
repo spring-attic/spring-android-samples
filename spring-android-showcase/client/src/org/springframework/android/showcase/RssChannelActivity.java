@@ -109,7 +109,7 @@ public class RssChannelActivity extends AbstractAsyncListActivity
 				restTemplate.setMessageConverters(messageConverters);
 				
 				// The URL for making the request
-				final String url = "http://blog.springsource.com/feed";
+				final String url = getString(R.string.rss_feed_url);
 				
 				// Initiate the request and return the results
 				return restTemplate.getForObject(url, Channel.class);

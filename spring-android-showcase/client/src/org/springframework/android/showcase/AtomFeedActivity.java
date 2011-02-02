@@ -116,9 +116,9 @@ public class AtomFeedActivity extends AbstractAsyncListActivity
 				messageConverters.add(converter);
 				restTemplate.setMessageConverters(messageConverters);
 								
-				// The URL for making the request
-				final String url = "https://jira.springframework.org/plugins/servlet/streams";
-				
+				// The URL for making the request 
+				final String url = getString(R.string.atom_feed_url);
+
 				// Initiate the request and return the results
 				return restTemplate.getForObject(url, Feed.class);
 			} 
@@ -136,7 +136,7 @@ public class AtomFeedActivity extends AbstractAsyncListActivity
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
 			
-			// return the list of states
+			// return the feed list
 			refreshAtomFeed(feed);
 		}
 	}

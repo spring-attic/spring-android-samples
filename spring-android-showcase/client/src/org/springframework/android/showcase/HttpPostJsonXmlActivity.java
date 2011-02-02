@@ -117,7 +117,7 @@ public class HttpPostJsonXmlActivity extends AbstractAsyncActivity
 				MediaType mediaType = params[0];
 				
 				// The URL for making the POST request
-				final String url = "http://10.0.2.2:8080/spring-android-showcase/sendmessage";
+				final String url = getString(R.string.base_uri) + "/sendmessage";
 				
 				HttpHeaders requestHeaders = new HttpHeaders();
 								
