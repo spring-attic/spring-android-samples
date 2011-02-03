@@ -15,6 +15,7 @@
  */
 package org.springframework.android.showcase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -90,9 +91,11 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 				// The URL for making the GET request
 				final String url = getString(R.string.base_uri) + "/states";
 				
-				// Set the Content-Type header to "application/json"
+				// Set the Accept header for "application/json"
 				HttpHeaders requestHeaders = new HttpHeaders();
-				requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+				List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+				acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
+				requestHeaders.setAccept(acceptableMediaTypes);
 				
 				// Populate the headers in an HttpEntity object to use for the request
 				HttpEntity<String> requestEntity = new HttpEntity<String>(requestHeaders);

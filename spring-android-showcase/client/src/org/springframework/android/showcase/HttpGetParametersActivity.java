@@ -132,7 +132,7 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
 				requestHeaders.setAccept(acceptableMediaTypes);
 				
 				// Populate the headers in an HttpEntity object to use for the request
-				HttpEntity<Object> requestEntity = new HttpEntity<Object>(requestHeaders);
+				HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
 																
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
