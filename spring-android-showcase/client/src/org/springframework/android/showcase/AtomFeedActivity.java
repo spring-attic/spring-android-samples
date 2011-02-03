@@ -67,13 +67,13 @@ public class AtomFeedActivity extends AbstractAsyncListActivity
 	
 	
 	//***************************************
-    // ListActivity methods
+	// ListActivity methods
     //***************************************
 	@Override
 	protected void onListItemClick (ListView l, View v, int position, long id)
 	{
 		Entry entry = (Entry) _feed.getEntries().get(position);
-		List alternateLinks = entry.getAlternateLinks();
+		List<?> alternateLinks = entry.getAlternateLinks();
 		if (alternateLinks.size() > 0)
 		{
 			Link link = (Link) alternateLinks.get(0);
