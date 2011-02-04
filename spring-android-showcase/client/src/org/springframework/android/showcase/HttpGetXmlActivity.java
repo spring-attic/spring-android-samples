@@ -97,7 +97,7 @@ public class HttpGetXmlActivity extends AbstractAsyncListActivity
 				requestHeaders.setAccept(acceptableMediaTypes);
 				
 				// Populate the headers in an HttpEntity object to use for the request
-				HttpEntity<String> requestEntity = new HttpEntity<String>(requestHeaders);
+				HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
 				
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
