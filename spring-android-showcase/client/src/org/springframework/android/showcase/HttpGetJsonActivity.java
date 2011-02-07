@@ -31,6 +31,7 @@ import android.os.Bundle;
 
 /**
  * @author Roy Clarkson
+ * @author Helena Edelson
  */
 public class HttpGetJsonActivity extends AbstractAsyncListActivity 
 {

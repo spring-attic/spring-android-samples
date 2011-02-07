@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 /**
  * @author Roy Clarkson
+ * @author Helena Edelson
  */
 public class HttpPostJsonXmlActivity extends AbstractAsyncActivity 
 {

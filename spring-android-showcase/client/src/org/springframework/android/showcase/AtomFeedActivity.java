@@ -37,6 +37,7 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Lin
 
 /**
  * @author Roy Clarkson
+ * @author Helena Edelson
  */
 public class AtomFeedActivity extends AbstractAsyncListActivity 
 {

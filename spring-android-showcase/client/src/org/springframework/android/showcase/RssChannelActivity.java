@@ -35,6 +35,7 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item
 
 /**
  * @author Roy Clarkson
+ * @author Helena Edelson
  */
 public class RssChannelActivity extends AbstractAsyncListActivity 
 {

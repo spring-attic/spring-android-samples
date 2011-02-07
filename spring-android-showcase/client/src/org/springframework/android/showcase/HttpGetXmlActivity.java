@@ -30,6 +30,7 @@ import android.os.Bundle;
 
 /**
  * @author Roy Clarkson
+ * @author Helena Edelson
  */
 public class HttpGetXmlActivity extends AbstractAsyncListActivity 
 {
