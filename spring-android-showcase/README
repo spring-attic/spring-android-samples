@@ -4,29 +4,41 @@
 
 Introduction
 ------------
-This project requires set up of the Android SDK, command line tools, Maven, the Maven Android Plugin, and Android Maven artifacts such as Spring dependencies. This document walks step by step throught that setup.
+This project requires set up of the Android SDK, command line tools, Maven, the Maven Android Plugin, and Android Maven artifacts such as Spring dependencies. This document walks step by step through that setup.
+
 
 Development Environment
 -----------------------
-http://developer.android.com/sdk/index.html
 The Android SDK is required for developing Android applications. Google provides command line tools, and an Eclipse plugin for building Android applications, however you are not restricted to only those options.
 The Maven Android Plugin makes use of the Android SDK command line tools to compile and deploy the app to the emulator, so there is no need for a separate IDE setup or configuration.
+
+
+Install the Android SDK
+-----------------------
+Download the correct version of the Android SDK for your operating system from the Android web site:
+http://developer.android.com/sdk/index.html
+
+Unzip the archive and place it in a location of your choosing. For example on a Mac, you may want to place it in the root of your user directory.  See the download web site for additional installation details.
 
 Add Android to your Path
 Example: a .bash_profile on a Mac:
 $ export ANDROID_HOME=~/android-sdk-mac_x86
 $ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-Install Android SDK 1.5
------------------------
-You need to install the Android 1.5 SDK (Level 3) for the sample application to run. Our goal with Spring Android is to provide backward compatibility with older versions of Android. To illustrate this compatibility, the sample application runs on Android 1.5.
+
+Install Android SDK Platform
+----------------------------
+The Android SDK download does not include any specific Android platform SDKs. In order to run the sample code you need to download and install the Android 2.3.1 SDK Platform (API Level 9).  You accomplish this by using the Android SDK and AVD Manager that was installed from the previous step.
+
 Open the Android SDK and AVD Manager window:
 $ android
+Note: if this command does not open the Android SDK and AVD Manager, then your path is not configured correctly.
 Select Available packages from the left hand column
 Select the checkbox for Android Repository in the main window
-Select SDK Platform Android 1.5, API 3, revision 4
+Select SDK Platform Android 2.3.1, API 9, revision 2
 Click the Install Selected button to complete the download and installation.
-Note: you may want to simply install all the available updates, but be aware it might take longer on a slower Internet connection
+Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
+
 
 Configure an Android Virtual Device
 -----------------------------------
@@ -34,11 +46,11 @@ http://developer.android.com/guide/developing/tools/avd.html
 Open the Android SDK and AVD Manager window:
 $ android
 Select Virtual devices in the left hand column and click the New button
-Enter 3 in the Name field
-Select Android 1.5 API Level 3 in the Target selector
+Enter 9 in the Name field
+Select Android 2.3.1 API Level 9 in the Target selector
 Click Create AVD to finish
-Note: The sample application is configured to look for an AVD with the name "3". Otherwise, you can name the AVD whatever you like. 
-Using "3" for the name simply is a visual indicator of which API level it uses.
+Note: The sample application is configured to look for an AVD with the name "9". Otherwise, you can name the AVD whatever you like. Using "9" for the name simply is a visual indicator of which API level it uses.
+
 
 Build and Run the Server app
 ----------------------------
@@ -47,10 +59,6 @@ $ mvn clean install
 Deploy the .war to a Servlet 2.5 or > ServletContainer, such as Tomcat 6.
 Start the server
 
-Configure the Android Client
-----------------------------
-Open /spring-android-showcase/client/res/values/strings.xml
-Note: base_uri uses host 10.0.2.2. Do not use localhost as that refers to the Android emulator itself. 10.0.2.2 redirects to your computer.
 
 Build and Run the Android Client
 --------------------------------
