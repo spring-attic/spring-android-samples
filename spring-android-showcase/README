@@ -17,15 +17,28 @@ Example: a .bash_profile on a Mac:
 $ export ANDROID_HOME=~/android-sdk-mac_x86
 $ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
+Install Android SDK 1.5
+-----------------------
+You need to install the Android 1.5 SDK (Level 3) for the sample application to run. Our goal with Spring Android is to provide backward compatibility with older versions of Android. To illustrate this compatibility, the sample application runs on Android 1.5.
+Open the Android SDK and AVD Manager window:
+$ android
+Select Available packages from the left hand column
+Select the checkbox for Android Repository in the main window
+Select SDK Platform Android 1.5, API 3, revision 4
+Click the Install Selected button to complete the download and installation.
+Note: you may want to simply install all the available updates, but be aware it might take longer on a slower Internet connection
+
 Configure an Android Virtual Device
 -----------------------------------
 http://developer.android.com/guide/developing/tools/avd.html
 Open the Android SDK and AVD Manager window:
 $ android
-Select Virtual devices in the left hand column and click the New_ button
+Select Virtual devices in the left hand column and click the New button
 Enter 3 in the Name field
 Select Android 1.5 API Level 3 in the Target selector
 Click Create AVD to finish
+Note: The sample application is configured to look for an AVD with the name "3". Otherwise, you can name the AVD whatever you like. 
+Using "3" for the name simply is a visual indicator of which API level it uses.
 
 Build and Run the Server app
 ----------------------------
