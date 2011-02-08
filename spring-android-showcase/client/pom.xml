@@ -20,7 +20,7 @@
 		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
 		<android-version>1.5_r4</android-version>
 		<spring-android-version>1.0.0.M2</spring-android-version>
-		<jackson-version>1.7.1</jackson-version>
+		<jackson-version>1.7.2</jackson-version>
 		<simple-version>2.4.1</simple-version>
 		<android-rome-version>1.0.0-r2</android-rome-version>
 	</properties>
