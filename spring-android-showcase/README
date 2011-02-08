@@ -9,7 +9,7 @@ This project requires set up of the Android SDK, command line tools, Maven, the 
 Development Environment
 -----------------------
 http://developer.android.com/sdk/index.html
-The Android SDK is required for developing Android applications. As mentioned earlier, Google provides command line tools, and an Eclipse plugin for building Android applications, however you are not restricted to only those options.
+The Android SDK is required for developing Android applications. Google provides command line tools, and an Eclipse plugin for building Android applications, however you are not restricted to only those options.
 The Maven Android Plugin makes use of the Android SDK command line tools to compile and deploy the app to the emulator, so there is no need for a separate IDE setup or configuration.
 
 Add Android to your Path
