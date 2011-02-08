@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.android</groupId>
-	<artifactId>ShowcaseServer</artifactId>
+	<artifactId>spring-android-showcase-server</artifactId>
 	<name>spring-android-showcase-server</name>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -77,7 +77,7 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.7.1</version>
+			<version>1.7.2</version>
 		</dependency>
 		
 		<!-- JAXB XML Processor -->
@@ -140,13 +140,6 @@
 				<configuration>
 					<source>${java-version}</source>
 					<target>${java-version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<warName>projectName</warName>
 				</configuration>
 			</plugin>
 			<plugin>
