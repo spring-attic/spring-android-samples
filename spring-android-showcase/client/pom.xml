@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>org.springframework.android</groupId>
-	<artifactId>showcase</artifactId>
+	<artifactId>spring-android-showcase-client</artifactId>
 	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<packaging>apk</packaging>
 	<name>spring-android-showcase-client</name>

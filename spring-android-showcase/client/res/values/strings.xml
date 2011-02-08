@@ -3,7 +3,7 @@
 
     <string name="app_name">S2Android Showcase</string>
  
-    <string name="base_uri">http://10.0.2.2:8080/spring-android-showcase</string>
+    <string name="base_uri">http://10.0.2.2:8080/spring-android-showcase-server</string>
 
     <string name="rss_feed_url">http://blog.springsource.com/feed</string>
 
