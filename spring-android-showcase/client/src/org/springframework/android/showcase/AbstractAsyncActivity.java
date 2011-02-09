@@ -29,7 +29,10 @@ import android.util.Log;
 public abstract class AbstractAsyncActivity extends Activity implements AsyncActivity
 {
 	protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
+
 	private ProgressDialog _progressDialog;
+	
+	private boolean _destroyed = false;
 	
 	public void showLoadingProgressDialog() 
 	{
@@ -38,10 +41,16 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 		
 	public void dismissProgressDialog() 
 	{
-		if (_progressDialog != null) 
+		if (_progressDialog != null && !_destroyed) 
 		{
 			_progressDialog.dismiss();
 		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		_destroyed = true;
 	}
 	
 	public void logException(Exception e) 
