@@ -38,7 +38,7 @@ import android.widget.Toast;
  */
 public class HttpGetParametersActivity extends AbstractAsyncActivity 
 {
-	protected static final String TAG = "HttpGetParametersActivity";
+	protected static final String TAG = HttpGetParametersActivity.class.getSimpleName();
 	
 
 	//***************************************
