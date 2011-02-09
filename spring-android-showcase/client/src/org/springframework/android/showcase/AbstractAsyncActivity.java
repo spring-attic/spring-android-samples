@@ -47,7 +47,5 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 	public void logException(Exception e) 
 	{
 		Log.e(TAG, e.getMessage(), e);
-		Writer result = new StringWriter();
-		e.printStackTrace(new PrintWriter(result));
 	}
 }
