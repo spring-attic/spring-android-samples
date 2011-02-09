@@ -15,10 +15,6 @@
  */
 package org.springframework.android.showcase;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.util.Log;
