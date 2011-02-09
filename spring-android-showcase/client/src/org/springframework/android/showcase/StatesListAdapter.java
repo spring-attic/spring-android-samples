@@ -45,7 +45,7 @@ public class StatesListAdapter extends BaseAdapter
 
 	public State getItem(int position) 
 	{
-		return (State) _states.get(position);
+		return _states.get(position);
 	}
 
 	public long getItemId(int position) 
