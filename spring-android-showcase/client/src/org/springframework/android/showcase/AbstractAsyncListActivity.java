@@ -28,7 +28,7 @@ import android.util.Log;
  */
 public abstract class AbstractAsyncListActivity extends ListActivity implements AsyncActivity
 {	
-	protected String TAG = AbstractAsyncListActivity.class.getSimpleName();
+	protected static final String TAG = AbstractAsyncListActivity.class.getSimpleName();
 	private ProgressDialog _progressDialog;
 	
 	public void showLoadingProgressDialog() 
