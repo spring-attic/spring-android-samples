@@ -35,7 +35,7 @@ import android.widget.Toast;
  */
 public class HttpPostJsonXmlActivity extends AbstractAsyncActivity 
 {
-	protected String TAG = "HttpPostJsonActivity";
+	protected static final String TAG = "HttpPostJsonActivity";
 	
 	
 	//***************************************

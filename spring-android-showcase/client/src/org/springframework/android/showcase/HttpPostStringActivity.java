@@ -30,7 +30,7 @@ import android.widget.Toast;
  */
 public class HttpPostStringActivity extends AbstractAsyncActivity 
 {
-	protected String TAG = "HttpPostStringActivity";
+	protected static final String TAG = "HttpPostStringActivity";
 	
 	
 	//***************************************

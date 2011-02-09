@@ -40,7 +40,7 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
  */
 public class AtomSyndFeedActivity extends AbstractAsyncListActivity 
 {
-	protected String TAG = "AtomSyndFeedActivity";
+	protected static final String TAG = "AtomSyndFeedActivity";
 	
 	private SyndFeed _feed;
 	
