@@ -2,3 +2,6 @@
 bin
 gen
 target
+.project
+.classpath
+.settings

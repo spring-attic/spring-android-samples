@@ -34,7 +34,7 @@ import android.os.Bundle;
  */
 public class HttpGetXmlActivity extends AbstractAsyncListActivity 
 {
-	protected String TAG = "HttpGetActivity";
+	protected static final String TAG = HttpGetXmlActivity.class.getSimpleName();
 	
 	
 	//***************************************

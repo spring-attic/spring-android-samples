@@ -15,10 +15,6 @@
  */
 package org.springframework.android.showcase;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
-
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.util.Log;
@@ -28,8 +24,11 @@ import android.util.Log;
  */
 public abstract class AbstractAsyncListActivity extends ListActivity implements AsyncActivity
 {	
-	protected String TAG = "AbstractAsyncListActivity";
+	protected static final String TAG = AbstractAsyncListActivity.class.getSimpleName();
+
 	private ProgressDialog _progressDialog;
+	
+	private boolean _destroyed = false;
 	
 	public void showLoadingProgressDialog() 
 	{
@@ -38,16 +37,20 @@ public abstract class AbstractAsyncListActivity extends ListActivity implements 
 		
 	public void dismissProgressDialog() 
 	{
-		if (_progressDialog != null) 
+		if (_progressDialog != null && !_destroyed) 
 		{
 			_progressDialog.dismiss();
 		}
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		_destroyed = true;
+	}
+	
 	public void logException(Exception e) 
 	{
 		Log.e(TAG, e.getMessage(), e);
-		Writer result = new StringWriter();
-		e.printStackTrace(new PrintWriter(result));
 	}
 }

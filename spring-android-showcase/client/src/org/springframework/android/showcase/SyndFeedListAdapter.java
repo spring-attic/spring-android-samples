@@ -44,9 +44,9 @@ public class SyndFeedListAdapter extends BaseAdapter
 		return _syndFeed.getEntries().size();
 	}
 
-	public Object getItem(int position) 
+	public SyndEntry getItem(int position) 
 	{
-		return _syndFeed.getEntries().get(position);
+		return (SyndEntry) _syndFeed.getEntries().get(position);
 	}
 
 	public long getItemId(int position) 
@@ -56,7 +56,7 @@ public class SyndFeedListAdapter extends BaseAdapter
 
 	public View getView(int position, View convertView, ViewGroup parent) 
 	{
-		SyndEntry syndEntry = (SyndEntry) getItem(position);
+		SyndEntry syndEntry = getItem(position);
 		
 		View view = convertView;
 		
