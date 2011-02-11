@@ -35,6 +35,7 @@ import android.widget.Toast;
 /**
  * @author Roy Clarkson
  * @author Helena Edelson
+ * @author Pierre-Yves Ricau
  */
 public class HttpGetParametersActivity extends AbstractAsyncActivity 
 {

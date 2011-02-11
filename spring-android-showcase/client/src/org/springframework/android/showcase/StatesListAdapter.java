@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 /**
  * @author Roy Clarkson
+ * @author Pierre-Yves Ricau
  */
 public class StatesListAdapter extends BaseAdapter 
 {

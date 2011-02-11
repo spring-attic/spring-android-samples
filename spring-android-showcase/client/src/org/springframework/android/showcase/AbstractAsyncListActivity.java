@@ -21,6 +21,7 @@ import android.util.Log;
 
 /**
  * @author Roy Clarkson
+ * @author Pierre-Yves Ricau
  */
 public abstract class AbstractAsyncListActivity extends ListActivity implements AsyncActivity
 {	

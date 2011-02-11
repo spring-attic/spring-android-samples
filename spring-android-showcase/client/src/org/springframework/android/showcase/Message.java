@@ -72,7 +72,8 @@ public class Message
 		return text;
 	}
 	
-	public String toString() {
+	public String toString() 
+	{
 		return "[Id:] " + this.getId() + " [Subject:] " + this.getSubject() + " [Text:] "+ this.getText();
 	}
 }

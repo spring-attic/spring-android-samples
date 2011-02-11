@@ -32,10 +32,11 @@ import android.os.Bundle;
 /**
  * @author Roy Clarkson
  * @author Helena Edelson
+ * @author Pierre-Yves Ricau
  */
 public class HttpGetJsonActivity extends AbstractAsyncListActivity 
 {
-	protected static final String TAG = HttpGetActivity.class.getSimpleName();
+	protected static final String TAG = HttpGetJsonActivity.class.getSimpleName();
 	
 	
 	//***************************************

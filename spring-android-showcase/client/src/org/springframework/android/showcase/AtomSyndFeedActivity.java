@@ -37,6 +37,7 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
 /**
  * @author Roy Clarkson
  * @author Helena Edelson
+ * @author Pierre-Yves Ricau
  */
 public class AtomSyndFeedActivity extends AbstractAsyncListActivity 
 {

@@ -38,10 +38,11 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Lin
 /**
  * @author Roy Clarkson
  * @author Helena Edelson
+ * @author Pierre-Yves Ricau
  */
 public class AtomFeedActivity extends AbstractAsyncListActivity 
 {
-	protected String TAG = "AtomFeedActivity";
+	protected static final String TAG = AtomFeedActivity.class.getSimpleName();
 	
 	private Feed _feed;
 	

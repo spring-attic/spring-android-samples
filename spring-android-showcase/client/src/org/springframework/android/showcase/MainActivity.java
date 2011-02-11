@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 /**
  * @author Roy Clarkson
+ * @author Pierre-Yves Ricau
  */
 public class MainActivity extends ListActivity
 {   

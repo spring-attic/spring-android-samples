@@ -27,6 +27,7 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
 
 /**
  * @author Roy Clarkson
+ * @author Pierre-Yves Ricau
  */
 public class SyndFeedListAdapter extends BaseAdapter 
 {
