@@ -1,0 +1,9 @@
+This repository contains sample projects illustrating usage of the Spring Mobile and Spring Android projects.
+
+Samples include:
+- lite-showcase, demonstrating the capabilities of the Spring Mobile "Lite" DeviceResolver for server-side device detection.
+- wurfl-showcase, demonstrating the capabilities of the Spring Mobile WURFL DeviceResolver for expanded server-side device detection.
+- spring-android-showcase, illustrating the features of the Spring Android project
+- commons-logging-test, a test project showing illustrating logging in an Android environment.
+ 
+See the README in each sub directory for information on the sample and instructions on how to run it.
