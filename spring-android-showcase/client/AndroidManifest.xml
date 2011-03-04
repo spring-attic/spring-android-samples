@@ -39,6 +39,9 @@
         <activity
         	android:name=".HttpPostJsonXmlActivity" />
         	
+        <activity
+        	android:name=".HttpPostMultiValueMapActivity" />
+        	
        	<activity
         	android:name=".RssActivity" />
         	
@@ -56,8 +59,7 @@
         	
         <activity
         	android:name=".AtomSyndFeedActivity" />
-        	        	
-        
+        	
     </application>
 
 </manifest> 

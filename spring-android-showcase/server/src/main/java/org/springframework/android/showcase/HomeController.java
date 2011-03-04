@@ -21,6 +21,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -142,6 +143,32 @@ public class HomeController {
 	public @ResponseBody String sendMessageXml(@RequestBody Message message) {
 		logger.info("XML message: " + message.toString());
 		return "XML message received! Your message: " + message.toString();
+	}
+	
+	/**
+	 * Accepts a POST request with an Map message parameter, and creates a new Message
+	 * object from the Map parameters.
+	 * 
+	 * @param map
+	 *           serialized LinkedMultiValueMap<String, String> object
+	 *           
+	 * @return a string with the result of the POST
+	 */
+	@RequestMapping(value="sendmessagemap", method=RequestMethod.POST)
+	public @ResponseBody String sendMessageMap(@RequestBody LinkedMultiValueMap<String, String> map) {
+		Message message = new Message();
+		
+		try {
+			message.setId(Integer.parseInt(map.getFirst("id")));
+		} catch (NumberFormatException e) {
+			message.setId(0);
+		}
+		
+		message.setSubject(map.getFirst("subject"));
+		message.setText(map.getFirst("text"));
+
+		logger.info("Map message: " + message.toString());
+		return "Map message received! Your message: " + message.toString();
 	}
 	
 	
