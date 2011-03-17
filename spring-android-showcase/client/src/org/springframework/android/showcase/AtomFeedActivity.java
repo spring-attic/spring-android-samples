@@ -144,7 +144,7 @@ public class AtomFeedActivity extends AbstractAsyncListActivity
 			} 
 			catch(Exception e) 
 			{
-				logException(e);
+				Log.e(TAG, e.getMessage(), e);
 			} 
 			
 			return null;

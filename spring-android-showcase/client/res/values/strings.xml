@@ -30,12 +30,15 @@
     or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports 
     RSS and ATOM using an abstracted object model.</string>
     
+	<string name="text_twitter_description">Twitter example using Spring Social.</string>
+    
 	<string-array name="main_options">
         <item>HTTP GET</item>
         <item>HTTP GET with parameters</item>
         <item>HTTP POST</item>
     	<item>RSS</item>
 		<item>ATOM</item>
+		<item>Twitter</item>
 	</string-array>
 	
 	<string-array name="http_get_activity_options">
@@ -58,5 +61,5 @@
 		<item>SyndFeed</item>
 		<item>AtomFeed</item>
 	</string-array>
-	
+		
 </resources>

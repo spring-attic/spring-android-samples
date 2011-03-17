@@ -28,6 +28,7 @@ import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 /**
  * @author Roy Clarkson
@@ -113,7 +114,7 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 			} 
 			catch(Exception e) 
 			{
-				logException(e);
+				Log.e(TAG, e.getMessage(), e);
 			} 
 			
 			return null;

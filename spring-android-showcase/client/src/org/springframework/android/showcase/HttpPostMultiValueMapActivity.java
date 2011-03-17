@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -120,7 +121,7 @@ public class HttpPostMultiValueMapActivity extends AbstractAsyncActivity
 			} 
 			catch(Exception e) 
 			{
-				logException(e);
+				Log.e(TAG, e.getMessage(), e);
 			} 
 			
 			return null;

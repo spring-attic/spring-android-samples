@@ -72,6 +72,10 @@ public class MainActivity extends ListActivity
 	      		intent.setClass(this, AtomActivity.class);
 	      		startActivity(intent);
 	      		break;
+	      	case 5:
+	      		intent.setClass(this, TwitterActivity.class);
+	      		startActivity(intent);
+	      		break;
 	      	default:
 	      		break;
 		}

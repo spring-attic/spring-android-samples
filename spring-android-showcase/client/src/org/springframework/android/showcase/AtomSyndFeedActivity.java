@@ -56,15 +56,8 @@ public class AtomSyndFeedActivity extends AbstractAsyncListActivity
 		
 		setTitle(null);
 		
-		try
-		{
-			// initiate the asynchronous network request
-			new DownloadAtomFeedTask().execute();
-		}
-		catch (Exception e)
-		{
-			this.logException(e);
-		}
+		// initiate the asynchronous network request
+		new DownloadAtomFeedTask().execute();
 	}
 	
 	@Override
@@ -150,7 +143,7 @@ public class AtomSyndFeedActivity extends AbstractAsyncListActivity
 			} 
 			catch(Exception e) 
 			{
-				logException(e);
+				Log.e(TAG, e.getMessage(), e);
 			} 
 			
 			return null;

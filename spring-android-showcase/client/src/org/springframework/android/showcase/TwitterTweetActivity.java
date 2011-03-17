@@ -15,24 +15,24 @@
  */
 package org.springframework.android.showcase;
 
-import org.springframework.web.client.RestTemplate;
-
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 /**
  * @author Roy Clarkson
- * @author Helena Edelson
- * @author Pierre-Yves Ricau
  */
-public class HttpPostStringActivity extends AbstractAsyncActivity 
+public class TwitterTweetActivity extends AbstractAsyncActivity 
 {
-	protected static final String TAG = HttpPostStringActivity.class.getSimpleName();
+	protected static final String TAG = TwitterTweetActivity.class.getSimpleName();
+
+	private TwitterConnectController _twitterConnectController;
 	
 	
 	//***************************************
@@ -43,27 +43,34 @@ public class HttpPostStringActivity extends AbstractAsyncActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		this.setContentView(R.layout.http_post_string_activity_layout);
+		_twitterConnectController = new TwitterConnectController(this);
+		
+		setContentView(R.layout.twitter_tweet_activity_layout);
 		
 		// Initiate the POST request when the button is clicked
-		final Button button = (Button) findViewById(R.id.button_post_string);
+		final Button button = (Button) findViewById(R.id.button_tweet);
 		button.setOnClickListener(new View.OnClickListener() 
 			{
             	public void onClick(View v) 
             	{
-            		new PostMessageTask().execute();
+            		// hide the soft keypad
+            		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            		EditText editText = (EditText) findViewById(R.id.edit_text_tweet);
+            		inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            		
+            		// start asynchronous twitter post 
+            		new PostTweetTask().execute();
             	}
 			}
 		);
 	}
-		
+	
 	
 	//***************************************
     // Private methods
-    //***************************************	
+    //***************************************
 	private void showResult(String result)
 	{
-		// display a notification to the user with the response message
 		Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 	}
 	
@@ -71,54 +78,42 @@ public class HttpPostStringActivity extends AbstractAsyncActivity
 	//***************************************
     // Private classes
     //***************************************
-	private class PostMessageTask extends AsyncTask<Void, Void, String> 
+	private class PostTweetTask extends AsyncTask<Void, Void, String> 
 	{	
-		private String _text;
+		private String _tweetText;
 		
 		@Override
 		protected void onPreExecute() 
 		{
 			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
+			showLoadingProgressDialog("Updating Status...");
 			
-			// retrieve the message text from the EditText field
-			EditText editText = (EditText) findViewById(R.id.edit_text_message);
-			
-			_text = editText.getText().toString();
+			// retrieve the tweet text from the EditText field
+			EditText editText = (EditText) findViewById(R.id.edit_text_tweet);
+			_tweetText = editText.getText().toString();
 		}
 		
 		@Override
 		protected String doInBackground(Void... params) 
 		{
-			try 
+			try
 			{
-				// The URL for making the POST request
-				final String url = getString(R.string.base_uri) + "/sendmessage";
-
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
-				
-				// Make the network request, posting the message, expecting a String in response from the server
-				String response = restTemplate.postForObject(url, _text, String.class);
-				
-				// Return the response body to display to the user
-				return response;
-			} 
-			catch(Exception e) 
+				_twitterConnectController.getTwitterApi().updateStatus(_tweetText);
+				return "Status updated";
+			}
+			catch(Exception e)
 			{
-				Log.e(TAG, e.getMessage(), e);
-			} 
-			
-			return null;
+				Log.e(TAG, e.getLocalizedMessage(), e);
+				return "An error occurred. See the log for details";
+			}
 		}
 		
 		@Override
 		protected void onPostExecute(String result) 
 		{
-			// after the network request completes, hid the progress indicator
+			// after the network request completes, hide the progress indicator
 			dismissProgressDialog();
 			
-			// return the response body to the calling class
 			showResult(result);
 		}
 	}

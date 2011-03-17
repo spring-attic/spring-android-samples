@@ -17,7 +17,6 @@ package org.springframework.android.showcase;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.util.Log;
 
 /**
  * @author Roy Clarkson
@@ -33,7 +32,12 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 	
 	public void showLoadingProgressDialog() 
 	{
-		_progressDialog = ProgressDialog.show(this, "",  "Loading. Please wait...", true);
+		this.showLoadingProgressDialog("Loading. Please wait...");
+	}
+	
+	public void showLoadingProgressDialog(CharSequence message) 
+	{
+		_progressDialog = ProgressDialog.show(this, "",  message, true);
 	}
 		
 	public void dismissProgressDialog() 
@@ -45,13 +49,9 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 	}
 	
 	@Override
-	protected void onDestroy() {
+	protected void onDestroy() 
+	{
 		super.onDestroy();
 		_destroyed = true;
-	}
-	
-	public void logException(Exception e) 
-	{
-		Log.e(TAG, e.getMessage(), e);
 	}
 }
