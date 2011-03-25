@@ -52,27 +52,31 @@ public class MainActivity extends ListActivity
 		
 		switch(position) 
 		{
-	      	case 0:
+			case 0:
+				intent.setClass(this, GoogleSearchActivity.class);
+				startActivity(intent);
+				break;
+	      	case 1:
 			    intent.setClass(this, HttpGetActivity.class);
 			    startActivity(intent);
 	      		break;
-	      	case 1:
+	      	case 2:
 	      		intent.setClass(this, HttpGetParametersActivity.class);
 			    startActivity(intent);
 	      		break;
-	      	case 2:
+	      	case 3:
 			    intent.setClass(this, HttpPostActivity.class);
 			    startActivity(intent);
 	      		break;
-	      	case 3:
+	      	case 4:
 	      		intent.setClass(this, RssActivity.class);
 	      		startActivity(intent);
 	      		break;
-	      	case 4:
+	      	case 5:
 	      		intent.setClass(this, AtomActivity.class);
 	      		startActivity(intent);
 	      		break;
-	      	case 5:
+	      	case 6:
 	      		intent.setClass(this, TwitterActivity.class);
 	      		startActivity(intent);
 	      		break;

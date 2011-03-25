@@ -33,6 +33,7 @@
 	<string name="text_twitter_description">Twitter example using Spring Social.</string>
     
 	<string-array name="main_options">
+		<item>Google Search</item>
         <item>HTTP GET</item>
         <item>HTTP GET with parameters</item>
         <item>HTTP POST</item>
