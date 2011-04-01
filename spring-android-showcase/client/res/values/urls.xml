@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_uri">http://10.0.2.2:8080/spring-android-showcase-server</string>
+    <string name="rss_feed_url">http://blog.springsource.com/feed</string>
+    <string name="atom_feed_url">https://jira.springframework.org/plugins/servlet/streams</string>
+</resources>

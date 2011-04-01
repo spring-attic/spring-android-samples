@@ -24,18 +24,33 @@ import android.app.ProgressDialog;
  */
 public abstract class AbstractAsyncListActivity extends ListActivity implements AsyncActivity
 {	
-	protected static final String TAG = AbstractAsyncListActivity.class.getSimpleName();
+	protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
 
 	private ProgressDialog _progressDialog;
 	
 	private boolean _destroyed = false;
+
 	
-	public void showLoadingProgressDialog() 
+	//***************************************
+    // Activity methods
+    //***************************************
+	@Override
+	protected void onDestroy() 
 	{
-		this.showLoadingProgressDialog("Loading. Please wait...");
+		super.onDestroy();
+		_destroyed = true;
 	}
 	
-	public void showLoadingProgressDialog(CharSequence message) 
+	
+	//***************************************
+    // Public methods
+    //***************************************
+	public void showLoadingProgressDialog() 
+	{
+		this.showProgressDialog("Loading. Please wait...");
+	}
+	
+	public void showProgressDialog(CharSequence message) 
 	{
 		_progressDialog = ProgressDialog.show(this, "",  message, true);
 	}
@@ -46,12 +61,5 @@ public abstract class AbstractAsyncListActivity extends ListActivity implements 
 		{
 			_progressDialog.dismiss();
 		}
-	}
-	
-	@Override
-	protected void onDestroy() 
-	{
-		super.onDestroy();
-		_destroyed = true;
 	}
 }

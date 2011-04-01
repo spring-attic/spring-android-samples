@@ -13,17 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase;
+package org.springframework.android.showcase.rest;
 
+import java.util.List;
+
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
 /**
  * @author Roy Clarkson
  */
-public interface AsyncActivity 
-{
-	public void showLoadingProgressDialog();
-	
-	public void showProgressDialog(CharSequence message);
-		
-	public void dismissProgressDialog(); 
+@Root(name="states")
+public class StateList {
+
+   @ElementList(inline=true)
+   private List<State> states;
+   
+   public StateList() { }
+   
+   public StateList(List<State> states)
+   {
+	   this.states = states;
+   }
+
+   public List<State> getStates() 
+   {
+      return states;
+   }
+   
+   public void setStates(List<State> states)
+   {
+	   this.states = states;
+   }
 }

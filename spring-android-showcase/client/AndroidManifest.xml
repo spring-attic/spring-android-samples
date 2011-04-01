@@ -11,88 +11,57 @@
         
         <activity 
         	android:name=".MainActivity"
-			android:label="@string/app_name">
-			
+			android:label="@string/app_name">	
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            
         </activity>
         
-        <activity
-        	android:name=".GoogleSearchActivity" />
-                
-		<activity
-        	android:name=".HttpGetActivity" />
-        	
-		<activity
-        	android:name=".HttpGetJsonActivity" />
-        	
-		<activity
-        	android:name=".HttpGetXmlActivity" />
-        	
-		<activity
-        	android:name=".HttpGetParametersActivity" />
-        	
-        <activity
-        	android:name=".HttpPostActivity" />
-        	
-        <activity
-        	android:name=".HttpPostStringActivity" />
-        	
-        <activity
-        	android:name=".HttpPostJsonXmlActivity" />
-        	
-        <activity
-        	android:name=".HttpPostMultiValueMapActivity" />
-        	
-       	<activity
-        	android:name=".RssActivity" />
-        	
-        <activity
-        	android:name=".RssChannelActivity" />
+        <activity android:name=".rest.GoogleSearchActivity" />
+		<activity android:name=".rest.HttpGetActivity" />
+		<activity android:name=".rest.HttpGetJsonActivity" />
+		<activity android:name=".rest.HttpGetXmlActivity" />
+		<activity android:name=".rest.HttpGetParametersActivity" />
+        <activity android:name=".rest.HttpPostActivity" />
+        <activity android:name=".rest.HttpPostStringActivity" />
+        <activity android:name=".rest.HttpPostJsonXmlActivity" />
+		<activity android:name=".rest.HttpPostMultiValueMapActivity" />
+       	<activity android:name=".rest.rome.RssActivity" />
+        <activity android:name=".rest.rome.RssChannelActivity" />
+        <activity android:name=".rest.rome.RssSyndFeedActivity" />
+       	<activity android:name=".rest.rome.AtomActivity" />
+        <activity android:name=".rest.rome.AtomFeedActivity" />
+     	<activity android:name=".rest.rome.AtomSyndFeedActivity" />
+     	
+     	<activity
+        	android:name=".social.twitter.TwitterOAuthActivity"  
+        	android:noHistory="true"
+        	android:excludeFromRecents="true" />
         
-        <activity
-        	android:name=".RssSyndFeedActivity" />
-        	
-       	<activity
-        	android:name=".AtomActivity" />
-        	
-        <activity
-        	android:name=".AtomFeedActivity" />
-        	
-        <activity
-        	android:name=".AtomSyndFeedActivity" />
-        
-        <activity
-        	android:name=".TwitterActivity">
-        	
+        <activity 
+        	android:name=".social.twitter.TwitterActivity">
         	<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="x-org-springsource-android-showcase" android:host="oauth-response" />
+				<data android:scheme="x-org-springsource-android-showcase" android:host="twitter-oauth-response" />
 			</intent-filter>
-        	
         </activity>
         
-        <activity
-        	android:name=".TwitterOauthActivity"  
+        <activity android:name=".social.twitter.TwitterProfileActivity" />
+        <activity android:name=".social.twitter.TwitterTimelineActivity" />
+        <activity android:name=".social.twitter.TwitterTweetActivity" />
+        <activity android:name=".social.twitter.TwitterDirectMessageActivity" />
+
+     	<activity
+        	android:name=".social.facebook.FacebookOAuthActivity"  
         	android:noHistory="true"
         	android:excludeFromRecents="true" />
-        	
-        <activity
-        	android:name=".TwitterProfileActivity" />
-        	
-        <activity
-        	android:name=".TwitterTimelineActivity" />
-        	
-        <activity
-        	android:name=".TwitterTweetActivity" />
-        	
-        <activity
-        	android:name=".TwitterDirectMessageActivity" />
+
+        <activity android:name=".social.facebook.FacebookActivity" />
+        <activity android:name=".social.facebook.FacebookProfileActivity" />
+		<activity android:name=".social.facebook.FacebookWallPostActivity" />
         	
     </application>
 

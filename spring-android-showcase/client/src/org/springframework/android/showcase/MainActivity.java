@@ -15,6 +15,15 @@
  */
 package org.springframework.android.showcase;
 
+import org.springframework.android.showcase.rest.GoogleSearchActivity;
+import org.springframework.android.showcase.rest.HttpGetActivity;
+import org.springframework.android.showcase.rest.HttpGetParametersActivity;
+import org.springframework.android.showcase.rest.HttpPostActivity;
+import org.springframework.android.showcase.rest.rome.AtomActivity;
+import org.springframework.android.showcase.rest.rome.RssActivity;
+import org.springframework.android.showcase.social.facebook.FacebookActivity;
+import org.springframework.android.showcase.social.twitter.TwitterActivity;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -78,6 +87,10 @@ public class MainActivity extends ListActivity
 	      		break;
 	      	case 6:
 	      		intent.setClass(this, TwitterActivity.class);
+	      		startActivity(intent);
+	      		break;
+	      	case 7:
+	      		intent.setClass(this, FacebookActivity.class);
 	      		startActivity(intent);
 	      		break;
 	      	default:

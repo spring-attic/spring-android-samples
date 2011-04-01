@@ -20,7 +20,7 @@
 		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
 		<android-version>2.3.1</android-version>
 		<spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
-		<spring-social-version>1.0.0.M2</spring-social-version>
+		<spring-social-version>1.0.0.BUILD-SNAPSHOT</spring-social-version>
 		<jackson-version>1.7.3</jackson-version>
 		<simple-version>2.4.1</simple-version>
 		<android-rome-version>1.0.0-r2</android-rome-version>
@@ -81,6 +81,22 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+			<version>${spring-social-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<!-- Commons Logging is provided by Android -->
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-twitter</artifactId>
 			<version>${spring-social-version}</version>
 			<exclusions>
@@ -92,6 +108,26 @@
 					<!-- Commons Logging is provided by Android -->
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-facebook</artifactId>
+			<version>${spring-social-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-social-web</artifactId>
+					<groupId>org.springframework.social</groupId>
+				</exclusion>
+				<exclusion>
+					<!-- Commons Logging is provided by Android -->
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-webmvc</artifactId>
+					<groupId>org.springframework</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>

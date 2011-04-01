@@ -8,7 +8,7 @@
 
 	<TextView
 		android:id="@+id/text_view_description"
-		android:text="@string/twitter_description"
+		android:text="@string/facebook_description"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
@@ -21,7 +21,7 @@
 		>
 		
 		<ListView
-			android:id="@+id/twitter_activity_options_list"
+			android:id="@+id/facebook_activity_options_list"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			/>

@@ -2,12 +2,6 @@
 <resources>
 
     <string name="app_name">S2Android Showcase</string>
- 
-    <string name="base_uri">http://10.0.2.2:8080/spring-android-showcase-server</string>
-
-    <string name="rss_feed_url">http://blog.springsource.com/feed</string>
-
-    <string name="atom_feed_url">https://jira.springframework.org/plugins/servlet/streams</string>
     
     <string name="text_http_get_description">These examples retrieve a list of states from the 
     example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use 
@@ -30,7 +24,9 @@
     or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports 
     RSS and ATOM using an abstracted object model.</string>
     
-	<string name="text_twitter_description">Twitter example using Spring Social.</string>
+	<string name="twitter_description">Twitter example using Spring Social.</string>
+	
+	<string name="facebook_description">Facebook example using Spring Social</string>
     
 	<string-array name="main_options">
 		<item>Google Search</item>
@@ -40,6 +36,7 @@
     	<item>RSS</item>
 		<item>ATOM</item>
 		<item>Twitter</item>
+		<item>Facebook</item>
 	</string-array>
 	
 	<string-array name="http_get_activity_options">
