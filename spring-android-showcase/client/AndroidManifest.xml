@@ -35,7 +35,7 @@
      	<activity android:name=".rest.rome.AtomSyndFeedActivity" />
      	
      	<activity
-        	android:name=".social.twitter.TwitterOAuthActivity"  
+        	android:name=".social.twitter.TwitterWebOAuthActivity"  
         	android:noHistory="true"
         	android:excludeFromRecents="true" />
         
@@ -55,7 +55,7 @@
         <activity android:name=".social.twitter.TwitterDirectMessageActivity" />
 
      	<activity
-        	android:name=".social.facebook.FacebookOAuthActivity"  
+        	android:name=".social.facebook.FacebookWebOAuthActivity"  
         	android:noHistory="true"
         	android:excludeFromRecents="true" />
 

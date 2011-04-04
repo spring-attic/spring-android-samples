@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class FacebookOAuthActivity extends AbstractWebViewActivity 
+public class FacebookWebOAuthActivity extends AbstractWebViewActivity 
 {
 //	private static final String TAG = FacebookOAuthActivity.class.getSimpleName();
 	

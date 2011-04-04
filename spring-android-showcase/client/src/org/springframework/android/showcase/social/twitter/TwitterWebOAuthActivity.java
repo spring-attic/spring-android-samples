@@ -4,7 +4,7 @@ import org.springframework.android.showcase.AbstractWebViewActivity;
 
 import android.os.Bundle;
 
-public class TwitterOAuthActivity extends AbstractWebViewActivity 
+public class TwitterWebOAuthActivity extends AbstractWebViewActivity 
 {
 //	private static final String TAG = TwitterOAuthActivity.class.getSimpleName();
 	

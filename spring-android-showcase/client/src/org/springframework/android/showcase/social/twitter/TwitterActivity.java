@@ -160,7 +160,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 	private void displayTwitterAuthorization(String authUrl)
 	{		
 		Intent intent = new Intent();
-		intent.setClass(this, TwitterOAuthActivity.class);
+		intent.setClass(this, TwitterWebOAuthActivity.class);
 		intent.putExtra("authUrl", authUrl);
 		startActivity(intent);
 		finish();

@@ -145,7 +145,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 	private void displayFacebookAuthorization()
 	{		
 		Intent intent = new Intent();
-		intent.setClass(this, FacebookOAuthActivity.class);
+		intent.setClass(this, FacebookWebOAuthActivity.class);
 		intent.putExtra("authUrl", _facebookConnectController.getAuthorizeUrl());
 		startActivity(intent);
 		finish();
