@@ -61,6 +61,7 @@
 
         <activity android:name=".social.facebook.FacebookActivity" />
         <activity android:name=".social.facebook.FacebookProfileActivity" />
+        <activity android:name=".social.facebook.FacebookHomeFeedActivity" />
 		<activity android:name=".social.facebook.FacebookWallPostActivity" />
         	
     </application>

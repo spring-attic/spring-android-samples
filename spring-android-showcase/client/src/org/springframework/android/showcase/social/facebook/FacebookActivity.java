@@ -66,11 +66,12 @@ public class FacebookActivity extends AbstractAsyncActivity
 		
 		if (getIntent().hasExtra("accessToken"))
 		{
-			String accessToken = getIntent().getExtras().getString("accessToken");
+			String accessToken = getIntent().getStringExtra("accessToken");
 		
 			if (accessToken != null)
 			{
 				_facebookConnectController.connect(accessToken);
+				getIntent().removeExtra("accessToken");
 				showFacebookOptions();
 			}
 		}
@@ -107,7 +108,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 	
 	private void showFacebookOptions()
 	{
-		String[] options = {"Disconnect", "Profile", "Wall Post"};
+		String[] options = {"Disconnect", "Profile", "Home Feed", "Wall Post"};
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
 		ListView listView = (ListView) this.findViewById(R.id.facebook_activity_options_list);
 		listView.setAdapter(arrayAdapter);
@@ -130,6 +131,11 @@ public class FacebookActivity extends AbstractAsyncActivity
 							    startActivity(intent);
 								break;
 							case 2:
+								intent = new Intent();
+								intent.setClass(parentView.getContext(), FacebookHomeFeedActivity.class);
+							    startActivity(intent);
+								break;
+							case 3:
 								intent = new Intent();
 								intent.setClass(parentView.getContext(), FacebookWallPostActivity.class);
 							    startActivity(intent);

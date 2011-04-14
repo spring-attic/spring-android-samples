@@ -28,7 +28,7 @@ public class FacebookWallPostActivity extends AbstractAsyncActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_facebookConnectController = new FacebookConnectController(this);
+		_facebookConnectController = new FacebookConnectController(getApplicationContext());
 		
 		setContentView(R.layout.facebook_wall_post_activity_layout);
 		
@@ -83,7 +83,7 @@ public class FacebookWallPostActivity extends AbstractAsyncActivity
 		{
 			try
 			{
-				_facebookConnectController.getFacebookApi().updateStatus(_wallPostText);
+				_facebookConnectController.getFacebookApi().feedOperations().updateStatus(_wallPostText);
 				return "Status updated";
 			}
 			catch(Exception e)

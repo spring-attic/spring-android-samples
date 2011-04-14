@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.twitter;
 import java.util.List;
 
 import org.springframework.android.showcase.R;
-import org.springframework.social.twitter.Tweet;
+import org.springframework.social.twitter.types.Tweet;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -46,7 +46,7 @@ public class TwitterDirectMessageActivity extends AbstractAsyncActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_twitterConnectController = new TwitterConnectController(this);
+		_twitterConnectController = new TwitterConnectController(getApplicationContext());
 		
 		setContentView(R.layout.twitter_direct_message_activity_layout);
 		
@@ -104,7 +104,7 @@ public class TwitterDirectMessageActivity extends AbstractAsyncActivity
 		{
 			try
 			{
-				_twitterConnectController.getTwitterApi().sendDirectMessage(_user, _message);
+				_twitterConnectController.getTwitterApi().directMessageOperations().sendDirectMessage(_user, _message);
 				return "Message sent";
 			}
 			catch(Exception e)

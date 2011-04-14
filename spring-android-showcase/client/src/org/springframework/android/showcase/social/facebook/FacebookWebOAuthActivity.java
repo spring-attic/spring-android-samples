@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -37,10 +38,11 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 		// The authUrl is passed from FacebookActivity
 		if (getIntent().hasExtra("authUrl"))
 		{
-			String authUrl = getIntent().getExtras().getString("authUrl");
+			String authUrl = getIntent().getStringExtra("authUrl");
 		
 			if (authUrl != null)
 			{  
+				getIntent().removeExtra("authUrl");
 				getWebView().loadUrl(authUrl);
 			}
 		}
@@ -62,6 +64,8 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
         {
         	// parse the captured url
         	Uri uri = Uri.parse(url);
+        	
+        	Log.d(TAG, url);
         	
         	/*
         	 * The access token is returned in the URI fragment of the URL

@@ -15,7 +15,10 @@
  */
 package org.springframework.android.showcase.social.facebook;
 
-import org.springframework.social.facebook.types.FacebookProfile;
+import java.util.List;
+
+import org.springframework.android.showcase.R;
+import org.springframework.social.facebook.types.FeedEntry;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -27,52 +30,25 @@ import android.widget.TextView;
 /**
  * @author Roy Clarkson
  */
-public class FacebookProfileListAdapter extends BaseAdapter 
+public class FacebookFeedListAdapter extends BaseAdapter 
 {
-	private FacebookProfile _facebookProfile;
+	private List<FeedEntry> _entries;
 	private final LayoutInflater _layoutInflater;
 
-	public FacebookProfileListAdapter(Context context, FacebookProfile facebookProfile) 
+	public FacebookFeedListAdapter(Context context, List<FeedEntry> entries) 
 	{
-		if (facebookProfile == null)
-		{
-			throw new IllegalArgumentException("facebookProfile cannot be null");
-		}
-		
-		_facebookProfile = facebookProfile;
+		_entries = entries;
 		_layoutInflater = LayoutInflater.from(context);
 	}
 
 	public int getCount() 
 	{
-		return 3;
+		return _entries.size();
 	}
 
-	public String[] getItem(int position) 
+	public FeedEntry getItem(int position) 
 	{
-		String[] item = new String[2];
-		
-		switch(position)
-		{
-			case 0:
-				item[0] = "Id";
-				item[1] = String.valueOf(_facebookProfile.getId());
-				break;
-			case 1:
-				item[0] = "Name";
-				item[1] = _facebookProfile.getName();
-				break;
-			case 2:
-				item[0] = "Email";
-				item[1] = _facebookProfile.getEmail();
-				break;
-			default:
-				item[0] = "";
-				item[1] = "";
-				break;
-		}
-		
-		return item;
+		return _entries.get(position);
 	}
 
 	public long getItemId(int position) 
@@ -82,20 +58,23 @@ public class FacebookProfileListAdapter extends BaseAdapter
 
 	public View getView(int position, View convertView, ViewGroup parent) 
 	{	
-		String[] item = getItem(position);
+		FeedEntry entry = getItem(position);
 		
 		View view = convertView;
 		
 		if (view == null)
 		{
-			view = _layoutInflater.inflate(android.R.layout.two_line_list_item, parent, false);
+			view = _layoutInflater.inflate(R.layout.facebook_feed_list_item, parent, false);
 		}
 		
-		TextView t = (TextView) view.findViewById(android.R.id.text1);
-		t.setText(item[0]);
+		TextView t = (TextView) view.findViewById(R.id.from_name);
+		t.setText(entry.getFrom().getName());
 		
-		t = (TextView) view.findViewById(android.R.id.text2);
-		t.setText(item[1]);
+		t = (TextView) view.findViewById(R.id.updated_time);
+		t.setText(entry.getUpdatedTime().toString());
+		
+		t = (TextView) view.findViewById(R.id.message);
+		t.setText(entry.getMessage());
 		
 		return view;
 	}

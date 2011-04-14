@@ -46,7 +46,7 @@ public class TwitterTweetActivity extends AbstractAsyncActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_twitterConnectController = new TwitterConnectController(this);
+		_twitterConnectController = new TwitterConnectController(getApplicationContext());
 		
 		setContentView(R.layout.twitter_tweet_activity_layout);
 		
@@ -101,7 +101,7 @@ public class TwitterTweetActivity extends AbstractAsyncActivity
 		{
 			try
 			{
-				_twitterConnectController.getTwitterApi().updateStatus(_tweetText);
+				_twitterConnectController.getTwitterApi().timelineOperations().updateStatus(_tweetText);
 				return "Status updated";
 			}
 			catch(Exception e)

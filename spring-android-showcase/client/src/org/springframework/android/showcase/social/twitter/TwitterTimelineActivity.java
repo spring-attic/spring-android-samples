@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.twitter;
 import java.util.List;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.social.twitter.Tweet;
+import org.springframework.social.twitter.types.Tweet;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,7 +42,7 @@ public class TwitterTimelineActivity extends AbstractAsyncListActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_twitterConnectController = new TwitterConnectController(this);
+		_twitterConnectController = new TwitterConnectController(getApplicationContext());
 	}
 	
 	@Override
@@ -81,7 +81,7 @@ public class TwitterTimelineActivity extends AbstractAsyncListActivity
 		{
 			try
 			{
-				return _twitterConnectController.getTwitterApi().getHomeTimeline();
+				return _twitterConnectController.getTwitterApi().timelineOperations().getHomeTimeline();
 			}
 			catch(Exception e)
 			{
