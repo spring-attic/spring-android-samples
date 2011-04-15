@@ -72,7 +72,7 @@ public class TwitterProfileListAdapter extends BaseAdapter
 				break;
 			case 4:
 				item[0] = "Created Date";
-				item[1] = _twitterProfile.getCreatedDate().toString();
+				item[1] = _twitterProfile.getCreatedDate() == null ? "" : _twitterProfile.getCreatedDate().toString();
 				break;
 			default:
 				item[0] = "";

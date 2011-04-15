@@ -25,8 +25,11 @@ import org.springframework.social.connect.sqlite.SqliteServiceProviderConnection
 import org.springframework.social.connect.sqlite.support.SqliteServiceProviderConnectionRepositoryHelper;
 import org.springframework.social.connect.support.MapServiceProviderConnectionFactoryRegistry;
 import org.springframework.social.facebook.FacebookApi;
-import org.springframework.social.facebook.connect.FacebookMobileServiceProviderConnectionFactory;
+import org.springframework.social.facebook.connect.FacebookServiceProviderConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -40,7 +43,7 @@ public class FacebookConnectController
 	
 	private Context _context;
 	private MapServiceProviderConnectionFactoryRegistry _connectionFactoryRegistry;
-	private FacebookMobileServiceProviderConnectionFactory _connectionFactory;
+	private FacebookServiceProviderConnectionFactory _connectionFactory;
 	private SQLiteOpenHelper _repositoryHelper;
 	private SqliteServiceProviderConnectionRepository _connectionRepository;
 	
@@ -52,7 +55,7 @@ public class FacebookConnectController
 	{
 		_context = context;
 		_connectionFactoryRegistry = new MapServiceProviderConnectionFactoryRegistry();
-		_connectionFactory = new FacebookMobileServiceProviderConnectionFactory(getAppId(), getAppSecret());
+		_connectionFactory = new FacebookServiceProviderConnectionFactory(getAppId(), getAppSecret());
 		_connectionFactoryRegistry.addConnectionFactory(_connectionFactory);
 		_repositoryHelper = new SqliteServiceProviderConnectionRepositoryHelper(_context);
 		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, Encryptors.noOpText());
@@ -86,7 +89,8 @@ public class FacebookConnectController
 	{
 		return _context.getString(R.string.facebook_scope);
 	}
-		
+
+	@SuppressWarnings("unchecked")
 	public FacebookApi getFacebookApi() 
 	{
 		List<ServiceProviderConnection<?>> connections = _connectionRepository.findConnectionsToProvider(PROVIDER_ID);
@@ -106,7 +110,9 @@ public class FacebookConnectController
 	public String getAuthorizeUrl() 
 	{
 		// Generate the Facebook authorization url to be used in the browser or web view
-		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(getOAuthCallbackUrl(), getScope(), null);
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+		params.add("display", "touch");
+		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(getOAuthCallbackUrl(), getScope(), null, GrantType.ImplicitGrant, params);
 	}
 		
 	public void connect(String accessToken)

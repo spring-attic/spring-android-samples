@@ -65,7 +65,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
         	// parse the captured url
         	Uri uri = Uri.parse(url);
         	
-        	Log.d(TAG, url);
+        	Log.d(TAG, url); 
         	
         	/*
         	 * The access token is returned in the URI fragment of the URL
@@ -75,6 +75,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
         	 * The fragment will be formatted like this:
         	 * 
         	 * #access_token=A&expires_in=0
+        	 * 
         	 */
         	String uriFragment = uri.getFragment();
         	
@@ -109,6 +110,23 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
         			// don't do anything if the parameters are not what is expected
         			return;
         		}
+        	}
+        	
+        	/* 
+        	 * if there was an error with the oauth process, return the error description
+        	 * 
+        	 * The error query string will look like this:
+        	 * 
+        	 * ?error_reason=user_denied&error=access_denied&error_description=The+user+denied+your+request
+        	 *  
+        	 */
+        	if (uri.getQueryParameter("error") != null) 
+        	{
+				Intent intent = new Intent();
+				intent.setClass(view.getContext(), FacebookActivity.class);
+				intent.putExtra("error", uri.getQueryParameter("error_description").replace("+", " "));
+			    startActivity(intent);
+	        	finish();
         	}
         }
     }    

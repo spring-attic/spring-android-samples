@@ -58,8 +58,7 @@ public class TwitterTimelineListAdapter extends BaseAdapter
 
 	public View getView(int position, View convertView, ViewGroup parent) 
 	{	
-		Tweet tweet = getItem(position);
-		
+		Tweet tweet = getItem(position);		
 		View view = convertView;
 		
 		if (view == null)
@@ -71,7 +70,8 @@ public class TwitterTimelineListAdapter extends BaseAdapter
 		t.setText(tweet.getFromUser());
 		
 		t = (TextView) view.findViewById(R.id.tweet_created_at);
-		t.setText(tweet.getCreatedAt().toString());
+		String date = tweet.getCreatedAt() == null ? "" : tweet.getCreatedAt().toString();
+		t.setText(date);
 		
 		t = (TextView) view.findViewById(R.id.tweet_text);
 		t.setText(tweet.getText());

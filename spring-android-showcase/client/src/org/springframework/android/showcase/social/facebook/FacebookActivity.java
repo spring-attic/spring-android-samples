@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * @author Roy Clarkson
@@ -73,6 +74,17 @@ public class FacebookActivity extends AbstractAsyncActivity
 				_facebookConnectController.connect(accessToken);
 				getIntent().removeExtra("accessToken");
 				showFacebookOptions();
+			}
+		}
+		
+		if (getIntent().hasExtra("error"))
+		{
+			String errorReason = getIntent().getStringExtra("error");
+		
+			if (errorReason != null)
+			{
+				getIntent().removeExtra("error");
+				Toast.makeText(this, errorReason, Toast.LENGTH_LONG).show();
 			}
 		}
 	}
