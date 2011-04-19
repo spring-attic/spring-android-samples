@@ -17,6 +17,7 @@ package org.springframework.android.showcase.social.twitter;
 
 import java.util.List;
 
+import org.springframework.android.showcase.R;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.connect.DuplicateServiceProviderConnectionException;
 import org.springframework.social.connect.ServiceProviderConnection;
@@ -39,14 +40,9 @@ import android.net.Uri;
  */
 public class TwitterConnectController 
 {
-	private static final String TWITTER_CONSUMER_TOKEN = "YR571S2JiVBOFyJS5MEg";
-	private static final String TWITTER_CONSUMER_TOKEN_SECRET = "Kb8hS0luftwCJX3qVoyiLUMfZDtK1EozFoUkjNLUMx4";
-	private static final String OAUTH_CALLBACK_URL = "x-org-springsource-android-showcase://twitter-oauth-response";
-	private static final String LOCAL_USER_ID = "1";
 	private static final String TWITTER_PREFERENCES = "TwitterConnectPreferences";
 	private static final String REQUEST_TOKEN_KEY = "request_token";
 	private static final String REQUEST_TOKEN_SECRET_KEY = "request_token_secret";
-	private static final String PROVIDER_ID = "twitter";
 
 	private final Context _context;
 	private MapServiceProviderConnectionFactoryRegistry _connectionFactoryRegistry;
@@ -62,48 +58,69 @@ public class TwitterConnectController
 	{
 		_context = context;
 		_connectionFactoryRegistry = new MapServiceProviderConnectionFactoryRegistry();
-		_connectionFactory = new TwitterServiceProviderConnectionFactory(TWITTER_CONSUMER_TOKEN, TWITTER_CONSUMER_TOKEN_SECRET);
+		_connectionFactory = new TwitterServiceProviderConnectionFactory(getConsumerToken(), getConsumerTokenSecret());
 		_connectionFactoryRegistry.addConnectionFactory(_connectionFactory);
 		_repositoryHelper = new SqliteServiceProviderConnectionRepositoryHelper(_context);
-		_connectionRepository = new SqliteServiceProviderConnectionRepository(LOCAL_USER_ID, _repositoryHelper, _connectionFactoryRegistry, Encryptors.noOpText());
+		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, Encryptors.noOpText());
 	}
 	
 	
 	//***************************************
     // Accessor methods
-    //***************************************	
-	public String getOAuthCallbackUrl()
+    //***************************************
+	private String getLocalUserId()
 	{
-		return OAUTH_CALLBACK_URL;
+		return _context.getString(R.string.local_user_id);
+	}
+
+	private String getProviderId()
+	{
+		return _context.getString(R.string.twitter_provider_id);
 	}
 	
-	public TwitterApi getTwitterApi() 
+	private String getConsumerToken()
 	{
-		List<ServiceProviderConnection<?>> connections = _connectionRepository.findConnectionsToProvider(PROVIDER_ID);
-		ServiceProviderConnection<TwitterApi> twitter = (ServiceProviderConnection<TwitterApi>) connections.get(0);
-		return twitter.getServiceApi();
+		return _context.getString(R.string.twitter_consumer_key);
 	}
 	
-	public boolean isConnected() 
+	private String getConsumerTokenSecret()
 	{
-		return !_connectionRepository.findConnectionsToProvider(PROVIDER_ID).isEmpty();
+		return _context.getString(R.string.twitter_consumer_key_secret);
 	}
-	
-	public boolean isCallbackUrl(Uri uri) 
+		
+	private String getOAuthCallbackUrl()
 	{
-		return (uri != null && Uri.parse(OAUTH_CALLBACK_URL).getScheme().equals(uri.getScheme()));
+		return _context.getString(R.string.twitter_oauth_callback_url);
 	}
 
 	
 	//***************************************
     // Public methods
     //***************************************
+	@SuppressWarnings("unchecked")
+	public TwitterApi getTwitterApi() 
+	{
+		List<ServiceProviderConnection<?>> connections = _connectionRepository.findConnectionsToProvider(getProviderId());
+		ServiceProviderConnection<TwitterApi> twitter = (ServiceProviderConnection<TwitterApi>) connections.get(0);
+		return twitter.getServiceApi();
+	}
+	
+	public boolean isConnected() 
+	{
+		return !_connectionRepository.findConnectionsToProvider(getProviderId()).isEmpty();
+	}
+	
+	public boolean isCallbackUrl(Uri uri) 
+	{
+		return (uri != null && Uri.parse(getOAuthCallbackUrl()).getScheme().equals(uri.getScheme()));
+	}
+	
 	public String getTwitterAuthorizeUrl() 
 	{ 
 		OAuth1Operations oauth = _connectionFactory.getOAuthOperations();
 		
 		// Fetch a one time use Request Token from Twitter
-		OAuthToken requestToken = oauth.fetchRequestToken(OAUTH_CALLBACK_URL, null);
+		OAuthToken requestToken = oauth.fetchRequestToken(getOAuthCallbackUrl(), null);
 		
 		// save the Request Token to be used later
 		SharedPreferences preferences = _context.getSharedPreferences(TWITTER_PREFERENCES, Context.MODE_PRIVATE);
@@ -113,7 +130,7 @@ public class TwitterConnectController
 		editor.commit();
 		
 		// Generate the Twitter authorization url to be used in the browser or web view
-		return oauth.buildAuthorizeUrl(requestToken.getValue(), OAUTH_CALLBACK_URL);
+		return oauth.buildAuthorizeUrl(requestToken.getValue(), getOAuthCallbackUrl());
 	}
 	
 	public void updateTwitterAccessToken(String verifier) 
@@ -157,6 +174,6 @@ public class TwitterConnectController
 	
 	public void disconnect()
 	{
-		_connectionRepository.removeConnectionsToProvider(PROVIDER_ID);
+		_connectionRepository.removeConnectionsToProvider(getProviderId());
 	}
 }

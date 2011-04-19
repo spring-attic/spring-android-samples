@@ -39,8 +39,6 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class FacebookConnectController 
 {
-	private static final String PROVIDER_ID = "facebook";
-	
 	private Context _context;
 	private MapServiceProviderConnectionFactoryRegistry _connectionFactoryRegistry;
 	private FacebookServiceProviderConnectionFactory _connectionFactory;
@@ -69,6 +67,11 @@ public class FacebookConnectController
 	{
 		return _context.getString(R.string.local_user_id);
 	}
+	
+	private String getProviderId()
+	{
+		return _context.getString(R.string.facebook_provider_id);
+	}
 
 	private String getAppId()
 	{
@@ -89,24 +92,24 @@ public class FacebookConnectController
 	{
 		return _context.getString(R.string.facebook_scope);
 	}
-
+	
+	
+	//***************************************
+    // Public methods
+    //***************************************
 	@SuppressWarnings("unchecked")
 	public FacebookApi getFacebookApi() 
 	{
-		List<ServiceProviderConnection<?>> connections = _connectionRepository.findConnectionsToProvider(PROVIDER_ID);
+		List<ServiceProviderConnection<?>> connections = _connectionRepository.findConnectionsToProvider(getProviderId());
 		ServiceProviderConnection<FacebookApi> facebook = (ServiceProviderConnection<FacebookApi>) connections.get(0);
 		return facebook.getServiceApi();
 	}
 	
 	public boolean isConnected() 
 	{
-		return !_connectionRepository.findConnectionsToProvider(PROVIDER_ID).isEmpty();
+		return !_connectionRepository.findConnectionsToProvider(getProviderId()).isEmpty();
 	}
 	
-	
-	//***************************************
-    // Public methods
-    //***************************************
 	public String getAuthorizeUrl() 
 	{
 		// Generate the Facebook authorization url to be used in the browser or web view
@@ -132,6 +135,6 @@ public class FacebookConnectController
 	
 	public void disconnect()
 	{
-		_connectionRepository.removeConnectionsToProvider(PROVIDER_ID);
+		_connectionRepository.removeConnectionsToProvider(getProviderId());
 	}
 }

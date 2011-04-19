@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.facebook;
 import java.util.List;
 
 import org.springframework.android.showcase.R;
-import org.springframework.social.facebook.types.FeedEntry;
+import org.springframework.social.facebook.types.Post;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -32,10 +32,10 @@ import android.widget.TextView;
  */
 public class FacebookFeedListAdapter extends BaseAdapter 
 {
-	private List<FeedEntry> _entries;
+	private List<Post> _entries;
 	private final LayoutInflater _layoutInflater;
 
-	public FacebookFeedListAdapter(Context context, List<FeedEntry> entries) 
+	public FacebookFeedListAdapter(Context context, List<Post> entries) 
 	{
 		_entries = entries;
 		_layoutInflater = LayoutInflater.from(context);
@@ -43,10 +43,10 @@ public class FacebookFeedListAdapter extends BaseAdapter
 
 	public int getCount() 
 	{
-		return _entries.size();
+		return _entries == null ? 0 : _entries.size();
 	}
 
-	public FeedEntry getItem(int position) 
+	public Post getItem(int position) 
 	{
 		return _entries.get(position);
 	}
@@ -58,7 +58,7 @@ public class FacebookFeedListAdapter extends BaseAdapter
 
 	public View getView(int position, View convertView, ViewGroup parent) 
 	{	
-		FeedEntry entry = getItem(position);
+		Post entry = getItem(position);
 		
 		View view = convertView;
 		

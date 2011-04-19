@@ -45,7 +45,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_twitterConnectController = new TwitterConnectController(this);
+		_twitterConnectController = new TwitterConnectController(getApplicationContext());
 		
 		setContentView(R.layout.twitter_activity_layout);
 	}

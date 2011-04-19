@@ -43,7 +43,7 @@ public class TwitterTimelineListAdapter extends BaseAdapter
 
 	public int getCount() 
 	{
-		return _tweets.size();
+		return _tweets == null ? 0 : _tweets.size();
 	}
 
 	public Tweet getItem(int position) 

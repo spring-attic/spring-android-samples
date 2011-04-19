@@ -3,7 +3,7 @@ package org.springframework.android.showcase.social.facebook;
 import java.util.List;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.social.facebook.types.FeedEntry;
+import org.springframework.social.facebook.types.Post;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,7 +39,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private methods
     //***************************************
-	private void showResult(List<FeedEntry> entries)
+	private void showResult(List<Post> entries)
 	{
 		FacebookFeedListAdapter adapter = new FacebookFeedListAdapter(this, entries);
 		setListAdapter(adapter);
@@ -49,7 +49,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private classes
     //***************************************
-	private class FetchWallFeedTask extends AsyncTask<Void, Void, List<FeedEntry>> 
+	private class FetchWallFeedTask extends AsyncTask<Void, Void, List<Post>> 
 	{	
 		@Override
 		protected void onPreExecute() 
@@ -59,7 +59,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 		}
 		
 		@Override
-		protected List<FeedEntry> doInBackground(Void... params) 
+		protected List<Post> doInBackground(Void... params) 
 		{
 			try
 			{
@@ -74,7 +74,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 		}
 		
 		@Override
-		protected void onPostExecute(List<FeedEntry> entries) 
+		protected void onPostExecute(List<Post> entries) 
 		{
 			// after the network request completes, hide the progress indicator
 			dismissProgressDialog();

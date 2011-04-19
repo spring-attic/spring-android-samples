@@ -10,7 +10,7 @@
     <application android:label="@string/app_name">
         
         <activity 
-        	android:name=".MainActivity"
+        	android:name="org.springframework.android.showcase.MainActivity"
 			android:label="@string/app_name">	
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,29 +18,29 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".rest.GoogleSearchActivity" />
-		<activity android:name=".rest.HttpGetActivity" />
-		<activity android:name=".rest.HttpGetJsonActivity" />
-		<activity android:name=".rest.HttpGetXmlActivity" />
-		<activity android:name=".rest.HttpGetParametersActivity" />
-        <activity android:name=".rest.HttpPostActivity" />
-        <activity android:name=".rest.HttpPostStringActivity" />
-        <activity android:name=".rest.HttpPostJsonXmlActivity" />
-		<activity android:name=".rest.HttpPostMultiValueMapActivity" />
-       	<activity android:name=".rest.rome.RssActivity" />
-        <activity android:name=".rest.rome.RssChannelActivity" />
-        <activity android:name=".rest.rome.RssSyndFeedActivity" />
-       	<activity android:name=".rest.rome.AtomActivity" />
-        <activity android:name=".rest.rome.AtomFeedActivity" />
-     	<activity android:name=".rest.rome.AtomSyndFeedActivity" />
+        <activity android:name="org.springframework.android.showcase.rest.GoogleSearchActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetJsonActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetXmlActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetParametersActivity" />
+        <activity android:name="org.springframework.android.showcase.rest.HttpPostActivity" />
+        <activity android:name="org.springframework.android.showcase.rest.HttpPostStringActivity" />
+        <activity android:name="org.springframework.android.showcase.rest.HttpPostJsonXmlActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpPostMultiValueMapActivity" />
+       	<activity android:name="org.springframework.android.showcase.rest.rome.RssActivity" />
+        <activity android:name="org.springframework.android.showcase.rest.rome.RssChannelActivity" />
+        <activity android:name="org.springframework.android.showcase.rest.rome.RssSyndFeedActivity" />
+       	<activity android:name="org.springframework.android.showcase.rest.rome.AtomActivity" />
+        <activity android:name="org.springframework.android.showcase.rest.rome.AtomFeedActivity" />
+     	<activity android:name="org.springframework.android.showcase.rest.rome.AtomSyndFeedActivity" />
      	
      	<activity
-        	android:name=".social.twitter.TwitterWebOAuthActivity"  
+        	android:name="org.springframework.android.showcase.social.twitter.TwitterWebOAuthActivity"  
         	android:noHistory="true"
         	android:excludeFromRecents="true" />
         
         <activity 
-        	android:name=".social.twitter.TwitterActivity">
+        	android:name="org.springframework.android.showcase.social.twitter.TwitterActivity">
         	<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
@@ -49,20 +49,20 @@
 			</intent-filter>
         </activity>
         
-        <activity android:name=".social.twitter.TwitterProfileActivity" />
-        <activity android:name=".social.twitter.TwitterTimelineActivity" />
-        <activity android:name=".social.twitter.TwitterTweetActivity" />
-        <activity android:name=".social.twitter.TwitterDirectMessageActivity" />
+        <activity android:name="org.springframework.android.showcase.social.twitter.TwitterProfileActivity" />
+        <activity android:name="org.springframework.android.showcase.social.twitter.TwitterTimelineActivity" />
+        <activity android:name="org.springframework.android.showcase.social.twitter.TwitterTweetActivity" />
+        <activity android:name="org.springframework.android.showcase.social.twitter.TwitterDirectMessageActivity" />
 
      	<activity
-        	android:name=".social.facebook.FacebookWebOAuthActivity"  
+        	android:name="org.springframework.android.showcase.social.facebook.FacebookWebOAuthActivity"  
         	android:noHistory="true"
         	android:excludeFromRecents="true" />
 
-        <activity android:name=".social.facebook.FacebookActivity" />
-        <activity android:name=".social.facebook.FacebookProfileActivity" />
-        <activity android:name=".social.facebook.FacebookHomeFeedActivity" />
-		<activity android:name=".social.facebook.FacebookWallPostActivity" />
+        <activity android:name="org.springframework.android.showcase.social.facebook.FacebookActivity" />
+        <activity android:name="org.springframework.android.showcase.social.facebook.FacebookProfileActivity" />
+        <activity android:name="org.springframework.android.showcase.social.facebook.FacebookHomeFeedActivity" />
+		<activity android:name="org.springframework.android.showcase.social.facebook.FacebookWallPostActivity" />
         	
     </application>
 
