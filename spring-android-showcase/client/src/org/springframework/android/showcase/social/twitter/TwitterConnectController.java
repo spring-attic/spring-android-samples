@@ -27,7 +27,7 @@ import org.springframework.social.connect.support.MapServiceProviderConnectionFa
 import org.springframework.social.oauth1.AuthorizedRequestToken;
 import org.springframework.social.oauth1.OAuth1Operations;
 import org.springframework.social.oauth1.OAuthToken;
-import org.springframework.social.twitter.TwitterApi;
+import org.springframework.social.twitter.api.TwitterApi;
 import org.springframework.social.twitter.connect.TwitterServiceProviderConnectionFactory;
 
 import android.content.Context;

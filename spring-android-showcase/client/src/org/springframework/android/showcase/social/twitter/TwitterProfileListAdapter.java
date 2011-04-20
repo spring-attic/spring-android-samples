@@ -15,7 +15,7 @@
  */
 package org.springframework.android.showcase.social.twitter;
 
-import org.springframework.social.twitter.types.TwitterProfile;
+import org.springframework.social.twitter.api.TwitterProfile;
 
 import android.content.Context;
 import android.view.LayoutInflater;

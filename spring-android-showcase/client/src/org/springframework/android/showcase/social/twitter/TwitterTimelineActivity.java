@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.twitter;
 import java.util.List;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.social.twitter.types.Tweet;
+import org.springframework.social.twitter.api.Tweet;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

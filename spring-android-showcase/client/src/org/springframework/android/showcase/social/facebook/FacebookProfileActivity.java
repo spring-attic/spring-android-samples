@@ -16,7 +16,7 @@
 package org.springframework.android.showcase.social.facebook;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.social.facebook.types.FacebookProfile;
+import org.springframework.social.facebook.api.FacebookProfile;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

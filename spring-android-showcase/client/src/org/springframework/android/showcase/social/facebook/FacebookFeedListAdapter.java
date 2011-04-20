@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.facebook;
 import java.util.List;
 
 import org.springframework.android.showcase.R;
-import org.springframework.social.facebook.types.Post;
+import org.springframework.social.facebook.api.Post;
 
 import android.content.Context;
 import android.view.LayoutInflater;

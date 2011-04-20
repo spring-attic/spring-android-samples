@@ -16,7 +16,7 @@
 package org.springframework.android.showcase.social.twitter;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.social.twitter.types.TwitterProfile;
+import org.springframework.social.twitter.api.TwitterProfile;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

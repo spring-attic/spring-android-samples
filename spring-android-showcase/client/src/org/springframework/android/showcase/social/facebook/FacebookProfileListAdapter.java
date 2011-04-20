@@ -15,7 +15,7 @@
  */
 package org.springframework.android.showcase.social.facebook;
 
-import org.springframework.social.facebook.types.FacebookProfile;
+import org.springframework.social.facebook.api.FacebookProfile;
 
 import android.content.Context;
 import android.view.LayoutInflater;

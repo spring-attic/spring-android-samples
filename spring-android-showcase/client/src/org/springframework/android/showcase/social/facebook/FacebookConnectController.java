@@ -24,7 +24,7 @@ import org.springframework.social.connect.ServiceProviderConnection;
 import org.springframework.social.connect.sqlite.SqliteServiceProviderConnectionRepository;
 import org.springframework.social.connect.sqlite.support.SqliteServiceProviderConnectionRepositoryHelper;
 import org.springframework.social.connect.support.MapServiceProviderConnectionFactoryRegistry;
-import org.springframework.social.facebook.FacebookApi;
+import org.springframework.social.facebook.api.FacebookApi;
 import org.springframework.social.facebook.connect.FacebookServiceProviderConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
@@ -115,7 +115,7 @@ public class FacebookConnectController
 		// Generate the Facebook authorization url to be used in the browser or web view
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("display", "touch");
-		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(getOAuthCallbackUrl(), getScope(), null, GrantType.ImplicitGrant, params);
+		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(getOAuthCallbackUrl(), getScope(), null, GrantType.IMPLICIT_GRANT, params);
 	}
 		
 	public void connect(String accessToken)

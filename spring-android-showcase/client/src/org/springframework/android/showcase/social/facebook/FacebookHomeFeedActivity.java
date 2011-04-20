@@ -3,7 +3,7 @@ package org.springframework.android.showcase.social.facebook;
 import java.util.List;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.social.facebook.types.Post;
+import org.springframework.social.facebook.api.Post;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
