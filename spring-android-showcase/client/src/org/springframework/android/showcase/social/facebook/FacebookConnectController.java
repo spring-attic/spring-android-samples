@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.facebook;
 import java.util.List;
 
 import org.springframework.android.showcase.R;
-import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.security.crypto.encrypt.AndroidEncryptors;
 import org.springframework.social.connect.DuplicateServiceProviderConnectionException;
 import org.springframework.social.connect.ServiceProviderConnection;
 import org.springframework.social.connect.sqlite.SqliteServiceProviderConnectionRepository;
@@ -27,8 +27,8 @@ import org.springframework.social.connect.support.MapServiceProviderConnectionFa
 import org.springframework.social.facebook.api.FacebookApi;
 import org.springframework.social.facebook.connect.FacebookServiceProviderConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
-import org.springframework.social.oauth2.AuthorizationParameters;
 import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -57,7 +57,7 @@ public class FacebookConnectController
 		_connectionFactory = new FacebookServiceProviderConnectionFactory(getAppId(), getAppSecret());
 		_connectionFactoryRegistry.addConnectionFactory(_connectionFactory);
 		_repositoryHelper = new SqliteServiceProviderConnectionRepositoryHelper(_context);
-		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, Encryptors.noOpText());
+		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
 	}
 	
 	
@@ -116,7 +116,7 @@ public class FacebookConnectController
 		// Generate the Facebook authorization url to be used in the browser or web view
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("display", "touch");
-		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, new AuthorizationParameters(getOAuthCallbackUrl(), getScope(), null, params));
+		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, new OAuth2Parameters(getOAuthCallbackUrl(), getScope(), null, params));
 	}
 		
 	public void connect(String accessToken)

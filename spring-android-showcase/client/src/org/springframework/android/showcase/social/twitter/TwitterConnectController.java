@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.twitter;
 import java.util.List;
 
 import org.springframework.android.showcase.R;
-import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.security.crypto.encrypt.AndroidEncryptors;
 import org.springframework.social.connect.DuplicateServiceProviderConnectionException;
 import org.springframework.social.connect.ServiceProviderConnection;
 import org.springframework.social.connect.sqlite.SqliteServiceProviderConnectionRepository;
@@ -26,6 +26,7 @@ import org.springframework.social.connect.sqlite.support.SqliteServiceProviderCo
 import org.springframework.social.connect.support.MapServiceProviderConnectionFactoryRegistry;
 import org.springframework.social.oauth1.AuthorizedRequestToken;
 import org.springframework.social.oauth1.OAuth1Operations;
+import org.springframework.social.oauth1.OAuth1Parameters;
 import org.springframework.social.oauth1.OAuthToken;
 import org.springframework.social.twitter.api.TwitterApi;
 import org.springframework.social.twitter.connect.TwitterServiceProviderConnectionFactory;
@@ -61,7 +62,7 @@ public class TwitterConnectController
 		_connectionFactory = new TwitterServiceProviderConnectionFactory(getConsumerToken(), getConsumerTokenSecret());
 		_connectionFactoryRegistry.addConnectionFactory(_connectionFactory);
 		_repositoryHelper = new SqliteServiceProviderConnectionRepositoryHelper(_context);
-		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, Encryptors.noOpText());
+		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
 	}
 	
 	
@@ -130,7 +131,7 @@ public class TwitterConnectController
 		editor.commit();
 		
 		// Generate the Twitter authorization url to be used in the browser or web view
-		return oauth.buildAuthorizeUrl(requestToken.getValue(), getOAuthCallbackUrl());
+		return oauth.buildAuthorizeUrl(requestToken.getValue(), new OAuth1Parameters(getOAuthCallbackUrl()));
 	}
 	
 	public void updateTwitterAccessToken(String verifier) 
