@@ -18,12 +18,15 @@
 		<android-emulator>10</android-emulator>
 		<maven-android-plugin-version>2.8.4</maven-android-plugin-version>
 		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
+		<maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
 		<android-version>2.3.3</android-version>
+		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 2.2.1, 2.3.1, 2.3.3 -->
 		<spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
-		<spring-social-version>1.0.0.BUILD-SNAPSHOT</spring-social-version>
+		<spring-social-version>1.0.0.M3</spring-social-version>
 		<jackson-version>1.7.3</jackson-version>
 		<simple-version>2.4.1</simple-version>
 		<android-rome-version>1.0.0-r2</android-rome-version>
+		<commons-httpclient-version>3.1</commons-httpclient-version>
 	</properties>
 
 	<build>
@@ -53,8 +56,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
+				<version>${maven-eclipse-plugin-version}</version>
+ 				<configuration>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
@@ -81,31 +84,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-core</artifactId>
-			<version>${spring-social-version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-web</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<!-- Commons Logging is provided by Android -->
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-twitter</artifactId>
 			<version>${spring-social-version}</version>
 			<exclusions>
 				<exclusion>
+					<!-- Exclude in favor of Spring Android RestTemplate -->
 					<artifactId>spring-social-web</artifactId>
 					<groupId>org.springframework.social</groupId>
 				</exclusion>
 				<exclusion>
-					<!-- Commons Logging is provided by Android -->
+					<!-- Provided by Android -->
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
@@ -117,11 +105,12 @@
 			<version>${spring-social-version}</version>
 			<exclusions>
 				<exclusion>
+					<!-- Exclude in favor of Spring Android RestTemplate -->
 					<artifactId>spring-social-web</artifactId>
 					<groupId>org.springframework.social</groupId>
 				</exclusion>
 				<exclusion>
-					<!-- Commons Logging is provided by Android -->
+					<!-- Provided by Android -->
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
@@ -158,6 +147,23 @@
 			<groupId>com.google.code.android-rome-feed-reader</groupId>
 			<artifactId>android-rome-feed-reader</artifactId>
 			<version>${android-rome-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>${commons-httpclient-version}</version>
+			<exclusions>
+				<exclusion>
+					<!-- Provided by Android -->
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<!-- Provided by Android -->
+					<artifactId>commons-codec</artifactId>
+					<groupId>commons-codec</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 

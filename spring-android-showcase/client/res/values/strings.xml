@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">S2Android Showcase</string>
+    <string name="app_name">Spring Android</string>
     
     <string name="text_http_get_description">These examples retrieve a list of states from the 
     example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use 

@@ -19,13 +19,13 @@ import java.util.List;
 
 import org.springframework.android.showcase.R;
 import org.springframework.security.crypto.encrypt.AndroidEncryptors;
-import org.springframework.social.connect.DuplicateServiceProviderConnectionException;
-import org.springframework.social.connect.ServiceProviderConnection;
-import org.springframework.social.connect.sqlite.SqliteServiceProviderConnectionRepository;
-import org.springframework.social.connect.sqlite.support.SqliteServiceProviderConnectionRepositoryHelper;
-import org.springframework.social.connect.support.MapServiceProviderConnectionFactoryRegistry;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.DuplicateConnectionException;
+import org.springframework.social.connect.sqlite.SQLiteConnectionRepository;
+import org.springframework.social.connect.sqlite.support.SQLiteConnectionRepositoryHelper;
+import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.facebook.api.FacebookApi;
-import org.springframework.social.facebook.connect.FacebookServiceProviderConnectionFactory;
+import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Parameters;
@@ -41,10 +41,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FacebookConnectController 
 {
 	private Context _context;
-	private MapServiceProviderConnectionFactoryRegistry _connectionFactoryRegistry;
-	private FacebookServiceProviderConnectionFactory _connectionFactory;
+	private ConnectionFactoryRegistry _connectionFactoryRegistry;
+	private FacebookConnectionFactory _connectionFactory;
 	private SQLiteOpenHelper _repositoryHelper;
-	private SqliteServiceProviderConnectionRepository _connectionRepository;
+	private SQLiteConnectionRepository _connectionRepository;
 	
 	
 	//***************************************
@@ -53,11 +53,11 @@ public class FacebookConnectController
 	public FacebookConnectController(Context context)
 	{
 		_context = context;
-		_connectionFactoryRegistry = new MapServiceProviderConnectionFactoryRegistry();
-		_connectionFactory = new FacebookServiceProviderConnectionFactory(getAppId(), getAppSecret());
+		_connectionFactoryRegistry = new ConnectionFactoryRegistry();
+		_connectionFactory = new FacebookConnectionFactory(getAppId(), getAppSecret());
 		_connectionFactoryRegistry.addConnectionFactory(_connectionFactory);
-		_repositoryHelper = new SqliteServiceProviderConnectionRepositoryHelper(_context);
-		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
+		_repositoryHelper = new SQLiteConnectionRepositoryHelper(_context);
+		_connectionRepository = new SQLiteConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
 	}
 	
 	
@@ -101,9 +101,9 @@ public class FacebookConnectController
 	@SuppressWarnings("unchecked")
 	public FacebookApi getFacebookApi() 
 	{
-		List<ServiceProviderConnection<?>> connections = _connectionRepository.findConnectionsToProvider(getProviderId());
-		ServiceProviderConnection<FacebookApi> facebook = (ServiceProviderConnection<FacebookApi>) connections.get(0);
-		return facebook.getServiceApi();
+		List<Connection<?>> connections = _connectionRepository.findConnectionsToProvider(getProviderId());
+		Connection<FacebookApi> facebook = (Connection<FacebookApi>) connections.get(0);
+		return facebook.getApi();
 	}
 	
 	public boolean isConnected() 
@@ -122,13 +122,13 @@ public class FacebookConnectController
 	public void connect(String accessToken)
 	{
 		AccessGrant accessGrant = new AccessGrant(accessToken, null, null, null);
-		ServiceProviderConnection<FacebookApi> connection = _connectionFactory.createConnection(accessGrant);
+		Connection<FacebookApi> connection = _connectionFactory.createConnection(accessGrant);
 		
 		try
 		{
 			_connectionRepository.addConnection(connection);
 		}
-		catch (DuplicateServiceProviderConnectionException e)
+		catch (DuplicateConnectionException e)
 		{
 			// connection already exists in repository!
 		}

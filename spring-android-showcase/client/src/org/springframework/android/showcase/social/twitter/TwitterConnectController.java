@@ -19,17 +19,17 @@ import java.util.List;
 
 import org.springframework.android.showcase.R;
 import org.springframework.security.crypto.encrypt.AndroidEncryptors;
-import org.springframework.social.connect.DuplicateServiceProviderConnectionException;
-import org.springframework.social.connect.ServiceProviderConnection;
-import org.springframework.social.connect.sqlite.SqliteServiceProviderConnectionRepository;
-import org.springframework.social.connect.sqlite.support.SqliteServiceProviderConnectionRepositoryHelper;
-import org.springframework.social.connect.support.MapServiceProviderConnectionFactoryRegistry;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.DuplicateConnectionException;
+import org.springframework.social.connect.sqlite.SQLiteConnectionRepository;
+import org.springframework.social.connect.sqlite.support.SQLiteConnectionRepositoryHelper;
+import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.oauth1.AuthorizedRequestToken;
 import org.springframework.social.oauth1.OAuth1Operations;
 import org.springframework.social.oauth1.OAuth1Parameters;
 import org.springframework.social.oauth1.OAuthToken;
 import org.springframework.social.twitter.api.TwitterApi;
-import org.springframework.social.twitter.connect.TwitterServiceProviderConnectionFactory;
+import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -46,10 +46,10 @@ public class TwitterConnectController
 	private static final String REQUEST_TOKEN_SECRET_KEY = "request_token_secret";
 
 	private final Context _context;
-	private MapServiceProviderConnectionFactoryRegistry _connectionFactoryRegistry;
-	private TwitterServiceProviderConnectionFactory _connectionFactory;
+	private ConnectionFactoryRegistry _connectionFactoryRegistry;
+	private TwitterConnectionFactory _connectionFactory;
 	private SQLiteOpenHelper _repositoryHelper;
-	private SqliteServiceProviderConnectionRepository _connectionRepository;
+	private SQLiteConnectionRepository _connectionRepository;
 
 	
 	//***************************************
@@ -58,11 +58,11 @@ public class TwitterConnectController
 	public TwitterConnectController(Context context)
 	{
 		_context = context;
-		_connectionFactoryRegistry = new MapServiceProviderConnectionFactoryRegistry();
-		_connectionFactory = new TwitterServiceProviderConnectionFactory(getConsumerToken(), getConsumerTokenSecret());
+		_connectionFactoryRegistry = new ConnectionFactoryRegistry();
+		_connectionFactory = new TwitterConnectionFactory(getConsumerToken(), getConsumerTokenSecret());
 		_connectionFactoryRegistry.addConnectionFactory(_connectionFactory);
-		_repositoryHelper = new SqliteServiceProviderConnectionRepositoryHelper(_context);
-		_connectionRepository = new SqliteServiceProviderConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
+		_repositoryHelper = new SQLiteConnectionRepositoryHelper(_context);
+		_connectionRepository = new SQLiteConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
 	}
 	
 	
@@ -101,9 +101,9 @@ public class TwitterConnectController
 	@SuppressWarnings("unchecked")
 	public TwitterApi getTwitterApi() 
 	{
-		List<ServiceProviderConnection<?>> connections = _connectionRepository.findConnectionsToProvider(getProviderId());
-		ServiceProviderConnection<TwitterApi> twitter = (ServiceProviderConnection<TwitterApi>) connections.get(0);
-		return twitter.getServiceApi();
+		List<Connection<?>> connections = _connectionRepository.findConnectionsToProvider(getProviderId());
+		Connection<TwitterApi> twitter = (Connection<TwitterApi>) connections.get(0);
+		return twitter.getApi();
 	}
 	
 	public boolean isConnected() 
@@ -153,20 +153,17 @@ public class TwitterConnectController
 		// Exchange the Authorized Request Token for the Access Token
 		OAuthToken accessToken = _connectionFactory.getOAuthOperations().exchangeForAccessToken(authorizedRequestToken, null);
 		
-		// The Request Token is no longer needed, so it can be removed
-		SharedPreferences.Editor editor = preferences.edit();
-		editor.remove(REQUEST_TOKEN_KEY);
-		editor.remove(REQUEST_TOKEN_SECRET_KEY);
-		editor.commit();
+		// The Request Token is no longer needed, so it can be removed 
+		preferences.edit().clear().commit();
 		
 		// Persist the connection and Access Token to the local SQLite 
-		ServiceProviderConnection<TwitterApi> connection = _connectionFactory.createConnection(accessToken);
+		Connection<TwitterApi> connection = _connectionFactory.createConnection(accessToken);
 		
 		try 
 		{
 			_connectionRepository.addConnection(connection);
 		} 
-		catch (DuplicateServiceProviderConnectionException e)
+		catch (DuplicateConnectionException e)
 		{
 			// connection already exists in repository!
 		}
