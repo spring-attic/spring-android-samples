@@ -35,7 +35,7 @@ $ android
 Note: if this command does not open the Android SDK and AVD Manager, then your path is not configured correctly.
 Select Available packages from the left hand column
 Select the checkbox for Android Repository in the main window
-Select SDK Platform Android 2.3.1, API 9, revision 2
+Select SDK Platform Android 2.3.3, API 10, revision 1
 Click the Install Selected button to complete the download and installation.
 Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
@@ -46,10 +46,10 @@ http://developer.android.com/guide/developing/tools/avd.html
 Open the Android SDK and AVD Manager window:
 $ android
 Select Virtual devices in the left hand column and click the New button
-Enter 9 in the Name field
-Select Android 2.3.1 API Level 9 in the Target selector
+Enter 10 in the Name field
+Select Android 2.3.3 API Level 10 in the Target selector
 Click Create AVD to finish
-Note: The sample application is configured to look for an AVD with the name "9". Otherwise, you can name the AVD whatever you like. Using "9" for the name simply is a visual indicator of which API level it uses.
+Note: The sample application is configured to look for an AVD with the name "10". Otherwise, you can name the AVD whatever you like. Using "10" for the name simply is a visual indicator of which API level it uses.
 
 
 Build and Run the Server app
@@ -65,7 +65,7 @@ Build and Run the Android Client
 $ cd /spring-android-showcase/client
 $ mvn clean install
 $ mvn android:emulator-start
-Ensure the emulator is fully initialized and ready or the deploy will fail.
+IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail.
 $ mvn android:deploy
 View Logging
 $ adb logcat
