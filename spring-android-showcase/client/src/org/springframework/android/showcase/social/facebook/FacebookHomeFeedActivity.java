@@ -3,6 +3,7 @@ package org.springframework.android.showcase.social.facebook;
 import java.util.List;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
+import org.springframework.social.facebook.api.FacebookApi;
 import org.springframework.social.facebook.api.Post;
 
 import android.os.AsyncTask;
@@ -13,7 +14,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 {
 	protected static final String TAG = FacebookHomeFeedActivity.class.getSimpleName();
 
-	private FacebookConnectController _facebookConnectController;
+	private FacebookApi _facebookApi;
 	
 	
 	//***************************************
@@ -24,7 +25,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_facebookConnectController = new FacebookConnectController(getApplicationContext());
+		_facebookApi = getApplicationContext().getFacebookController().getFacebookApi();
 	}
 	
 	@Override
@@ -63,7 +64,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 		{
 			try
 			{
-				return _facebookConnectController.getFacebookApi().feedOperations().getHomeFeed();
+				return _facebookApi.feedOperations().getHomeFeed();
 			}
 			catch(Exception e)
 			{

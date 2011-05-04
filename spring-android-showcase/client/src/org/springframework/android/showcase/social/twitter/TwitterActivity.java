@@ -34,7 +34,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 {
 	protected static final String TAG = TwitterActivity.class.getSimpleName();
 	
-	private TwitterConnectController _twitterConnectController;
+	private TwitterController _twitterController;
 	
 
 	//***************************************
@@ -45,9 +45,9 @@ public class TwitterActivity extends AbstractAsyncActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_twitterConnectController = new TwitterConnectController(getApplicationContext());
-		
 		setContentView(R.layout.twitter_activity_layout);
+		
+		_twitterController = getApplicationContext().getTwitterController();
 	}
 	
 	@Override
@@ -55,7 +55,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 	{
 		super.onStart();
 		
-		if (_twitterConnectController.isConnected())
+		if (_twitterController.isConnected())
 		{
 			showTwitterOptions();
 		}
@@ -70,10 +70,10 @@ public class TwitterActivity extends AbstractAsyncActivity
 	{
 		super.onResume();
 		
-		if (!_twitterConnectController.isConnected())
+		if (!_twitterController.isConnected())
 		{
 			Uri uri = getIntent().getData();
-			if (_twitterConnectController.isCallbackUrl(uri)) 
+			if (_twitterController.isCallbackUrl(uri)) 
 			{
 				String oauthVerifier = uri.getQueryParameter("oauth_verifier");
 				new TwitterPostConnectTask().execute(oauthVerifier);
@@ -168,7 +168,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 	
 	private void disconnect()
 	{
-		_twitterConnectController.disconnect();
+		_twitterController.disconnect();
 	}
 	
 	
@@ -187,7 +187,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 		@Override
 		protected String doInBackground(Void... params) 
 		{			
-			return _twitterConnectController.getTwitterAuthorizeUrl();
+			return _twitterController.getTwitterAuthorizeUrl();
 		}
 		
 		@Override
@@ -219,7 +219,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 			
 			final String verifier = params[0];
 			
-			_twitterConnectController.updateTwitterAccessToken(verifier);
+			_twitterController.updateTwitterAccessToken(verifier);
 			
 			return null;
 		}

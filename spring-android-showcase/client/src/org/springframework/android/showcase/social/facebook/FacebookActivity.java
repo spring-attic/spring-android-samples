@@ -33,16 +33,16 @@ public class FacebookActivity extends AbstractAsyncActivity
 {
 	protected static final String TAG = FacebookActivity.class.getSimpleName();
 	
-	private FacebookConnectController _facebookConnectController;
+	private FacebookController _manager;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		
-		_facebookConnectController = new FacebookConnectController(this);
-		
 		setContentView(R.layout.facebook_activity_layout);
+		
+		_manager = getApplicationContext().getFacebookController();
 	}
 	
 	@Override
@@ -50,7 +50,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 	{
 		super.onStart();
 		
-		if (_facebookConnectController.isConnected())
+		if (_manager.isConnected())
 		{
 			showFacebookOptions();
 		}
@@ -71,7 +71,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 		
 			if (accessToken != null)
 			{
-				_facebookConnectController.connect(accessToken);
+				_manager.connect(accessToken);
 				getIntent().removeExtra("accessToken");
 				showFacebookOptions();
 			}
@@ -134,7 +134,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 						switch(position)
 						{
 							case 0:
-								_facebookConnectController.disconnect();
+								_manager.disconnect();
 								showConnectOption();
 								break;
 							case 1:
@@ -164,7 +164,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 	{		
 		Intent intent = new Intent();
 		intent.setClass(this, FacebookWebOAuthActivity.class);
-		intent.putExtra("authUrl", _facebookConnectController.getAuthorizeUrl());
+		intent.putExtra("authUrl", _manager.getAuthorizeUrl());
 		startActivity(intent);
 		finish();
 	}

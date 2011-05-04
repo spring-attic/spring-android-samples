@@ -15,15 +15,10 @@
  */
 package org.springframework.android.showcase.social.facebook;
 
-import java.util.List;
-
 import org.springframework.android.showcase.R;
-import org.springframework.security.crypto.encrypt.AndroidEncryptors;
 import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.DuplicateConnectionException;
-import org.springframework.social.connect.sqlite.SQLiteConnectionRepository;
-import org.springframework.social.connect.sqlite.support.SQLiteConnectionRepositoryHelper;
-import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.facebook.api.FacebookApi;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
@@ -33,57 +28,36 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * @author Roy Clarkson
  */
-public class FacebookConnectController 
+public class FacebookController 
 {
 	private Context _context;
-	private ConnectionFactoryRegistry _connectionFactoryRegistry;
 	private FacebookConnectionFactory _connectionFactory;
-	private SQLiteOpenHelper _repositoryHelper;
-	private SQLiteConnectionRepository _connectionRepository;
+	private ConnectionRepository _connectionRepository;
 	
 	
 	//***************************************
     // Constructors
     //***************************************
-	public FacebookConnectController(Context context)
+	public FacebookController(Context context, FacebookConnectionFactory connectionFactory, ConnectionRepository connectionRepository)
 	{
 		_context = context;
-		_connectionFactoryRegistry = new ConnectionFactoryRegistry();
-		_connectionFactory = new FacebookConnectionFactory(getAppId(), getAppSecret());
-		_connectionFactoryRegistry.addConnectionFactory(_connectionFactory);
-		_repositoryHelper = new SQLiteConnectionRepositoryHelper(_context);
-		_connectionRepository = new SQLiteConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
+		_connectionFactory = connectionFactory;
+		_connectionRepository = connectionRepository;
 	}
 	
 	
 	//***************************************
     // Accessor methods
     //***************************************
-	private String getLocalUserId()
-	{
-		return _context.getString(R.string.local_user_id);
-	}
-	
 	private String getProviderId()
 	{
-		return _context.getString(R.string.facebook_provider_id);
-	}
-
-	private String getAppId()
-	{
-		return _context.getString(R.string.facebook_app_id);
+		return _connectionFactory.getProviderId();
 	}
 	
-	private String getAppSecret()
-	{
-		return _context.getString(R.string.facebook_app_secret);
-	}
-		
 	private String getOAuthCallbackUrl()
 	{
 		return _context.getString(R.string.facebook_oauth_callback_url);
@@ -98,17 +72,14 @@ public class FacebookConnectController
 	//***************************************
     // Public methods
     //***************************************
-	@SuppressWarnings("unchecked")
 	public FacebookApi getFacebookApi() 
 	{
-		List<Connection<?>> connections = _connectionRepository.findConnectionsToProvider(getProviderId());
-		Connection<FacebookApi> facebook = (Connection<FacebookApi>) connections.get(0);
-		return facebook.getApi();
+		return _connectionRepository.findPrimaryConnectionToApi(FacebookApi.class).getApi();
 	}
 	
 	public boolean isConnected() 
 	{
-		return !_connectionRepository.findConnectionsToProvider(getProviderId()).isEmpty();
+		return _connectionRepository.findPrimaryConnectionToApi(FacebookApi.class) != null;
 	}
 	
 	public String getAuthorizeUrl() 

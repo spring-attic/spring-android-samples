@@ -17,6 +17,7 @@ package org.springframework.android.showcase.social.twitter;
 
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
+import org.springframework.social.twitter.api.TwitterApi;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -35,7 +36,7 @@ public class TwitterTweetActivity extends AbstractAsyncActivity
 {
 	protected static final String TAG = TwitterTweetActivity.class.getSimpleName();
 
-	private TwitterConnectController _twitterConnectController;
+	private TwitterApi _twitterApi;
 	
 	
 	//***************************************
@@ -46,9 +47,9 @@ public class TwitterTweetActivity extends AbstractAsyncActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_twitterConnectController = new TwitterConnectController(getApplicationContext());
-		
 		setContentView(R.layout.twitter_tweet_activity_layout);
+		
+		_twitterApi = getApplicationContext().getTwitterController().getTwitterApi();
 		
 		// Initiate the POST request when the button is clicked
 		final Button button = (Button) findViewById(R.id.button_tweet);
@@ -101,7 +102,7 @@ public class TwitterTweetActivity extends AbstractAsyncActivity
 		{
 			try
 			{
-				_twitterConnectController.getTwitterApi().timelineOperations().updateStatus(_tweetText);
+				_twitterApi.timelineOperations().updateStatus(_tweetText);
 				return "Status updated";
 			}
 			catch(Exception e)

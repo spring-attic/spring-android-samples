@@ -35,12 +35,18 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
     // Activity methods
     //***************************************
 	@Override
+	public MainApplication getApplicationContext()
+	{
+		return (MainApplication) super.getApplicationContext();
+	}
+
+	@Override
 	protected void onDestroy() 
 	{
 		super.onDestroy();
 		_destroyed = true;
 	}
-	
+		
 	
 	//***************************************
     // Public methods
@@ -62,4 +68,6 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 			_progressDialog.dismiss();
 		}
 	}
+	
+	
 }

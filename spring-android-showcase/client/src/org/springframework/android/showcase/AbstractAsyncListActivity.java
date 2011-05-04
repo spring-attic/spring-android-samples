@@ -35,6 +35,12 @@ public abstract class AbstractAsyncListActivity extends ListActivity implements 
     // Activity methods
     //***************************************
 	@Override
+	public MainApplication getApplicationContext()
+	{
+		return (MainApplication) super.getApplicationContext();
+	}
+	
+	@Override
 	protected void onDestroy() 
 	{
 		super.onDestroy();

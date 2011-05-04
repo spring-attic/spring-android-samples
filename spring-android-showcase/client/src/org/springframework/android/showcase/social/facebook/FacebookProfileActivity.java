@@ -16,6 +16,7 @@
 package org.springframework.android.showcase.social.facebook;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
+import org.springframework.social.facebook.api.FacebookApi;
 import org.springframework.social.facebook.api.FacebookProfile;
 
 import android.os.AsyncTask;
@@ -29,7 +30,7 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity
 {
 	protected static final String TAG = FacebookProfileActivity.class.getSimpleName();
 
-	private FacebookConnectController _facebookConnectController;
+	private FacebookApi _facebook;
 	
 	
 	//***************************************
@@ -40,7 +41,7 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_facebookConnectController = new FacebookConnectController(getApplicationContext());
+		_facebook = getApplicationContext().getFacebookController().getFacebookApi();
 	}
 	
 	@Override
@@ -82,7 +83,7 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity
 		{
 			try
 			{
-				return _facebookConnectController.getFacebookApi().userOperations().getUserProfile();
+				return _facebook.userOperations().getUserProfile();
 			}
 			catch(Exception e)
 			{
