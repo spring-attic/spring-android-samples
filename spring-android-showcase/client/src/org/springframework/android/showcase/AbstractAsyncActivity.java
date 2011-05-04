@@ -58,7 +58,14 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 	
 	public void showProgressDialog(CharSequence message) 
 	{
-		_progressDialog = ProgressDialog.show(this, "",  message, true);
+		if (_progressDialog == null)
+		{
+			_progressDialog = new ProgressDialog(this);
+			_progressDialog.setIndeterminate(true);
+		}
+		
+		_progressDialog.setMessage(message);
+		_progressDialog.show();
 	}
 		
 	public void dismissProgressDialog() 
@@ -68,6 +75,4 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 			_progressDialog.dismiss();
 		}
 	}
-	
-	
 }

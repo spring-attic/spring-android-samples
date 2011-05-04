@@ -30,7 +30,7 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity
 {
 	protected static final String TAG = FacebookProfileActivity.class.getSimpleName();
 
-	private FacebookApi _facebook;
+	private FacebookApi _facebookApi;
 	
 	
 	//***************************************
@@ -41,7 +41,7 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_facebook = getApplicationContext().getFacebookController().getFacebookApi();
+		_facebookApi = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(FacebookApi.class).getApi();
 	}
 	
 	@Override
@@ -83,7 +83,7 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity
 		{
 			try
 			{
-				return _facebook.userOperations().getUserProfile();
+				return _facebookApi.userOperations().getUserProfile();
 			}
 			catch(Exception e)
 			{

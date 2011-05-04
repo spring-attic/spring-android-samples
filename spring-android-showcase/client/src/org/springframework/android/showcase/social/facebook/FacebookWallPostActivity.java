@@ -31,7 +31,7 @@ public class FacebookWallPostActivity extends AbstractAsyncActivity
 		
 		setContentView(R.layout.facebook_wall_post_activity_layout);
 		
-		_facebookApi = getApplicationContext().getFacebookController().getFacebookApi();
+		_facebookApi = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(FacebookApi.class).getApi();
 		
 		// Initiate the POST request when the button is clicked
 		final Button button = (Button) findViewById(R.id.button_submit);

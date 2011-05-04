@@ -17,6 +17,9 @@ package org.springframework.android.showcase.social.facebook;
 
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
+import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.facebook.api.FacebookApi;
+import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +27,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 /**
  * @author Roy Clarkson
@@ -33,8 +35,14 @@ public class FacebookActivity extends AbstractAsyncActivity
 {
 	protected static final String TAG = FacebookActivity.class.getSimpleName();
 	
-	private FacebookController _manager;
+	private ConnectionRepository _connectionRepository;
 	
+	private FacebookConnectionFactory _connectionFactory;
+	
+	
+	//***************************************
+    // Activity methods
+    //***************************************
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -42,7 +50,8 @@ public class FacebookActivity extends AbstractAsyncActivity
 		
 		setContentView(R.layout.facebook_activity_layout);
 		
-		_manager = getApplicationContext().getFacebookController();
+		_connectionRepository = getApplicationContext().getConnectionRepository();
+		_connectionFactory = getApplicationContext().getFacebookConnectionFactory();
 	}
 	
 	@Override
@@ -50,7 +59,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 	{
 		super.onStart();
 		
-		if (_manager.isConnected())
+		if (isConnected())
 		{
 			showFacebookOptions();
 		}
@@ -65,34 +74,46 @@ public class FacebookActivity extends AbstractAsyncActivity
 	{
 		super.onResume();
 		
-		if (getIntent().hasExtra("accessToken"))
-		{
-			String accessToken = getIntent().getStringExtra("accessToken");
-		
-			if (accessToken != null)
-			{
-				_manager.connect(accessToken);
-				getIntent().removeExtra("accessToken");
-				showFacebookOptions();
-			}
-		}
-		
-		if (getIntent().hasExtra("error"))
-		{
-			String errorReason = getIntent().getStringExtra("error");
-		
-			if (errorReason != null)
-			{
-				getIntent().removeExtra("error");
-				Toast.makeText(this, errorReason, Toast.LENGTH_LONG).show();
-			}
-		}
+//		if (getIntent().hasExtra("accessToken"))
+//		{
+//			String accessToken = getIntent().getStringExtra("accessToken");
+//		
+//			if (accessToken != null)
+//			{
+//				_facebookController.connect(accessToken);
+//				getIntent().removeExtra("accessToken");
+//				showFacebookOptions();
+//			}
+//		}
+//		
+//		if (getIntent().hasExtra("error"))
+//		{
+//			String errorReason = getIntent().getStringExtra("error");
+//		
+//			if (errorReason != null)
+//			{
+//				getIntent().removeExtra("error");
+//				Toast.makeText(this, errorReason, Toast.LENGTH_LONG).show();
+//			}
+//		}
 	}
+	
+
 	
 	
 	//***************************************
     // Private methods
     //***************************************
+	private boolean isConnected() 
+	{
+		return _connectionRepository.findPrimaryConnectionToApi(FacebookApi.class) != null;
+	}
+	
+	private void disconnect()
+	{
+		_connectionRepository.removeConnectionsToProvider(_connectionFactory.getProviderId());
+	}
+	
 	private void showConnectOption()
 	{
 		String[] options = {"Connect"};
@@ -134,7 +155,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 						switch(position)
 						{
 							case 0:
-								_manager.disconnect();
+								disconnect();
 								showConnectOption();
 								break;
 							case 1:
@@ -164,7 +185,6 @@ public class FacebookActivity extends AbstractAsyncActivity
 	{		
 		Intent intent = new Intent();
 		intent.setClass(this, FacebookWebOAuthActivity.class);
-		intent.putExtra("authUrl", _manager.getAuthorizeUrl());
 		startActivity(intent);
 		finish();
 	}

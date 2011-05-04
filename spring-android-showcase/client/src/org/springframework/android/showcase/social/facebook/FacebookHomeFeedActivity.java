@@ -25,7 +25,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_facebookApi = getApplicationContext().getFacebookController().getFacebookApi();
+		_facebookApi = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(FacebookApi.class).getApi();
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 		protected void onPreExecute() 
 		{
 			// before the network request begins, show a progress indicator
-			showProgressDialog("Fetching timeline...");
+			showProgressDialog("Fetching home feed...");
 		}
 		
 		@Override

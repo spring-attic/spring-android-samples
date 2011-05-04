@@ -1,6 +1,17 @@
 package org.springframework.android.showcase.social.facebook;
 
 import org.springframework.android.showcase.AbstractWebViewActivity;
+import org.springframework.android.showcase.R;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.connect.DuplicateConnectionException;
+import org.springframework.social.facebook.api.FacebookApi;
+import org.springframework.social.facebook.connect.FacebookConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Parameters;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,10 +20,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class FacebookWebOAuthActivity extends AbstractWebViewActivity 
 {
-//	private static final String TAG = FacebookOAuthActivity.class.getSimpleName();
+	private static final String TAG = FacebookWebOAuthActivity.class.getSimpleName();
+	
+	private ConnectionRepository _connectionRepository;
+	
+	private FacebookConnectionFactory _connectionFactory;
 	
 	
 	//***************************************
@@ -27,7 +43,10 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 		getWebView().getSettings().setJavaScriptEnabled(true);
 		
 		// Using a custom web view client to capture the access token
-		getWebView().setWebViewClient(new CustomWebViewClient());
+		getWebView().setWebViewClient(new FacebookOAuthWebViewClient());
+		
+		_connectionRepository = getApplicationContext().getConnectionRepository();
+		_connectionFactory = getApplicationContext().getFacebookConnectionFactory();
 	}
 	
 	@Override
@@ -35,24 +54,36 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 	{
 		super.onStart();
 		
-		// The authUrl is passed from FacebookActivity
-		if (getIntent().hasExtra("authUrl"))
-		{
-			String authUrl = getIntent().getStringExtra("authUrl");
+		// display the Facebook authorization page
+		getWebView().loadUrl(getAuthorizeUrl());
+	}
 		
-			if (authUrl != null)
-			{  
-				getIntent().removeExtra("authUrl");
-				getWebView().loadUrl(authUrl);
-			}
-		}
+	private String getAuthorizeUrl() 
+	{
+		String redirectUri = getString(R.string.facebook_oauth_callback_url);
+		String scope = getString(R.string.facebook_scope);
+
+		// the display=touch parameter requests the mobile formatted version of the Facebook authorization page
+		MultiValueMap<String, String> additionalParameters = new LinkedMultiValueMap<String, String>();
+		additionalParameters.add("display", "touch");
+		
+		// Generate the Facebook authorization url to be used in the browser or web view
+		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, new OAuth2Parameters(redirectUri, scope, null, additionalParameters));
+	}
+	
+	private void displayFacebookOptions()
+	{
+		Intent intent = new Intent();
+		intent.setClass(this, FacebookActivity.class);
+	    startActivity(intent);
+    	finish();
 	}
 	
 	
 	//***************************************
     // Private classes
     //***************************************
-    private class CustomWebViewClient extends WebViewClient 
+    private class FacebookOAuthWebViewClient extends WebViewClient 
     {
         /*
          * The WebViewClient has another method called shouldOverridUrlLoading
@@ -61,7 +92,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
          */
         @Override
         public  void onPageStarted(WebView view, String url, Bitmap favicon) 
-        {
+        {        	
         	// parse the captured url
         	Uri uri = Uri.parse(url);
         	
@@ -98,18 +129,25 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 	        		// get the access token value
 	        		String accessToken = accessTokenParam[1];
 	        		
-	        		// return the access token value to the previous activity
-					Intent intent = new Intent();
-					intent.setClass(view.getContext(), FacebookActivity.class);
-					intent.putExtra("accessToken", accessToken);
-				    startActivity(intent);
-		        	finish();
+	        		// create the connection and persist it to the repository
+	        		AccessGrant accessGrant = new AccessGrant(accessToken, null, null, null);
+	        		Connection<FacebookApi> connection = _connectionFactory.createConnection(accessGrant);
+	        		
+	        		try
+	        		{
+	        			_connectionRepository.addConnection(connection);
+	        		}
+	        		catch (DuplicateConnectionException e)
+	        		{
+	        			// connection already exists in repository!
+	        		}
         		}
         		catch (Exception e)
         		{
         			// don't do anything if the parameters are not what is expected
-        			return;
         		}
+        		
+    			displayFacebookOptions();
         	}
         	
         	/* 
@@ -122,11 +160,9 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
         	 */
         	if (uri.getQueryParameter("error") != null) 
         	{
-				Intent intent = new Intent();
-				intent.setClass(view.getContext(), FacebookActivity.class);
-				intent.putExtra("error", uri.getQueryParameter("error_description").replace("+", " "));
-			    startActivity(intent);
-	        	finish();
+        		CharSequence errorReason = uri.getQueryParameter("error_description").replace("+", " ");
+        		Toast.makeText(getApplicationContext(), errorReason, Toast.LENGTH_LONG).show();
+        		displayFacebookOptions();
         	}
         }
     }    
