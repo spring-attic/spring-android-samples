@@ -1,6 +1,5 @@
 package org.springframework.android.showcase;
 
-import org.springframework.android.showcase.social.twitter.TwitterController;
 import org.springframework.security.crypto.encrypt.AndroidEncryptors;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.sqlite.SQLiteConnectionRepository;
@@ -19,7 +18,6 @@ public class MainApplication extends Application
 	private ConnectionFactoryRegistry _connectionFactoryRegistry;
 	private SQLiteOpenHelper _repositoryHelper;
 	private ConnectionRepository _connectionRepository;	
-	private TwitterController _twitterController;
 	
 	
 	//***************************************
@@ -32,12 +30,10 @@ public class MainApplication extends Application
 		_connectionFactoryRegistry = new ConnectionFactoryRegistry();
 		_connectionFactoryRegistry.addConnectionFactory(new FacebookConnectionFactory(getFacebookAppId(), getFacebookAppSecret()));
 		_connectionFactoryRegistry.addConnectionFactory(new TwitterConnectionFactory(getTwitterConsumerToken(), getTwitterConsumerTokenSecret()));
-		
+
 		// set up the database and encryption
 		_repositoryHelper = new SQLiteConnectionRepositoryHelper(this);
 		_connectionRepository = new SQLiteConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
-
-		_twitterController = new TwitterController(this, getTwitterConnectionFactory(), _connectionRepository);
 	}
 	
 	
@@ -86,10 +82,5 @@ public class MainApplication extends Application
 	public TwitterConnectionFactory getTwitterConnectionFactory()
 	{
 		return (TwitterConnectionFactory) _connectionFactoryRegistry.getConnectionFactory(TwitterApi.class);
-	}
-		
-	public TwitterController getTwitterController()
-	{
-		return _twitterController;
 	}
 }

@@ -39,16 +39,17 @@
      	<activity
         	android:name="org.springframework.android.showcase.social.twitter.TwitterWebOAuthActivity"  
         	android:noHistory="true"
-        	android:excludeFromRecents="true" />
-        
-        <activity 
-        	android:name="org.springframework.android.showcase.social.twitter.TwitterActivity">
+        	android:excludeFromRecents="true">
         	<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
 				<data android:scheme="x-org-springsource-android-showcase" android:host="twitter-oauth-response" />
 			</intent-filter>
+		</activity>
+        
+        <activity 
+        	android:name="org.springframework.android.showcase.social.twitter.TwitterActivity">
         </activity>
         
         <activity android:name="org.springframework.android.showcase.social.twitter.TwitterProfileActivity" />
@@ -59,7 +60,7 @@
      	<activity
         	android:name="org.springframework.android.showcase.social.facebook.FacebookWebOAuthActivity"  
         	android:noHistory="true"
-        	android:excludeFromRecents="true" />
+        	android:excludeFromRecents="true" />	
 
         <activity android:name="org.springframework.android.showcase.social.facebook.FacebookActivity" />
         <activity android:name="org.springframework.android.showcase.social.facebook.FacebookProfileActivity" />

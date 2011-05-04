@@ -73,32 +73,7 @@ public class FacebookActivity extends AbstractAsyncActivity
 	protected void onResume() 
 	{
 		super.onResume();
-		
-//		if (getIntent().hasExtra("accessToken"))
-//		{
-//			String accessToken = getIntent().getStringExtra("accessToken");
-//		
-//			if (accessToken != null)
-//			{
-//				_facebookController.connect(accessToken);
-//				getIntent().removeExtra("accessToken");
-//				showFacebookOptions();
-//			}
-//		}
-//		
-//		if (getIntent().hasExtra("error"))
-//		{
-//			String errorReason = getIntent().getStringExtra("error");
-//		
-//			if (errorReason != null)
-//			{
-//				getIntent().removeExtra("error");
-//				Toast.makeText(this, errorReason, Toast.LENGTH_LONG).show();
-//			}
-//		}
 	}
-	
-
 	
 	
 	//***************************************

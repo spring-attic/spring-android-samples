@@ -49,7 +49,7 @@ public class TwitterTweetActivity extends AbstractAsyncActivity
 		
 		setContentView(R.layout.twitter_tweet_activity_layout);
 		
-		_twitterApi = getApplicationContext().getTwitterController().getTwitterApi();
+		_twitterApi = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(TwitterApi.class).getApi();
 		
 		// Initiate the POST request when the button is clicked
 		final Button button = (Button) findViewById(R.id.button_tweet);

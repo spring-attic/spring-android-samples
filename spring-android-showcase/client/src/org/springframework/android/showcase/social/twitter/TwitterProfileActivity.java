@@ -41,7 +41,7 @@ public class TwitterProfileActivity extends AbstractAsyncListActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		_twitterApi = getApplicationContext().getTwitterController().getTwitterApi();
+		_twitterApi = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(TwitterApi.class).getApi();
 	}
 	
 	@Override

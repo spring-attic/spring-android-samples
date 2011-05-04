@@ -17,10 +17,11 @@ package org.springframework.android.showcase.social.twitter;
 
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
+import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.twitter.api.TwitterApi;
+import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,7 +35,9 @@ public class TwitterActivity extends AbstractAsyncActivity
 {
 	protected static final String TAG = TwitterActivity.class.getSimpleName();
 	
-	private TwitterController _twitterController;
+	private ConnectionRepository _connectionRepository;
+	
+	private TwitterConnectionFactory _connectionFactory;
 	
 
 	//***************************************
@@ -47,7 +50,8 @@ public class TwitterActivity extends AbstractAsyncActivity
 		
 		setContentView(R.layout.twitter_activity_layout);
 		
-		_twitterController = getApplicationContext().getTwitterController();
+		_connectionRepository = getApplicationContext().getConnectionRepository();
+		_connectionFactory = getApplicationContext().getTwitterConnectionFactory();
 	}
 	
 	@Override
@@ -55,7 +59,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 	{
 		super.onStart();
 		
-		if (_twitterController.isConnected())
+		if (isConnected())
 		{
 			showTwitterOptions();
 		}
@@ -65,26 +69,20 @@ public class TwitterActivity extends AbstractAsyncActivity
 		}
 	}
 	
-	@Override
-	protected void onResume() 
-	{
-		super.onResume();
-		
-		if (!_twitterController.isConnected())
-		{
-			Uri uri = getIntent().getData();
-			if (_twitterController.isCallbackUrl(uri)) 
-			{
-				String oauthVerifier = uri.getQueryParameter("oauth_verifier");
-				new TwitterPostConnectTask().execute(oauthVerifier);
-			}
-		}
-	}
-	
 	
 	//***************************************
     // Private methods
     //***************************************
+	private boolean isConnected() 
+	{
+		return _connectionRepository.findPrimaryConnectionToApi(TwitterApi.class) != null;
+	}
+	
+	private void disconnect()
+	{
+		_connectionRepository.removeConnectionsToProvider(_connectionFactory.getProviderId());
+	}
+	
 	private void showConnectOption()
 	{
 		String[] options = {"Connect"};
@@ -100,7 +98,7 @@ public class TwitterActivity extends AbstractAsyncActivity
 						switch(position)
 						{
 							case 0:
-								new TwitterPreConnectTask().execute();
+								displayTwitterAuthorization();
 								break;
 							default:
 								break;
@@ -157,80 +155,11 @@ public class TwitterActivity extends AbstractAsyncActivity
 			);
 	}
 	
-	private void displayTwitterAuthorization(String authUrl)
-	{		
+	private void displayTwitterAuthorization()
+	{
 		Intent intent = new Intent();
 		intent.setClass(this, TwitterWebOAuthActivity.class);
-		intent.putExtra("authUrl", authUrl);
 		startActivity(intent);
 		finish();
-	}
-	
-	private void disconnect()
-	{
-		_twitterController.disconnect();
-	}
-	
-	
-	//***************************************
-    // Private classes
-    //***************************************
-	private class TwitterPreConnectTask extends AsyncTask<Void, Void, String> 
-	{		
-		@Override
-		protected void onPreExecute() 
-		{
-			// before the network request begins, show a progress indicator
-			showProgressDialog("Initializing OAuth Connection...");
-		}
-		
-		@Override
-		protected String doInBackground(Void... params) 
-		{			
-			return _twitterController.getTwitterAuthorizeUrl();
-		}
-		
-		@Override
-		protected void onPostExecute(String authUrl)
-		{
-			// after the network request completes, hide the progress indicator
-			dismissProgressDialog();
-			
-			displayTwitterAuthorization(authUrl);
-		}
-	}
-	
-	private class TwitterPostConnectTask extends AsyncTask<String, Void, Void> 
-	{		
-		@Override
-		protected void onPreExecute() 
-		{
-			// before the network request begins, show a progress indicator
-			showProgressDialog("Finalizing OAuth Connection...");
-		}
-		
-		@Override
-		protected Void doInBackground(String... params) 
-		{
-			if (params.length <= 0)
-			{
-				return null;
-			}
-			
-			final String verifier = params[0];
-			
-			_twitterController.updateTwitterAccessToken(verifier);
-			
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void v)
-		{
-			// after the network request completes, hide the progress indicator
-			dismissProgressDialog();
-			
-			showTwitterOptions();
-		}
 	}
 }

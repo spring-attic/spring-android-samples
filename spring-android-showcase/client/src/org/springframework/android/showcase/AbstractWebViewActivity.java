@@ -3,12 +3,15 @@ package org.springframework.android.showcase;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 public abstract class AbstractWebViewActivity extends Activity implements AsyncActivity 
 {
 	protected static final String TAG = AbstractWebViewActivity.class.getSimpleName();
+	
+	private Activity _activity;
 	
 	private WebView _webView;
 	
@@ -30,27 +33,32 @@ public abstract class AbstractWebViewActivity extends Activity implements AsyncA
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
+
+		getWindow().requestFeature(Window.FEATURE_PROGRESS);
+		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
 		
 		_webView = new WebView(this);
 		setContentView(_webView);
+		
+		_activity = this;
 		
 		_webView.setWebChromeClient(
 				new WebChromeClient() 
 				{
 		            public void onProgressChanged(WebView view, int progress)
-		            {		            	
-		            	showLoadingProgressDialog();
-		            	_progressDialog.setProgress(progress);
-		 
-		                if (progress == 100)
-		                {
-		                	dismissProgressDialog();
-		                }
+		            {
+		            	_activity.setTitle("Loading...");
+		            	_activity.setProgress(progress * 100);
+		            	
+		            	if (progress == 100)
+		            	{
+		            		_activity.setTitle(R.string.app_name);
+		            	}
 		            }
 				}
 		);
 	}
-	
+		
 	
 	//***************************************
     // Protected methods
@@ -66,23 +74,19 @@ public abstract class AbstractWebViewActivity extends Activity implements AsyncA
     //***************************************
 	public void showLoadingProgressDialog() 
 	{
-		this.showProgressDialog("Loading...");
+		showProgressDialog("Loading. Please wait...");
 	}
 	
-	public void showProgressDialog(CharSequence message) 
+	public void showProgressDialog(CharSequence message)
 	{
 		if (_progressDialog == null)
 		{
 			_progressDialog = new ProgressDialog(this);
-			_progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			_progressDialog.setCancelable(false);
+			_progressDialog.setIndeterminate(true);
 		}
 		
-		if (!_progressDialog.isShowing())
-		{
-			_progressDialog.setMessage(message);
-			_progressDialog.show();
-		}
+		_progressDialog.setMessage(message);
+		_progressDialog.show();
 	}
 		
 	public void dismissProgressDialog() 
