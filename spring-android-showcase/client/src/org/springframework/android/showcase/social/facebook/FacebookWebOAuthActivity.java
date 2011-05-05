@@ -57,7 +57,11 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 		// display the Facebook authorization page
 		getWebView().loadUrl(getAuthorizeUrl());
 	}
-		
+
+	
+	//***************************************
+    // Private methods
+    //***************************************
 	private String getAuthorizeUrl() 
 	{
 		String redirectUri = getString(R.string.facebook_oauth_callback_url);
