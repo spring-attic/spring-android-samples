@@ -82,9 +82,9 @@
 		
 		<!-- JAXB XML Processor -->
 		<dependency>
-   			<groupId>javax.xml</groupId>
+   			<groupId>javax.xml.bind</groupId>
    			<artifactId>jaxb-api</artifactId>
-   			<version>2.1</version>
+   			<version>2.2.2</version>
  		</dependency>
 				
 		<!-- Servlet -->
