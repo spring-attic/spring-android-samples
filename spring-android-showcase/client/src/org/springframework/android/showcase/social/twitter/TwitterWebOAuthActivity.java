@@ -38,7 +38,8 @@ import android.os.Bundle;
  */
 public class TwitterWebOAuthActivity extends AbstractWebViewActivity 
 {
-//	private static final String TAG = TwitterWebOAuthActivity.class.getSimpleName();
+	@SuppressWarnings("unused")
+	private static final String TAG = TwitterWebOAuthActivity.class.getSimpleName();
 	
 	private static final String REQUEST_TOKEN_KEY = "request_token";
 	
@@ -102,7 +103,7 @@ public class TwitterWebOAuthActivity extends AbstractWebViewActivity
 		saveRequestToken(requestToken);
 		
 		// Generate the Twitter authorization URL to be used in the browser or web view
-		String authUrl = _connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), new OAuth1Parameters(null));
+		String authUrl = _connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE);
 		
 		// display the twitter authorization screen
 		getWebView().loadUrl(authUrl);
