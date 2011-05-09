@@ -33,18 +33,13 @@ public class MainApplication extends Application
 
 		// set up the database and encryption
 		_repositoryHelper = new SQLiteConnectionRepositoryHelper(this);
-		_connectionRepository = new SQLiteConnectionRepository(getLocalUserId(), _repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
+		_connectionRepository = new SQLiteConnectionRepository(_repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
 	}
 	
 	
 	//***************************************
     // Private methods
-    //***************************************
-	private String getLocalUserId()
-	{
-		return getString(R.string.local_user_id);
-	}
-	
+    //***************************************	
 	private String getFacebookAppId()
 	{
 		return getString(R.string.facebook_app_id);

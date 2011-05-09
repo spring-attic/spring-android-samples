@@ -134,7 +134,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 	        		String accessToken = accessTokenParam[1];
 	        		
 	        		// create the connection and persist it to the repository
-	        		AccessGrant accessGrant = new AccessGrant(accessToken, null, null, null);
+	        		AccessGrant accessGrant = new AccessGrant(accessToken);
 	        		Connection<FacebookApi> connection = _connectionFactory.createConnection(accessGrant);
 	        		
 	        		try
