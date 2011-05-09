@@ -24,7 +24,7 @@
 		<spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
 		<spring-social-version>1.0.0.M3</spring-social-version>
 		<jackson-version>1.8.0</jackson-version>
-		<simple-version>2.4.1</simple-version>
+		<simple-version>2.5.3</simple-version>
 		<android-rome-version>1.0.0-r2</android-rome-version>
 	</properties>
 
@@ -131,13 +131,19 @@
 			<artifactId>simple-xml</artifactId>
 			<version>${simple-version}</version>
 			<exclusions>
-				<exclusion>
+				<!-- StAX is not available on Android -->
+ 				<exclusion>
 					<artifactId>stax</artifactId>
 					<groupId>stax</groupId>
 				</exclusion>
 				<exclusion>
 					<artifactId>stax-api</artifactId>
 					<groupId>stax</groupId>
+				</exclusion>
+				<!-- Provided by Android -->
+				<exclusion>
+					<artifactId>xpp3</artifactId>
+					<groupId>xpp3</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
