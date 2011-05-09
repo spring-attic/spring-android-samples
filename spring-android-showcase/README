@@ -28,7 +28,7 @@ $ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 Install Android SDK Platform
 ----------------------------
-The Android SDK download does not include any specific Android platform SDKs. In order to run the sample code you need to download and install the Android 2.3.1 SDK Platform (API Level 9).  You accomplish this by using the Android SDK and AVD Manager that was installed from the previous step.
+The Android SDK download does not include any specific Android platform SDKs. In order to run the sample code you need to download and install the Android 2.3.1 SDK Platform (API Level 10).  You accomplish this by using the Android SDK and AVD Manager that was installed from the previous step.
 
 Open the Android SDK and AVD Manager window:
 $ android
@@ -54,18 +54,33 @@ Note: The sample application is configured to look for an AVD with the name "10"
 
 Build and Run the Server app
 ----------------------------
-$ cd /spring-android-showcase/server
+$ cd spring-android-showcase/server
 $ mvn clean install
-Deploy the .war to a Servlet 2.5 or > ServletContainer, such as Tomcat 6.
-Start the server
+Deploy the .war to a Servlet 2.5 or > ServletContainer.  This can be done via Maven on the command-line by running:
+$ mvn tomcat:run
 
 
 Build and Run the Android Client
 --------------------------------
-$ cd /spring-android-showcase/client
+$ cd spring-android-showcase/client
 $ mvn clean install
 $ mvn android:emulator-start
 IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail.
 $ mvn android:deploy
 View Logging
 $ adb logcat
+
+
+Tuning Emulator Performance
+--------------------------------
+If the Android emulator is running sluggishly, you can try editing your AVD configuration with the following settings:
+- Check Snapshot: Enabled
+- Set the 'Device ram size' property to 1024.
+
+
+Troubleshooting Failed Deployment
+---------------------------------
+If 'mvn android:deploy' fails, try stopping and restarting the adb server:
+$ adb kill-server
+$ adb start-server
+$ mvn android:deploy
