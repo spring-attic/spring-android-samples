@@ -67,6 +67,10 @@ public class HttpPostActivity extends Activity
 								intent.setClass(parentView.getContext(), HttpPostMultiValueMapActivity.class);
 								startActivity(intent);
 								break;
+							case 3:
+								intent.setClass(parentView.getContext(), HttpPostFormDataActivity.class);
+								startActivity(intent);
+								break;
 							default:
 								break;
 						}

@@ -9,5 +9,6 @@
 
 	<!-- Scans within the base package of the application for @Components to configure as beans -->
 	<context:component-scan base-package="org.springframework.android.showcase" />
-	 
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />	 
 </beans>

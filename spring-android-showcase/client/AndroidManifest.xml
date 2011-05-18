@@ -29,6 +29,7 @@
         <activity android:name="org.springframework.android.showcase.rest.HttpPostStringActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostJsonXmlActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpPostMultiValueMapActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpPostFormDataActivity" />
        	<activity android:name="org.springframework.android.showcase.rest.rome.RssActivity" />
         <activity android:name="org.springframework.android.showcase.rest.rome.RssChannelActivity" />
         <activity android:name="org.springframework.android.showcase.rest.rome.RssSyndFeedActivity" />
