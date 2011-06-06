@@ -17,7 +17,7 @@ package org.springframework.android.showcase.social.twitter;
 
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
-import org.springframework.social.twitter.api.TwitterApi;
+import org.springframework.social.twitter.api.Twitter;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -36,7 +36,7 @@ public class TwitterDirectMessageActivity extends AbstractAsyncActivity
 {
 	protected static final String TAG = TwitterDirectMessageActivity.class.getSimpleName();
 	
-	private TwitterApi _twitterApi;
+	private Twitter _twitter;
 	
 	
 	//***************************************
@@ -49,7 +49,7 @@ public class TwitterDirectMessageActivity extends AbstractAsyncActivity
 		
 		setContentView(R.layout.twitter_direct_message_activity_layout);
 		
-		_twitterApi = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(TwitterApi.class).getApi();
+		_twitter = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Twitter.class).getApi();
 		
 		// Initiate the POST request when the button is clicked
 		final Button button = (Button) findViewById(R.id.button_tweet);
@@ -105,7 +105,7 @@ public class TwitterDirectMessageActivity extends AbstractAsyncActivity
 		{
 			try
 			{
-				_twitterApi.directMessageOperations().sendDirectMessage(_user, _message);
+				_twitter.directMessageOperations().sendDirectMessage(_user, _message);
 				return "Message sent";
 			}
 			catch(Exception e)

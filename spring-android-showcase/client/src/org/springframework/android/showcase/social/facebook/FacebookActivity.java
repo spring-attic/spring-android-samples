@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.facebook;
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
 import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.facebook.api.FacebookApi;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 import android.content.Intent;
@@ -81,7 +81,7 @@ public class FacebookActivity extends AbstractAsyncActivity
     //***************************************
 	private boolean isConnected() 
 	{
-		return _connectionRepository.findPrimaryConnectionToApi(FacebookApi.class) != null;
+		return _connectionRepository.findPrimaryConnectionToApi(Facebook.class) != null;
 	}
 	
 	private void disconnect()

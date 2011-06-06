@@ -5,9 +5,9 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.sqlite.SQLiteConnectionRepository;
 import org.springframework.social.connect.sqlite.support.SQLiteConnectionRepositoryHelper;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
-import org.springframework.social.facebook.api.FacebookApi;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-import org.springframework.social.twitter.api.TwitterApi;
+import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import android.app.Application;
@@ -71,11 +71,11 @@ public class MainApplication extends Application
 	
 	public FacebookConnectionFactory getFacebookConnectionFactory()
 	{
-		return (FacebookConnectionFactory) _connectionFactoryRegistry.getConnectionFactory(FacebookApi.class);
+		return (FacebookConnectionFactory) _connectionFactoryRegistry.getConnectionFactory(Facebook.class);
 	}
 	
 	public TwitterConnectionFactory getTwitterConnectionFactory()
 	{
-		return (TwitterConnectionFactory) _connectionFactoryRegistry.getConnectionFactory(TwitterApi.class);
+		return (TwitterConnectionFactory) _connectionFactoryRegistry.getConnectionFactory(Twitter.class);
 	}
 }

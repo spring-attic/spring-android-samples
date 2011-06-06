@@ -23,7 +23,7 @@ import org.springframework.social.connect.DuplicateConnectionException;
 import org.springframework.social.oauth1.AuthorizedRequestToken;
 import org.springframework.social.oauth1.OAuth1Parameters;
 import org.springframework.social.oauth1.OAuthToken;
-import org.springframework.social.twitter.api.TwitterApi;
+import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import android.content.Context;
@@ -197,7 +197,7 @@ public class TwitterWebOAuthActivity extends AbstractWebViewActivity
 			deleteRequestToken();
 			
 			// Persist the connection and Access Token to the repository 
-			Connection<TwitterApi> connection = _connectionFactory.createConnection(accessToken);
+			Connection<Twitter> connection = _connectionFactory.createConnection(accessToken);
 			
 			try 
 			{

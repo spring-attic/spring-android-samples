@@ -18,7 +18,7 @@ package org.springframework.android.showcase.social.twitter;
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
 import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.twitter.api.TwitterApi;
+import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import android.content.Intent;
@@ -75,7 +75,7 @@ public class TwitterActivity extends AbstractAsyncActivity
     //***************************************
 	private boolean isConnected() 
 	{
-		return _connectionRepository.findPrimaryConnectionToApi(TwitterApi.class) != null;
+		return _connectionRepository.findPrimaryConnectionToApi(Twitter.class) != null;
 	}
 	
 	private void disconnect()

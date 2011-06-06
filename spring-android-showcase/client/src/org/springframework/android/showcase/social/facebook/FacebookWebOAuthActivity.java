@@ -5,7 +5,7 @@ import org.springframework.android.showcase.R;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.DuplicateConnectionException;
-import org.springframework.social.facebook.api.FacebookApi;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
@@ -135,7 +135,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 	        		
 	        		// create the connection and persist it to the repository
 	        		AccessGrant accessGrant = new AccessGrant(accessToken);
-	        		Connection<FacebookApi> connection = _connectionFactory.createConnection(accessGrant);
+	        		Connection<Facebook> connection = _connectionFactory.createConnection(accessGrant);
 	        		
 	        		try
 	        		{

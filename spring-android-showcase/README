@@ -28,14 +28,14 @@ $ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 Install Android SDK Platform
 ----------------------------
-The Android SDK download does not include any specific Android platform SDKs. In order to run the sample code you need to download and install the Android 2.3.1 SDK Platform (API Level 10).  You accomplish this by using the Android SDK and AVD Manager that was installed from the previous step.
+The Android SDK download does not include any specific Android platform SDKs. In order to run the sample code you need to download and install the Android 2.1 SDK Platform (API Level 7).  You accomplish this by using the Android SDK and AVD Manager that was installed from the previous step.
 
 Open the Android SDK and AVD Manager window:
 $ android
 Note: if this command does not open the Android SDK and AVD Manager, then your path is not configured correctly.
 Select Available packages from the left hand column
 Select the checkbox for Android Repository in the main window
-Select SDK Platform Android 2.3.3, API 10, revision 1
+Select SDK Platform Android 2.1-update1, API 7, revision 2
 Click the Install Selected button to complete the download and installation.
 Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
@@ -46,10 +46,10 @@ http://developer.android.com/guide/developing/tools/avd.html
 Open the Android SDK and AVD Manager window:
 $ android
 Select Virtual devices in the left hand column and click the New button
-Enter 10 in the Name field
-Select Android 2.3.3 API Level 10 in the Target selector
+Enter 7 in the Name field
+Select Android 2.1-update1 API Level 7 in the Target selector
 Click Create AVD to finish
-Note: The sample application is configured to look for an AVD with the name "10". Otherwise, you can name the AVD whatever you like. Using "10" for the name simply is a visual indicator of which API level it uses.
+Note: The sample application is configured to look for an AVD with the name "7". Otherwise, you can name the AVD whatever you like. Using "7" for the name simply is a visual indicator of which API level it uses.
 
 
 Build and Run the Server app
