@@ -14,49 +14,40 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class FacebookWallPostActivity extends AbstractAsyncActivity 
-{
+public class FacebookWallPostActivity extends AbstractAsyncActivity {
+	
 	protected static final String TAG = FacebookWallPostActivity.class.getSimpleName();
 
-	private Facebook _facebook;
+	private Facebook facebook;
 	
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.facebook_wall_post_activity_layout);
-		
-		_facebook = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Facebook.class).getApi();
+		setContentView(R.layout.facebook_wall_post_activity_layout);		
+		this.facebook = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Facebook.class).getApi();
 		
 		// Initiate the POST request when the button is clicked
 		final Button button = (Button) findViewById(R.id.button_submit);
-		button.setOnClickListener(new View.OnClickListener() 
-			{
-            	public void onClick(View v) 
-            	{
-            		// hide the soft keypad
-            		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            		EditText editText = (EditText) findViewById(R.id.edit_text_wall_post);
-            		inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-            		
-            		// start asynchronous facebook wall post 
-            		new PostTweetTask().execute();
-            	}
+		button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// hide the soft keypad
+				InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				EditText editText = (EditText) findViewById(R.id.edit_text_wall_post);
+				inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+				new PostTweetTask().execute();
 			}
-		);
+		});
 	}
 	
 	
 	//***************************************
     // Private methods
     //***************************************
-	private void showResult(String result)
-	{
+	private void showResult(String result) {
 		Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 	}
 	
@@ -64,43 +55,38 @@ public class FacebookWallPostActivity extends AbstractAsyncActivity
 	//***************************************
     // Private classes
     //***************************************
-	private class PostTweetTask extends AsyncTask<Void, Void, String> 
-	{	
-		private String _wallPostText;
+	private class PostTweetTask extends AsyncTask<Void, Void, String> {	
+		
+		private String wallPostText;
 		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showProgressDialog("Posting to Wall...");
 			
 			// retrieve the text from the EditText field
 			EditText editText = (EditText) findViewById(R.id.edit_text_wall_post);
-			_wallPostText = editText.getText().toString();
+			this.wallPostText = editText.getText().toString();
 		}
 		
 		@Override
-		protected String doInBackground(Void... params) 
-		{
-			try
-			{
-				_facebook.feedOperations().updateStatus(_wallPostText);
+		protected String doInBackground(Void... params) {
+			try {
+				facebook.feedOperations().updateStatus(wallPostText);
 				return "Status updated";
-			}
-			catch(Exception e)
-			{
+			} catch (Exception e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
 				return "An error occurred. See the log for details";
 			}
 		}
 		
 		@Override
-		protected void onPostExecute(String result) 
-		{
+		protected void onPostExecute(String result) {
 			// after the network request completes, hide the progress indicator
-			dismissProgressDialog();
-			
+			dismissProgressDialog();			
 			showResult(result);
 		}
+		
 	}
+	
 }

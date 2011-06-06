@@ -29,66 +29,57 @@ import android.widget.TextView;
  */
 public class FacebookProfileListAdapter extends BaseAdapter 
 {
-	private FacebookProfile _facebookProfile;
-	private final LayoutInflater _layoutInflater;
+	private FacebookProfile facebookProfile;
+	private final LayoutInflater layoutInflater;
 
-	public FacebookProfileListAdapter(Context context, FacebookProfile facebookProfile) 
-	{
-		if (facebookProfile == null)
-		{
+	public FacebookProfileListAdapter(Context context, FacebookProfile facebookProfile) {
+		if (facebookProfile == null) {
 			throw new IllegalArgumentException("facebookProfile cannot be null");
 		}
 		
-		_facebookProfile = facebookProfile;
-		_layoutInflater = LayoutInflater.from(context);
+		this.facebookProfile = facebookProfile;
+		this.layoutInflater = LayoutInflater.from(context);
 	}
 
-	public int getCount() 
-	{
+	public int getCount() {
 		return 3;
 	}
 
-	public String[] getItem(int position) 
-	{
+	public String[] getItem(int position) {
 		String[] item = new String[2];
-		
-		switch(position)
-		{
-			case 0:
-				item[0] = "Id";
-				item[1] = String.valueOf(_facebookProfile.getId());
-				break;
-			case 1:
-				item[0] = "Name";
-				item[1] = _facebookProfile.getName();
-				break;
-			case 2:
-				item[0] = "Email";
-				item[1] = _facebookProfile.getEmail();
-				break;
-			default:
-				item[0] = "";
-				item[1] = "";
-				break;
+
+		switch (position) {
+		case 0:
+			item[0] = "Id";
+			item[1] = String.valueOf(facebookProfile.getId());
+			break;
+		case 1:
+			item[0] = "Name";
+			item[1] = facebookProfile.getName();
+			break;
+		case 2:
+			item[0] = "Email";
+			item[1] = facebookProfile.getEmail();
+			break;
+		default:
+			item[0] = "";
+			item[1] = "";
+			break;
 		}
-		
+
 		return item;
 	}
 
-	public long getItemId(int position) 
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{	
+	public View getView(int position, View convertView, ViewGroup parent) {	
 		String[] item = getItem(position);
-		
 		View view = convertView;
 		
-		if (view == null)
-		{
-			view = _layoutInflater.inflate(android.R.layout.two_line_list_item, parent, false);
+		if (view == null) {
+			view = layoutInflater.inflate(android.R.layout.two_line_list_item, parent, false);
 		}
 		
 		TextView t = (TextView) view.findViewById(android.R.id.text1);
@@ -99,4 +90,5 @@ public class FacebookProfileListAdapter extends BaseAdapter
 		
 		return view;
 	}
+	
 }

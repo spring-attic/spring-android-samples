@@ -30,46 +30,40 @@ import android.widget.TextView;
  * @author Roy Clarkson
  * @author Pierre-Yves Ricau
  */
-public class StatesListAdapter extends BaseAdapter 
-{
-	private List<State> _states;
-	private final LayoutInflater _layoutInflater;
+public class StatesListAdapter extends BaseAdapter {
+	
+	private List<State> states;
+	private final LayoutInflater layoutInflater;
 
-	public StatesListAdapter(Context context, List<State> states) 
-	{
-		_states = states;
-		_layoutInflater = LayoutInflater.from(context);
+	public StatesListAdapter(Context context, List<State> states) {
+		this.states = states;
+		this.layoutInflater = LayoutInflater.from(context);
 	}
 
-	public int getCount() 
-	{
-		return _states.size();
+	public int getCount() {
+		return states.size();
 	}
 
-	public State getItem(int position) 
-	{
-		return _states.get(position);
+	public State getItem(int position) {
+		return states.get(position);
 	}
 
-	public long getItemId(int position) 
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{
+	public View getView(int position, View convertView, ViewGroup parent) {
 		State state = getItem(position);
-		
 		View view = convertView;
-		
-		if (view == null)
-		{
-			view = _layoutInflater.inflate(R.layout.states_list_item, parent, false);
+
+		if (view == null) {
+			view = layoutInflater.inflate(R.layout.states_list_item, parent, false);
 		}
 
-		TextView t = (TextView) view.findViewById(R.id.state_name); 
+		TextView t = (TextView) view.findViewById(R.id.state_name);
 		t.setText(state.getFormattedName());
 		
 		return view;
 	}
+	
 }

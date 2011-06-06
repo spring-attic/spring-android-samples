@@ -40,8 +40,8 @@ import android.widget.Toast;
  * @author Helena Edelson
  * @author Pierre-Yves Ricau
  */
-public class HttpGetParametersActivity extends AbstractAsyncActivity 
-{
+public class HttpGetParametersActivity extends AbstractAsyncActivity {
+	
 	protected static final String TAG = HttpGetParametersActivity.class.getSimpleName();
 	
 
@@ -49,79 +49,63 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-		
-		this.setContentView(R.layout.http_get_parameters_activity_layout);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);		
+		setContentView(R.layout.http_get_parameters_activity_layout);
 		
 		// Initiate the request for JSON data when the JSON button is pushed
 		final Button buttonJson = (Button) findViewById(R.id.button_json);
-		buttonJson.setOnClickListener(new View.OnClickListener() 
-			{
-            	public void onClick(View v) 
-            	{
-            		new DownloadStateTask().execute(MediaType.APPLICATION_JSON);
-            	}
+		buttonJson.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				new DownloadStateTask().execute(MediaType.APPLICATION_JSON);
 			}
-		);
+		});
         
 		// Initiate the request for XML data when the XML button is pushed
 		final Button buttonXml = (Button) findViewById(R.id.button_xml);
-		buttonXml.setOnClickListener(new View.OnClickListener() 
-			{
-            	public void onClick(View v) 
-            	{
-            		new DownloadStateTask().execute(MediaType.APPLICATION_XML);
-            	}
+		buttonXml.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				new DownloadStateTask().execute(MediaType.APPLICATION_XML);
 			}
-		);
+		});
 	}
 	
 	
 	//***************************************
     // Private methods
     //***************************************	
-	private void showState(State state)
-	{
+	private void showState(State state) {
 		// display a notification to the user with the state
-		if (state != null)
-		{
-			Toast.makeText(this, state.getFormattedName(), Toast.LENGTH_LONG).show();
-		}
-		else
-		{
+		if (state != null) {
+			Toast.makeText(this, state.getFormattedName(), Toast.LENGTH_LONG)
+					.show();
+		} else {
 			Toast.makeText(this, "No state found with that abbreviation!", Toast.LENGTH_LONG).show();
 		}
-	}
-	
+	}	
 	
 	//***************************************
     // Private classes
     //***************************************
-	private class DownloadStateTask extends AsyncTask<MediaType, Void, State> 
-	{	
-		private String _abbreviation;
+	private class DownloadStateTask extends AsyncTask<MediaType, Void, State> {
+		
+		private String abbreviation;
 		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showLoadingProgressDialog();
 			
 			// retrieve the abbreviation from the EditText field
 			EditText editText = (EditText) findViewById(R.id.edit_text_abbreviation);
 			
-			_abbreviation = editText.getText().toString();
+			abbreviation = editText.getText().toString();
 		}
 		
 		@Override
-		protected State doInBackground(MediaType... params) 
-		{
-			try 
-			{
-				if (params.length <= 0)
-				{
+		protected State doInBackground(MediaType... params) {
+			try {
+				if (params.length <= 0) {
 					return null;
 				}
 				
@@ -143,13 +127,12 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
 				RestTemplate restTemplate = new RestTemplate();
 				
 				// Perform the HTTP GET request
-				ResponseEntity<State> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State.class, _abbreviation);
+				ResponseEntity<State> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State.class, abbreviation);
 								
 				// Return the state from the ResponseEntity
 				return responseEntity.getBody();
 			} 
-			catch(Exception e) 
-			{
+			catch(Exception e) {
 				Log.e(TAG, e.getMessage(), e);
 			} 
 			
@@ -157,13 +140,14 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity
 		}
 		
 		@Override
-		protected void onPostExecute(State state) 
-		{
+		protected void onPostExecute(State state) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
 			
 			// return the list of states
 			showState(state);
 		}
+		
 	}
+	
 }

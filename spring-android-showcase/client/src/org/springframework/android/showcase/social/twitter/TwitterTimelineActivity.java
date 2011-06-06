@@ -28,29 +28,25 @@ import android.util.Log;
 /**
  * @author Roy Clarkson
  */
-public class TwitterTimelineActivity extends AbstractAsyncListActivity 
-{
+public class TwitterTimelineActivity extends AbstractAsyncListActivity {
+	
 	protected static final String TAG = TwitterProfileActivity.class.getSimpleName();
 
-	private Twitter _twitter;
+	private Twitter twitter;
 	
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		_twitter = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Twitter.class).getApi();
+		twitter = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Twitter.class).getApi();
 	}
 	
 	@Override
-	public void onStart()
-	{
+	public void onStart() {
 		super.onStart();
-		
 		new FetchTimelineTask().execute();
 	}
 	
@@ -58,8 +54,7 @@ public class TwitterTimelineActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private methods
     //***************************************
-	private void showResult(List<Tweet> tweets)
-	{
+	private void showResult(List<Tweet> tweets) {
 		TwitterTimelineListAdapter adapter = new TwitterTimelineListAdapter(this, tweets);
 		setListAdapter(adapter);
 	}
@@ -68,37 +63,31 @@ public class TwitterTimelineActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private classes
     //***************************************
-	private class FetchTimelineTask extends AsyncTask<Void, Void, List<Tweet>> 
-	{	
+	private class FetchTimelineTask extends AsyncTask<Void, Void, List<Tweet>> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showProgressDialog("Fetching timeline...");
 		}
 		
 		@Override
-		protected List<Tweet> doInBackground(Void... params) 
-		{
-			try
-			{
-				return _twitter.timelineOperations().getHomeTimeline();
-			}
-			catch(Exception e)
-			{
+		protected List<Tweet> doInBackground(Void... params) {
+			try {
+				return twitter.timelineOperations().getHomeTimeline();
+			} catch(Exception e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
-			}
-			
+			}			
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(List<Tweet> tweets) 
-		{
+		protected void onPostExecute(List<Tweet> tweets) {
 			// after the network request completes, hide the progress indicator
-			dismissProgressDialog();
-			
+			dismissProgressDialog();			
 			showResult(tweets);
 		}
+		
 	}
+	
 }

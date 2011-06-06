@@ -30,52 +30,46 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item
 /**
  * @author Roy Clarkson
  */
-public class RssChannelListAdapter extends BaseAdapter 
-{
-	private Channel _channel;
-	private final LayoutInflater _layoutInflater;
+public class RssChannelListAdapter extends BaseAdapter {
+	
+	private Channel channel;
+	private final LayoutInflater layoutInflater;
 
-	public RssChannelListAdapter(Context context, Channel channel) 
-	{
-		_channel = channel;
-		_layoutInflater = LayoutInflater.from(context);
+	public RssChannelListAdapter(Context context, Channel channel) {
+		this.channel = channel;
+		this.layoutInflater = LayoutInflater.from(context);
 	}
 
-	public int getCount() 
-	{
-		return _channel.getItems().size();
+	public int getCount() {
+		return channel.getItems().size();
 	}
 
-	public Object getItem(int position) 
-	{
-		return _channel.getItems().get(position);
+	public Object getItem(int position) {
+		return channel.getItems().get(position);
 	}
 
-	public long getItemId(int position) 
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{
+	public View getView(int position, View convertView, ViewGroup parent) {
 		Item item = (Item) getItem(position);
-		
 		View view = convertView;
-		
-		if (view == null)
-		{
-			view = _layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+
+		if (view == null) {
+			view = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
 		}
 
 		TextView t = (TextView) view.findViewById(R.id.synd_feed_title);
 		t.setText(item.getTitle());
-		
+
 		t = (TextView) view.findViewById(R.id.synd_feed_date);
 		t.setText(item.getPubDate().toString());
-		
+
 		t = (TextView) view.findViewById(R.id.synd_feed_description);
 		t.setText(item.getDescription().getValue());
 
 		return view;
 	}
+	
 }

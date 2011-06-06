@@ -32,39 +32,32 @@ import android.widget.TextView;
  */
 public class FacebookFeedListAdapter extends BaseAdapter 
 {
-	private List<Post> _entries;
-	private final LayoutInflater _layoutInflater;
+	private List<Post> entries;
+	private final LayoutInflater layoutInflater;
 
-	public FacebookFeedListAdapter(Context context, List<Post> entries) 
-	{
-		_entries = entries;
-		_layoutInflater = LayoutInflater.from(context);
+	public FacebookFeedListAdapter(Context context, List<Post> entries) {
+		this.entries = entries;
+		this.layoutInflater = LayoutInflater.from(context);
 	}
 
-	public int getCount() 
-	{
-		return _entries == null ? 0 : _entries.size();
+	public int getCount() {
+		return entries == null ? 0 : entries.size();
 	}
 
-	public Post getItem(int position) 
-	{
-		return _entries.get(position);
+	public Post getItem(int position) {
+		return entries.get(position);
 	}
 
-	public long getItemId(int position) 
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{	
+	public View getView(int position, View convertView, ViewGroup parent) {	
 		Post entry = getItem(position);
-		
 		View view = convertView;
 		
-		if (view == null)
-		{
-			view = _layoutInflater.inflate(R.layout.facebook_feed_list_item, parent, false);
+		if (view == null) {
+			view = layoutInflater.inflate(R.layout.facebook_feed_list_item, parent, false);
 		}
 		
 		TextView t = (TextView) view.findViewById(R.id.from_name);
@@ -78,4 +71,5 @@ public class FacebookFeedListAdapter extends BaseAdapter
 		
 		return view;
 	}
+	
 }

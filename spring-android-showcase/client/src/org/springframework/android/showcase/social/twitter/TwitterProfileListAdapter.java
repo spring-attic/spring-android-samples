@@ -29,74 +29,67 @@ import android.widget.TextView;
  */
 public class TwitterProfileListAdapter extends BaseAdapter 
 {
-	private TwitterProfile _twitterProfile;
-	private final LayoutInflater _layoutInflater;
+	private TwitterProfile twitterProfile;
+	private final LayoutInflater layoutInflater;
 
-	public TwitterProfileListAdapter(Context context, TwitterProfile twitterProfile) 
-	{
-		if (twitterProfile == null)
-		{
+	public TwitterProfileListAdapter(Context context, TwitterProfile twitterProfile) {
+		if (twitterProfile == null) {
 			throw new IllegalArgumentException("twitterProfile cannot be null");
 		}
 		
-		_twitterProfile = twitterProfile;
-		_layoutInflater = LayoutInflater.from(context);
+		this.twitterProfile = twitterProfile;
+		this.layoutInflater = LayoutInflater.from(context);
 	}
 
-	public int getCount() 
-	{
+	public int getCount() {
 		return 5;
 	}
 
-	public String[] getItem(int position) 
-	{
+	public String[] getItem(int position) {
 		String[] item = new String[2];
-		
-		switch(position)
-		{
-			case 0:
-				item[0] = "Id";
-				item[1] = String.valueOf(_twitterProfile.getId());
-				break;
-			case 1:
-				item[0] = "Screen Name";
-				item[1] = _twitterProfile.getScreenName();
-				break;
-			case 2:
-				item[0] = "Name";
-				item[1] = _twitterProfile.getName();
-				break;
-			case 3:
-				item[0] = "Description";
-				item[1] = _twitterProfile.getDescription();
-				break;
-			case 4:
-				item[0] = "Created Date";
-				item[1] = _twitterProfile.getCreatedDate() == null ? "" : _twitterProfile.getCreatedDate().toString();
-				break;
-			default:
-				item[0] = "";
-				item[1] = "";
-				break;
+
+		switch (position) {
+		case 0:
+			item[0] = "Id";
+			item[1] = String.valueOf(twitterProfile.getId());
+			break;
+		case 1:
+			item[0] = "Screen Name";
+			item[1] = twitterProfile.getScreenName();
+			break;
+		case 2:
+			item[0] = "Name";
+			item[1] = twitterProfile.getName();
+			break;
+		case 3:
+			item[0] = "Description";
+			item[1] = twitterProfile.getDescription();
+			break;
+		case 4:
+			item[0] = "Created Date";
+			item[1] = twitterProfile.getCreatedDate() == null ? ""
+					: twitterProfile.getCreatedDate().toString();
+			break;
+		default:
+			item[0] = "";
+			item[1] = "";
+			break;
 		}
-		
+
 		return item;
 	}
 
-	public long getItemId(int position) 
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{	
+	public View getView(int position, View convertView, ViewGroup parent) {	
 		String[] item = getItem(position);
 		
 		View view = convertView;
 		
-		if (view == null)
-		{
-			view = _layoutInflater.inflate(android.R.layout.two_line_list_item, parent, false);
+		if (view == null) {
+			view = layoutInflater.inflate(android.R.layout.two_line_list_item, parent, false);
 		}
 		
 		TextView t = (TextView) view.findViewById(android.R.id.text1);
@@ -107,4 +100,5 @@ public class TwitterProfileListAdapter extends BaseAdapter
 		
 		return view;
 	}
+	
 }

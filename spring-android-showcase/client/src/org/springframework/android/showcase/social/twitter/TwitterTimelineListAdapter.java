@@ -30,40 +30,34 @@ import android.widget.TextView;
 /**
  * @author Roy Clarkson
  */
-public class TwitterTimelineListAdapter extends BaseAdapter 
-{
-	private List<Tweet> _tweets;
-	private final LayoutInflater _layoutInflater;
+public class TwitterTimelineListAdapter extends BaseAdapter {
+	
+	private List<Tweet> tweets;
+	private final LayoutInflater layoutInflater;
 
-	public TwitterTimelineListAdapter(Context context, List<Tweet> tweets) 
-	{
-		_tweets = tweets;
-		_layoutInflater = LayoutInflater.from(context);
+	public TwitterTimelineListAdapter(Context context, List<Tweet> tweets) {
+		this.tweets = tweets;
+		this.layoutInflater = LayoutInflater.from(context);
 	}
 
-	public int getCount() 
-	{
-		return _tweets == null ? 0 : _tweets.size();
+	public int getCount() {
+		return tweets == null ? 0 : tweets.size();
 	}
 
-	public Tweet getItem(int position) 
-	{
-		return _tweets.get(position);
+	public Tweet getItem(int position) {
+		return tweets.get(position);
 	}
 
-	public long getItemId(int position) 
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{	
+	public View getView(int position, View convertView, ViewGroup parent) {	
 		Tweet tweet = getItem(position);		
 		View view = convertView;
 		
-		if (view == null)
-		{
-			view = _layoutInflater.inflate(R.layout.twitter_timeline_list_item, parent, false);
+		if (view == null) {
+			view = layoutInflater.inflate(R.layout.twitter_timeline_list_item, parent, false);
 		}
 		
 		TextView t = (TextView) view.findViewById(R.id.tweet_from_user);
@@ -78,4 +72,5 @@ public class TwitterTimelineListAdapter extends BaseAdapter
 		
 		return view;
 	}
+	
 }

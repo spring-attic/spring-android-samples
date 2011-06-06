@@ -35,16 +35,14 @@ import android.widget.ListView;
  * @author Roy Clarkson
  * @author Pierre-Yves Ricau
  */
-public class MainActivity extends ListActivity
-{   
+public class MainActivity extends ListActivity { 
+	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		String[] options = getResources().getStringArray(R.array.main_options);
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
 		setListAdapter(arrayAdapter);
@@ -55,46 +53,45 @@ public class MainActivity extends ListActivity
     // ListActivity methods
     //***************************************
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) 
-	{
+	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Intent intent = new Intent();
 		
-		switch(position) 
-		{
-			case 0:
-				intent.setClass(this, GoogleSearchActivity.class);
-				startActivity(intent);
-				break;
-	      	case 1:
-			    intent.setClass(this, HttpGetActivity.class);
-			    startActivity(intent);
-	      		break;
-	      	case 2:
-	      		intent.setClass(this, HttpGetParametersActivity.class);
-			    startActivity(intent);
-	      		break;
-	      	case 3:
-			    intent.setClass(this, HttpPostActivity.class);
-			    startActivity(intent);
-	      		break;
-	      	case 4:
-	      		intent.setClass(this, RssActivity.class);
-	      		startActivity(intent);
-	      		break;
-	      	case 5:
-	      		intent.setClass(this, AtomActivity.class);
-	      		startActivity(intent);
-	      		break;
-	      	case 6:
-	      		intent.setClass(this, TwitterActivity.class);
-	      		startActivity(intent);
-	      		break;
-	      	case 7:
-	      		intent.setClass(this, FacebookActivity.class);
-	      		startActivity(intent);
-	      		break;
-	      	default:
-	      		break;
+		switch (position) {
+		case 0:
+			intent.setClass(this, GoogleSearchActivity.class);
+			startActivity(intent);
+			break;
+		case 1:
+			intent.setClass(this, HttpGetActivity.class);
+			startActivity(intent);
+			break;
+		case 2:
+			intent.setClass(this, HttpGetParametersActivity.class);
+			startActivity(intent);
+			break;
+		case 3:
+			intent.setClass(this, HttpPostActivity.class);
+			startActivity(intent);
+			break;
+		case 4:
+			intent.setClass(this, RssActivity.class);
+			startActivity(intent);
+			break;
+		case 5:
+			intent.setClass(this, AtomActivity.class);
+			startActivity(intent);
+			break;
+		case 6:
+			intent.setClass(this, TwitterActivity.class);
+			startActivity(intent);
+			break;
+		case 7:
+			intent.setClass(this, FacebookActivity.class);
+			startActivity(intent);
+			break;
+		default:
+			break;
 		}
 	}
+	
 }

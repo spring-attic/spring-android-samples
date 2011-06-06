@@ -10,29 +10,25 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-public class FacebookHomeFeedActivity extends AbstractAsyncListActivity 
-{
+public class FacebookHomeFeedActivity extends AbstractAsyncListActivity {
+	
 	protected static final String TAG = FacebookHomeFeedActivity.class.getSimpleName();
 
-	private Facebook _facebook;
+	private Facebook facebook;
 	
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		_facebook = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Facebook.class).getApi();
+		this.facebook = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Facebook.class).getApi();
 	}
 	
 	@Override
-	public void onStart()
-	{
-		super.onStart();
-		
+	public void onStart() {
+		super.onStart();		
 		new FetchWallFeedTask().execute();
 	}
 	
@@ -40,8 +36,7 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private methods
     //***************************************
-	private void showResult(List<Post> entries)
-	{
+	private void showResult(List<Post> entries)	{
 		FacebookFeedListAdapter adapter = new FacebookFeedListAdapter(this, entries);
 		setListAdapter(adapter);
 	}
@@ -50,37 +45,31 @@ public class FacebookHomeFeedActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private classes
     //***************************************
-	private class FetchWallFeedTask extends AsyncTask<Void, Void, List<Post>> 
-	{	
+	private class FetchWallFeedTask extends AsyncTask<Void, Void, List<Post>> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showProgressDialog("Fetching home feed...");
 		}
 		
 		@Override
-		protected List<Post> doInBackground(Void... params) 
-		{
-			try
-			{
-				return _facebook.feedOperations().getHomeFeed();
-			}
-			catch(Exception e)
-			{
+		protected List<Post> doInBackground(Void... params) {
+			try {
+				return facebook.feedOperations().getHomeFeed();
+			} catch (Exception e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
 			}
-			
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(List<Post> entries) 
-		{
+		protected void onPostExecute(List<Post> entries) {
 			// after the network request completes, hide the progress indicator
 			dismissProgressDialog();
-			
 			showResult(entries);
 		}
+		
 	}
+	
 }

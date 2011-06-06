@@ -26,29 +26,25 @@ import android.util.Log;
 /**
  * @author Roy Clarkson
  */
-public class TwitterProfileActivity extends AbstractAsyncListActivity 
-{
+public class TwitterProfileActivity extends AbstractAsyncListActivity {
+	
 	protected static final String TAG = TwitterProfileActivity.class.getSimpleName();
 
-	private Twitter _twitter;
+	private Twitter twitter;
 	
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-		
-		_twitter = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Twitter.class).getApi();
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);		
+		twitter = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Twitter.class).getApi();
 	}
 	
 	@Override
-	public void onStart()
-	{
-		super.onStart();
-		
+	public void onStart() {
+		super.onStart();		
 		new FetchProfileTask().execute();
 	}
 	
@@ -56,10 +52,8 @@ public class TwitterProfileActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private methods
     //***************************************
-	private void showResult(TwitterProfile twitterProfile)
-	{
-		if (twitterProfile != null)
-		{
+	private void showResult(TwitterProfile twitterProfile) {
+		if (twitterProfile != null) {
 			TwitterProfileListAdapter adapter = new TwitterProfileListAdapter(this, twitterProfile);
 			setListAdapter(adapter);
 		}
@@ -69,37 +63,31 @@ public class TwitterProfileActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private classes
     //***************************************
-	private class FetchProfileTask extends AsyncTask<Void, Void, TwitterProfile> 
-	{	
+	private class FetchProfileTask extends AsyncTask<Void, Void, TwitterProfile> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showProgressDialog("Fetching profile...");
 		}
 		
 		@Override
-		protected TwitterProfile doInBackground(Void... params) 
-		{
-			try
-			{
-				return _twitter.userOperations().getUserProfile();
-			}
-			catch(Exception e)
-			{
+		protected TwitterProfile doInBackground(Void... params) {
+			try {
+				return twitter.userOperations().getUserProfile();
+			} catch(Exception e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
-			}
-			
+			}			
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(TwitterProfile profile) 
-		{
+		protected void onPostExecute(TwitterProfile profile) {
 			// after the network request completes, hide the progress indicator
 			dismissProgressDialog();
-			
 			showResult(profile);
 		}
+		
 	}
+	
 }

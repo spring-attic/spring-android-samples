@@ -37,8 +37,8 @@ import android.util.Log;
  * @author Helena Edelson
  * @author Pierre-Yves Ricau
  */
-public class HttpGetJsonActivity extends AbstractAsyncListActivity 
-{
+public class HttpGetJsonActivity extends AbstractAsyncListActivity {
+	
 	protected static final String TAG = HttpGetJsonActivity.class.getSimpleName();
 	
 	
@@ -46,14 +46,12 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
 	
 	@Override
-	public void onStart()
-	{
+	public void onStart() {
 		super.onStart();
 		
 		// when this activity starts, initiate an asynchronous HTTP GET request
@@ -64,72 +62,66 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private methods
     //*************************************** 
-	private void refreshStates(List<State> states) 
-	{	
-		if (states == null) 
-		{
+	private void refreshStates(List<State> states) {
+		if (states == null) {
 			return;
 		}
-		
+
 		StatesListAdapter adapter = new StatesListAdapter(this, states);
 		setListAdapter(adapter);
-	}
-	
+	}	
 	
 	//***************************************
     // Private classes
     //***************************************
-	private class DownloadStatesTask extends AsyncTask<Void, Void, List<State>> 
-	{	
+	private class DownloadStatesTask extends AsyncTask<Void, Void, List<State>> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showLoadingProgressDialog();
 		}
 		
 		@Override
-		protected List<State> doInBackground(Void... params) 
-		{
-			try 
-			{
+		protected List<State> doInBackground(Void... params) {
+			try {
 				// The URL for making the GET request
 				final String url = getString(R.string.base_uri) + "/states";
-				
+
 				// Set the Accept header for "application/json"
 				HttpHeaders requestHeaders = new HttpHeaders();
 				List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
 				acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
 				requestHeaders.setAccept(acceptableMediaTypes);
-				
-				// Populate the headers in an HttpEntity object to use for the request
+
+				// Populate the headers in an HttpEntity object to use for the
+				// request
 				HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
-				
+
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-				
+
 				// Perform the HTTP GET request
 				ResponseEntity<State[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State[].class);
-								
+
 				// convert the array to a list and return it
 				return Arrays.asList(responseEntity.getBody());
-			} 
-			catch(Exception e) 
-			{
+			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e);
-			} 
-			
+			}
+
 			return null;
 		}
-		
+
 		@Override
-		protected void onPostExecute(List<State> result) 
-		{
+		protected void onPostExecute(List<State> result) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
-			
+
 			// return the list of states
 			refreshStates(result);
 		}
+		
 	}
+	
 }

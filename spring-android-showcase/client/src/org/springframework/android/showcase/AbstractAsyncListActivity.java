@@ -22,57 +22,51 @@ import android.app.ProgressDialog;
  * @author Roy Clarkson
  * @author Pierre-Yves Ricau
  */
-public abstract class AbstractAsyncListActivity extends ListActivity implements AsyncActivity
-{	
+public abstract class AbstractAsyncListActivity extends ListActivity implements AsyncActivity {
+	
 	protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
 
-	private ProgressDialog _progressDialog;
+	private ProgressDialog progressDialog;
 	
-	private boolean _destroyed = false;
+	private boolean destroyed = false;
 
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public MainApplication getApplicationContext()
-	{
+	public MainApplication getApplicationContext() {
 		return (MainApplication) super.getApplicationContext();
 	}
 	
 	@Override
-	protected void onDestroy() 
-	{
+	protected void onDestroy() {
 		super.onDestroy();
-		_destroyed = true;
+		destroyed = true;
 	}
 	
 	
 	//***************************************
     // Public methods
     //***************************************
-	public void showLoadingProgressDialog() 
-	{
+	public void showLoadingProgressDialog() {
 		this.showProgressDialog("Loading. Please wait...");
 	}
 	
-	public void showProgressDialog(CharSequence message) 
-	{
-		if (_progressDialog == null)
-		{
-			_progressDialog = new ProgressDialog(this);
-			_progressDialog.setIndeterminate(true);
+	public void showProgressDialog(CharSequence message) {
+		if (progressDialog == null) {
+			progressDialog = new ProgressDialog(this);
+			progressDialog.setIndeterminate(true);
 		}
 		
-		_progressDialog.setMessage(message);
-		_progressDialog.show();
+		progressDialog.setMessage(message);
+		progressDialog.show();
 	}
 		
-	public void dismissProgressDialog() 
-	{
-		if (_progressDialog != null && !_destroyed) 
-		{
-			_progressDialog.dismiss();
+	public void dismissProgressDialog() {
+		if (progressDialog != null && !destroyed) {
+			progressDialog.dismiss();
 		}
 	}
+	
 }

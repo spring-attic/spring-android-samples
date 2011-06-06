@@ -21,45 +21,41 @@ import org.simpleframework.xml.Root;
 /**
  * @author Roy Clarkson
  */
-@Root(name="state")
-public class State 
-{
+@Root(name = "state")
+public class State {
+	
 	@Element
 	private String name;
-	
+
 	@Element
 	private String abbreviation;
-	
-	public State() { }
-	
-	public State(String name, String abbreviation)
-	{
+
+	public State() {
+	}
+
+	public State(String name, String abbreviation) {
 		this.name = name;
 		this.abbreviation = abbreviation;
 	}
 
-	public String getName() 
-	{
+	public String getName() {
 		return name;
 	}
-	
-	public void setName(String name) 
-	{
+
+	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getAbbreviation() 
-	{
+
+	public String getAbbreviation() {
 		return abbreviation;
 	}
 
-	public void setAbbreviation(String abbreviation) 
-	{
+	public void setAbbreviation(String abbreviation) {
 		this.abbreviation = abbreviation;
 	}
-	
-	public String getFormattedName()
-	{
+
+	public String getFormattedName() {
 		return this.getName() + " (" + this.getAbbreviation() + ")";
 	}
+	
 }

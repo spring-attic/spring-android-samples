@@ -23,26 +23,25 @@ import org.simpleframework.xml.Root;
 /**
  * @author Roy Clarkson
  */
-@Root(name="states")
+@Root(name = "states")
 public class StateList {
 
-   @ElementList(inline=true)
-   private List<State> states;
-   
-   public StateList() { }
-   
-   public StateList(List<State> states)
-   {
-	   this.states = states;
-   }
+	@ElementList(inline = true)
+	private List<State> states;
 
-   public List<State> getStates() 
-   {
-      return states;
-   }
-   
-   public void setStates(List<State> states)
-   {
-	   this.states = states;
-   }
+	public StateList() {
+	}
+
+	public StateList(List<State> states) {
+		this.states = states;
+	}
+
+	public List<State> getStates() {
+		return states;
+	}
+
+	public void setStates(List<State> states) {
+		this.states = states;
+	}
+	
 }

@@ -27,8 +27,8 @@ import android.widget.TextView;
 /**
  * @author Roy Clarkson
  */
-public class GoogleSearchActivity extends AbstractAsyncActivity 
-{
+public class GoogleSearchActivity extends AbstractAsyncActivity {
+	
 	protected static final String TAG = GoogleSearchActivity.class.getSimpleName();
 	
 	
@@ -36,16 +36,13 @@ public class GoogleSearchActivity extends AbstractAsyncActivity
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-		
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);		
 		this.setContentView(R.layout.google_search_activity_layout);
 	}
 	
 	@Override
-	public void onStart()
-	{
+	public void onStart() {
 		super.onStart();
 		
 		// when this activity starts, initiate an asynchronous HTTP GET request
@@ -56,62 +53,55 @@ public class GoogleSearchActivity extends AbstractAsyncActivity
 	//***************************************
     // Private methods
     //*************************************** 
-	private void refreshResults(String result) 
-	{	
-		if (result == null) 
-		{
+	private void refreshResults(String result) {
+		if (result == null) {
 			return;
 		}
-		
+
 		TextView textViewResults = (TextView) findViewById(R.id.text_view_results);
 		textViewResults.setText(result);
-	}
-	
+	}	
 	
 	//***************************************
     // Private classes
     //***************************************
-	private class GoogleSearchTask extends AsyncTask<Void, Void, String> 
-	{	
+	private class GoogleSearchTask extends AsyncTask<Void, Void, String> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showLoadingProgressDialog();
 		}
-		
+
 		@Override
-		protected String doInBackground(Void... params) 
-		{
-			try 
-			{
+		protected String doInBackground(Void... params) {
+			try {
 				// The URL for making the GET request
 				final String url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={query}";
-				
+
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-				
+
 				// Perform the HTTP GET request to the Google search API
 				String result = restTemplate.getForObject(url, String.class, "SpringSource");
-				
+
 				return result;
-			} 
-			catch(Exception e) 
-			{
+			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e);
-			} 
-			
+			}
+
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(String result) 
-		{
+		protected void onPostExecute(String result) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
 			
 			// return the list of states
 			refreshResults(result);
 		}
+		
 	}
+	
 }

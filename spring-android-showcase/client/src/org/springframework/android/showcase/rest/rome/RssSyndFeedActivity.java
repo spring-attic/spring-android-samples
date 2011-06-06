@@ -41,83 +41,71 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
  * @author Helena Edelson
  * @author Pierre-Yves Ricau
  */
-public class RssSyndFeedActivity extends AbstractAsyncListActivity 
-{
+public class RssSyndFeedActivity extends AbstractAsyncListActivity {
+	
 	protected static final String TAG = RssSyndFeedActivity.class.getSimpleName();
+
+	private SyndFeed feed;
 	
-	private SyndFeed _feed;
-	
-	
-	//***************************************
-    // Activity methods
-    //***************************************
+
+	// ***************************************
+	// Activity methods
+	// ***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setTitle(null);
-		
+
 		// initiate the asynchronous network request
 		new DownloadRssFeedTask().execute();
 	}
+
 	
-	
-	//***************************************
-    // ListActivity methods
-    //***************************************
+	// ***************************************
+	// ListActivity methods
+	// ***************************************
 	@Override
-	protected void onListItemClick (ListView l, View v, int position, long id)
-	{
-		if (_feed == null)
-		{
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		if (feed == null) {
 			return;
 		}
-		
+
 		// Open the selected RSS item in the browser
-		SyndEntry entry = (SyndEntry) _feed.getEntries().get(position);
-		String link = entry.getLink(); 
+		SyndEntry entry = (SyndEntry) feed.getEntries().get(position);
+		String link = entry.getLink();
 		Log.i(TAG, link);
 		Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link));
 		this.startActivity(intent);
 	}
-	
-	
-	//***************************************
-    // Private methods
-    //*************************************** 
-	private void refreshRssFeed(SyndFeed feed) 
-	{	
-		_feed = feed;
-		
-		if (feed == null) 
-		{
+
+	// ***************************************
+	// Private methods
+	// ***************************************
+	private void refreshRssFeed(SyndFeed feed) {
+		this.feed = feed;
+
+		if (feed == null) {
 			return;
 		}
-		
+
 		setTitle(feed.getTitle());
-		
-		SyndFeedListAdapter adapter = new SyndFeedListAdapter(this, _feed);
+		SyndFeedListAdapter adapter = new SyndFeedListAdapter(this, feed);
 		setListAdapter(adapter);
 	}
-	
-	//***************************************
-    // Private classes
-    //***************************************
-	private class DownloadRssFeedTask extends AsyncTask<Void, Void, SyndFeed> 
-	{	
+
+	// ***************************************
+	// Private classes
+	// ***************************************
+	private class DownloadRssFeedTask extends AsyncTask<Void, Void, SyndFeed> {
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showLoadingProgressDialog();
 		}
-		
+
 		@Override
-		protected SyndFeed doInBackground(Void... params) 
-		{
-			try 
-			{				
+		protected SyndFeed doInBackground(Void... params) {
+			try {
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 
@@ -126,34 +114,34 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity
 				List<MediaType> mediaTypes = new ArrayList<MediaType>();
 				mediaTypes.add(MediaType.TEXT_XML);
 				converter.setSupportedMediaTypes(mediaTypes);
-				
-				// Add the SyndFeed message converter to the RestTemplate instance
+
+				// Add the SyndFeed message converter to the RestTemplate
+				// instance
 				List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
 				messageConverters.add(converter);
 				restTemplate.setMessageConverters(messageConverters);
-								
+
 				// The URL for making the request
-                final String url = getString(R.string.rss_feed_url);
-				
+				final String url = getString(R.string.rss_feed_url);
+
 				// Initiate the request and return the results
 				return restTemplate.getForObject(url, SyndFeed.class);
-			} 
-			catch(Exception e) 
-			{
+			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e);
-			} 
-			
+			}
+
 			return null;
 		}
-		
+
 		@Override
-		protected void onPostExecute(SyndFeed feed) 
-		{
+		protected void onPostExecute(SyndFeed feed) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
-			
+
 			// return the list of states
 			refreshRssFeed(feed);
 		}
+		
 	}
+	
 }

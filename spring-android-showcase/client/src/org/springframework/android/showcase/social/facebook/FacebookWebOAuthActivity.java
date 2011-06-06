@@ -22,36 +22,34 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class FacebookWebOAuthActivity extends AbstractWebViewActivity 
-{
+public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
+	
 	private static final String TAG = FacebookWebOAuthActivity.class.getSimpleName();
 	
-	private ConnectionRepository _connectionRepository;
+	private ConnectionRepository connectionRepository;
 	
-	private FacebookConnectionFactory _connectionFactory;
+	private FacebookConnectionFactory connectionFactory;
 	
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		// Facebook uses javascript to redirect to the success page
 		getWebView().getSettings().setJavaScriptEnabled(true);
 		
 		// Using a custom web view client to capture the access token
 		getWebView().setWebViewClient(new FacebookOAuthWebViewClient());
 		
-		_connectionRepository = getApplicationContext().getConnectionRepository();
-		_connectionFactory = getApplicationContext().getFacebookConnectionFactory();
+		this.connectionRepository = getApplicationContext().getConnectionRepository();
+		this.connectionFactory = getApplicationContext().getFacebookConnectionFactory();
 	}
 	
 	@Override
-	public void onStart()
-	{
+	public void onStart() {
 		super.onStart();
 		
 		// display the Facebook authorization page
@@ -62,8 +60,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 	//***************************************
     // Private methods
     //***************************************
-	private String getAuthorizeUrl() 
-	{
+	private String getAuthorizeUrl() {
 		String redirectUri = getString(R.string.facebook_oauth_callback_url);
 		String scope = getString(R.string.facebook_scope);
 
@@ -72,11 +69,10 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 		additionalParameters.add("display", "touch");
 		
 		// Generate the Facebook authorization url to be used in the browser or web view
-		return _connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, new OAuth2Parameters(redirectUri, scope, null, additionalParameters));
+		return connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, new OAuth2Parameters(redirectUri, scope, null, additionalParameters));
 	}
 	
-	private void displayFacebookOptions()
-	{
+	private void displayFacebookOptions() {
 		Intent intent = new Intent();
 		intent.setClass(this, FacebookActivity.class);
 	    startActivity(intent);
@@ -87,20 +83,19 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 	//***************************************
     // Private classes
     //***************************************
-    private class FacebookOAuthWebViewClient extends WebViewClient 
-    {
+    private class FacebookOAuthWebViewClient extends WebViewClient {
+    	
         /*
          * The WebViewClient has another method called shouldOverridUrlLoading
          * which does not capture the javascript redirect to the success page.
          * So we're using onPageStarted to capture the url.
          */
         @Override
-        public  void onPageStarted(WebView view, String url, Bitmap favicon) 
-        {        	
+        public  void onPageStarted(WebView view, String url, Bitmap favicon) {        	
         	// parse the captured url
         	Uri uri = Uri.parse(url);
         	
-        	Log.d(TAG, url); 
+        	Log.d(TAG, url);
         	
         	/*
         	 * The access token is returned in the URI fragment of the URL
@@ -115,15 +110,14 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
         	String uriFragment = uri.getFragment();
         	
         	// confirm we have the fragment, and it has an access_token parameter
-        	if (uriFragment != null && uriFragment.startsWith("access_token="))
-        	{
+        	if (uriFragment != null && uriFragment.startsWith("access_token=")) {
+        		
         		/*
         		 *  The fragment also contains an "expires_in" parameter. In this example 
         		 *  we requested the offline_access permission, which basically means the
         		 *  access will not expire, so we're ignoring it here 
         		 */
-        		try
-        		{
+        		try {
         			// split to get the two different parameters
 	        		String[] params = uriFragment.split("&");
 	        		
@@ -135,19 +129,14 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
 	        		
 	        		// create the connection and persist it to the repository
 	        		AccessGrant accessGrant = new AccessGrant(accessToken);
-	        		Connection<Facebook> connection = _connectionFactory.createConnection(accessGrant);
+	        		Connection<Facebook> connection = connectionFactory.createConnection(accessGrant);
 	        		
-	        		try
-	        		{
-	        			_connectionRepository.addConnection(connection);
-	        		}
-	        		catch (DuplicateConnectionException e)
-	        		{
+	        		try {
+	        			connectionRepository.addConnection(connection);
+	        		} catch (DuplicateConnectionException e) {
 	        			// connection already exists in repository!
 	        		}
-        		}
-        		catch (Exception e)
-        		{
+        		} catch (Exception e) {
         			// don't do anything if the parameters are not what is expected
         		}
         		
@@ -162,8 +151,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity
         	 * ?error_reason=user_denied&error=access_denied&error_description=The+user+denied+your+request
         	 *  
         	 */
-        	if (uri.getQueryParameter("error") != null) 
-        	{
+        	if (uri.getQueryParameter("error") != null) {
         		CharSequence errorReason = uri.getQueryParameter("error_description").replace("+", " ");
         		Toast.makeText(getApplicationContext(), errorReason, Toast.LENGTH_LONG).show();
         		displayFacebookOptions();

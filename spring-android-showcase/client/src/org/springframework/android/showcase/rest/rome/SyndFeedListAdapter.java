@@ -31,52 +31,47 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
  * @author Roy Clarkson
  * @author Pierre-Yves Ricau
  */
-public class SyndFeedListAdapter extends BaseAdapter 
-{
-	private SyndFeed _syndFeed;
-	private final LayoutInflater _layoutInflater;
+public class SyndFeedListAdapter extends BaseAdapter {
+	
+	private SyndFeed syndFeed;
+	private final LayoutInflater layoutInflater;
 
-	public SyndFeedListAdapter(Context context, SyndFeed feed) 
-	{
-		_syndFeed = feed;
-		_layoutInflater = LayoutInflater.from(context);
+	public SyndFeedListAdapter(Context context, SyndFeed feed) {
+		this.syndFeed = feed;
+		this.layoutInflater = LayoutInflater.from(context);
 	}
 
-	public int getCount() 
-	{
-		return _syndFeed.getEntries().size();
+	public int getCount() {
+		return syndFeed.getEntries().size();
 	}
 
-	public SyndEntry getItem(int position) 
-	{
-		return (SyndEntry) _syndFeed.getEntries().get(position);
+	public SyndEntry getItem(int position) {
+		return (SyndEntry) syndFeed.getEntries().get(position);
 	}
 
-	public long getItemId(int position) 
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{
+	public View getView(int position, View convertView, ViewGroup parent) {
 		SyndEntry syndEntry = getItem(position);
-		
+
 		View view = convertView;
-		
-		if (view == null)
-		{
-			view = _layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+
+		if (view == null) {
+			view = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
 		}
 
 		TextView t = (TextView) view.findViewById(R.id.synd_feed_title);
 		t.setText(syndEntry.getTitle());
-		
+
 		t = (TextView) view.findViewById(R.id.synd_feed_date);
 		t.setText(syndEntry.getPublishedDate().toString());
-		
+
 		t = (TextView) view.findViewById(R.id.synd_feed_description);
 		t.setText(syndEntry.getDescription().getValue());
 
 		return view;
 	}
+	
 }

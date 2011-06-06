@@ -26,29 +26,25 @@ import android.util.Log;
 /**
  * @author Roy Clarkson
  */
-public class FacebookProfileActivity extends AbstractAsyncListActivity 
-{
+public class FacebookProfileActivity extends AbstractAsyncListActivity {
+	
 	protected static final String TAG = FacebookProfileActivity.class.getSimpleName();
 
-	private Facebook _facebook;
+	private Facebook facebook;
 	
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		_facebook = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Facebook.class).getApi();
+		this.facebook = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Facebook.class).getApi();
 	}
 	
 	@Override
-	public void onStart()
-	{
-		super.onStart();
-		
+	public void onStart() {
+		super.onStart();		
 		new FetchProfileTask().execute();
 	}
 	
@@ -56,50 +52,41 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity
 	//***************************************
     // Private methods
     //***************************************
-	private void showResult(FacebookProfile facebookProfile)
-	{
-		if (facebookProfile != null)
-		{
+	private void showResult(FacebookProfile facebookProfile) {
+		if (facebookProfile != null) {
 			FacebookProfileListAdapter adapter = new FacebookProfileListAdapter(this, facebookProfile);
 			setListAdapter(adapter);
 		}
-	}
-	
+	}	
 	
 	//***************************************
     // Private classes
     //***************************************
-	private class FetchProfileTask extends AsyncTask<Void, Void, FacebookProfile> 
-	{	
+	private class FetchProfileTask extends AsyncTask<Void, Void, FacebookProfile> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showProgressDialog("Fetching profile...");
 		}
 		
 		@Override
-		protected FacebookProfile doInBackground(Void... params) 
-		{
-			try
-			{
-				return _facebook.userOperations().getUserProfile();
-			}
-			catch(Exception e)
-			{
+		protected FacebookProfile doInBackground(Void... params) {
+			try {
+				return facebook.userOperations().getUserProfile();
+			} catch (Exception e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
 			}
-			
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(FacebookProfile profile) 
-		{
+		protected void onPostExecute(FacebookProfile profile) {
 			// after the network request completes, hide the progress indicator
-			dismissProgressDialog();
-			
+			dismissProgressDialog();			
 			showResult(profile);
 		}
+		
 	}
+	
 }

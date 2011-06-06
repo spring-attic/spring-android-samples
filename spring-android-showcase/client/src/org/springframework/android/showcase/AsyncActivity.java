@@ -19,13 +19,14 @@ package org.springframework.android.showcase;
 /**
  * @author Roy Clarkson
  */
-public interface AsyncActivity 
-{
+public interface AsyncActivity {
+	
 	public MainApplication getApplicationContext();
 	
 	public void showLoadingProgressDialog();
 	
 	public void showProgressDialog(CharSequence message);
 		
-	public void dismissProgressDialog(); 
+	public void dismissProgressDialog();
+	
 }

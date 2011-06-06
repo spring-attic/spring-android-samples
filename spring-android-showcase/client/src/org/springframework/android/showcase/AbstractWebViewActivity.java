@@ -7,15 +7,15 @@ import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-public abstract class AbstractWebViewActivity extends Activity implements AsyncActivity 
-{
+public abstract class AbstractWebViewActivity extends Activity implements AsyncActivity {
+	
 	protected static final String TAG = AbstractWebViewActivity.class.getSimpleName();
 	
-	private Activity _activity;
+	private Activity activity;
 	
-	private WebView _webView;
+	private WebView webView;
 	
-	private ProgressDialog _progressDialog = null;
+	private ProgressDialog progressDialog = null;
 	
 	private boolean _destroyed = false;
 	
@@ -24,76 +24,60 @@ public abstract class AbstractWebViewActivity extends Activity implements AsyncA
     // Activity methods
     //***************************************
 	@Override
-	public MainApplication getApplicationContext()
-	{
+	public MainApplication getApplicationContext() {
 		return (MainApplication) super.getApplicationContext();
 	}
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
+		webView = new WebView(this);
+		setContentView(webView);
+		activity = this;
 		
-		_webView = new WebView(this);
-		setContentView(_webView);
-		
-		_activity = this;
-		
-		_webView.setWebChromeClient(
-				new WebChromeClient() 
-				{
-		            public void onProgressChanged(WebView view, int progress)
-		            {
-		            	_activity.setTitle("Loading...");
-		            	_activity.setProgress(progress * 100);
-		            	
-		            	if (progress == 100)
-		            	{
-		            		_activity.setTitle(R.string.app_name);
-		            	}
-		            }
+		webView.setWebChromeClient(new WebChromeClient() {
+			public void onProgressChanged(WebView view, int progress) {
+				activity.setTitle("Loading...");
+				activity.setProgress(progress * 100);
+				if (progress == 100) {
+					activity.setTitle(R.string.app_name);
 				}
-		);
+			}
+		});
 	}
 		
 	
 	//***************************************
     // Protected methods
     //***************************************
-	protected WebView getWebView()
-	{
-		return _webView;
+	protected WebView getWebView() {
+		return webView;
 	}
 	
 	
 	//***************************************
     // Public methods
     //***************************************
-	public void showLoadingProgressDialog() 
-	{
+	public void showLoadingProgressDialog() {
 		showProgressDialog("Loading. Please wait...");
 	}
 	
-	public void showProgressDialog(CharSequence message)
-	{
-		if (_progressDialog == null)
-		{
-			_progressDialog = new ProgressDialog(this);
-			_progressDialog.setIndeterminate(true);
+	public void showProgressDialog(CharSequence message) {
+		if (progressDialog == null) {
+			progressDialog = new ProgressDialog(this);
+			progressDialog.setIndeterminate(true);
 		}
 		
-		_progressDialog.setMessage(message);
-		_progressDialog.show();
+		progressDialog.setMessage(message);
+		progressDialog.show();
 	}
 		
-	public void dismissProgressDialog() 
-	{
-		if (_progressDialog != null && !_destroyed) 
-		{
-			_progressDialog.dismiss();
+	public void dismissProgressDialog() {
+		if (progressDialog != null && !_destroyed) {
+			progressDialog.dismiss();
 		}
 	}
+	
 }

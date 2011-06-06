@@ -41,82 +41,73 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item
  * @author Helena Edelson
  * @author Pierre-Yves Ricau
  */
-public class RssChannelActivity extends AbstractAsyncListActivity 
-{
+public class RssChannelActivity extends AbstractAsyncListActivity {
+	
 	protected static final String TAG = RssChannelActivity.class.getSimpleName();
+
+	private Channel channel;
+
 	
-	private Channel _channel;
-	
-	
-	//***************************************
-    // Activity methods
-    //***************************************
+	// ***************************************
+	// Activity methods
+	// ***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setTitle(null);
-		
+
 		// initiate the asynchronous network request
 		new DownloadRssFeedTask().execute();
 	}
+
 	
-	
-	//***************************************
-    // ListActivity methods
-    //***************************************
+	// ***************************************
+	// ListActivity methods
+	// ***************************************
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id)
-	{
-		if (_channel == null)
-		{
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		if (channel == null) {
 			return;
 		}
-		
+
 		// Open the selected RSS item in the browser
-		Item item = (Item) _channel.getItems().get(position);
+		Item item = (Item) channel.getItems().get(position);
 		String uri = item.getUri();
 		Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(uri));
 		this.startActivity(intent);
 	}
+
 	
-	
-	//***************************************
-    // Private methods
-    //*************************************** 
-	private void refreshRssFeed(Channel channel) 
-	{	
-		_channel = channel;
-		
-		if (channel == null) 
-		{
+	// ***************************************
+	// Private methods
+	// ***************************************
+	private void refreshRssFeed(Channel channel) {
+		this.channel = channel;
+
+		if (channel == null) {
 			return;
 		}
-		
+
 		setTitle(channel.getTitle());
-		
 		RssChannelListAdapter adapter = new RssChannelListAdapter(this, channel);
 		setListAdapter(adapter);
 	}
 	
-	//***************************************
-    // Private classes
-    //***************************************
-	private class DownloadRssFeedTask extends AsyncTask<Void, Void, Channel> 
-	{	
+
+	// ***************************************
+	// Private classes
+	// ***************************************
+	private class DownloadRssFeedTask extends AsyncTask<Void, Void, Channel> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showLoadingProgressDialog();
 		}
-		
+
 		@Override
-		protected Channel doInBackground(Void... params) 
-		{
-			try 
-			{				
+		protected Channel doInBackground(Void... params) {
+			try {
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 
@@ -125,34 +116,33 @@ public class RssChannelActivity extends AbstractAsyncListActivity
 				List<MediaType> mediaTypes = new ArrayList<MediaType>();
 				mediaTypes.add(MediaType.TEXT_XML);
 				converter.setSupportedMediaTypes(mediaTypes);
-				
+
 				// Add the RSS message converter to the RestTemplate instance
 				List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
 				messageConverters.add(converter);
 				restTemplate.setMessageConverters(messageConverters);
-				
+
 				// The URL for making the request
 				final String url = getString(R.string.rss_feed_url);
-				
+
 				// Initiate the request and return the results
 				return restTemplate.getForObject(url, Channel.class);
-			} 
-			catch(Exception e) 
-			{
+			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e);
-			} 
-			
+			}
+
 			return null;
 		}
-		
+
 		@Override
-		protected void onPostExecute(Channel channel) 
-		{
+		protected void onPostExecute(Channel channel) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
-			
+
 			// return the list of states
 			refreshRssFeed(channel);
 		}
+		
 	}
+	
 }

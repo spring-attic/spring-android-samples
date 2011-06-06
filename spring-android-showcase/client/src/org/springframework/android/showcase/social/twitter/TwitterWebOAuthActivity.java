@@ -36,8 +36,8 @@ import android.os.Bundle;
 /**
  * @author Roy Clarkson
  */
-public class TwitterWebOAuthActivity extends AbstractWebViewActivity 
-{
+public class TwitterWebOAuthActivity extends AbstractWebViewActivity {
+	
 	@SuppressWarnings("unused")
 	private static final String TAG = TwitterWebOAuthActivity.class.getSimpleName();
 	
@@ -45,45 +45,36 @@ public class TwitterWebOAuthActivity extends AbstractWebViewActivity
 	
 	private static final String REQUEST_TOKEN_SECRET_KEY = "request_token_secret";
 	
-	private ConnectionRepository _connectionRepository;
+	private ConnectionRepository connectionRepository;
 	
-	private TwitterConnectionFactory _connectionFactory;
+	private TwitterConnectionFactory connectionFactory;
 	
-	private SharedPreferences _twitterPreferences;
+	private SharedPreferences twitterPreferences;
 	
 	
 	//***************************************
     // Activity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
-		_connectionRepository = getApplicationContext().getConnectionRepository();
-		_connectionFactory = getApplicationContext().getTwitterConnectionFactory();
-		_twitterPreferences = getSharedPreferences("TwitterConnectPreferences", Context.MODE_PRIVATE);
+		this.connectionRepository = getApplicationContext().getConnectionRepository();
+		this.connectionFactory = getApplicationContext().getTwitterConnectionFactory();
+		this.twitterPreferences = getSharedPreferences("TwitterConnectPreferences", Context.MODE_PRIVATE);
 	}
 	
 	@Override
-	public void onStart()
-	{
+	public void onStart() {
 		super.onStart();
-		
 		Uri uri = getIntent().getData();
-		
-		if (uri != null)
-		{
+		if (uri != null) {
 			String oauthVerifier = uri.getQueryParameter("oauth_verifier");
-		
-			if (oauthVerifier != null)
-			{
+
+			if (oauthVerifier != null) {
 				getWebView().clearView();
 				new TwitterPostConnectTask().execute(oauthVerifier);
 			}
-		}
-		else
-		{
+		} else {
 			new TwitterPreConnectTask().execute();
 		}
 	}
@@ -92,132 +83,118 @@ public class TwitterWebOAuthActivity extends AbstractWebViewActivity
 	//***************************************
     // Private methods
     //***************************************
-	private String getOAuthCallbackUrl()
-	{
+	private String getOAuthCallbackUrl() {
 		return getString(R.string.twitter_oauth_callback_url);
 	}
 	
-	private void displayTwitterAuthorization(OAuthToken requestToken)
-	{
+	private void displayTwitterAuthorization(OAuthToken requestToken) {
 		// save for later use
 		saveRequestToken(requestToken);
 		
 		// Generate the Twitter authorization URL to be used in the browser or web view
-		String authUrl = _connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE);
+		String authUrl = connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE);
 		
 		// display the twitter authorization screen
 		getWebView().loadUrl(authUrl);
 	}
 	
-	private void displayTwitterOptions()
-	{
+	private void displayTwitterOptions() {
 		Intent intent = new Intent();
 		intent.setClass(this, TwitterActivity.class);
 	    startActivity(intent);
     	finish();
 	}
 	
-	private void saveRequestToken(OAuthToken requestToken)
-	{
-		SharedPreferences.Editor editor = _twitterPreferences.edit();
+	private void saveRequestToken(OAuthToken requestToken) {
+		SharedPreferences.Editor editor = twitterPreferences.edit();
 		editor.putString(REQUEST_TOKEN_KEY, requestToken.getValue());
 		editor.putString(REQUEST_TOKEN_SECRET_KEY, requestToken.getSecret());
 		editor.commit();
 	}
 	
-	private OAuthToken retrieveRequestToken()
-	{		
-		String token = _twitterPreferences.getString(REQUEST_TOKEN_KEY, null);
-		String secret = _twitterPreferences.getString(REQUEST_TOKEN_SECRET_KEY, null);
+	private OAuthToken retrieveRequestToken() {		
+		String token = twitterPreferences.getString(REQUEST_TOKEN_KEY, null);
+		String secret = twitterPreferences.getString(REQUEST_TOKEN_SECRET_KEY, null);
 		return new OAuthToken(token, secret);
 	}
 	
-	private void deleteRequestToken()
-	{
-		_twitterPreferences.edit().clear().commit();
+	private void deleteRequestToken() {
+		twitterPreferences.edit().clear().commit();
 	}
 	
 	
 	//***************************************
     // Private classes
     //***************************************
-	private class TwitterPreConnectTask extends AsyncTask<Void, Void, OAuthToken> 
-	{		
+	private class TwitterPreConnectTask extends
+			AsyncTask<Void, Void, OAuthToken> {
+
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showProgressDialog("Initializing OAuth Connection...");
 		}
-		
+
 		@Override
-		protected OAuthToken doInBackground(Void... params) 
-		{			
+		protected OAuthToken doInBackground(Void... params) {
 			// Fetch a one time use Request Token from Twitter
-			return _connectionFactory.getOAuthOperations().fetchRequestToken(getOAuthCallbackUrl(), null);
+			return connectionFactory.getOAuthOperations().fetchRequestToken(getOAuthCallbackUrl(), null);
 		}
-		
+
 		@Override
-		protected void onPostExecute(OAuthToken requestToken)
-		{
+		protected void onPostExecute(OAuthToken requestToken) {
 			// after the network request completes, hide the progress indicator
 			dismissProgressDialog();
-			
 			displayTwitterAuthorization(requestToken);
 		}
+		
 	}
 	
-	private class TwitterPostConnectTask extends AsyncTask<String, Void, Void> 
-	{		
+	private class TwitterPostConnectTask extends AsyncTask<String, Void, Void> {
+		
 		@Override
-		protected void onPreExecute() 
-		{
+		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
 			showProgressDialog("Finalizing OAuth Connection...");
 		}
 		
 		@Override
-		protected Void doInBackground(String... params) 
-		{
-			if (params.length <= 0)
-			{
+		protected Void doInBackground(String... params) {
+			if (params.length <= 0) {
 				return null;
 			}
-			
+
 			final String verifier = params[0];
-			
+
 			OAuthToken requestToken = retrieveRequestToken();
 
 			// Authorize the Request Token
 			AuthorizedRequestToken authorizedRequestToken = new AuthorizedRequestToken(requestToken, verifier);
-			
+
 			// Exchange the Authorized Request Token for the Access Token
-			OAuthToken accessToken = _connectionFactory.getOAuthOperations().exchangeForAccessToken(authorizedRequestToken, null);
-			
+			OAuthToken accessToken = connectionFactory.getOAuthOperations().exchangeForAccessToken(authorizedRequestToken, null);
+
 			deleteRequestToken();
-			
-			// Persist the connection and Access Token to the repository 
-			Connection<Twitter> connection = _connectionFactory.createConnection(accessToken);
-			
-			try 
-			{
-				_connectionRepository.addConnection(connection);
-			} 
-			catch (DuplicateConnectionException e)
-			{
+
+			// Persist the connection and Access Token to the repository
+			Connection<Twitter> connection = connectionFactory.createConnection(accessToken);
+
+			try {
+				connectionRepository.addConnection(connection);
+			} catch (DuplicateConnectionException e) {
 				// connection already exists in repository!
 			}
-			
+
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(Void v)
-		{
+		protected void onPostExecute(Void v){
 			// after the network request completes, hide the progress indicator
 			dismissProgressDialog();
-			
 			displayTwitterOptions();
 		}
+		
 	}
+	
 }

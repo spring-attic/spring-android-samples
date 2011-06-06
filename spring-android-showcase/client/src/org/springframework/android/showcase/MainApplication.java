@@ -15,48 +15,43 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MainApplication extends Application 
 {
-	private ConnectionFactoryRegistry _connectionFactoryRegistry;
-	private SQLiteOpenHelper _repositoryHelper;
-	private ConnectionRepository _connectionRepository;	
+	private ConnectionFactoryRegistry connectionFactoryRegistry;
+	private SQLiteOpenHelper repositoryHelper;
+	private ConnectionRepository connectionRepository;	
 	
 	
 	//***************************************
     // Application Methods
     //***************************************
 	@Override
-	public void onCreate() 
-	{
+	public void onCreate() {
 		// create a new ConnectionFactoryLocator and populate it with Facebook and Twitter ConnectionFactories
-		_connectionFactoryRegistry = new ConnectionFactoryRegistry();
-		_connectionFactoryRegistry.addConnectionFactory(new FacebookConnectionFactory(getFacebookAppId(), getFacebookAppSecret()));
-		_connectionFactoryRegistry.addConnectionFactory(new TwitterConnectionFactory(getTwitterConsumerToken(), getTwitterConsumerTokenSecret()));
+		connectionFactoryRegistry = new ConnectionFactoryRegistry();
+		connectionFactoryRegistry.addConnectionFactory(new FacebookConnectionFactory(getFacebookAppId(), getFacebookAppSecret()));
+		connectionFactoryRegistry.addConnectionFactory(new TwitterConnectionFactory(getTwitterConsumerToken(), getTwitterConsumerTokenSecret()));
 
 		// set up the database and encryption
-		_repositoryHelper = new SQLiteConnectionRepositoryHelper(this);
-		_connectionRepository = new SQLiteConnectionRepository(_repositoryHelper, _connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
+		repositoryHelper = new SQLiteConnectionRepositoryHelper(this);
+		connectionRepository = new SQLiteConnectionRepository(repositoryHelper, connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
 	}
 	
 	
 	//***************************************
     // Private methods
     //***************************************	
-	private String getFacebookAppId()
-	{
+	private String getFacebookAppId() {
 		return getString(R.string.facebook_app_id);
 	}
 	
-	private String getFacebookAppSecret()
-	{
+	private String getFacebookAppSecret() {
 		return getString(R.string.facebook_app_secret);
 	}
 	
-	private String getTwitterConsumerToken()
-	{
+	private String getTwitterConsumerToken() {
 		return getString(R.string.twitter_consumer_key);
 	}
 	
-	private String getTwitterConsumerTokenSecret()
-	{
+	private String getTwitterConsumerTokenSecret() {
 		return getString(R.string.twitter_consumer_key_secret);
 	}
 	
@@ -64,18 +59,16 @@ public class MainApplication extends Application
 	//***************************************
     // Public methods
     //***************************************
-	public ConnectionRepository getConnectionRepository()
-	{
-		return _connectionRepository;
+	public ConnectionRepository getConnectionRepository() {
+		return connectionRepository;
 	}
 	
-	public FacebookConnectionFactory getFacebookConnectionFactory()
-	{
-		return (FacebookConnectionFactory) _connectionFactoryRegistry.getConnectionFactory(Facebook.class);
+	public FacebookConnectionFactory getFacebookConnectionFactory() {
+		return (FacebookConnectionFactory) connectionFactoryRegistry.getConnectionFactory(Facebook.class);
 	}
 	
-	public TwitterConnectionFactory getTwitterConnectionFactory()
-	{
-		return (TwitterConnectionFactory) _connectionFactoryRegistry.getConnectionFactory(Twitter.class);
+	public TwitterConnectionFactory getTwitterConnectionFactory() {
+		return (TwitterConnectionFactory) connectionFactoryRegistry.getConnectionFactory(Twitter.class);
 	}
+	
 }
