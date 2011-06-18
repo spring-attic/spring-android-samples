@@ -46,7 +46,7 @@ public class TwitterDirectMessageActivity extends AbstractAsyncActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.twitter_direct_message_activity_layout);		
-		twitter = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Twitter.class).getApi();
+		twitter = getApplicationContext().getConnectionRepository().findPrimaryConnection(Twitter.class).getApi();
 		
 		// Initiate the POST request when the button is clicked
 		final Button button = (Button) findViewById(R.id.button_tweet);

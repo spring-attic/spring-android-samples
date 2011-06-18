@@ -67,11 +67,11 @@ public class TwitterActivity extends AbstractAsyncActivity {
     // Private methods
     //***************************************
 	private boolean isConnected() {
-		return connectionRepository.findPrimaryConnectionToApi(Twitter.class) != null;
+		return connectionRepository.findPrimaryConnection(Twitter.class) != null;
 	}
 	
 	private void disconnect() {
-		connectionRepository.removeConnectionsToProvider(connectionFactory.getProviderId());
+		connectionRepository.removeConnections(connectionFactory.getProviderId());
 	}
 	
 	private void showConnectOption() {

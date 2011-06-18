@@ -39,7 +39,7 @@ public class FacebookProfileActivity extends AbstractAsyncListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.facebook = getApplicationContext().getConnectionRepository().findPrimaryConnectionToApi(Facebook.class).getApi();
+		this.facebook = getApplicationContext().getConnectionRepository().findPrimaryConnection(Facebook.class).getApi();
 	}
 	
 	@Override

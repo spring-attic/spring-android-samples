@@ -71,11 +71,11 @@ public class FacebookActivity extends AbstractAsyncActivity {
     // Private methods
     //***************************************
 	private boolean isConnected() {
-		return connectionRepository.findPrimaryConnectionToApi(Facebook.class) != null;
+		return connectionRepository.findPrimaryConnection(Facebook.class) != null;
 	}
 	
 	private void disconnect() {
-		connectionRepository.removeConnectionsToProvider(connectionFactory.getProviderId());
+		connectionRepository.removeConnections(connectionFactory.getProviderId());
 	}
 	
 	private void showConnectOption() {
