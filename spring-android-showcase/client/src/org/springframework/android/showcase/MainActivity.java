@@ -17,6 +17,7 @@ package org.springframework.android.showcase;
 
 import org.springframework.android.showcase.rest.GoogleSearchActivity;
 import org.springframework.android.showcase.rest.HttpGetActivity;
+import org.springframework.android.showcase.rest.HttpGetGzipActivity;
 import org.springframework.android.showcase.rest.HttpGetParametersActivity;
 import org.springframework.android.showcase.rest.HttpPostActivity;
 import org.springframework.android.showcase.rest.rome.AtomActivity;
@@ -53,41 +54,34 @@ public class MainActivity extends ListActivity {
     // ListActivity methods
     //***************************************
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Intent intent = new Intent();
-		
+	protected void onListItemClick(ListView l, View v, int position, long id) {		
 		switch (position) {
 		case 0:
-			intent.setClass(this, GoogleSearchActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, GoogleSearchActivity.class));
 			break;
 		case 1:
-			intent.setClass(this, HttpGetActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, HttpGetActivity.class));
 			break;
 		case 2:
-			intent.setClass(this, HttpGetParametersActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, HttpGetParametersActivity.class));
 			break;
 		case 3:
-			intent.setClass(this, HttpPostActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, HttpGetGzipActivity.class));
 			break;
 		case 4:
-			intent.setClass(this, RssActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, HttpPostActivity.class));
 			break;
 		case 5:
-			intent.setClass(this, AtomActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, RssActivity.class));
 			break;
 		case 6:
-			intent.setClass(this, TwitterActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, AtomActivity.class));
 			break;
 		case 7:
-			intent.setClass(this, FacebookActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this, TwitterActivity.class));
+			break;
+		case 8:
+			startActivity(new Intent(this, FacebookActivity.class));
 			break;
 		default:
 			break;

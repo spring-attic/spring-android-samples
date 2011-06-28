@@ -7,6 +7,10 @@
     example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use 
     the SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
     
+    <string name="text_http_get_gzip_description">These examples illustrate the use of gzip 
+    compression with an HTTP GET request. You can view the response headers to compare the 
+    Content-Encoding, and Content-Size for the compressed versus non-compressed responses.</string>
+    
     <string name="text_http_get_parameters_description">These examples pass a parameter to the 
     RestTemplate instance to retrieve a state by its abbreviation. Use the 
     MappingJacksonHttpMessageConverter to marshal JSON objects or use the 
@@ -32,6 +36,7 @@
 		<item>Google Search</item>
         <item>HTTP GET</item>
         <item>HTTP GET with parameters</item>
+        <item>HTTP GET with gzip</item>
         <item>HTTP POST</item>
     	<item>RSS</item>
 		<item>ATOM</item>

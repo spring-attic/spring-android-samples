@@ -25,6 +25,7 @@
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetJsonActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetXmlActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetParametersActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostStringActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostJsonXmlActivity" />

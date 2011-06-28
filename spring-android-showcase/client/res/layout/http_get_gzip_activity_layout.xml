@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+   
+   	<LinearLayout
+   		android:orientation="vertical"
+		android:layout_width="fill_parent"
+   		android:layout_height="fill_parent"
+   		>
+   
+		<TextView
+			android:id="@+id/text_view_description"
+			android:text="@string/text_http_get_gzip_description"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:padding="8dip"
+			/>
+		
+		<TextView
+			android:id="@+id/text_view_label_uncompressed"
+			android:text="Uncompressed Results:"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dip"
+			android:paddingBottom="4dip"
+			android:textStyle="bold"
+			/>
+		
+		<TextView
+			android:id="@+id/text_view_uncompressed"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dip"
+			/>
+		
+		<TextView
+			android:id="@+id/text_view_label_gzip"
+			android:text="Gzip Results:"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dip"
+			android:paddingBottom="4dip"
+			android:textStyle="bold"
+			/>
+		
+		<TextView
+			android:id="@+id/text_view_gzip"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dip"
+			/>
+			
+	</LinearLayout>
+	
+</ScrollView>
