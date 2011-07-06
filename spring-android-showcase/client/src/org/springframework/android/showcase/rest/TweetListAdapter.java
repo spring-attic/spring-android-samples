@@ -28,24 +28,23 @@ import android.widget.TextView;
 
 /**
  * @author Roy Clarkson
- * @author Pierre-Yves Ricau
  */
-public class StatesListAdapter extends BaseAdapter {
+public class TweetListAdapter extends BaseAdapter {
 	
-	private List<State> states;
+	private List<Tweet> tweets;
 	private final LayoutInflater layoutInflater;
 
-	public StatesListAdapter(Context context, List<State> states) {
-		this.states = states;
+	public TweetListAdapter(Context context, List<Tweet> tweets) {
+		this.tweets = tweets;
 		this.layoutInflater = LayoutInflater.from(context);
 	}
 
 	public int getCount() {
-		return states != null ? states.size() : 0;
+		return tweets != null ? tweets.size() : 0;
 	}
 
-	public State getItem(int position) {
-		return states.get(position);
+	public Tweet getItem(int position) {
+		return tweets.get(position);
 	}
 
 	public long getItemId(int position) {
@@ -54,13 +53,16 @@ public class StatesListAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
-			convertView = layoutInflater.inflate(R.layout.states_list_item, parent, false);
+			convertView = layoutInflater.inflate(R.layout.twitter_timeline_list_item, parent, false);
 		}
 
-		State state = getItem(position);
-		if (state != null) {
-			TextView t = (TextView) convertView.findViewById(R.id.state_name);
-			t.setText(state.getFormattedName());
+		Tweet tweet = getItem(position);
+		if (tweet != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.tweet_from_user);
+			t.setText(tweet.getFromUser());
+			
+			t = (TextView) convertView.findViewById(R.id.tweet_text);
+			t.setText(tweet.getText());
 		}
 		
 		return convertView;

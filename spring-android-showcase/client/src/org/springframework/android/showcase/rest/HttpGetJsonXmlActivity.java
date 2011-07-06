@@ -26,19 +26,19 @@ import android.widget.AdapterView.OnItemClickListener;
 /**
  * @author Roy Clarkson
  */
-public class HttpPostActivity extends AbstractMenuActivity {
+public class HttpGetJsonXmlActivity extends AbstractMenuActivity {
 	
 	//***************************************
     // AbstractMenuActivity methods
     //***************************************
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_http_post_description);
+		return getResources().getString(R.string.text_http_get_json_xml_description);
 	}
 
 	@Override
 	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.http_post_activity_options);
+		return getResources().getStringArray(R.array.http_get_json_xml_activity_menu_items);
 	}
 	
 	@Override
@@ -47,16 +47,10 @@ public class HttpPostActivity extends AbstractMenuActivity {
 			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
 				switch (position) {
 				case 0:
-					startActivity(new Intent(parentView.getContext(), HttpPostStringActivity.class));
+					startActivity(new Intent(parentView.getContext(), HttpGetJsonActivity.class));
 					break;
 				case 1:
-					startActivity(new Intent(parentView.getContext(), HttpPostJsonXmlActivity.class));
-					break;
-				case 2:
-					startActivity(new Intent(parentView.getContext(), HttpPostMultiValueMapActivity.class));
-					break;
-				case 3:
-					startActivity(new Intent(parentView.getContext(), HttpPostFormDataActivity.class));
+					startActivity(new Intent(parentView.getContext(), HttpGetXmlActivity.class));
 					break;
 				default:
 					break;

@@ -17,6 +17,9 @@ package org.springframework.android.showcase.rest;
 
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -27,9 +30,9 @@ import android.widget.TextView;
 /**
  * @author Roy Clarkson
  */
-public class GoogleSearchActivity extends AbstractAsyncActivity {
+public class HttpGetGzipUncompressedActivity extends AbstractAsyncActivity {
 	
-	protected static final String TAG = GoogleSearchActivity.class.getSimpleName();
+	private static final String TAG = HttpGetGzipUncompressedActivity.class.getSimpleName();
 	
 	
 	//***************************************
@@ -37,35 +40,47 @@ public class GoogleSearchActivity extends AbstractAsyncActivity {
     //***************************************
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);		
-		this.setContentView(R.layout.google_search_activity_layout);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.http_get_gzip_activity_layout);
 	}
 	
 	@Override
 	public void onStart() {
 		super.onStart();
-		
-		// when this activity starts, initiate an asynchronous HTTP GET request
-		new GoogleSearchTask().execute();
+		new UncompressedRequestTask().execute();
 	}
 	
 	
 	//***************************************
     // Private methods
-    //*************************************** 
-	private void refreshResults(String result) {
-		if (result == null) {
+    //***************************************
+	private void refreshResults(ResponseEntity<String> response) {
+		if (response == null) {
 			return;
 		}
+		
+		HttpHeaders headers = response.getHeaders();
+		StringBuilder sb = new StringBuilder();
+		sb.append("Date: ").append(headers.getFirst("Date")).append("\n");
+		sb.append("Status: ").append(headers.getFirst("Status")).append("\n");
+		sb.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\n");
+		sb.append("Content-Encoding: ").append(headers.getFirst("Content-Encoding")).append("\n");
+		sb.append("Content-Length: ").append(headers.getFirst("Content-Length")).append("\n");
 
-		TextView textViewResults = (TextView) findViewById(R.id.text_view_results);
-		textViewResults.setText(result);
-	}	
+		TextView textView = (TextView) findViewById(R.id.text_view_headers);
+		textView.setText(sb.toString());
+		
+		String results = response.getBody() + "\n";
+		
+		textView = (TextView) findViewById(R.id.text_view_results);
+		textView.setText(results);
+	}
+	
 	
 	//***************************************
     // Private classes
     //***************************************
-	private class GoogleSearchTask extends AsyncTask<Void, Void, String> {
+	private class UncompressedRequestTask extends AsyncTask<Void, Void, ResponseEntity<String>> {
 		
 		@Override
 		protected void onPreExecute() {
@@ -74,18 +89,18 @@ public class GoogleSearchActivity extends AbstractAsyncActivity {
 		}
 
 		@Override
-		protected String doInBackground(Void... params) {
+		protected ResponseEntity<String> doInBackground(Void... params) {
 			try {
 				// The URL for making the GET request
-				final String url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={query}";
+				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
 				
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 
-				// Perform the HTTP GET request to the Google search API
-				String result = restTemplate.getForObject(url, String.class, "SpringSource");
+				// Perform the HTTP GET request
+				ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class, "SpringSource");
 				
-				return result;
+				return response;
 			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e);
 			}
@@ -94,14 +109,13 @@ public class GoogleSearchActivity extends AbstractAsyncActivity {
 		}
 		
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(ResponseEntity<String> response) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
-			
-			// return the Google results
-			refreshResults(result);
+			 
+			refreshResults(response);
 		}
 		
 	}
-	
+
 }

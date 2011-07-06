@@ -15,51 +15,50 @@
  */
 package org.springframework.android.showcase.rest;
 
+import org.springframework.android.showcase.AbstractMenuActivity;
 import org.springframework.android.showcase.R;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author Roy Clarkson
  */
-public class HttpGetActivity extends Activity {
-
+public class HttpGetActivity extends AbstractMenuActivity {
+	
 	//***************************************
-    // Activity methods
+    // AbstractMenuActivity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.http_get_activity_layout);
-		
-		String[] options = getResources().getStringArray(R.array.http_get_activity_options);
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
-		ListView listView = (ListView) this.findViewById(R.id.http_get_activity_options_list);
-		listView.setAdapter(arrayAdapter);
-		
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				Intent intent = new Intent();
+	protected String getDescription() {
+		return getResources().getString(R.string.text_http_get_description);
+	}
 
+	@Override
+	protected String[] getMenuItems() {
+		return getResources().getStringArray(R.array.http_get_activity_menu_items);
+	}
+	
+	@Override
+	protected OnItemClickListener getMenuOnItemClickListener() {
+		return new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
 				switch (position) {
 				case 0:
-					intent.setClass(parentView.getContext(), HttpGetJsonActivity.class);
-					startActivity(intent);
+					startActivity(new Intent(parentView.getContext(), HttpGetJsonXmlActivity.class));
 					break;
 				case 1:
-					intent.setClass(parentView.getContext(), HttpGetXmlActivity.class);
-					startActivity(intent);
+					startActivity(new Intent(parentView.getContext(), HttpGetParametersActivity.class));
+					break;
+				case 2:
+					startActivity(new Intent(parentView.getContext(), HttpGetGzipActivity.class));
 					break;
 				default:
 					break;
 				}
 			}
-		});
+		};
 	}
 }

@@ -15,165 +15,48 @@
  */
 package org.springframework.android.showcase.rest;
 
-import java.util.Collections;
-
-import org.springframework.android.showcase.AbstractAsyncActivity;
+import org.springframework.android.showcase.AbstractMenuActivity;
 import org.springframework.android.showcase.R;
-import org.springframework.http.ContentCodingType;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author Roy Clarkson
  */
-public class HttpGetGzipActivity extends AbstractAsyncActivity {
+public class HttpGetGzipActivity extends AbstractMenuActivity {
 
-	//***************************************
-    // Activity methods
-    //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.http_get_gzip_activity_layout);
+	protected String getDescription() {
+		return getResources().getString(R.string.text_http_get_gzip_description);
 	}
-	
+
 	@Override
-	public void onStart() {
-		super.onStart();
-		
-		// initiate an uncompressed request
-		new UncompressedRequestTask().execute();
-		
-		// initiate a gzip request
-		new GzipRequestTask().execute();
+	protected String[] getMenuItems() {
+		return new String[]{"Compressed String", "Uncompressed String", "Compressed JSON"};
 	}
-	
-	
-	//***************************************
-    // Private methods
-    //***************************************
-	private void refreshUncompressedResults(String result) {
-		if (result == null) {
-			return;
-		}
 
-		TextView textViewResults = (TextView) findViewById(R.id.text_view_uncompressed);
-		textViewResults.setText(result);
-	}
-	
-	private void refreshGzipResults(String result) {
-		if (result == null) {
-			return;
-		}
-
-		TextView textViewResults = (TextView) findViewById(R.id.text_view_gzip);
-		textViewResults.setText(result);
-	}
-	
-	
-	//***************************************
-    // Private classes
-    //***************************************
-	private class UncompressedRequestTask extends AsyncTask<Void, Void, String> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
-
-		@Override
-		protected String doInBackground(Void... params) {
-			try {
-				// The URL for making the GET request
-				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
-				
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
-
-				// Perform the HTTP GET request
-				ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class, "SpringSource");
-				
-				HttpHeaders headers = response.getHeaders();
-				StringBuilder sb = new StringBuilder();
-				sb.append("Date: ").append(headers.getFirst("Date")).append("\n");
-				sb.append("Status: ").append(headers.getFirst("Status")).append("\n");
-				sb.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\n");
-				sb.append("Content-Encoding: ").append(headers.getFirst("Content-Encoding")).append("\n");
-				sb.append("Content-Length: ").append(headers.getFirst("Content-Length")).append("\n");
-				return sb.toString();
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage(), e);
+	@Override
+	protected OnItemClickListener getMenuOnItemClickListener() {
+		return new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+				switch (position) {
+				case 0:
+					startActivity(new Intent(parentView.getContext(), HttpGetGzipCompressedActivity.class));
+					break;
+				case 1:
+					startActivity(new Intent(parentView.getContext(), HttpGetGzipUncompressedActivity.class));
+					break;
+				case 2:
+					startActivity(new Intent(parentView.getContext(), HttpGetGzipCompressedJsonActivity.class));
+					break;
+				default:
+					break;
+				}
 			}
-
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(String result) {
-			// hide the progress indicator when the network request is complete
-			dismissProgressDialog();
-			 
-			refreshUncompressedResults(result);
-		}
-		
-	}
-	
-	private class GzipRequestTask extends AsyncTask<Void, Void, String> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
-
-		@Override
-		protected String doInBackground(Void... params) {
-			try {
-				// The URL for making the GET request
-				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
-				
-				// Add the gzip Accept-Encoding header to the request
-				HttpHeaders requestHeaders = new HttpHeaders();
-				requestHeaders.setAcceptEncoding(Collections.singletonList(ContentCodingType.GZIP));
-				
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
-
-				// Perform the HTTP GET request
-				ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(requestHeaders), String.class, "SpringSource");
-				
-				HttpHeaders headers = response.getHeaders();
-				StringBuilder sb = new StringBuilder();
-				sb.append("Date: ").append(headers.getFirst("Date")).append("\n");
-				sb.append("Status: ").append(headers.getFirst("Status")).append("\n");
-				sb.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\n");
-				sb.append("Content-Encoding: ").append(headers.getFirst("Content-Encoding")).append("\n");
-				sb.append("Content-Length: ").append(headers.getFirst("Content-Length")).append("\n");
-				return sb.toString();
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage(), e);
-			}
-
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(String result) {
-			// hide the progress indicator when the network request is complete
-			dismissProgressDialog();
-			 
-			refreshGzipResults(result);
-		}
-		
+		};
 	}
 	
 }

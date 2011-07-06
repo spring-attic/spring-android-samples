@@ -33,14 +33,14 @@
 	
 	<Button
 		android:id="@+id/button_json"
-		android:text="Fetch State with JSON"
+		android:text="Fetch state with JSON"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		/>
 		
 	<Button
 		android:id="@+id/button_xml"
-		android:text="Fetch State with XML"
+		android:text="Fetch state with XML"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		/>

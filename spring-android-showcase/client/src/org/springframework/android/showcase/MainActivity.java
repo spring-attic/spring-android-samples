@@ -17,8 +17,6 @@ package org.springframework.android.showcase;
 
 import org.springframework.android.showcase.rest.GoogleSearchActivity;
 import org.springframework.android.showcase.rest.HttpGetActivity;
-import org.springframework.android.showcase.rest.HttpGetGzipActivity;
-import org.springframework.android.showcase.rest.HttpGetParametersActivity;
 import org.springframework.android.showcase.rest.HttpPostActivity;
 import org.springframework.android.showcase.rest.rome.AtomActivity;
 import org.springframework.android.showcase.rest.rome.RssActivity;
@@ -63,24 +61,18 @@ public class MainActivity extends ListActivity {
 			startActivity(new Intent(this, HttpGetActivity.class));
 			break;
 		case 2:
-			startActivity(new Intent(this, HttpGetParametersActivity.class));
-			break;
-		case 3:
-			startActivity(new Intent(this, HttpGetGzipActivity.class));
-			break;
-		case 4:
 			startActivity(new Intent(this, HttpPostActivity.class));
 			break;
-		case 5:
+		case 3:
 			startActivity(new Intent(this, RssActivity.class));
 			break;
-		case 6:
+		case 4:
 			startActivity(new Intent(this, AtomActivity.class));
 			break;
-		case 7:
+		case 5:
 			startActivity(new Intent(this, TwitterActivity.class));
 			break;
-		case 8:
+		case 6:
 			startActivity(new Intent(this, FacebookActivity.class));
 			break;
 		default:

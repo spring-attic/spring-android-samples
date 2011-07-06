@@ -13,7 +13,7 @@
         
         <activity 
         	android:name="org.springframework.android.showcase.MainActivity"
-			android:label="@string/app_name">	
+			android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -22,10 +22,14 @@
         
         <activity android:name="org.springframework.android.showcase.rest.GoogleSearchActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetJsonXmlActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetJsonActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetXmlActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetParametersActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipCompressedActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipUncompressedActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipCompressedJsonActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostStringActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostJsonXmlActivity" />
