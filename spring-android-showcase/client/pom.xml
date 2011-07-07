@@ -45,6 +45,12 @@
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-auth</artifactId>
 			<version>${spring-android-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.social</groupId>
