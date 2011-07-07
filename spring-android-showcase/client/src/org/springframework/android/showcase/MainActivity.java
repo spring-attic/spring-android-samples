@@ -15,7 +15,6 @@
  */
 package org.springframework.android.showcase;
 
-import org.springframework.android.showcase.rest.GoogleSearchActivity;
 import org.springframework.android.showcase.rest.HttpGetActivity;
 import org.springframework.android.showcase.rest.HttpPostActivity;
 import org.springframework.android.showcase.rest.rome.AtomActivity;
@@ -23,61 +22,60 @@ import org.springframework.android.showcase.rest.rome.RssActivity;
 import org.springframework.android.showcase.social.facebook.FacebookActivity;
 import org.springframework.android.showcase.social.twitter.TwitterActivity;
 
-import android.app.ListActivity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author Roy Clarkson
  * @author Pierre-Yves Ricau
  */
-public class MainActivity extends ListActivity { 
-	
+public class MainActivity extends AbstractMenuActivity { 
+
 	//***************************************
-    // Activity methods
+    // AbstractMenuActivity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		String[] options = getResources().getStringArray(R.array.main_options);
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
-		setListAdapter(arrayAdapter);
+	protected String getDescription() {
+		return getResources().getString(R.string.text_main);
 	}
-	
-	
-	//***************************************
-    // ListActivity methods
-    //***************************************
+
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {		
-		switch (position) {
-		case 0:
-			startActivity(new Intent(this, GoogleSearchActivity.class));
-			break;
-		case 1:
-			startActivity(new Intent(this, HttpGetActivity.class));
-			break;
-		case 2:
-			startActivity(new Intent(this, HttpPostActivity.class));
-			break;
-		case 3:
-			startActivity(new Intent(this, RssActivity.class));
-			break;
-		case 4:
-			startActivity(new Intent(this, AtomActivity.class));
-			break;
-		case 5:
-			startActivity(new Intent(this, TwitterActivity.class));
-			break;
-		case 6:
-			startActivity(new Intent(this, FacebookActivity.class));
-			break;
-		default:
-			break;
-		}
+	protected String[] getMenuItems() {
+		return getResources().getStringArray(R.array.main_menu_items);
+	}
+
+	@Override
+	protected OnItemClickListener getMenuOnItemClickListener() {
+		return new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+				Class<?> cls = null;
+				switch (position) {
+				case 0:
+					cls = HttpGetActivity.class;
+					break;
+				case 1:
+					cls = HttpPostActivity.class;
+					break;
+				case 2:
+					cls = RssActivity.class;
+					break;
+				case 3:
+					cls = AtomActivity.class;
+					break;
+				case 4:
+					cls = TwitterActivity.class;
+					break;
+				case 5:
+					cls = FacebookActivity.class;
+					break;
+				default:
+					break;
+				}
+				startActivity(new Intent(parentView.getContext(), cls));
+			}
+		};
 	}
 	
 }

@@ -20,12 +20,14 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="org.springframework.android.showcase.rest.GoogleSearchActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetJsonXmlActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetJsonActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetXmlActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetParametersActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.GoogleSearchActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.GoogleSearchJacksonActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.GoogleSearchGsonActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipCompressedActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipUncompressedActivity" />

@@ -53,6 +53,9 @@ public class HttpGetActivity extends AbstractMenuActivity {
 					startActivity(new Intent(parentView.getContext(), HttpGetParametersActivity.class));
 					break;
 				case 2:
+					startActivity(new Intent(parentView.getContext(), GoogleSearchActivity.class));
+					break;
+				case 3:
 					startActivity(new Intent(parentView.getContext(), HttpGetGzipActivity.class));
 					break;
 				default:

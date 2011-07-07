@@ -3,11 +3,16 @@
 
     <string name="app_name">Spring Android</string>
     
+    <string name="text_main">Select an option to view the associated example.</string>
+    
     <string name="text_http_get_description">These examples make HTTP GET requests to the server.</string>
     
     <string name="text_http_get_json_xml_description">These examples retrieve a list of states from the 
     example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use 
     the SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
+    
+    <string name="text_http_get_google_search_description">Two examples of Google searches, where the first
+    marshals JSON using Jackson, and the second uses the Google Gson parser.</string>
     
     <string name="text_http_get_gzip_description">These examples illustrate the use of gzip 
     compression with an HTTP GET request. You can view the response headers to compare the 
@@ -34,8 +39,7 @@
 	
 	<string name="facebook_description">Facebook example using Spring Social</string>
     
-	<string-array name="main_options">
-		<item>Google Search</item>
+	<string-array name="main_menu_items">
         <item>HTTP GET</item>
         <item>HTTP POST</item>
     	<item>RSS</item>
@@ -47,7 +51,8 @@
 	<string-array name="http_get_activity_menu_items">
 		<item>JSON and XML</item>
 		<item>Sending parameters</item>
-		<item>Accepting gzip content</item>
+		<item>Google Search</item>
+		<item>Requesting gzip content</item>
 	</string-array>
 	
 	<string-array name="http_get_json_xml_activity_menu_items">
@@ -55,9 +60,15 @@
 		<item>Fetch XML list of states</item>
 	</string-array>
 	
-	<string-array name="http_get_gzip_activity_options">
-		<item>Uncompressed</item>
-		<item>Compressed with gzip</item>
+	<string-array name="http_get_google_search_menu_items">
+		<item>Google Search with Jackson</item>
+		<item>Google Search with Gson</item>
+	</string-array>
+	
+	<string-array name="http_get_gzip_activity_menu_items">
+		<item>Compressed String</item>
+		<item>Uncompressed String</item>
+		<item>Compressed JSON</item>
 	</string-array>
 	
 	<string-array name="http_post_activity_options">

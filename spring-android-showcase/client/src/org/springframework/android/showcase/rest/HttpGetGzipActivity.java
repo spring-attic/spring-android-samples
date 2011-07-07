@@ -35,7 +35,7 @@ public class HttpGetGzipActivity extends AbstractMenuActivity {
 
 	@Override
 	protected String[] getMenuItems() {
-		return new String[]{"Compressed String", "Uncompressed String", "Compressed JSON"};
+		return getResources().getStringArray(R.array.http_get_gzip_activity_menu_items);
 	}
 
 	@Override

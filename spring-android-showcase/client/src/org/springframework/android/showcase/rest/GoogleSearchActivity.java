@@ -15,93 +15,48 @@
  */
 package org.springframework.android.showcase.rest;
 
-import org.springframework.android.showcase.AbstractAsyncActivity;
+import org.springframework.android.showcase.AbstractMenuActivity;
 import org.springframework.android.showcase.R;
-import org.springframework.web.client.RestTemplate;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author Roy Clarkson
  */
-public class GoogleSearchActivity extends AbstractAsyncActivity {
-	
-	protected static final String TAG = GoogleSearchActivity.class.getSimpleName();
-	
+public class GoogleSearchActivity extends AbstractMenuActivity {
 	
 	//***************************************
-    // Activity methods
+    // AbstractMenuActivity methods
     //***************************************
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);		
-		this.setContentView(R.layout.google_search_activity_layout);
+	protected String getDescription() {
+		return getResources().getString(R.string.text_http_get_google_search_description);
+	}
+
+	@Override
+	protected String[] getMenuItems() {
+		return getResources().getStringArray(R.array.http_get_google_search_menu_items);
 	}
 	
 	@Override
-	public void onStart() {
-		super.onStart();
-		
-		// when this activity starts, initiate an asynchronous HTTP GET request
-		new GoogleSearchTask().execute();
-	}
-	
-	
-	//***************************************
-    // Private methods
-    //*************************************** 
-	private void refreshResults(String result) {
-		if (result == null) {
-			return;
-		}
-
-		TextView textViewResults = (TextView) findViewById(R.id.text_view_results);
-		textViewResults.setText(result);
-	}	
-	
-	//***************************************
-    // Private classes
-    //***************************************
-	private class GoogleSearchTask extends AsyncTask<Void, Void, String> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
-
-		@Override
-		protected String doInBackground(Void... params) {
-			try {
-				// The URL for making the GET request
-				final String url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={query}";
-				
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
-
-				// Perform the HTTP GET request to the Google search API
-				String result = restTemplate.getForObject(url, String.class, "SpringSource");
-				
-				return result;
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage(), e);
+	protected OnItemClickListener getMenuOnItemClickListener() {
+		return new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+				switch (position) {
+				case 0:
+					startActivity(new Intent(parentView.getContext(), GoogleSearchJacksonActivity.class));
+					break;
+				case 1:
+					startActivity(new Intent(parentView.getContext(), GoogleSearchGsonActivity.class));
+					break;
+				default:
+					break;
+				}
 			}
-
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(String result) {
-			// hide the progress indicator when the network request is complete
-			dismissProgressDialog();
-			
-			// return the Google results
-			refreshResults(result);
-		}
-		
+		};
 	}
 	
 }
