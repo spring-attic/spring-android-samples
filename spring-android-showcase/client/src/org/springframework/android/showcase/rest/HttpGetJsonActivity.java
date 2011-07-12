@@ -94,8 +94,7 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity {
 				acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
 				requestHeaders.setAccept(acceptableMediaTypes);
 
-				// Populate the headers in an HttpEntity object to use for the
-				// request
+				// Populate the headers in an HttpEntity object to use for the request
 				HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
 
 				// Create a new RestTemplate instance

@@ -58,6 +58,8 @@ public class HttpGetActivity extends AbstractMenuActivity {
 				case 3:
 					startActivity(new Intent(parentView.getContext(), HttpGetGzipActivity.class));
 					break;
+				case 4:
+					startActivity(new Intent(parentView.getContext(), HttpGetSetRequestTimeoutActivity.class));
 				default:
 					break;
 				}

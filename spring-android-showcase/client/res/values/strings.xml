@@ -23,6 +23,12 @@
     MappingJacksonHttpMessageConverter to marshal JSON objects or use the 
     SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
     
+    <string name="text_http_get_set_request_timeout_description">The HttpComponents Http Client includes has
+    the option of setting a timeout when making http requests. This examples shows how to set the timeout
+    when attempting to make a request to the example server.  The server delay value will cause the server
+    to delay its response for that many seconds. The request timeout will cause the request to timeout after 
+    the specified number of seconds.</string>
+    
     <string name="text_http_post_description">These examples make HTTP POST requests to the server.</string>
     
     <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.com. 
@@ -53,6 +59,7 @@
 		<item>Sending parameters</item>
 		<item>Google Search</item>
 		<item>Requesting gzip content</item>
+		<item>Setting a Request Timeout</item>
 	</string-array>
 	
 	<string-array name="http_get_json_xml_activity_menu_items">

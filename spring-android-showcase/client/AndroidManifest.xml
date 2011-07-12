@@ -32,6 +32,7 @@
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipCompressedActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipUncompressedActivity" />
 		<activity android:name="org.springframework.android.showcase.rest.HttpGetGzipCompressedJsonActivity" />
+		<activity android:name="org.springframework.android.showcase.rest.HttpGetSetRequestTimeoutActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostStringActivity" />
         <activity android:name="org.springframework.android.showcase.rest.HttpPostJsonXmlActivity" />
