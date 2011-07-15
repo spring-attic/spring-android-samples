@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase.rest.rome;
-
-import org.springframework.android.showcase.R;
+package org.springframework.android.reader;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -42,7 +40,7 @@ public class SyndFeedListAdapter extends BaseAdapter {
 	}
 
 	public int getCount() {
-		return syndFeed.getEntries().size();
+		return syndFeed != null ? syndFeed.getEntries().size() : 0;
 	}
 
 	public SyndEntry getItem(int position) {
@@ -56,22 +54,22 @@ public class SyndFeedListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		SyndEntry syndEntry = getItem(position);
 
-		View view = convertView;
-
-		if (view == null) {
-			view = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+		if (convertView == null) {
+			convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+		}
+		
+		if (syndEntry != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
+			t.setText(syndEntry.getTitle());
+	
+			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
+			t.setText(syndEntry.getPublishedDate().toString());
+	
+			t = (TextView) convertView.findViewById(R.id.synd_feed_description);
+			t.setText(syndEntry.getDescription().getValue());
 		}
 
-		TextView t = (TextView) view.findViewById(R.id.synd_feed_title);
-		t.setText(syndEntry.getTitle());
-
-		t = (TextView) view.findViewById(R.id.synd_feed_date);
-		t.setText(syndEntry.getPublishedDate().toString());
-
-		t = (TextView) view.findViewById(R.id.synd_feed_description);
-		t.setText(syndEntry.getDescription().getValue());
-
-		return view;
+		return convertView;
 	}
 	
 }

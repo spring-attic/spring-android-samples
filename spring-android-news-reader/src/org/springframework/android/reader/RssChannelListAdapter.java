@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase.rest.rome;
-
-import org.springframework.android.showcase.R;
+package org.springframework.android.reader;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -24,28 +22,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Entry;
-import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Feed;
+import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Channel;
+import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item;
 
 /**
  * @author Roy Clarkson
  */
-public class AtomFeedListAdapter extends BaseAdapter {
+public class RssChannelListAdapter extends BaseAdapter {
 	
-	private Feed feed;
+	private Channel channel;
 	private final LayoutInflater layoutInflater;
 
-	public AtomFeedListAdapter(Context context, Feed feed) {
-		this.feed = feed;
+	public RssChannelListAdapter(Context context, Channel channel) {
+		this.channel = channel;
 		this.layoutInflater = LayoutInflater.from(context);
 	}
 
 	public int getCount() {
-		return feed.getEntries().size();
+		return channel != null ? channel.getItems().size() : 0;
 	}
 
 	public Object getItem(int position) {
-		return feed.getEntries().get(position);
+		return channel.getItems().get(position);
 	}
 
 	public long getItemId(int position) {
@@ -53,23 +51,24 @@ public class AtomFeedListAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Entry entry = (Entry) getItem(position);
-		View view = convertView;
+		Item item = (Item) getItem(position);
 
-		if (view == null) {
-			view = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+		if (convertView == null) {
+			convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+		}
+		
+		if (item != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
+			t.setText(item.getTitle());
+	
+			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
+			t.setText(item.getPubDate().toString());
+	
+			t = (TextView) convertView.findViewById(R.id.synd_feed_description);
+			t.setText(item.getDescription().getValue());
 		}
 
-		TextView t = (TextView) view.findViewById(R.id.synd_feed_title);
-		t.setText(entry.getTitle());
-
-		t = (TextView) view.findViewById(R.id.synd_feed_date);
-		t.setText(entry.getPublished().toString());
-
-		t = (TextView) view.findViewById(R.id.synd_feed_description);
-		t.setText(entry.getSummary().getValue());
-
-		return view;
+		return convertView;
 	}
 	
 }

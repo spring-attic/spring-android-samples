@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase.rest.rome;
+package org.springframework.android.reader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.android.showcase.R;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.feed.SyndFeedHttpMessageConverter;

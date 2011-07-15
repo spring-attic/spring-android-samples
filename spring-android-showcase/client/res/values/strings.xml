@@ -48,8 +48,6 @@
 	<string-array name="main_menu_items">
         <item>HTTP GET</item>
         <item>HTTP POST</item>
-    	<item>RSS</item>
-		<item>ATOM</item>
 		<item>Twitter</item>
 		<item>Facebook</item>
 	</string-array>
@@ -83,16 +81,6 @@
 		<item>JSON and XML</item>
 		<item>MultiValueMap</item>
 		<item>Form Data</item>
-	</string-array>
-            
-	<string-array name="rss_activity_options">
-		<item>SyndFeed</item>
-		<item>RssChannel</item>
-	</string-array>
-	
-	<string-array name="atom_activity_options">
-		<item>SyndFeed</item>
-		<item>AtomFeed</item>
 	</string-array>
 		
 </resources>

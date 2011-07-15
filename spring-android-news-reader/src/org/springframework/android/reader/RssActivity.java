@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase.rest.rome;
-
-import org.springframework.android.showcase.AbstractMenuActivity;
-import org.springframework.android.showcase.R;
+package org.springframework.android.reader;
 
 import android.content.Intent;
 import android.view.View;
@@ -29,44 +26,11 @@ import android.widget.AdapterView.OnItemClickListener;
 public class RssActivity extends AbstractMenuActivity {
 
 	// ***************************************
-	// Activity methods
-	// ***************************************
-//	@Override
-//	public void onCreate(Bundle savedInstanceState) {
-//		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.rss_activity_layout);
-//
-//		String[] options = getResources().getStringArray(R.array.rss_activity_options);
-//		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
-//		ListView listView = (ListView) this.findViewById(R.id.rss_activity_options_list);
-//		listView.setAdapter(arrayAdapter);
-//
-//		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-//				Intent intent = new Intent();
-//
-//				switch (position) {
-//				case 0:
-//					intent.setClass(parentView.getContext(), RssSyndFeedActivity.class);
-//					startActivity(intent);
-//					break;
-//				case 1:
-//					intent.setClass(parentView.getContext(), RssChannelActivity.class);
-//					startActivity(intent);
-//					break;
-//				default:
-//					break;
-//				}
-//			}
-//		});
-//	}
-
-	// ***************************************
 	// AbstractMenuActivity methods
 	// ***************************************
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_atom_description);
+		return getResources().getString(R.string.text_rss_description);
 	}
 
 	@Override

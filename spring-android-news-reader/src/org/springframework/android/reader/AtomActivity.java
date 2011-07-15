@@ -13,12 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase;
-
-import org.springframework.android.showcase.rest.HttpGetActivity;
-import org.springframework.android.showcase.rest.HttpPostActivity;
-import org.springframework.android.showcase.social.facebook.FacebookActivity;
-import org.springframework.android.showcase.social.twitter.TwitterActivity;
+package org.springframework.android.reader;
 
 import android.content.Intent;
 import android.view.View;
@@ -27,45 +22,36 @@ import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author Roy Clarkson
- * @author Pierre-Yves Ricau
  */
-public class MainActivity extends AbstractMenuActivity { 
+public class AtomActivity extends AbstractMenuActivity {
 
 	//***************************************
     // AbstractMenuActivity methods
     //***************************************
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_main);
+		return getResources().getString(R.string.text_atom_description);
 	}
 
 	@Override
 	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.main_menu_items);
+		return getResources().getStringArray(R.array.atom_activity_options);
 	}
 
 	@Override
 	protected OnItemClickListener getMenuOnItemClickListener() {
-		return new OnItemClickListener() {
+		return new AdapterView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				Class<?> cls = null;
 				switch (position) {
-				case 0:
-					cls = HttpGetActivity.class;
-					break;
-				case 1:
-					cls = HttpPostActivity.class;
-					break;
-				case 2:
-					cls = TwitterActivity.class;
-					break;
-				case 3:
-					cls = FacebookActivity.class;
-					break;
-				default:
-					break;
+					case 0:
+						startActivity(new Intent(parentView.getContext(), AtomSyndFeedActivity.class));
+						break;
+					case 1:
+						startActivity(new Intent(parentView.getContext(), AtomFeedActivity.class));
+						break;
+					default:
+						break;
 				}
-				startActivity(new Intent(parentView.getContext(), cls));
 			}
 		};
 	}

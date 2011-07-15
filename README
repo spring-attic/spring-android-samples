@@ -2,5 +2,6 @@ This repository contains sample projects illustrating usage of the Spring Androi
 
 Samples include:
 - spring-android-showcase, illustrating the features of the Spring Android project
+- spring-android-news-reader, highlights the use of the Android ROME Feed Reader
  
 See the README in each sub directory for information on the sample and instructions on how to run it.

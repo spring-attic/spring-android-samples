@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase.rest.rome;
-
-import org.springframework.android.showcase.AbstractMenuActivity;
-import org.springframework.android.showcase.R;
+package org.springframework.android.reader;
 
 import android.content.Intent;
 import android.view.View;
@@ -26,35 +23,37 @@ import android.widget.AdapterView.OnItemClickListener;
 /**
  * @author Roy Clarkson
  */
-public class AtomActivity extends AbstractMenuActivity {
+public class MainActivity extends AbstractMenuActivity { 
 
 	//***************************************
     // AbstractMenuActivity methods
     //***************************************
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_atom_description);
+		return getResources().getString(R.string.text_main);
 	}
 
 	@Override
 	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.atom_activity_options);
+		return getResources().getStringArray(R.array.main_menu_items);
 	}
 
 	@Override
 	protected OnItemClickListener getMenuOnItemClickListener() {
-		return new AdapterView.OnItemClickListener() {
+		return new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+				Class<?> cls = null;
 				switch (position) {
-					case 0:
-						startActivity(new Intent(parentView.getContext(), AtomSyndFeedActivity.class));
-						break;
-					case 1:
-						startActivity(new Intent(parentView.getContext(), AtomFeedActivity.class));
-						break;
-					default:
-						break;
+				case 0:
+					cls = RssActivity.class;
+					break;
+				case 1:
+					cls = AtomActivity.class;
+					break;
+				default:
+					break;
 				}
+				startActivity(new Intent(parentView.getContext(), cls));
 			}
 		};
 	}

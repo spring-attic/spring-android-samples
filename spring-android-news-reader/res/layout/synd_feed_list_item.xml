@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:padding="5dp"
+     >
+
+     <TextView  
+         android:id="@+id/synd_feed_title"
+         android:textSize="16sp"
+         android:textStyle="bold"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" 
+         />
+
+     <TextView  
+         android:id="@+id/synd_feed_date"
+         android:textSize="13sp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" 
+         />
+
+     <TextView 
+         android:id="@+id/synd_feed_description"
+         android:textSize="12sp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" 
+         />
+         
+ </LinearLayout>

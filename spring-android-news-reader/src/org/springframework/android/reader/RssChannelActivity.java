@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase.rest.rome;
+package org.springframework.android.reader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.android.showcase.AbstractAsyncListActivity;
-import org.springframework.android.showcase.R;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.feed.SyndFeedHttpMessageConverter;
+import org.springframework.http.converter.feed.RssChannelHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.content.Intent;
@@ -33,21 +31,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndEntry;
-import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndFeed;
+import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Channel;
+import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item;
 
 /**
  * @author Roy Clarkson
  * @author Helena Edelson
  * @author Pierre-Yves Ricau
  */
-public class RssSyndFeedActivity extends AbstractAsyncListActivity {
+public class RssChannelActivity extends AbstractAsyncListActivity {
 	
-	protected static final String TAG = RssSyndFeedActivity.class.getSimpleName();
+	protected static final String TAG = RssChannelActivity.class.getSimpleName();
 
-	private SyndFeed feed;
+	private Channel channel;
+
 	
-
 	// ***************************************
 	// Activity methods
 	// ***************************************
@@ -66,37 +64,39 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity {
 	// ***************************************
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		if (feed == null) {
+		if (channel == null) {
 			return;
 		}
 
 		// Open the selected RSS item in the browser
-		SyndEntry entry = (SyndEntry) feed.getEntries().get(position);
-		String link = entry.getLink();
-		Log.i(TAG, link);
-		Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link));
+		Item item = (Item) channel.getItems().get(position);
+		String uri = item.getUri();
+		Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(uri));
 		this.startActivity(intent);
 	}
 
+	
 	// ***************************************
 	// Private methods
 	// ***************************************
-	private void refreshRssFeed(SyndFeed feed) {
-		this.feed = feed;
+	private void refreshRssFeed(Channel channel) {
+		this.channel = channel;
 
-		if (feed == null) {
+		if (channel == null) {
 			return;
 		}
 
-		setTitle(feed.getTitle());
-		SyndFeedListAdapter adapter = new SyndFeedListAdapter(this, feed);
+		setTitle(channel.getTitle());
+		RssChannelListAdapter adapter = new RssChannelListAdapter(this, channel);
 		setListAdapter(adapter);
 	}
+	
 
 	// ***************************************
 	// Private classes
 	// ***************************************
-	private class DownloadRssFeedTask extends AsyncTask<Void, Void, SyndFeed> {
+	private class DownloadRssFeedTask extends AsyncTask<Void, Void, Channel> {
+		
 		@Override
 		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
@@ -104,19 +104,18 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity {
 		}
 
 		@Override
-		protected SyndFeed doInBackground(Void... params) {
+		protected Channel doInBackground(Void... params) {
 			try {
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 
-				// Configure the SyndFeed message converter.
-				SyndFeedHttpMessageConverter converter = new SyndFeedHttpMessageConverter();
+				// Configure the RSS message converter.
+				RssChannelHttpMessageConverter converter = new RssChannelHttpMessageConverter();
 				List<MediaType> mediaTypes = new ArrayList<MediaType>();
 				mediaTypes.add(MediaType.TEXT_XML);
 				converter.setSupportedMediaTypes(mediaTypes);
 
-				// Add the SyndFeed message converter to the RestTemplate
-				// instance
+				// Add the RSS message converter to the RestTemplate instance
 				List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
 				messageConverters.add(converter);
 				restTemplate.setMessageConverters(messageConverters);
@@ -125,7 +124,7 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity {
 				final String url = getString(R.string.rss_feed_url);
 
 				// Initiate the request and return the results
-				return restTemplate.getForObject(url, SyndFeed.class);
+				return restTemplate.getForObject(url, Channel.class);
 			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e);
 			}
@@ -134,12 +133,12 @@ public class RssSyndFeedActivity extends AbstractAsyncListActivity {
 		}
 
 		@Override
-		protected void onPostExecute(SyndFeed feed) {
+		protected void onPostExecute(Channel channel) {
 			// hide the progress indicator when the network request is complete
 			dismissProgressDialog();
 
 			// return the list of states
-			refreshRssFeed(feed);
+			refreshRssFeed(channel);
 		}
 		
 	}
