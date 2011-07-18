@@ -18,29 +18,31 @@
 		<android-emulator>7</android-emulator>
 		<maven-android-plugin-version>2.9.0-beta-5</maven-android-plugin-version>
 		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
-		<com.google.android.version>2.1_r1</com.google.android.version>
+		<maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
+		<android-version>2.1_r1</android-version>
 		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 2.2.1, 2.3.1, 2.3.3 -->
-		<org.springframework.android.version>1.0.0.M3</org.springframework.android.version>
-		<com.google.code.android-rome-feed-reader.version>1.0.0-r2</com.google.code.android-rome-feed-reader.version>
+		<java-version>1.6</java-version>
+		<spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
+		<android-rome-feed-reader-version>1.0.0-r2</android-rome-feed-reader-version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${com.google.android.version}</version>
+			<version>${android-version}</version>
 			<scope>provided</scope>
 		</dependency>
  		<dependency>
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-rest-template</artifactId>
-			<version>${org.springframework.android.version}</version>
+			<version>${spring-android-version}</version>
 		</dependency>
 		<dependency>
 			<!-- Using ROME for RSS and ATOM feeds -->
 			<groupId>com.google.code.android-rome-feed-reader</groupId>
 			<artifactId>android-rome-feed-reader</artifactId>
-			<version>${com.google.code.android-rome-feed-reader.version}</version>
+			<version>${android-rome-feed-reader-version}</version>
 		</dependency>
 	</dependencies>
 	
@@ -67,6 +69,19 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin-version}</version>
+ 				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
