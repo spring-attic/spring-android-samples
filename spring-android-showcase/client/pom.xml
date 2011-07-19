@@ -45,6 +45,7 @@
 			<artifactId>spring-android-auth</artifactId>
 			<version>${spring-android-version}</version>
 			<exclusions>
+				<!-- Exclude in favor of Spring Android Core -->
 				<exclusion>
 					<artifactId>spring-core</artifactId>
 					<groupId>org.springframework</groupId>
@@ -68,13 +69,13 @@
 			<artifactId>spring-social-twitter</artifactId>
 			<version>${spring-social-version}</version>
 			<exclusions>
+				<!-- Exclude in favor of Spring Android RestTemplate -->
 				<exclusion>
-					<!-- Exclude in favor of Spring Android RestTemplate -->
 					<artifactId>spring-social-web</artifactId>
 					<groupId>org.springframework.social</groupId>
 				</exclusion>
+				<!-- Provided by Android -->
 				<exclusion>
-					<!-- Provided by Android -->
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
@@ -85,13 +86,13 @@
 			<artifactId>spring-social-facebook</artifactId>
 			<version>${spring-social-version}</version>
 			<exclusions>
+				<!-- Exclude in favor of Spring Android RestTemplate -->
 				<exclusion>
-					<!-- Exclude in favor of Spring Android RestTemplate -->
 					<artifactId>spring-social-web</artifactId>
 					<groupId>org.springframework.social</groupId>
 				</exclusion>
+				<!-- Provided by Android -->
 				<exclusion>
-					<!-- Provided by Android -->
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
