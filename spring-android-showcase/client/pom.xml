@@ -25,6 +25,7 @@
 		<spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
 		<spring-social-version>1.0.0.RC1</spring-social-version>
 		<jackson-version>1.8.3</jackson-version>
+		<gson-version>1.7.1</gson-version>
 		<simple-version>2.6</simple-version>
 	</properties>
 
@@ -44,7 +45,12 @@
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-auth</artifactId>
 			<version>${spring-android-version}</version>
-			<exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>3.1.0.RC2.crypto</version>
+ 			<exclusions>
 				<!-- Exclude in favor of Spring Android Core -->
 				<exclusion>
 					<artifactId>spring-core</artifactId>
@@ -52,7 +58,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
+ 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-core</artifactId>
 			<version>${spring-social-version}</version>
@@ -62,6 +68,11 @@
 					<artifactId>spring-web</artifactId>
 					<groupId>org.springframework</groupId>
 				</exclusion>
+				<!-- Provided by Android -->
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -69,11 +80,6 @@
 			<artifactId>spring-social-twitter</artifactId>
 			<version>${spring-social-version}</version>
 			<exclusions>
-				<!-- Exclude in favor of Spring Android RestTemplate -->
-				<exclusion>
-					<artifactId>spring-social-web</artifactId>
-					<groupId>org.springframework.social</groupId>
-				</exclusion>
 				<!-- Provided by Android -->
 				<exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -86,19 +92,10 @@
 			<artifactId>spring-social-facebook</artifactId>
 			<version>${spring-social-version}</version>
 			<exclusions>
-				<!-- Exclude in favor of Spring Android RestTemplate -->
-				<exclusion>
-					<artifactId>spring-social-web</artifactId>
-					<groupId>org.springframework.social</groupId>
-				</exclusion>
 				<!-- Provided by Android -->
 				<exclusion>
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-webmvc</artifactId>
-					<groupId>org.springframework</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -109,9 +106,10 @@
 			<version>${jackson-version}</version>
 		</dependency>
  		<dependency>
+ 			<!-- Using Gson for JSON marshaling -->
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>1.7.1</version>
+			<version>${gson-version}</version>
 		</dependency>
 		<dependency>
 			<!-- Using Simple for XML marshaling -->
