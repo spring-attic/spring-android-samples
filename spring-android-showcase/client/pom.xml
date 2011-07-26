@@ -24,7 +24,7 @@
 		<java-version>1.6</java-version>
 		<spring-android-version>1.0.0.M4</spring-android-version>
 		<spring-social-version>1.0.0.RC1</spring-social-version>
-		<jackson-version>1.8.3</jackson-version>
+		<jackson-version>1.8.4</jackson-version>
 		<gson-version>1.7.1</gson-version>
 		<simple-version>2.6</simple-version>
 	</properties>
