@@ -38,7 +38,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	private static List<State> states;
+	
+	private static List<Message> messages;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -171,6 +174,30 @@ public class HomeController {
 		return "Map message received! Your message: " + message.toString();
 	}
 	
+	/**
+	 * Retrieve a list of messages containing 1000 items. Accepts a GET request for JSON
+	 *  
+	 * @return A JSON array of messages
+	 */
+	@RequestMapping(value="messages", method=RequestMethod.GET, headers="Accept=application/json")
+	public @ResponseBody List<Message> fetchMessagesJson() {		
+		logger.info("fetching JSON messages");
+		return getMessages();
+	}
+	
+	/** 
+	 * Retrieve a list of messages containing 1000 items. Accepts a GET request for XML
+	 *  
+	 * @return An XML array of messages
+	 */
+	@RequestMapping(value="messages", method=RequestMethod.GET, headers="Accept=application/xml")
+	public @ResponseBody MessageList fetchMessagesXml() {		
+		logger.info("fetching XML messages");
+		List<Message> messages = getMessages();
+		MessageList messageList = new MessageList(messages);
+		return messageList;
+	}
+	
 	
 	// helper methods
 	
@@ -245,6 +272,20 @@ public class HomeController {
 		}
 		
 		return states;
+	}
+	
+	private List<Message> getMessages() {
+		if (messages == null) {
+			messages = new ArrayList<Message>();
+			for (int i = 0; i < 1000; i++) {
+				Message m = new Message();
+				m.setId(i);
+				m.setSubject("Message " + i);
+				m.setText("This is message number " + i + ". It is used to illustrate gzip compression on the client.");
+				messages.add(m);
+			} 
+		}
+		return messages;
 	}
 	
 }
