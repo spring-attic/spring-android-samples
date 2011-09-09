@@ -23,39 +23,39 @@ import android.widget.AdapterView.OnItemClickListener;
 /**
  * @author Roy Clarkson
  */
-public class MainActivity extends AbstractMenuActivity { 
+public class MainActivity extends AbstractMenuActivity {
 
-	//***************************************
+    // ***************************************
     // AbstractMenuActivity methods
-    //***************************************
-	@Override
-	protected String getDescription() {
-		return getResources().getString(R.string.text_main);
-	}
+    // ***************************************
+    @Override
+    protected String getDescription() {
+        return getResources().getString(R.string.text_main);
+    }
 
-	@Override
-	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.main_menu_items);
-	}
+    @Override
+    protected String[] getMenuItems() {
+        return getResources().getStringArray(R.array.main_menu_items);
+    }
 
-	@Override
-	protected OnItemClickListener getMenuOnItemClickListener() {
-		return new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				Class<?> cls = null;
-				switch (position) {
-				case 0:
-					cls = RssActivity.class;
-					break;
-				case 1:
-					cls = AtomActivity.class;
-					break;
-				default:
-					break;
-				}
-				startActivity(new Intent(parentView.getContext(), cls));
-			}
-		};
-	}
-	
+    @Override
+    protected OnItemClickListener getMenuOnItemClickListener() {
+        return new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+                Class<?> cls = null;
+                switch (position) {
+                case 0:
+                    cls = RssActivity.class;
+                    break;
+                case 1:
+                    cls = AtomActivity.class;
+                    break;
+                default:
+                    break;
+                }
+                startActivity(new Intent(parentView.getContext(), cls));
+            }
+        };
+    }
+
 }

@@ -2,32 +2,34 @@
 <resources>
 
     <string name="app_name">Spring News Reader</string>
-    
+
     <string name="text_main">Select an option to view the associated example.</string>
-    
-    <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.com. 
-    RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific 
-    RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an 
-    abstracted object model.</string>
-    
-    <string name="text_atom_description">These examples retrieve the ATOM feed from 
-    jira.springframework.org. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter 
-    or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports 
-    RSS and ATOM using an abstracted object model.</string>
-    
-	<string-array name="main_menu_items">
-    	<item>RSS</item>
-		<item>ATOM</item>
-	</string-array>
-            
-	<string-array name="rss_activity_options">
-		<item>SyndFeed</item>
-		<item>RssChannel</item>
-	</string-array>
-	
-	<string-array name="atom_activity_options">
-		<item>SyndFeed</item>
-		<item>AtomFeed</item>
-	</string-array>
-		
+
+    <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.com.
+        RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
+        RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an
+        abstracted object model.
+    </string>
+
+    <string name="text_atom_description">These examples retrieve the ATOM feed from
+        jira.springframework.org. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter
+        or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports
+        RSS and ATOM using an abstracted object model.
+    </string>
+
+    <string-array name="main_menu_items">
+        <item>RSS</item>
+        <item>ATOM</item>
+    </string-array>
+
+    <string-array name="rss_activity_options">
+        <item>SyndFeed</item>
+        <item>RssChannel</item>
+    </string-array>
+
+    <string-array name="atom_activity_options">
+        <item>SyndFeed</item>
+        <item>AtomFeed</item>
+    </string-array>
+
 </resources>

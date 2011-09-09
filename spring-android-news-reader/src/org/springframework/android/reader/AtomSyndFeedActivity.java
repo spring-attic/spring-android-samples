@@ -40,111 +40,109 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
  * @author Pierre-Yves Ricau
  */
 public class AtomSyndFeedActivity extends AbstractAsyncListActivity {
-	
-	protected static final String TAG = AtomSyndFeedActivity.class.getSimpleName();
 
-	private SyndFeed feed;
-	
+    protected static final String TAG = AtomSyndFeedActivity.class.getSimpleName();
 
-	// ***************************************
-	// Activity methods
-	// ***************************************
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setTitle(null);
+    private SyndFeed feed;
 
-		// initiate the asynchronous network request
-		new DownloadAtomFeedTask().execute();
-	}
+    // ***************************************
+    // Activity methods
+    // ***************************************
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle(null);
 
-	@Override
-	public void onStart() {
-		super.onStart();
-	}
+        // initiate the asynchronous network request
+        new DownloadAtomFeedTask().execute();
+    }
 
-	// ***************************************
-	// ListActivity methods
-	// ***************************************
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		if (feed == null) {
-			return;
-		}
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 
-		SyndEntry entry = (SyndEntry) feed.getEntries().get(position);
-		String link = entry.getLink();
-		Log.i(TAG, link);
-		Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link));
-		this.startActivity(intent);
-	}
+    // ***************************************
+    // ListActivity methods
+    // ***************************************
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        if (feed == null) {
+            return;
+        }
 
-	// ***************************************
-	// Private methods
-	// ***************************************
-	private void refreshAtomFeed(SyndFeed feed) {
-		this.feed = feed;
+        SyndEntry entry = (SyndEntry) feed.getEntries().get(position);
+        String link = entry.getLink();
+        Log.i(TAG, link);
+        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link));
+        this.startActivity(intent);
+    }
 
-		if (feed == null) {
-			return;
-		}
+    // ***************************************
+    // Private methods
+    // ***************************************
+    private void refreshAtomFeed(SyndFeed feed) {
+        this.feed = feed;
 
-		setTitle(feed.getTitle());
+        if (feed == null) {
+            return;
+        }
 
-		SyndFeedListAdapter adapter = new SyndFeedListAdapter(this, feed);
-		setListAdapter(adapter);
-	}
+        setTitle(feed.getTitle());
 
-	// ***************************************
-	// Private classes
-	// ***************************************
-	private class DownloadAtomFeedTask extends AsyncTask<Void, Void, SyndFeed> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
+        SyndFeedListAdapter adapter = new SyndFeedListAdapter(this, feed);
+        setListAdapter(adapter);
+    }
 
-		@Override
-		protected SyndFeed doInBackground(Void... params) {
-			try {
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
+    // ***************************************
+    // Private classes
+    // ***************************************
+    private class DownloadAtomFeedTask extends AsyncTask<Void, Void, SyndFeed> {
 
-				// Configure the SyndFeed message converter.
-				SyndFeedHttpMessageConverter converter = new SyndFeedHttpMessageConverter();
-				List<MediaType> mediaTypes = new ArrayList<MediaType>();
-				mediaTypes.add(MediaType.APPLICATION_XML);
-				converter.setSupportedMediaTypes(mediaTypes);
+        @Override
+        protected void onPreExecute() {
+            // before the network request begins, show a progress indicator
+            showLoadingProgressDialog();
+        }
 
-				// Add the SyndFeed message converter to the RestTemplate
-				// instance
-				List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-				messageConverters.add(converter);
-				restTemplate.setMessageConverters(messageConverters);
+        @Override
+        protected SyndFeed doInBackground(Void... params) {
+            try {
+                // Create a new RestTemplate instance
+                RestTemplate restTemplate = new RestTemplate();
 
-				// The URL for making the request
-				final String url = getString(R.string.atom_feed_url);
+                // Configure the SyndFeed message converter.
+                SyndFeedHttpMessageConverter converter = new SyndFeedHttpMessageConverter();
+                List<MediaType> mediaTypes = new ArrayList<MediaType>();
+                mediaTypes.add(MediaType.APPLICATION_XML);
+                converter.setSupportedMediaTypes(mediaTypes);
 
-				// Initiate the request and return the results
-				return restTemplate.getForObject(url, SyndFeed.class);
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage(), e);
-			}
+                // Add the SyndFeed message converter to the RestTemplate instance
+                List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+                messageConverters.add(converter);
+                restTemplate.setMessageConverters(messageConverters);
 
-			return null;
-		}
+                // The URL for making the request
+                final String url = getString(R.string.atom_feed_url);
 
-		@Override
-		protected void onPostExecute(SyndFeed feed) {
-			// hide the progress indicator when the network request is complete
-			dismissProgressDialog();
+                // Initiate the request and return the results
+                return restTemplate.getForObject(url, SyndFeed.class);
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }
 
-			// return the feed list
-			refreshAtomFeed(feed);
-		}
-		
-	}
-	
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(SyndFeed feed) {
+            // hide the progress indicator when the network request is complete
+            dismissProgressDialog();
+
+            // return the feed list
+            refreshAtomFeed(feed);
+        }
+
+    }
+
 }

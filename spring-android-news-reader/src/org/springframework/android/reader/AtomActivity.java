@@ -25,35 +25,35 @@ import android.widget.AdapterView.OnItemClickListener;
  */
 public class AtomActivity extends AbstractMenuActivity {
 
-	//***************************************
+    // ***************************************
     // AbstractMenuActivity methods
-    //***************************************
-	@Override
-	protected String getDescription() {
-		return getResources().getString(R.string.text_atom_description);
-	}
+    // ***************************************
+    @Override
+    protected String getDescription() {
+        return getResources().getString(R.string.text_atom_description);
+    }
 
-	@Override
-	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.atom_activity_options);
-	}
+    @Override
+    protected String[] getMenuItems() {
+        return getResources().getStringArray(R.array.atom_activity_options);
+    }
 
-	@Override
-	protected OnItemClickListener getMenuOnItemClickListener() {
-		return new AdapterView.OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				switch (position) {
-					case 0:
-						startActivity(new Intent(parentView.getContext(), AtomSyndFeedActivity.class));
-						break;
-					case 1:
-						startActivity(new Intent(parentView.getContext(), AtomFeedActivity.class));
-						break;
-					default:
-						break;
-				}
-			}
-		};
-	}
-	
+    @Override
+    protected OnItemClickListener getMenuOnItemClickListener() {
+        return new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+                switch (position) {
+                case 0:
+                    startActivity(new Intent(parentView.getContext(), AtomSyndFeedActivity.class));
+                    break;
+                case 1:
+                    startActivity(new Intent(parentView.getContext(), AtomFeedActivity.class));
+                    break;
+                default:
+                    break;
+                }
+            }
+        };
+    }
+
 }

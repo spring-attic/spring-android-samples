@@ -29,46 +29,46 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item
  * @author Roy Clarkson
  */
 public class RssChannelListAdapter extends BaseAdapter {
-	
-	private Channel channel;
-	private final LayoutInflater layoutInflater;
 
-	public RssChannelListAdapter(Context context, Channel channel) {
-		this.channel = channel;
-		this.layoutInflater = LayoutInflater.from(context);
-	}
+    private Channel channel;
+    private final LayoutInflater layoutInflater;
 
-	public int getCount() {
-		return channel != null ? channel.getItems().size() : 0;
-	}
+    public RssChannelListAdapter(Context context, Channel channel) {
+        this.channel = channel;
+        this.layoutInflater = LayoutInflater.from(context);
+    }
 
-	public Object getItem(int position) {
-		return channel.getItems().get(position);
-	}
+    public int getCount() {
+        return channel != null ? channel.getItems().size() : 0;
+    }
 
-	public long getItemId(int position) {
-		return position;
-	}
+    public Object getItem(int position) {
+        return channel.getItems().get(position);
+    }
 
-	public View getView(int position, View convertView, ViewGroup parent) {
-		Item item = (Item) getItem(position);
+    public long getItemId(int position) {
+        return position;
+    }
 
-		if (convertView == null) {
-			convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
-		}
-		
-		if (item != null) {
-			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
-			t.setText(item.getTitle());
-	
-			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
-			t.setText(item.getPubDate().toString());
-	
-			t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-			t.setText(item.getDescription().getValue());
-		}
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Item item = (Item) getItem(position);
 
-		return convertView;
-	}
-	
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+        }
+
+        if (item != null) {
+            TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
+            t.setText(item.getTitle());
+
+            t = (TextView) convertView.findViewById(R.id.synd_feed_date);
+            t.setText(item.getPubDate().toString());
+
+            t = (TextView) convertView.findViewById(R.id.synd_feed_description);
+            t.setText(item.getDescription().getValue());
+        }
+
+        return convertView;
+    }
+
 }

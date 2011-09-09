@@ -23,45 +23,43 @@ import android.app.ProgressDialog;
  * @author Pierre-Yves Ricau
  */
 public abstract class AbstractAsyncListActivity extends ListActivity {
-	
-	protected static final String TAG = AbstractAsyncListActivity.class.getSimpleName();
 
-	private ProgressDialog progressDialog;
-	
-	private boolean destroyed = false;
+    protected static final String TAG = AbstractAsyncListActivity.class.getSimpleName();
 
-	
-	//***************************************
+    private ProgressDialog progressDialog;
+
+    private boolean destroyed = false;
+
+    // ***************************************
     // Activity methods
-    //***************************************
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		destroyed = true;
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        destroyed = true;
+    }
+
+    // ***************************************
     // Public methods
-    //***************************************
-	public void showLoadingProgressDialog() {
-		this.showProgressDialog("Loading. Please wait...");
-	}
-	
-	public void showProgressDialog(CharSequence message) {
-		if (progressDialog == null) {
-			progressDialog = new ProgressDialog(this);
-			progressDialog.setIndeterminate(true);
-		}
-		
-		progressDialog.setMessage(message);
-		progressDialog.show();
-	}
-		
-	public void dismissProgressDialog() {
-		if (progressDialog != null && !destroyed) {
-			progressDialog.dismiss();
-		}
-	}
-	
+    // ***************************************
+    public void showLoadingProgressDialog() {
+        this.showProgressDialog("Loading. Please wait...");
+    }
+
+    public void showProgressDialog(CharSequence message) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setIndeterminate(true);
+        }
+
+        progressDialog.setMessage(message);
+        progressDialog.show();
+    }
+
+    public void dismissProgressDialog() {
+        if (progressDialog != null && !destroyed) {
+            progressDialog.dismiss();
+        }
+    }
+
 }
