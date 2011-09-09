@@ -10,8 +10,6 @@ import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Parameters;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -64,12 +62,13 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 		String redirectUri = getString(R.string.facebook_oauth_callback_url);
 		String scope = getString(R.string.facebook_scope);
 
-		// the display=touch parameter requests the mobile formatted version of the Facebook authorization page
-		MultiValueMap<String, String> additionalParameters = new LinkedMultiValueMap<String, String>();
-		additionalParameters.add("display", "touch");
-		
 		// Generate the Facebook authorization url to be used in the browser or web view
-		return connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, new OAuth2Parameters(redirectUri, scope, null, additionalParameters));
+		// the display=touch parameter requests the mobile formatted version of the Facebook authorization page
+		OAuth2Parameters params = new OAuth2Parameters();
+		params.setRedirectUri(redirectUri);
+		params.setScope(scope);
+		params.add("display", "touch");
+		return connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, params);
 	}
 	
 	private void displayFacebookOptions() {
