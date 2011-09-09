@@ -33,42 +33,38 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 public class FileUploadController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the view to render by returning its name.
-	 */
-	@RequestMapping(value="fileupload", method=RequestMethod.GET)
-	public String fileUpload() {
-		return "fileupload";
-	}
-	
-	/**
-	 * Accepts a POST request with multipart/form-data content
-	 * 
-	 * @param name 
-	 * 			the name of the file being uploaded
-	 * 
-	 * @param file 
-	 * 			the binary file
-	 * 
-	 * @return response message indicating success or failure
-	 */
-    @RequestMapping(value = "postformdata", method=RequestMethod.POST, headers="Content-Type=multipart/form-data")
-    public @ResponseBody String handleFormUpload(@RequestParam("description") String description, @RequestParam("file") MultipartFile file) {
+
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+    /**
+     * Simply selects the view to render by returning its name.
+     */
+    @RequestMapping(value = "fileupload", method = RequestMethod.GET)
+    public String fileUpload() {
+        return "fileupload";
+    }
+
+    /**
+     * Accepts a POST request with multipart/form-data content
+     * @param name the name of the file being uploaded
+     * @param file the binary file
+     * @return response message indicating success or failure
+     */
+    @RequestMapping(value = "postformdata", method = RequestMethod.POST, headers = "Content-Type=multipart/form-data")
+    public @ResponseBody
+    String handleFormUpload(@RequestParam("description") String description, @RequestParam("file") MultipartFile file) {
 
         if (!file.isEmpty()) {
-        	byte[] bytes = null;
+            byte[] bytes = null;
             try {
-				bytes = file.getBytes();
-			} catch (IOException e) {
-				logger.info("error processing uploaded file", e);
-			}
-           return "file upload received! Name:[" + description + "] Size:[" + bytes.length + "]";
-       } else {
-    	   return "file upload failed!";
-       }
+                bytes = file.getBytes();
+            } catch (IOException e) {
+                logger.info("error processing uploaded file", e);
+            }
+            return "file upload received! Name:[" + description + "] Size:[" + bytes.length + "]";
+        } else {
+            return "file upload failed!";
+        }
     }
 
 }
