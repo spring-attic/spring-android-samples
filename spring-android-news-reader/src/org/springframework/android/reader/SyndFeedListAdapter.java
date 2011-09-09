@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndContent;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndEntry;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndFeed;
 
@@ -65,8 +66,11 @@ public class SyndFeedListAdapter extends BaseAdapter {
             t = (TextView) convertView.findViewById(R.id.synd_feed_date);
             t.setText(syndEntry.getPublishedDate().toString());
 
-            t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-            t.setText(syndEntry.getDescription().getValue());
+            SyndContent description = syndEntry.getDescription();
+            if (description != null) {
+                t = (TextView) convertView.findViewById(R.id.synd_feed_description);
+                t.setText(description.getValue());
+            }
         }
 
         return convertView;

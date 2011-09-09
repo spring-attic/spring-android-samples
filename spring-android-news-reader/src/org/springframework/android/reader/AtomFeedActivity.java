@@ -18,7 +18,6 @@ package org.springframework.android.reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.feed.AtomFeedHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -113,11 +112,8 @@ public class AtomFeedActivity extends AbstractAsyncListActivity {
 
                 // Configure the ATOM message converter
                 AtomFeedHttpMessageConverter converter = new AtomFeedHttpMessageConverter();
-                List<MediaType> mediaTypes = new ArrayList<MediaType>();
-                mediaTypes.add(MediaType.APPLICATION_XML);
-                converter.setSupportedMediaTypes(mediaTypes);
 
-                // Add the ATOM message converter to the RestTemplate instance
+                // Add the ATOM message converter to the RestTemplate instance, since it is not automatically available
                 List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
                 messageConverters.add(converter);
                 restTemplate.setMessageConverters(messageConverters);

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Content;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Entry;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Feed;
 
@@ -64,8 +65,11 @@ public class AtomFeedListAdapter extends BaseAdapter {
             t = (TextView) convertView.findViewById(R.id.synd_feed_date);
             t.setText(entry.getPublished().toString());
 
-            t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-            t.setText(entry.getSummary().getValue());
+            Content summary = entry.getSummary();
+            if (summary != null) {
+                t = (TextView) convertView.findViewById(R.id.synd_feed_description);
+                t.setText(summary.getValue());   
+            }
         }
 
         return convertView;
