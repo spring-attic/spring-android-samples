@@ -22,17 +22,17 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 /**
  * @author Roy Clarkson
  */
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TwitterSearchResults {
-	
-	private List<Tweet> results;
-	
-	public void setResults(List<Tweet> results) {
-		this.results = results;
-	}
 
-	public List<Tweet> getResults() {
-		return results;
-	}
+    private List<Tweet> results;
+
+    public void setResults(List<Tweet> results) {
+        this.results = results;
+    }
+
+    public List<Tweet> getResults() {
+        return results;
+    }
 
 }

@@ -5,20 +5,20 @@
     android:layout_height="fill_parent"
     android:layout_centerVertical="true"
     >
-    		
-	<TextView
+            
+    <TextView
         android:id="@+id/label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dip"
         android:text="This example posts multipart/form-data content to the example server."
         />
-	
-	<Button
-		android:id="@+id/button_post_form_data"
-		android:text="Send"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		/>
-	
+    
+    <Button
+        android:id="@+id/button_post_form_data"
+        android:text="Send"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+    
 </LinearLayout>

@@ -23,39 +23,39 @@ import org.codehaus.jackson.annotate.JsonProperty;
 /**
  * @author Roy Clarkson
  */
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
 
-	@JsonProperty("from_user")
-	private String fromUser;
-	
-	@JsonProperty("created_at")
-	private Date createdAt;
-	
-	private String text;
-	
-	public void setFromUser(String fromUser) {
-		this.fromUser = fromUser;
-	}
-	
-	public String getFromUser() {
-		return fromUser;
-	}
-	
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-	
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    @JsonProperty("from_user")
+    private String fromUser;
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    @JsonProperty("created_at")
+    private Date createdAt;
 
-	public String getText() {
-		return text;
-	}
-	
+    private String text;
+
+    public void setFromUser(String fromUser) {
+        this.fromUser = fromUser;
+    }
+
+    public String getFromUser() {
+        return fromUser;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
+
 }

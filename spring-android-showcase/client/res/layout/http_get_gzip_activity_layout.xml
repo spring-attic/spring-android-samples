@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
    
-	<TextView
-		android:id="@+id/text_view_label_headers"
-		android:text="Headers:"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="8dip"
-		android:paddingBottom="4dip"
-		android:textStyle="bold"
-		/>
-	
-	<TextView
-		android:id="@+id/text_view_headers"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="8dip"
-		/>
-	
-	<TextView
-		android:id="@+id/text_view_label_results"
-		android:text="Results:"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="8dip"
-		android:paddingBottom="4dip"
-		android:textStyle="bold"
-		/>
-	
-	<ScrollView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		>
-	
-		<TextView
-			android:id="@+id/text_view_results"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:padding="8dip"
-			/>
-			
-	</ScrollView>
-	
+    <TextView
+        android:id="@+id/text_view_label_headers"
+        android:text="Headers:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dip"
+        android:paddingBottom="4dip"
+        android:textStyle="bold"
+        />
+    
+    <TextView
+        android:id="@+id/text_view_headers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dip"
+        />
+    
+    <TextView
+        android:id="@+id/text_view_label_results"
+        android:text="Results:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dip"
+        android:paddingBottom="4dip"
+        android:textStyle="bold"
+        />
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+    
+        <TextView
+            android:id="@+id/text_view_results"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="8dip"
+            />
+            
+    </ScrollView>
+    
 </LinearLayout>

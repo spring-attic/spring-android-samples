@@ -27,43 +27,43 @@ import android.widget.AdapterView.OnItemClickListener;
  * @author Roy Clarkson
  */
 public class HttpGetActivity extends AbstractMenuActivity {
-	
-	//***************************************
-    // AbstractMenuActivity methods
-    //***************************************
-	@Override
-	protected String getDescription() {
-		return getResources().getString(R.string.text_http_get_description);
-	}
 
-	@Override
-	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.http_get_activity_menu_items);
-	}
-	
-	@Override
-	protected OnItemClickListener getMenuOnItemClickListener() {
-		return new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				switch (position) {
-				case 0:
-					startActivity(new Intent(parentView.getContext(), HttpGetJsonXmlActivity.class));
-					break;
-				case 1:
-					startActivity(new Intent(parentView.getContext(), HttpGetParametersActivity.class));
-					break;
-				case 2:
-					startActivity(new Intent(parentView.getContext(), GoogleSearchActivity.class));
-					break;
-				case 3:
-					startActivity(new Intent(parentView.getContext(), HttpGetGzipActivity.class));
-					break;
-				case 4:
-					startActivity(new Intent(parentView.getContext(), HttpGetSetRequestTimeoutActivity.class));
-				default:
-					break;
-				}
-			}
-		};
-	}
+    // ***************************************
+    // AbstractMenuActivity methods
+    // ***************************************
+    @Override
+    protected String getDescription() {
+        return getResources().getString(R.string.text_http_get_description);
+    }
+
+    @Override
+    protected String[] getMenuItems() {
+        return getResources().getStringArray(R.array.http_get_activity_menu_items);
+    }
+
+    @Override
+    protected OnItemClickListener getMenuOnItemClickListener() {
+        return new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+                switch (position) {
+                case 0:
+                    startActivity(new Intent(parentView.getContext(), HttpGetJsonXmlActivity.class));
+                    break;
+                case 1:
+                    startActivity(new Intent(parentView.getContext(), HttpGetParametersActivity.class));
+                    break;
+                case 2:
+                    startActivity(new Intent(parentView.getContext(), GoogleSearchActivity.class));
+                    break;
+                case 3:
+                    startActivity(new Intent(parentView.getContext(), HttpGetGzipActivity.class));
+                    break;
+                case 4:
+                    startActivity(new Intent(parentView.getContext(), HttpGetSetRequestTimeoutActivity.class));
+                default:
+                    break;
+                }
+            }
+        };
+    }
 }

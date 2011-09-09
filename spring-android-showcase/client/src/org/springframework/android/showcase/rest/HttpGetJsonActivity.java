@@ -38,89 +38,88 @@ import android.util.Log;
  * @author Pierre-Yves Ricau
  */
 public class HttpGetJsonActivity extends AbstractAsyncListActivity {
-	
-	protected static final String TAG = HttpGetJsonActivity.class.getSimpleName();
-	
-	
-	//***************************************
+
+    protected static final String TAG = HttpGetJsonActivity.class.getSimpleName();
+
+    // ***************************************
     // Activity methods
-    //***************************************
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-	
-	@Override
-	public void onStart() {
-		super.onStart();
-		
-		// when this activity starts, initiate an asynchronous HTTP GET request
-		new DownloadStatesTask().execute();
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // when this activity starts, initiate an asynchronous HTTP GET request
+        new DownloadStatesTask().execute();
+    }
+
+    // ***************************************
     // Private methods
-    //*************************************** 
-	private void refreshStates(List<State> states) {
-		if (states == null) {
-			return;
-		}
+    // ***************************************
+    private void refreshStates(List<State> states) {
+        if (states == null) {
+            return;
+        }
 
-		StatesListAdapter adapter = new StatesListAdapter(this, states);
-		setListAdapter(adapter);
-	}	
-	
-	//***************************************
+        StatesListAdapter adapter = new StatesListAdapter(this, states);
+        setListAdapter(adapter);
+    }
+
+    // ***************************************
     // Private classes
-    //***************************************
-	private class DownloadStatesTask extends AsyncTask<Void, Void, List<State>> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
-		
-		@Override
-		protected List<State> doInBackground(Void... params) {
-			try {
-				// The URL for making the GET request
-				final String url = getString(R.string.base_uri) + "/states";
+    // ***************************************
+    private class DownloadStatesTask extends AsyncTask<Void, Void, List<State>> {
 
-				// Set the Accept header for "application/json"
-				HttpHeaders requestHeaders = new HttpHeaders();
-				List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
-				acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
-				requestHeaders.setAccept(acceptableMediaTypes);
+        @Override
+        protected void onPreExecute() {
+            // before the network request begins, show a progress indicator
+            showLoadingProgressDialog();
+        }
 
-				// Populate the headers in an HttpEntity object to use for the request
-				HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
+        @Override
+        protected List<State> doInBackground(Void... params) {
+            try {
+                // The URL for making the GET request
+                final String url = getString(R.string.base_uri) + "/states";
 
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
+                // Set the Accept header for "application/json"
+                HttpHeaders requestHeaders = new HttpHeaders();
+                List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+                acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
+                requestHeaders.setAccept(acceptableMediaTypes);
 
-				// Perform the HTTP GET request
-				ResponseEntity<State[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State[].class);
+                // Populate the headers in an HttpEntity object to use for the
+                // request
+                HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
 
-				// convert the array to a list and return it
-				return Arrays.asList(responseEntity.getBody());
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage(), e);
-			}
+                // Create a new RestTemplate instance
+                RestTemplate restTemplate = new RestTemplate();
 
-			return null;
-		}
+                // Perform the HTTP GET request
+                ResponseEntity<State[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State[].class);
 
-		@Override
-		protected void onPostExecute(List<State> result) {
-			// hide the progress indicator when the network request is complete
-			dismissProgressDialog();
+                // convert the array to a list and return it
+                return Arrays.asList(responseEntity.getBody());
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }
 
-			// return the list of states
-			refreshStates(result);
-		}
-		
-	}
-	
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<State> result) {
+            // hide the progress indicator when the network request is complete
+            dismissProgressDialog();
+
+            // return the list of states
+            refreshStates(result);
+        }
+
+    }
+
 }

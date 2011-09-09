@@ -27,36 +27,36 @@ import android.widget.AdapterView.OnItemClickListener;
  * @author Roy Clarkson
  */
 public class GoogleSearchActivity extends AbstractMenuActivity {
-	
-	//***************************************
-    // AbstractMenuActivity methods
-    //***************************************
-	@Override
-	protected String getDescription() {
-		return getResources().getString(R.string.text_http_get_google_search_description);
-	}
 
-	@Override
-	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.http_get_google_search_menu_items);
-	}
-	
-	@Override
-	protected OnItemClickListener getMenuOnItemClickListener() {
-		return new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				switch (position) {
-				case 0:
-					startActivity(new Intent(parentView.getContext(), GoogleSearchJacksonActivity.class));
-					break;
-				case 1:
-					startActivity(new Intent(parentView.getContext(), GoogleSearchGsonActivity.class));
-					break;
-				default:
-					break;
-				}
-			}
-		};
-	}
-	
+    // ***************************************
+    // AbstractMenuActivity methods
+    // ***************************************
+    @Override
+    protected String getDescription() {
+        return getResources().getString(R.string.text_http_get_google_search_description);
+    }
+
+    @Override
+    protected String[] getMenuItems() {
+        return getResources().getStringArray(R.array.http_get_google_search_menu_items);
+    }
+
+    @Override
+    protected OnItemClickListener getMenuOnItemClickListener() {
+        return new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+                switch (position) {
+                case 0:
+                    startActivity(new Intent(parentView.getContext(), GoogleSearchJacksonActivity.class));
+                    break;
+                case 1:
+                    startActivity(new Intent(parentView.getContext(), GoogleSearchGsonActivity.class));
+                    break;
+                default:
+                    break;
+                }
+            }
+        };
+    }
+
 }

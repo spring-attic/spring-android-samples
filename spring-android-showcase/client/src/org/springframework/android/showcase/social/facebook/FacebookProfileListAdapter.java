@@ -27,68 +27,67 @@ import android.widget.TextView;
 /**
  * @author Roy Clarkson
  */
-public class FacebookProfileListAdapter extends BaseAdapter 
-{
-	private FacebookProfile facebookProfile;
-	private final LayoutInflater layoutInflater;
+public class FacebookProfileListAdapter extends BaseAdapter {
+    private FacebookProfile facebookProfile;
+    private final LayoutInflater layoutInflater;
 
-	public FacebookProfileListAdapter(Context context, FacebookProfile facebookProfile) {
-		if (facebookProfile == null) {
-			throw new IllegalArgumentException("facebookProfile cannot be null");
-		}
-		
-		this.facebookProfile = facebookProfile;
-		this.layoutInflater = LayoutInflater.from(context);
-	}
+    public FacebookProfileListAdapter(Context context, FacebookProfile facebookProfile) {
+        if (facebookProfile == null) {
+            throw new IllegalArgumentException("facebookProfile cannot be null");
+        }
 
-	public int getCount() {
-		return 3;
-	}
+        this.facebookProfile = facebookProfile;
+        this.layoutInflater = LayoutInflater.from(context);
+    }
 
-	public String[] getItem(int position) {
-		String[] item = new String[2];
+    public int getCount() {
+        return 3;
+    }
 
-		switch (position) {
-		case 0:
-			item[0] = "Id";
-			item[1] = String.valueOf(facebookProfile.getId());
-			break;
-		case 1:
-			item[0] = "Name";
-			item[1] = facebookProfile.getName();
-			break;
-		case 2:
-			item[0] = "Email";
-			item[1] = facebookProfile.getEmail();
-			break;
-		default:
-			item[0] = "";
-			item[1] = "";
-			break;
-		}
+    public String[] getItem(int position) {
+        String[] item = new String[2];
 
-		return item;
-	}
+        switch (position) {
+        case 0:
+            item[0] = "Id";
+            item[1] = String.valueOf(facebookProfile.getId());
+            break;
+        case 1:
+            item[0] = "Name";
+            item[1] = facebookProfile.getName();
+            break;
+        case 2:
+            item[0] = "Email";
+            item[1] = facebookProfile.getEmail();
+            break;
+        default:
+            item[0] = "";
+            item[1] = "";
+            break;
+        }
 
-	public long getItemId(int position) {
-		return position;
-	}
+        return item;
+    }
 
-	public View getView(int position, View convertView, ViewGroup parent) {	
-		String[] item = getItem(position);
-		View view = convertView;
-		
-		if (view == null) {
-			view = layoutInflater.inflate(android.R.layout.two_line_list_item, parent, false);
-		}
-		
-		TextView t = (TextView) view.findViewById(android.R.id.text1);
-		t.setText(item[0]);
-		
-		t = (TextView) view.findViewById(android.R.id.text2);
-		t.setText(item[1]);
-		
-		return view;
-	}
-	
+    public long getItemId(int position) {
+        return position;
+    }
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+        String[] item = getItem(position);
+        View view = convertView;
+
+        if (view == null) {
+            view = layoutInflater.inflate(android.R.layout.two_line_list_item, parent, false);
+        }
+
+        TextView t = (TextView) view.findViewById(android.R.id.text1);
+        t.setText(item[0]);
+
+        t = (TextView) view.findViewById(android.R.id.text2);
+        t.setText(item[1]);
+
+        return view;
+    }
+
 }

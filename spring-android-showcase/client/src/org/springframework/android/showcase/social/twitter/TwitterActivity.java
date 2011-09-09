@@ -32,102 +32,100 @@ import android.widget.ListView;
  * @author Roy Clarkson
  */
 public class TwitterActivity extends AbstractAsyncActivity {
-	
-	protected static final String TAG = TwitterActivity.class.getSimpleName();
-	
-	private ConnectionRepository connectionRepository;
-	
-	private TwitterConnectionFactory connectionFactory;
-	
 
-	//***************************************
+    protected static final String TAG = TwitterActivity.class.getSimpleName();
+
+    private ConnectionRepository connectionRepository;
+
+    private TwitterConnectionFactory connectionFactory;
+
+    // ***************************************
     // Activity methods
-    //***************************************
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.twitter_activity_layout);
-		connectionRepository = getApplicationContext().getConnectionRepository();
-		connectionFactory = getApplicationContext().getTwitterConnectionFactory();
-	}
-	
-	@Override
-	public void onStart() {
-		super.onStart();
-		
-		if (isConnected()) {
-			showTwitterOptions();
-		} else {
-			showConnectOption();
-		}
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.twitter_activity_layout);
+        connectionRepository = getApplicationContext().getConnectionRepository();
+        connectionFactory = getApplicationContext().getTwitterConnectionFactory();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (isConnected()) {
+            showTwitterOptions();
+        } else {
+            showConnectOption();
+        }
+    }
+
+    // ***************************************
     // Private methods
-    //***************************************
-	private boolean isConnected() {
-		return connectionRepository.findPrimaryConnection(Twitter.class) != null;
-	}
-	
-	private void disconnect() {
-		connectionRepository.removeConnections(connectionFactory.getProviderId());
-	}
-	
-	private void showConnectOption() {
-		String[] options = {"Connect"};
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
-		ListView listView = (ListView) this.findViewById(R.id.twitter_activity_options_list);
-		listView.setAdapter(arrayAdapter);
-		
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				switch (position) {
-				case 0:
-					displayTwitterAuthorization();
-					break;
-				default:
-					break;
-				}
-			}
-		});
-	}
-	
-	private void showTwitterOptions() {
-		String[] options = {"Disconnect", "View Profile", "Timeline", "Tweet", "Direct Message"};
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
-		ListView listView = (ListView) this.findViewById(R.id.twitter_activity_options_list);
-		listView.setAdapter(arrayAdapter);
-		
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				switch (position) {
-				case 0:
-					disconnect();
-					showConnectOption();
-					break;
-				case 1:
-					startActivity(new Intent(parentView.getContext(), TwitterProfileActivity.class));
-					break;
-				case 2:
-					startActivity(new Intent(parentView.getContext(), TwitterTimelineActivity.class));
-					break;
-				case 3:
-					startActivity(new Intent(parentView.getContext(), TwitterTweetActivity.class));
-					break;
-				case 4:
-					startActivity(new Intent(parentView.getContext(), TwitterDirectMessageActivity.class));
-					break;
-				default:
-					break;
-				}
-			}
-		});
-	}
-	
-	private void displayTwitterAuthorization() {
-		startActivity(new Intent(this, TwitterWebOAuthActivity.class));
-		finish();
-	}
-	
+    // ***************************************
+    private boolean isConnected() {
+        return connectionRepository.findPrimaryConnection(Twitter.class) != null;
+    }
+
+    private void disconnect() {
+        connectionRepository.removeConnections(connectionFactory.getProviderId());
+    }
+
+    private void showConnectOption() {
+        String[] options = { "Connect" };
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
+        ListView listView = (ListView) this.findViewById(R.id.twitter_activity_options_list);
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+                switch (position) {
+                case 0:
+                    displayTwitterAuthorization();
+                    break;
+                default:
+                    break;
+                }
+            }
+        });
+    }
+
+    private void showTwitterOptions() {
+        String[] options = { "Disconnect", "View Profile", "Timeline", "Tweet", "Direct Message" };
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options);
+        ListView listView = (ListView) this.findViewById(R.id.twitter_activity_options_list);
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+                switch (position) {
+                case 0:
+                    disconnect();
+                    showConnectOption();
+                    break;
+                case 1:
+                    startActivity(new Intent(parentView.getContext(), TwitterProfileActivity.class));
+                    break;
+                case 2:
+                    startActivity(new Intent(parentView.getContext(), TwitterTimelineActivity.class));
+                    break;
+                case 3:
+                    startActivity(new Intent(parentView.getContext(), TwitterTweetActivity.class));
+                    break;
+                case 4:
+                    startActivity(new Intent(parentView.getContext(), TwitterDirectMessageActivity.class));
+                    break;
+                default:
+                    break;
+                }
+            }
+        });
+    }
+
+    private void displayTwitterAuthorization() {
+        startActivity(new Intent(this, TwitterWebOAuthActivity.class));
+        finish();
+    }
+
 }

@@ -29,65 +29,62 @@ import android.util.Log;
  * @author Roy Clarkson
  */
 public class TwitterTimelineActivity extends AbstractAsyncListActivity {
-	
-	protected static final String TAG = TwitterProfileActivity.class.getSimpleName();
 
-	private Twitter twitter;
-	
-	
-	//***************************************
+    protected static final String TAG = TwitterProfileActivity.class.getSimpleName();
+
+    private Twitter twitter;
+
+    // ***************************************
     // Activity methods
-    //***************************************
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		twitter = getApplicationContext().getConnectionRepository().findPrimaryConnection(Twitter.class).getApi();
-	}
-	
-	@Override
-	public void onStart() {
-		super.onStart();
-		new FetchTimelineTask().execute();
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        twitter = getApplicationContext().getConnectionRepository().findPrimaryConnection(Twitter.class).getApi();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        new FetchTimelineTask().execute();
+    }
+
+    // ***************************************
     // Private methods
-    //***************************************
-	private void showResult(List<Tweet> tweets) {
-		TwitterTimelineListAdapter adapter = new TwitterTimelineListAdapter(this, tweets);
-		setListAdapter(adapter);
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    private void showResult(List<Tweet> tweets) {
+        TwitterTimelineListAdapter adapter = new TwitterTimelineListAdapter(this, tweets);
+        setListAdapter(adapter);
+    }
+
+    // ***************************************
     // Private classes
-    //***************************************
-	private class FetchTimelineTask extends AsyncTask<Void, Void, List<Tweet>> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showProgressDialog("Fetching timeline...");
-		}
-		
-		@Override
-		protected List<Tweet> doInBackground(Void... params) {
-			try {
-				return twitter.timelineOperations().getHomeTimeline();
-			} catch(Exception e) {
-				Log.e(TAG, e.getLocalizedMessage(), e);
-			}			
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(List<Tweet> tweets) {
-			// after the network request completes, hide the progress indicator
-			dismissProgressDialog();			
-			showResult(tweets);
-		}
-		
-	}
-	
+    // ***************************************
+    private class FetchTimelineTask extends AsyncTask<Void, Void, List<Tweet>> {
+
+        @Override
+        protected void onPreExecute() {
+            // before the network request begins, show a progress indicator
+            showProgressDialog("Fetching timeline...");
+        }
+
+        @Override
+        protected List<Tweet> doInBackground(Void... params) {
+            try {
+                return twitter.timelineOperations().getHomeTimeline();
+            } catch (Exception e) {
+                Log.e(TAG, e.getLocalizedMessage(), e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<Tweet> tweets) {
+            // after the network request completes, hide the progress indicator
+            dismissProgressDialog();
+            showResult(tweets);
+        }
+
+    }
+
 }

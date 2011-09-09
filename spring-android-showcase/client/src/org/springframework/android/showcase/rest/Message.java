@@ -23,51 +23,51 @@ import org.simpleframework.xml.Root;
  */
 @Root
 public class Message {
-	
-	@Element
-	private long id;
 
-	@Element
-	private String subject;
+    @Element
+    private long id;
 
-	@Element
-	private String text;
+    @Element
+    private String subject;
 
-	public Message() {
-	}
+    @Element
+    private String text;
 
-	public Message(long id, String subject, String text) {
-		this.id = id;
-		this.subject = subject;
-		this.text = text;
-	}
+    public Message() {
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public Message(long id, String subject, String text) {
+        this.id = id;
+        this.subject = subject;
+        this.text = text;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getSubject() {
-		return subject;
-	}
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public String getSubject() {
+        return subject;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public String toString() {
-		return "[Id:] " + this.getId() + " [Subject:] " + this.getSubject() + " [Text:] " + this.getText();
-	}
-	
+    public String getText() {
+        return text;
+    }
+
+    public String toString() {
+        return "[Id:] " + this.getId() + " [Subject:] " + this.getSubject() + " [Text:] " + this.getText();
+    }
+
 }

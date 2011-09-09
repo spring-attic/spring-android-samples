@@ -31,91 +31,88 @@ import android.widget.TextView;
  * @author Roy Clarkson
  */
 public class HttpGetGzipUncompressedActivity extends AbstractAsyncActivity {
-	
-	private static final String TAG = HttpGetGzipUncompressedActivity.class.getSimpleName();
-	
-	
-	//***************************************
+
+    private static final String TAG = HttpGetGzipUncompressedActivity.class.getSimpleName();
+
+    // ***************************************
     // Activity methods
-    //***************************************
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.http_get_gzip_activity_layout);
-	}
-	
-	@Override
-	public void onStart() {
-		super.onStart();
-		new UncompressedRequestTask().execute();
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.http_get_gzip_activity_layout);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        new UncompressedRequestTask().execute();
+    }
+
+    // ***************************************
     // Private methods
-    //***************************************
-	private void refreshResults(ResponseEntity<String> response) {
-		if (response == null) {
-			return;
-		}
-		
-		HttpHeaders headers = response.getHeaders();
-		StringBuilder sb = new StringBuilder();
-		sb.append("Date: ").append(headers.getFirst("Date")).append("\n");
-		sb.append("Status: ").append(headers.getFirst("Status")).append("\n");
-		sb.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\n");
-		sb.append("Content-Encoding: ").append(headers.getFirst("Content-Encoding")).append("\n");
-		sb.append("Content-Length: ").append(headers.getFirst("Content-Length")).append("\n");
+    // ***************************************
+    private void refreshResults(ResponseEntity<String> response) {
+        if (response == null) {
+            return;
+        }
 
-		TextView textView = (TextView) findViewById(R.id.text_view_headers);
-		textView.setText(sb.toString());
-		
-		String results = response.getBody() + "\n";
-		
-		textView = (TextView) findViewById(R.id.text_view_results);
-		textView.setText(results);
-	}
-	
-	
-	//***************************************
+        HttpHeaders headers = response.getHeaders();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Date: ").append(headers.getFirst("Date")).append("\n");
+        sb.append("Status: ").append(headers.getFirst("Status")).append("\n");
+        sb.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\n");
+        sb.append("Content-Encoding: ").append(headers.getFirst("Content-Encoding")).append("\n");
+        sb.append("Content-Length: ").append(headers.getFirst("Content-Length")).append("\n");
+
+        TextView textView = (TextView) findViewById(R.id.text_view_headers);
+        textView.setText(sb.toString());
+
+        String results = response.getBody() + "\n";
+
+        textView = (TextView) findViewById(R.id.text_view_results);
+        textView.setText(results);
+    }
+
+    // ***************************************
     // Private classes
-    //***************************************
-	private class UncompressedRequestTask extends AsyncTask<Void, Void, ResponseEntity<String>> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
+    // ***************************************
+    private class UncompressedRequestTask extends AsyncTask<Void, Void, ResponseEntity<String>> {
 
-		@Override
-		protected ResponseEntity<String> doInBackground(Void... params) {
-			try {
-				// The URL for making the GET request
-				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
-				
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
+        @Override
+        protected void onPreExecute() {
+            // before the network request begins, show a progress indicator
+            showLoadingProgressDialog();
+        }
 
-				// Perform the HTTP GET request
-				ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class, "SpringSource");
-				
-				return response;
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage(), e);
-			}
+        @Override
+        protected ResponseEntity<String> doInBackground(Void... params) {
+            try {
+                // The URL for making the GET request
+                final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
 
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(ResponseEntity<String> response) {
-			// hide the progress indicator when the network request is complete
-			dismissProgressDialog();
-			 
-			refreshResults(response);
-		}
-		
-	}
+                // Create a new RestTemplate instance
+                RestTemplate restTemplate = new RestTemplate();
+
+                // Perform the HTTP GET request
+                ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class, "SpringSource");
+
+                return response;
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(ResponseEntity<String> response) {
+            // hide the progress indicator when the network request is complete
+            dismissProgressDialog();
+
+            refreshResults(response);
+        }
+
+    }
 
 }

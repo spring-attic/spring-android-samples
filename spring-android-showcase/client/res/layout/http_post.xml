@@ -5,11 +5,11 @@
     android:layout_height="fill_parent"
     >
 
-	<Button
-		android:id="@+id/button_submit"  
-		android:layout_width="140sp"
-		android:layout_height="wrap_content" 
-		android:text="Submit"
-		/>
-			
+    <Button
+        android:id="@+id/button_submit"  
+        android:layout_width="140sp"
+        android:layout_height="wrap_content" 
+        android:text="Submit"
+        />
+            
 </LinearLayout>

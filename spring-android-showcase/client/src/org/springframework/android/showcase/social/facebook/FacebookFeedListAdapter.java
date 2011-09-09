@@ -30,46 +30,45 @@ import android.widget.TextView;
 /**
  * @author Roy Clarkson
  */
-public class FacebookFeedListAdapter extends BaseAdapter 
-{
-	private List<Post> entries;
-	private final LayoutInflater layoutInflater;
+public class FacebookFeedListAdapter extends BaseAdapter {
+    private List<Post> entries;
+    private final LayoutInflater layoutInflater;
 
-	public FacebookFeedListAdapter(Context context, List<Post> entries) {
-		this.entries = entries;
-		this.layoutInflater = LayoutInflater.from(context);
-	}
+    public FacebookFeedListAdapter(Context context, List<Post> entries) {
+        this.entries = entries;
+        this.layoutInflater = LayoutInflater.from(context);
+    }
 
-	public int getCount() {
-		return entries == null ? 0 : entries.size();
-	}
+    public int getCount() {
+        return entries == null ? 0 : entries.size();
+    }
 
-	public Post getItem(int position) {
-		return entries.get(position);
-	}
+    public Post getItem(int position) {
+        return entries.get(position);
+    }
 
-	public long getItemId(int position) {
-		return position;
-	}
+    public long getItemId(int position) {
+        return position;
+    }
 
-	public View getView(int position, View convertView, ViewGroup parent) {	
-		Post entry = getItem(position);
-		View view = convertView;
-		
-		if (view == null) {
-			view = layoutInflater.inflate(R.layout.facebook_feed_list_item, parent, false);
-		}
-		
-		TextView t = (TextView) view.findViewById(R.id.from_name);
-		t.setText(entry.getFrom().getName());
-		
-		t = (TextView) view.findViewById(R.id.updated_time);
-		t.setText(entry.getUpdatedTime().toString());
-		
-		t = (TextView) view.findViewById(R.id.message);
-		t.setText(entry.getMessage());
-		
-		return view;
-	}
-	
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Post entry = getItem(position);
+        View view = convertView;
+
+        if (view == null) {
+            view = layoutInflater.inflate(R.layout.facebook_feed_list_item, parent, false);
+        }
+
+        TextView t = (TextView) view.findViewById(R.id.from_name);
+        t.setText(entry.getFrom().getName());
+
+        t = (TextView) view.findViewById(R.id.updated_time);
+        t.setText(entry.getUpdatedTime().toString());
+
+        t = (TextView) view.findViewById(R.id.message);
+        t.setText(entry.getMessage());
+
+        return view;
+    }
+
 }

@@ -31,39 +31,39 @@ import android.widget.TextView;
  * @author Pierre-Yves Ricau
  */
 public class StatesListAdapter extends BaseAdapter {
-	
-	private List<State> states;
-	private final LayoutInflater layoutInflater;
 
-	public StatesListAdapter(Context context, List<State> states) {
-		this.states = states;
-		this.layoutInflater = LayoutInflater.from(context);
-	}
+    private List<State> states;
+    private final LayoutInflater layoutInflater;
 
-	public int getCount() {
-		return states != null ? states.size() : 0;
-	}
+    public StatesListAdapter(Context context, List<State> states) {
+        this.states = states;
+        this.layoutInflater = LayoutInflater.from(context);
+    }
 
-	public State getItem(int position) {
-		return states.get(position);
-	}
+    public int getCount() {
+        return states != null ? states.size() : 0;
+    }
 
-	public long getItemId(int position) {
-		return position;
-	}
+    public State getItem(int position) {
+        return states.get(position);
+    }
 
-	public View getView(int position, View convertView, ViewGroup parent) {
-		if (convertView == null) {
-			convertView = layoutInflater.inflate(R.layout.states_list_item, parent, false);
-		}
+    public long getItemId(int position) {
+        return position;
+    }
 
-		State state = getItem(position);
-		if (state != null) {
-			TextView t = (TextView) convertView.findViewById(R.id.state_name);
-			t.setText(state.getFormattedName());
-		}
-		
-		return convertView;
-	}
-	
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.states_list_item, parent, false);
+        }
+
+        State state = getItem(position);
+        if (state != null) {
+            TextView t = (TextView) convertView.findViewById(R.id.state_name);
+            t.setText(state.getFormattedName());
+        }
+
+        return convertView;
+    }
+
 }

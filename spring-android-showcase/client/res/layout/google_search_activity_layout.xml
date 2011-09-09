@@ -6,12 +6,12 @@
     android:layout_centerVertical="true"
     >
 
-	<TextView
-		android:id="@+id/text_view_results"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:padding="10dip"
-		/>
-	
+    <TextView
+        android:id="@+id/text_view_results"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dip"
+        />
+    
 </LinearLayout>

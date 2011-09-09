@@ -35,102 +35,99 @@ import android.util.Log;
  * @author Roy Clarkson
  */
 public class GoogleSearchJacksonActivity extends AbstractAsyncListActivity {
-	
-	protected static final String TAG = GoogleSearchJacksonActivity.class.getSimpleName();
-	
-	private List<GoogleSearchResult> results;
-	
-	
-	//***************************************
+
+    protected static final String TAG = GoogleSearchJacksonActivity.class.getSimpleName();
+
+    private List<GoogleSearchResult> results;
+
+    // ***************************************
     // Activity methods
-    //***************************************
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-	
-	@Override
-	public void onStart() {
-		super.onStart();
-		
-		// when this activity starts, initiate an asynchronous HTTP GET request
-		new GoogleSearchTask().execute();
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // when this activity starts, initiate an asynchronous HTTP GET request
+        new GoogleSearchTask().execute();
+    }
+
+    // ***************************************
     // ListActivity methods
-    //***************************************
-	@Override
-	protected void onListItemClick(android.widget.ListView l, android.view.View v, int position, long id) {
-		if (results == null) {
-			return;
-		}
-		
-		GoogleSearchResult result = results.get(position);
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(result.getUrl())));
-	}
-	
-	
-	//***************************************
+    // ***************************************
+    @Override
+    protected void onListItemClick(android.widget.ListView l, android.view.View v, int position, long id) {
+        if (results == null) {
+            return;
+        }
+
+        GoogleSearchResult result = results.get(position);
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(result.getUrl())));
+    }
+
+    // ***************************************
     // Private methods
-    //*************************************** 
-	private void refreshResults(GoogleSearchResponse response) {
-		if (response == null) {
-			return;
-		}
-		
-		this.results = response.getResponseData().getResults();
-		setListAdapter(new GoogleSearchResultListAdapter(this, results));
-	}	
-	
-	//***************************************
+    // ***************************************
+    private void refreshResults(GoogleSearchResponse response) {
+        if (response == null) {
+            return;
+        }
+
+        this.results = response.getResponseData().getResults();
+        setListAdapter(new GoogleSearchResultListAdapter(this, results));
+    }
+
+    // ***************************************
     // Private classes
-    //***************************************
-	private class GoogleSearchTask extends AsyncTask<Void, Void, GoogleSearchResponse> {
-		
-		@Override
-		protected void onPreExecute() {
-			// before the network request begins, show a progress indicator
-			showLoadingProgressDialog();
-		}
+    // ***************************************
+    private class GoogleSearchTask extends AsyncTask<Void, Void, GoogleSearchResponse> {
 
-		@Override
-		protected GoogleSearchResponse doInBackground(Void... params) {
-			try {
-				// The URL for making the GET request
-				final String url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={query}";
-				
-				// Create a new RestTemplate instance
-				RestTemplate restTemplate = new RestTemplate();
+        @Override
+        protected void onPreExecute() {
+            // before the network request begins, show a progress indicator
+            showLoadingProgressDialog();
+        }
 
-				// Set a custom MappingJacksonHttpMessageConverter that supports the text/javascript media type
-				MappingJacksonHttpMessageConverter messageConverter = new MappingJacksonHttpMessageConverter();
-				messageConverter.setSupportedMediaTypes(Collections.singletonList(new MediaType("text", "javascript")));
-				List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-				messageConverters.add(messageConverter);
-				restTemplate.setMessageConverters(messageConverters);
+        @Override
+        protected GoogleSearchResponse doInBackground(Void... params) {
+            try {
+                // The URL for making the GET request
+                final String url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={query}";
 
-				// Perform the HTTP GET request to the Google search API
-				GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class, "VMware");
-				
-				return response;
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage(), e);
-			}
+                // Create a new RestTemplate instance
+                RestTemplate restTemplate = new RestTemplate();
 
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(GoogleSearchResponse response) {
-			// hide the progress indicator when the network request is complete
-			dismissProgressDialog();
-			
-			// return the Google results
-			refreshResults(response);
-		}
-		
-	}
-	
+                // Set a custom MappingJacksonHttpMessageConverter that supports the text/javascript media type
+                MappingJacksonHttpMessageConverter messageConverter = new MappingJacksonHttpMessageConverter();
+                messageConverter.setSupportedMediaTypes(Collections.singletonList(new MediaType("text", "javascript")));
+                List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+                messageConverters.add(messageConverter);
+                restTemplate.setMessageConverters(messageConverters);
+
+                // Perform the HTTP GET request to the Google search API
+                GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class, "VMware");
+
+                return response;
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(GoogleSearchResponse response) {
+            // hide the progress indicator when the network request is complete
+            dismissProgressDialog();
+
+            // return the Google results
+            refreshResults(response);
+        }
+
+    }
+
 }

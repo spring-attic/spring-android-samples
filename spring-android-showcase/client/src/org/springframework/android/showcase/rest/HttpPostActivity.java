@@ -27,42 +27,42 @@ import android.widget.AdapterView.OnItemClickListener;
  * @author Roy Clarkson
  */
 public class HttpPostActivity extends AbstractMenuActivity {
-	
-	//***************************************
-    // AbstractMenuActivity methods
-    //***************************************
-	@Override
-	protected String getDescription() {
-		return getResources().getString(R.string.text_http_post_description);
-	}
 
-	@Override
-	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.http_post_activity_options);
-	}
-	
-	@Override
-	protected OnItemClickListener getMenuOnItemClickListener() {
-		return new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-				switch (position) {
-				case 0:
-					startActivity(new Intent(parentView.getContext(), HttpPostStringActivity.class));
-					break;
-				case 1:
-					startActivity(new Intent(parentView.getContext(), HttpPostJsonXmlActivity.class));
-					break;
-				case 2:
-					startActivity(new Intent(parentView.getContext(), HttpPostMultiValueMapActivity.class));
-					break;
-				case 3:
-					startActivity(new Intent(parentView.getContext(), HttpPostFormDataActivity.class));
-					break;
-				default:
-					break;
-				}
-			}
-		};
-	}
-	
+    // ***************************************
+    // AbstractMenuActivity methods
+    // ***************************************
+    @Override
+    protected String getDescription() {
+        return getResources().getString(R.string.text_http_post_description);
+    }
+
+    @Override
+    protected String[] getMenuItems() {
+        return getResources().getStringArray(R.array.http_post_activity_options);
+    }
+
+    @Override
+    protected OnItemClickListener getMenuOnItemClickListener() {
+        return new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+                switch (position) {
+                case 0:
+                    startActivity(new Intent(parentView.getContext(), HttpPostStringActivity.class));
+                    break;
+                case 1:
+                    startActivity(new Intent(parentView.getContext(), HttpPostJsonXmlActivity.class));
+                    break;
+                case 2:
+                    startActivity(new Intent(parentView.getContext(), HttpPostMultiValueMapActivity.class));
+                    break;
+                case 3:
+                    startActivity(new Intent(parentView.getContext(), HttpPostFormDataActivity.class));
+                    break;
+                default:
+                    break;
+                }
+            }
+        };
+    }
+
 }

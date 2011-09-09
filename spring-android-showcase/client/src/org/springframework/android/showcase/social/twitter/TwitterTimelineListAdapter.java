@@ -31,46 +31,46 @@ import android.widget.TextView;
  * @author Roy Clarkson
  */
 public class TwitterTimelineListAdapter extends BaseAdapter {
-	
-	private List<Tweet> tweets;
-	private final LayoutInflater layoutInflater;
 
-	public TwitterTimelineListAdapter(Context context, List<Tweet> tweets) {
-		this.tweets = tweets;
-		this.layoutInflater = LayoutInflater.from(context);
-	}
+    private List<Tweet> tweets;
+    private final LayoutInflater layoutInflater;
 
-	public int getCount() {
-		return tweets == null ? 0 : tweets.size();
-	}
+    public TwitterTimelineListAdapter(Context context, List<Tweet> tweets) {
+        this.tweets = tweets;
+        this.layoutInflater = LayoutInflater.from(context);
+    }
 
-	public Tweet getItem(int position) {
-		return tweets.get(position);
-	}
+    public int getCount() {
+        return tweets == null ? 0 : tweets.size();
+    }
 
-	public long getItemId(int position) {
-		return position;
-	}
+    public Tweet getItem(int position) {
+        return tweets.get(position);
+    }
 
-	public View getView(int position, View convertView, ViewGroup parent) {	
-		Tweet tweet = getItem(position);		
-		View view = convertView;
-		
-		if (view == null) {
-			view = layoutInflater.inflate(R.layout.twitter_timeline_list_item, parent, false);
-		}
-		
-		TextView t = (TextView) view.findViewById(R.id.tweet_from_user);
-		t.setText(tweet.getFromUser());
-		
-		t = (TextView) view.findViewById(R.id.tweet_created_at);
-		String date = tweet.getCreatedAt() == null ? "" : tweet.getCreatedAt().toString();
-		t.setText(date);
-		
-		t = (TextView) view.findViewById(R.id.tweet_text);
-		t.setText(tweet.getText());
-		
-		return view;
-	}
-	
+    public long getItemId(int position) {
+        return position;
+    }
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Tweet tweet = getItem(position);
+        View view = convertView;
+
+        if (view == null) {
+            view = layoutInflater.inflate(R.layout.twitter_timeline_list_item, parent, false);
+        }
+
+        TextView t = (TextView) view.findViewById(R.id.tweet_from_user);
+        t.setText(tweet.getFromUser());
+
+        t = (TextView) view.findViewById(R.id.tweet_created_at);
+        String date = tweet.getCreatedAt() == null ? "" : tweet.getCreatedAt().toString();
+        t.setText(date);
+
+        t = (TextView) view.findViewById(R.id.tweet_text);
+        t.setText(tweet.getText());
+
+        return view;
+    }
+
 }

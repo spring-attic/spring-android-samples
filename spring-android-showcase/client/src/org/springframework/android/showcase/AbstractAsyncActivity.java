@@ -23,50 +23,48 @@ import android.app.ProgressDialog;
  * @author Pierre-Yves Ricau
  */
 public abstract class AbstractAsyncActivity extends Activity implements AsyncActivity {
-	
-	protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
 
-	private ProgressDialog progressDialog;
-	
-	private boolean destroyed = false;
+    protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
 
-	
-	//***************************************
+    private ProgressDialog progressDialog;
+
+    private boolean destroyed = false;
+
+    // ***************************************
     // Activity methods
-    //***************************************
-	@Override
-	public MainApplication getApplicationContext() {
-		return (MainApplication) super.getApplicationContext();
-	}
+    // ***************************************
+    @Override
+    public MainApplication getApplicationContext() {
+        return (MainApplication) super.getApplicationContext();
+    }
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		destroyed = true;
-	}
-		
-	
-	//***************************************
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        destroyed = true;
+    }
+
+    // ***************************************
     // Public methods
-    //***************************************
-	public void showLoadingProgressDialog() {
-		this.showProgressDialog("Loading. Please wait...");
-	}
-	
-	public void showProgressDialog(CharSequence message) {
-		if (progressDialog == null) {
-			progressDialog = new ProgressDialog(this);
-			progressDialog.setIndeterminate(true);
-		}
-		
-		progressDialog.setMessage(message);
-		progressDialog.show();
-	}
-		
-	public void dismissProgressDialog() {
-		if (progressDialog != null && !destroyed) {
-			progressDialog.dismiss();
-		}
-	}
-	
+    // ***************************************
+    public void showLoadingProgressDialog() {
+        this.showProgressDialog("Loading. Please wait...");
+    }
+
+    public void showProgressDialog(CharSequence message) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setIndeterminate(true);
+        }
+
+        progressDialog.setMessage(message);
+        progressDialog.show();
+    }
+
+    public void dismissProgressDialog() {
+        if (progressDialog != null && !destroyed) {
+            progressDialog.dismiss();
+        }
+    }
+
 }
