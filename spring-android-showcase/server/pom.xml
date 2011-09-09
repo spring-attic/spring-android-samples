@@ -14,7 +14,7 @@
 		<org.springframework-version>3.0.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.1</org.slf4j-version>
-		<org.codehaus.jackson-version>1.8.4</org.codehaus.jackson-version>
+		<org.codehaus.jackson-version>1.8.5</org.codehaus.jackson-version>
 		<log4j-version>1.2.16</log4j-version>
 		<javax.xml.bind-version>2.2.2</javax.xml.bind-version>
 		<javax.inject-version>1</javax.inject-version>
