@@ -4,7 +4,7 @@
     
     <groupId>org.springframework.android</groupId>
     <artifactId>spring-android-showcase-client</artifactId>
-    <version>1.0.0.BUILD-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>apk</packaging>
     <name>spring-android-showcase-client</name>
     <url>http://www.springsource.org</url> 
@@ -15,19 +15,18 @@
 
     <properties> 
         <android-platform>7</android-platform>
-        <android-emulator>7</android-emulator>
-        <maven-android-plugin-version>2.8.4</maven-android-plugin-version>
+        <android-emulator>Android-2_1</android-emulator>
+        <android-maven-plugin-version>3.0.0-alpha-13</android-maven-plugin-version>
         <maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
         <maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
-        <android-version>2.1_r1</android-version>
         <!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 2.2.1, 2.3.1, 2.3.3 -->
-        <java-version>1.6</java-version>
+        <android-version>2.1_r1</android-version>
         <spring-android-version>1.0.0.BUILD-SNAPSHOT</spring-android-version>
         <spring-social-version>1.0.0.RELEASE</spring-social-version>
         <spring-security-crypto-version>3.1.0.RC3</spring-security-crypto-version>
-        <jackson-version>1.8.5</jackson-version>
-        <gson-version>1.7.1</gson-version>
-        <simple-version>2.6.1</simple-version>
+        <jackson-version>1.9.1</jackson-version>
+        <gson-version>1.7.2</gson-version>
+        <simple-version>2.6.2</simple-version>
     </properties>
 
     <dependencies>
@@ -142,8 +141,8 @@
         <plugins>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>maven-android-plugin</artifactId>
-                <version>${maven-android-plugin-version}</version>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>${android-maven-plugin-version}</version>
                 <configuration>
                     <sdk>
                         <platform>${android-platform}</platform>
@@ -151,6 +150,12 @@
                     <emulator>
                         <avd>${android-emulator}</avd>
                     </emulator>
+					<dex>
+                        <jvmArguments>
+                            <jvmArgument>-Xms256m</jvmArgument>
+                            <jvmArgument>-Xmx512m</jvmArgument>
+                        </jvmArguments>
+                    </dex>
                     <deleteConflictingFiles>true</deleteConflictingFiles>
                     <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
@@ -159,10 +164,6 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin-version}</version>
-                <configuration>
-                    <source>${java-version}</source>
-                    <target>${java-version}</target>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -177,6 +178,15 @@
     </build>
 
     <repositories>
+        <!-- ONLY NEEDED BECAUSE OF AN ISSUE WITH THE LATEST ANDROID-MAVEN-PLUGIN -->
+        <!-- SPRING-ANDROID OPTIONALLY REFERENCES ANDROID-ROME-FEAD-REEDER -->
+        <!-- 'mvn clean install' FAILS BECAUSE OF TRANSIENT DEPENDENCY LOOKUP -->
+        <!-- OPTIONAL DEPENDENCIES SHOULD NOT HAVE TO BE INCLUDED, OBVIOUSLY -->
+        <repository>
+            <id>android-rome-feed-reader-repository</id>
+            <name>Android ROME Feed Reader Repository</name>
+            <url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
+        </repository>
         <!-- For testing against latest Spring snapshots -->
         <repository>
             <id>org.springframework.maven.snapshot</id>
