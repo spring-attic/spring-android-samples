@@ -15,8 +15,12 @@
  */
 package org.springframework.android.showcase.rest;
 
+import java.util.Collections;
+
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
+import org.springframework.http.ContentCodingType;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -91,11 +95,16 @@ public class HttpGetGzipUncompressedActivity extends AbstractAsyncActivity {
                 // The URL for making the GET request
                 final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
 
+                // Add the Identity Accept-Encoding header to the request
+                // This disables gzip compression in Gingerbread (2.3) and newer
+                HttpHeaders requestHeaders = new HttpHeaders();
+                requestHeaders.setAcceptEncoding(Collections.singletonList(ContentCodingType.IDENTITY));
+
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();
 
                 // Perform the HTTP GET request
-                ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class, "SpringSource");
+                ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(requestHeaders), String.class, "SpringSource");
 
                 return response;
             } catch (Exception e) {
