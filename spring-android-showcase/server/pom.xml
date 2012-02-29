@@ -15,10 +15,10 @@
 
     <properties>
         <java-version>1.6</java-version>
-        <org.springframework-version>3.1.0.RELEASE</org.springframework-version>
+        <org.springframework-version>3.1.1.RELEASE</org.springframework-version>
         <org.aspectj-version>1.6.10</org.aspectj-version>
         <org.slf4j-version>1.6.1</org.slf4j-version>
-        <org.codehaus.jackson-version>1.9.2</org.codehaus.jackson-version>
+        <org.codehaus.jackson-version>1.9.5</org.codehaus.jackson-version>
         <log4j-version>1.2.16</log4j-version>
         <javax.xml.bind-version>2.2.2</javax.xml.bind-version>
         <javax.inject-version>1</javax.inject-version>
