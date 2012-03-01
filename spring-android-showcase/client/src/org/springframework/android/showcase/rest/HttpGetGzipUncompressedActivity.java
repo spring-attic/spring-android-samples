@@ -15,8 +15,6 @@
  */
 package org.springframework.android.showcase.rest;
 
-import java.util.Collections;
-
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
 import org.springframework.http.ContentCodingType;
@@ -98,7 +96,7 @@ public class HttpGetGzipUncompressedActivity extends AbstractAsyncActivity {
                 // Add the Identity Accept-Encoding header to the request
                 // This disables gzip compression in Gingerbread (2.3) and newer
                 HttpHeaders requestHeaders = new HttpHeaders();
-                requestHeaders.setAcceptEncoding(Collections.singletonList(ContentCodingType.IDENTITY));
+                requestHeaders.setAcceptEncoding(ContentCodingType.IDENTITY);
 
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();

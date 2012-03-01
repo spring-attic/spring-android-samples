@@ -54,7 +54,7 @@ public class HomeController {
      * Retrieve a list of states. Accepts a GET request for JSON
      * @return A JSON array of states
      */
-    @RequestMapping(value = "states", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "states", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<State> fetchStatesJson() {
         logger.info("fetching JSON states");
         return getStates();
@@ -64,7 +64,7 @@ public class HomeController {
      * Retrieve a list of states. Accepts a GET request for XML
      * @return An XML array of states
      */
-    @RequestMapping(value = "states", method = RequestMethod.GET, headers = "Accept=application/xml")
+    @RequestMapping(value = "states", method = RequestMethod.GET, produces = "application/xml")
     public @ResponseBody StateList fetchStatesXml() {
         logger.info("fetching XML states");
         List<State> states = getStates();
@@ -77,7 +77,7 @@ public class HomeController {
      * @param abbreviation contains the state abbreviation to use when finding the corresponding state
      * @return A JSON state
      */
-    @RequestMapping(value = "state/{abbreviation}", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "state/{abbreviation}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody State fetchStateJson(@PathVariable String abbreviation) {
         logger.info("fetching JSON state");
         return getStateByAbbreviation(abbreviation);
@@ -88,7 +88,7 @@ public class HomeController {
      * @param abbreviation contains the state abbreviation to use when finding the corresponding state
      * @return An XML state
      */
-    @RequestMapping(value = "state/{abbreviation}", method = RequestMethod.GET, headers = "Accept=application/xml")
+    @RequestMapping(value = "state/{abbreviation}", method = RequestMethod.GET, produces = "application/xml")
     public @ResponseBody State fetchStateXml(@PathVariable String abbreviation) {
         logger.info("fetching XML state");
         return getStateByAbbreviation(abbreviation);
@@ -99,7 +99,7 @@ public class HomeController {
      * @param body contains the body of the POST request
      * @return a string with the result of the POST
      */
-    @RequestMapping(value = "sendmessage", method = RequestMethod.POST, headers = "Content-Type=text/plain")
+    @RequestMapping(value = "sendmessage", method = RequestMethod.POST, consumes = "text/plain")
     public @ResponseBody String sendMessage(@RequestBody String message) {
         logger.info("String message: " + message);
         return "String message received! Your message: " + message;
@@ -110,7 +110,7 @@ public class HomeController {
      * @param message serialized Message object
      * @return a string with the result of the POST
      */
-    @RequestMapping(value = "sendmessage", method = RequestMethod.POST, headers = "Content-Type=application/json")
+    @RequestMapping(value = "sendmessage", method = RequestMethod.POST, consumes = "application/json")
     public @ResponseBody String sendMessageJson(@RequestBody Message message) {
         logger.info("JSON message: " + message.toString());
         return "JSON message received! Your message: " + message.toString();
@@ -121,7 +121,7 @@ public class HomeController {
      * @param message serialized Message object
      * @return a string with the result of the POST
      */
-    @RequestMapping(value = "sendmessage", method = RequestMethod.POST, headers = "Content-Type=application/xml")
+    @RequestMapping(value = "sendmessage", method = RequestMethod.POST, consumes = "application/xml")
     public @ResponseBody String sendMessageXml(@RequestBody Message message) {
         logger.info("XML message: " + message.toString());
         return "XML message received! Your message: " + message.toString();

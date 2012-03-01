@@ -15,8 +15,6 @@
  */
 package org.springframework.android.showcase.rest;
 
-import java.util.Collections;
-
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
 import org.springframework.http.ContentCodingType;
@@ -95,7 +93,7 @@ public class HttpGetGzipCompressedActivity extends AbstractAsyncActivity {
 
                 // Add the gzip Accept-Encoding header to the request
                 HttpHeaders requestHeaders = new HttpHeaders();
-                requestHeaders.setAcceptEncoding(Collections.singletonList(ContentCodingType.GZIP));
+                requestHeaders.setAcceptEncoding(ContentCodingType.GZIP);
 
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();
