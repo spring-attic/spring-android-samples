@@ -43,4 +43,9 @@ This showcase includes an Android client and a Spring MVC server. Together these
 
 		$ mvn android:deploy
 
-	_Note: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer._
+5. Start the sample app:
+
+		$ mvn android:run
+		
+	_Note: the Android Maven Plugin will attempt to deploy and run the app to all available devices, both emulators and physical devices attached to your computer._
+
