@@ -81,8 +81,11 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
 
 		$ mvn android:deploy
 
-	_Note: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer._
+4. Start the sample app:
 
+		$ mvn android:run
+		
+	_Note: the Android Maven Plugin will attempt to deploy and run the app to all available devices, both emulators and physical devices attached to your computer._
 
 ## Troubleshooting Failed Deployment
 
