@@ -4,7 +4,7 @@
 
     <groupId>org.springframework.android</groupId>
     <artifactId>spring-android-news-reader</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0.BUILD-SNAPSHOT</version>
     <packaging>apk</packaging>
     <name>spring-android-news-reader</name>
     <url>http://www.springsource.org</url>
