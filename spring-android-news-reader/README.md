@@ -33,13 +33,9 @@ The Android SDK download does not include any specific Android platform SDKs. In
 
 	_Note: if this command does not open the Android SDK and AVD Manager, then your path is not configured correctly._
 
-2. Select Available packages from the left hand column
+2. Select Android 4.0.3 (API 15)
 
-3. Select the checkbox for Android Repository in the main window
-
-4. Select Android 4.0.3 (API 15)
-
-5. Click the **Install packages...** button to complete the download and installation.
+3. Click the **Install packages...** button to complete the download and installation.
 
 	_Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download._
 
