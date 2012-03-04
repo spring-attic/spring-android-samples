@@ -2,14 +2,14 @@
 
 ## Overview
 
-This repository contains sample projects illustrating usage of [Spring for Android](http://www.springsource.org/spring-android). Each project requires set up of the [Android SDK](http://developer.android.com/sdk/index.html), command line tools, [Maven](http://maven.apache.org/), the [Android Maven Plugin](http://code.google.com/p/maven-android-plugin/), and Android Maven artifacts such as Spring dependencies. This document walks step by step through that setup.
+This repository contains sample projects illustrating usage of [Spring for Android](http://www.springsource.org/spring-android). Each project requires set up of the [Android SDK](http://developer.android.com/sdk/index.html), command line tools, [Maven](http://maven.apache.org/), the [Android Maven Plugin](http://code.google.com/p/maven-android-plugin/), and Android Maven artifacts such as Spring dependencies. This document walks through that setup.
 
 ## Sample Apps
 
 See the README in each directory for more information on the sample project and additional instructions.
 
- * [spring-android-showcase](https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-showcase) - The showcase contains client and server apps, and illustrates the features of Spring for Android.
- * [spring-android-news-reader](https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-news-reader) - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.
+* spring-android-showcase - The showcase contains client and server apps, and illustrates the features of Spring for Android.
+* spring-android-news-reader - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.
 
 ## Development Environment
 
