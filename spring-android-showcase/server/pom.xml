@@ -5,7 +5,7 @@
     <groupId>org.springframework.android</groupId>
     <artifactId>spring-android-showcase-server</artifactId>
     <name>spring-android-showcase-server</name>
-    <version>1.0.0.BUILD-SNAPSHOT</version>
+    <version>1.0.0.RC1</version>
     <packaging>war</packaging>
     <url>http://www.springsource.org</url>
     <organization>
