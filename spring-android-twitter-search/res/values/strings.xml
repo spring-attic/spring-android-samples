@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">spring-android-twitter-search</string>
+    <string name="description">This sample Twitter search app illustrates the use of Spring for Android without using Maven for dependency management.</string>
+    <string name="hint">Enter your Twitter search term</string>
+    <string name="search">Search</string>
+
+</resources>
