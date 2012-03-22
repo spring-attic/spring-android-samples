@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase;
+package org.springframework.android.twittersearch;
 
 import java.util.Date;
 
@@ -33,6 +33,8 @@ public class Tweet {
     private Date createdAt;
 
     private String text;
+    
+    private String url;
 
     public void setFromUser(String fromUser) {
         this.fromUser = fromUser;
@@ -57,5 +59,13 @@ public class Tweet {
     public String getText() {
         return text;
     }
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 }

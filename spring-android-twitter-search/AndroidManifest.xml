@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name="org.springframework.android.showcase.TwitterSearchActivity"
+            android:name="org.springframework.android.twittersearch.TwitterSearchActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.springframework.android.showcase.TwitterSearchResultsActivity" />
+        <activity android:name="org.springframework.android.twittersearch.TwitterSearchResultsActivity" />
     </application>
 
 </manifest>

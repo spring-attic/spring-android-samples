@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.android.showcase;
+package org.springframework.android.twittersearch;
 
 import java.util.List;
 
@@ -26,6 +26,8 @@ import org.springframework.web.client.RestTemplate;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,7 +78,7 @@ public class TwitterSearchResultsActivity extends ListActivity {
 		}
 
 		Tweet tweet = tweets.get(position);
-		//		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(result.getUrl())));
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tweet.getUrl())));
 	}
 
 	// ***************************************
@@ -125,9 +127,9 @@ public class TwitterSearchResultsActivity extends ListActivity {
 		protected ResponseEntity<TwitterSearchResults> doInBackground(String... params) {
 			try {
 				// The URL for making the GET request
-				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
+				final String url = "http://search.twitter.com/search.json?q={query}&rpp=20";
 
-				// Add the gzip Accept-Encoding header to the request
+				// Add the gzip Accept-Encoding header to the request. This is not needed for Gingerbread and newer versions of Android
 				HttpHeaders requestHeaders = new HttpHeaders();
 				requestHeaders.setAcceptEncoding(ContentCodingType.GZIP);
 
