@@ -10,6 +10,7 @@ See the README in each directory for more information on the sample project and 
 
 * spring-android-showcase - The showcase contains client and server apps, and illustrates the features of Spring for Android.
 * spring-android-news-reader - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.
+* spring-android-twitter-search - The Twitter search app demonstrates an Android project including Spring for Android jars without the use of Maven's dependency management.
 
 ## Development Environment
 
