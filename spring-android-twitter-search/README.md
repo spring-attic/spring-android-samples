@@ -1,4 +1,4 @@
-# Spring for Android Twitter Seach
+# Spring for Android Twitter Search
 
 ## Introduction
 
