@@ -53,4 +53,4 @@ This sample includes an Android client and a Spring MVC server. Together these i
 
 ## Screenshots
 
-![Authentication screen](spring-android-samples/raw/master/spring-android-basic-auth/screenshot01.png)
+![Authentication screen](../spring-android-samples/raw/master/spring-android-basic-auth/screenshot01.png)
