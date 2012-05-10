@@ -9,7 +9,7 @@ This repository contains sample projects illustrating usage of [Spring for Andro
 See the README in each directory for more information on the sample project and additional instructions.
 
 * spring-android-showcase - The showcase contains client and server apps, and illustrates the features of Spring for Android.
-![Screenshot](spring-android-showcase/screenshot001.png)
+![Screenshot](raw/master/spring-android-showcase/screenshot001.png)
 * spring-android-news-reader - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.
 * spring-android-twitter-search - The Twitter search app demonstrates an Android project including Spring for Android jars without the use of Maven's dependency management.
 * spring-android-basic-auth - These client and server applications show how to make Basic Auth requests using RestTemplate on Android and connecting to a Spring MVC site.
