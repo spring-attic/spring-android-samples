@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Spring Android</string>
+    <string name="app_name">SA Showcase</string>
 
     <string name="text_main">Select an option to view the associated example.</string>
 
