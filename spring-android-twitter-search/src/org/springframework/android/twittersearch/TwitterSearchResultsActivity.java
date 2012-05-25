@@ -22,6 +22,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.app.ListActivity;
@@ -135,6 +136,7 @@ public class TwitterSearchResultsActivity extends ListActivity {
 
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
+				restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 
 				// Retrieve the parameter passed into the async task
 				String searchValue = params[0];
