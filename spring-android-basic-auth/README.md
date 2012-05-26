@@ -46,7 +46,17 @@ This sample includes an Android client and a Spring MVC server. Together these i
 5. Start the sample app:
 
 		$ mvn android:run
-
-6. Log on using "roy" / "spring", as defined in spring-android-samples/spring-android-basic-auth/src/main/resources/security.xml
-
+		
 	_Note: the Android Maven Plugin will attempt to deploy and run the app to all available devices, both emulators and physical devices attached to your computer._
+
+## Authenticating
+
+The client app illustrates a very basic interaction with the server. It starts with a screen requesting a username and password. If you enter the correct credentials, the server responds with a success message that is displayed on the screen. If however, you enter incorrect credentials, the server will respond with an HTTP 401, and the corresponding exception details will be displayed on the screen.
+
+	Username: roy	
+	Password: spring
+	
+The username and password are defined in the following Spring Security configuration file:
+
+	/src/main/resources/security.xml
+	
