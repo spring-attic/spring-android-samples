@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.springframework.android.reader"
     android:versionCode="1"
     android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="7"></uses-sdk>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-sdk android:minSdkVersion="7" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application 
+        android:icon="@drawable/spring_android"
         android:label="@string/app_name">
-
         <activity 
             android:name=".MainActivity" 
             android:label="@string/app_name">
@@ -19,14 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
        	<activity android:name=".RssActivity" />
         <activity android:name=".RssChannelActivity" />
         <activity android:name=".RssSyndFeedActivity" />
        	<activity android:name=".AtomActivity" />
        	<activity android:name=".AtomFeedActivity" />
      	<activity android:name=".AtomSyndFeedActivity" />
-
     </application>
 
 </manifest> 
