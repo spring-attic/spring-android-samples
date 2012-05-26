@@ -46,6 +46,7 @@ This sample includes an Android client and a Spring MVC server. Together these i
 5. Start the sample app:
 
 		$ mvn android:run
-		
-	_Note: the Android Maven Plugin will attempt to deploy and run the app to all available devices, both emulators and physical devices attached to your computer._
 
+6. Log on using "roy" / "spring", as defined in spring-android-samples/spring-android-basic-auth/src/main/resources/security.xml
+
+	_Note: the Android Maven Plugin will attempt to deploy and run the app to all available devices, both emulators and physical devices attached to your computer._

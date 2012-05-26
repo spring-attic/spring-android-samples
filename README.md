@@ -8,10 +8,17 @@ This repository contains sample projects illustrating usage of [Spring for Andro
 
 See the README in each directory for more information on the sample project and additional instructions.
 
-* spring-android-showcase - The showcase contains client and server apps, and illustrates the features of Spring for Android.
-* spring-android-news-reader - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.
-* spring-android-twitter-search - The Twitter search app demonstrates an Android project including Spring for Android jars without the use of Maven's dependency management.
-* spring-android-basic-auth - These client and server applications show how to make Basic Auth requests using RestTemplate on Android and connecting to a Spring MVC site.
+* spring-android-showcase - The showcase contains client and server apps, and illustrates the features of Spring for Android.<br/>
+![Initial screen](spring-android-samples/raw/master/spring-android-showcase/screenshot01.png) &nbsp;
+![HTTP GET options](spring-android-samples/raw/master/spring-android-showcase/screenshot-http-get.png) &nbsp;
+![Twitter Timeline](spring-android-samples/raw/master/spring-android-showcase/screenshot-twitter-timeline.png)
+* spring-android-news-reader - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.<br/>
+![Initial screen](spring-android-samples/raw/master/spring-android-news-reader/screenshot01.png) &nbsp;
+![Activity Streams](spring-android-samples/raw/master/spring-android-news-reader/screenshot02.png)
+* spring-android-twitter-search - The Twitter search app demonstrates an Android project including Spring for Android jars without the use of Maven's dependency management.<br/>
+![Search results](spring-android-samples/raw/master/spring-android-twitter-search/screenshot01.png)
+* spring-android-basic-auth - These client and server applications show how to make Basic Auth requests using RestTemplate on Android and connecting to a Spring MVC site.<br/>
+![Initial screen](spring-android-samples/raw/master/spring-android-twitter-search/screenshot01.png)
 
 ## Development Environment
 
