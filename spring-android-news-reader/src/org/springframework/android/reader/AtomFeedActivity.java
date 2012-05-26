@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,8 @@
  */
 package org.springframework.android.reader;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.feed.AtomFeedHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -109,14 +107,9 @@ public class AtomFeedActivity extends AbstractAsyncListActivity {
             try {
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();
-
-                // Configure the ATOM message converter
-                AtomFeedHttpMessageConverter converter = new AtomFeedHttpMessageConverter();
-
+                
                 // Add the ATOM message converter to the RestTemplate instance, since it is not automatically available
-                List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-                messageConverters.add(converter);
-                restTemplate.setMessageConverters(messageConverters);
+                restTemplate.getMessageConverters().add(new AtomFeedHttpMessageConverter());
 
                 // The URL for making the request
                 final String url = getString(R.string.atom_feed_url);

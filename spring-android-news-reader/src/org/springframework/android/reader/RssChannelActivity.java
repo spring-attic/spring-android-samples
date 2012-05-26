@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,9 @@
  */
 package org.springframework.android.reader;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.feed.RssChannelHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -106,15 +104,11 @@ public class RssChannelActivity extends AbstractAsyncListActivity {
                 RestTemplate restTemplate = new RestTemplate();
 
                 // Configure the RSS message converter.
-                RssChannelHttpMessageConverter converter = new RssChannelHttpMessageConverter();
-                List<MediaType> mediaTypes = new ArrayList<MediaType>();
-                mediaTypes.add(MediaType.TEXT_XML);
-                converter.setSupportedMediaTypes(mediaTypes);
+                RssChannelHttpMessageConverter rssChannelConverter = new RssChannelHttpMessageConverter();
+                rssChannelConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.TEXT_XML));
 
                 // Add the RSS message converter to the RestTemplate instance
-                List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-                messageConverters.add(converter);
-                restTemplate.setMessageConverters(messageConverters);
+                restTemplate.getMessageConverters().add(rssChannelConverter);
 
                 // The URL for making the request
                 final String url = getString(R.string.rss_feed_url);

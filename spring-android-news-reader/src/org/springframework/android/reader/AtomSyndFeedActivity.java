@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 20124 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.springframework.android.reader;
 
+import org.springframework.http.converter.feed.SyndFeedHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.content.Intent;
@@ -104,12 +105,14 @@ public class AtomSyndFeedActivity extends AbstractAsyncListActivity {
             try {
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();
+                
+                // Add the SyndFeedHttpMessageConverter to the RestTemplate instance, since it is not automatically available
+                restTemplate.getMessageConverters().add(new SyndFeedHttpMessageConverter());
 
                 // The URL for making the request
                 final String url = getString(R.string.atom_feed_url);
 
-                // Initiate the request and return the results. The SyndFeedHttpMessageConverter is automatically
-                // available to a restTemplate instance
+                // Initiate the request and return the results.
                 return restTemplate.getForObject(url, SyndFeed.class);
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage(), e);

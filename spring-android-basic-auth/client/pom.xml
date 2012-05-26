@@ -19,29 +19,29 @@
 		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
 		<java-version>1.6</java-version>
 		<maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
-		<android-version>4.0.1.2</android-version>
+		<com.google.android-version>4.0.1.2</com.google.android-version>
 		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 2.2.1, 2.3.1, 2.3.3, 4.0.1.2 -->
-		<spring-android-version>1.0.0.RC1</spring-android-version>
-		<jackson-version>1.9.7</jackson-version>
+		<org.springframework.android-version>1.0.0.BUILD-SNAPSHOT</org.springframework.android-version>
+		<org.codehaus.jackson-version>1.9.7</org.codehaus.jackson-version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${android-version}</version>
+			<version>${com.google.android-version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-rest-template</artifactId>
-			<version>${spring-android-version}</version>
+			<version>${org.springframework.android-version}</version>
 		</dependency>
 		<dependency>
 			<!-- Using Jackson for JSON marshaling -->
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${jackson-version}</version>
+			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
 	</dependencies>
 

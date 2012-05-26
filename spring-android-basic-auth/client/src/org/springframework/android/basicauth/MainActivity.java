@@ -24,6 +24,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -50,9 +51,9 @@ public class MainActivity extends AbstractAsyncActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity_layout);
 
-		// Initiate the JSON POST request when the JSON button is clicked
-		final Button buttonJson = (Button) findViewById(R.id.submit);
-		buttonJson.setOnClickListener(new View.OnClickListener() {
+		// Initiate the request to the protected service
+		final Button submitButton = (Button) findViewById(R.id.submit);
+		submitButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				new FetchSecuredResourceTask().execute();
 			}
@@ -91,22 +92,20 @@ public class MainActivity extends AbstractAsyncActivity {
 		protected Message doInBackground(Void... params) {
 			final String url = getString(R.string.base_uri) + "/getmessage";
 
-			// Populate the HTTP Basic Auth header with the username and password
+			// Populate the HTTP Basic Authentitcation header with the username and password
 			HttpAuthentication authHeader = new HttpBasicAuthentication(username, password);
 			HttpHeaders requestHeaders = new HttpHeaders();
 			requestHeaders.setAuthorization(authHeader);
 			requestHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
-			// HttpEntity object to use for the request
-			HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
-
 			// Create a new RestTemplate instance
 			RestTemplate restTemplate = new RestTemplate();
+			restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 
 			try {
 				// Make the network request
 				Log.d(TAG, url);
-				ResponseEntity<Message> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, Message.class);
+				ResponseEntity<Message> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(requestHeaders), Message.class);
 				return response.getBody();
 			} catch (HttpClientErrorException e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
