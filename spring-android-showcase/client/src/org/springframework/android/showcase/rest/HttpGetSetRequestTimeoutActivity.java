@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import java.net.SocketTimeoutException;
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
@@ -100,6 +101,7 @@ public class HttpGetSetRequestTimeoutActivity extends AbstractAsyncActivity {
 
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate(requestFactory);
+                restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 
                 // Perform the HTTP GET request
                 String response = restTemplate.getForObject(url, String.class, serverDelay);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package org.springframework.android.showcase.rest;
 
 import org.springframework.android.showcase.AbstractAsyncActivity;
 import org.springframework.android.showcase.R;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -87,9 +88,9 @@ public class HttpPostStringActivity extends AbstractAsyncActivity {
 
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 
-                // Make the network request, posting the message, expecting a
-                // String in response from the server
+                // Make the network request, posting the message, expecting a String in response from the server
                 String response = restTemplate.postForObject(url, text, String.class);
 
                 // Return the response body to display to the user

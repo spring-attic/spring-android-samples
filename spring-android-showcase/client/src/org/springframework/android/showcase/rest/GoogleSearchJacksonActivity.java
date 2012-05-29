@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,11 @@
  */
 package org.springframework.android.showcase.rest;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -104,9 +102,7 @@ public class GoogleSearchJacksonActivity extends AbstractAsyncListActivity {
                 // Set a custom MappingJacksonHttpMessageConverter that supports the text/javascript media type
                 MappingJacksonHttpMessageConverter messageConverter = new MappingJacksonHttpMessageConverter();
                 messageConverter.setSupportedMediaTypes(Collections.singletonList(new MediaType("text", "javascript")));
-                List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
-                messageConverters.add(messageConverter);
-                restTemplate.setMessageConverters(messageConverters);
+                restTemplate.getMessageConverters().add(messageConverter);
 
                 // Perform the HTTP GET request to the Google search API
                 GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class, "VMware");

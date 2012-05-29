@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -122,8 +125,7 @@ public class HttpPostJsonXmlActivity extends AbstractAsyncActivity {
 
                 HttpHeaders requestHeaders = new HttpHeaders();
 
-                // Sending a JSON or XML object i.e. "application/json" or
-                // "application/xml"
+                // Sending a JSON or XML object i.e. "application/json" or "application/xml"
                 requestHeaders.setContentType(mediaType);
 
                 // Populate the Message object to serialize and headers in an
@@ -132,9 +134,14 @@ public class HttpPostJsonXmlActivity extends AbstractAsyncActivity {
 
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();
+            	restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+                if (mediaType == MediaType.APPLICATION_JSON) {
+                	restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+                } else if (mediaType == MediaType.APPLICATION_XML) {
+                	restTemplate.getMessageConverters().add(new SimpleXmlHttpMessageConverter());
+                }
 
-                // Make the network request, posting the message, expecting a
-                // String in response from the server
+                // Make the network request, posting the message, expecting a String in response from the server
                 ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
 
                 // Return the response body to display to the user

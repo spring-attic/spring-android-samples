@@ -4,7 +4,7 @@
 
 	<groupId>org.springframework.android</groupId>
 	<artifactId>spring-android-showcase-client</artifactId>
-	<version>1.0.0.RC1</version>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<packaging>apk</packaging>
 	<name>spring-android-showcase-client</name>
 	<url>http://www.springsource.org</url>
@@ -19,38 +19,38 @@
 		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
 		<java-version>1.6</java-version>
 		<maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
-		<android-version>4.0.1.2</android-version>
+		<com.google.android-version>4.0.1.2</com.google.android-version>
 		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 2.2.1, 2.3.1, 2.3.3, 4.0.1.2 -->
-		<spring-android-version>1.0.0.RC1</spring-android-version>
-		<spring-social-version>1.0.2.RELEASE</spring-social-version>
-		<spring-social-facebook-version>1.0.1.RELEASE</spring-social-facebook-version>
-		<spring-security-crypto-version>3.1.0.RELEASE</spring-security-crypto-version>
-		<jackson-version>1.9.7</jackson-version>
-		<gson-version>2.1</gson-version>
-		<simple-version>2.6.2</simple-version>
+		<org.springframework.android-version>1.0.0.BUILD-SNAPSHOT</org.springframework.android-version>
+		<org.springframework.social-version>1.0.2.RELEASE</org.springframework.social-version>
+		<org.springframework.social-facebook-version>1.0.1.RELEASE</org.springframework.social-facebook-version>
+		<org.springframework.security-version>3.1.0.RELEASE</org.springframework.security-version>
+		<org.codehaus.jackson-version>1.9.7</org.codehaus.jackson-version>
+		<com.google.code.gson-version>2.2</com.google.code.gson-version>
+		<org.simpleframework-version>2.6.2</org.simpleframework-version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${android-version}</version>
+			<version>${com.google.android-version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-rest-template</artifactId>
-			<version>${spring-android-version}</version>
+			<version>${org.springframework.android-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-auth</artifactId>
-			<version>${spring-android-version}</version>
+			<version>${org.springframework.android-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
-			<version>${spring-security-crypto-version}</version>
+			<version>${org.springframework.security-version}</version>
 			<exclusions>
 				<!-- Exclude in favor of Spring Android Core -->
 				<exclusion>
@@ -62,7 +62,7 @@
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-core</artifactId>
-			<version>${spring-social-version}</version>
+			<version>${org.springframework.social-version}</version>
 			<exclusions>
 				<!-- Exclude in favor of Spring Android RestTemplate -->
 				<exclusion>
@@ -79,7 +79,7 @@
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-twitter</artifactId>
-			<version>${spring-social-version}</version>
+			<version>${org.springframework.social-version}</version>
 			<exclusions>
 				<!-- Provided by Android -->
 				<exclusion>
@@ -91,7 +91,7 @@
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-facebook</artifactId>
-			<version>${spring-social-facebook-version}</version>
+			<version>${org.springframework.social-facebook-version}</version>
 			<exclusions>
 				<!-- Provided by Android -->
 				<exclusion>
@@ -104,19 +104,19 @@
 			<!-- Using Jackson for JSON marshaling -->
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${jackson-version}</version>
+			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
 		<dependency>
 			<!-- Using Gson for JSON marshaling -->
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>${gson-version}</version>
+			<version>${com.google.code.gson-version}</version>
 		</dependency>
 		<dependency>
 			<!-- Using Simple for XML marshaling -->
 			<groupId>org.simpleframework</groupId>
 			<artifactId>simple-xml</artifactId>
-			<version>${simple-version}</version>
+			<version>${org.simpleframework-version}</version>
 			<exclusions>
 				<!-- StAX is not available on Android -->
 				<exclusion>

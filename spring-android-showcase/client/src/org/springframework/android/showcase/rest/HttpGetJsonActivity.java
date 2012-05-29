@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -92,12 +93,12 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity {
                 acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
                 requestHeaders.setAccept(acceptableMediaTypes);
 
-                // Populate the headers in an HttpEntity object to use for the
-                // request
+                // Populate the headers in an HttpEntity object to use for the request
                 HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
 
                 // Create a new RestTemplate instance
                 RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 
                 // Perform the HTTP GET request
                 ResponseEntity<State[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, State[].class);
