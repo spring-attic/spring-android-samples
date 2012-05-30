@@ -15,7 +15,7 @@
 
 	<properties>
 		<android-platform>15</android-platform>
-		<android-maven-plugin-version>3.1.1</android-maven-plugin-version>
+		<android-maven-plugin-version>3.2.0</android-maven-plugin-version>
 		<maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
 		<java-version>1.6</java-version>
 		<maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
