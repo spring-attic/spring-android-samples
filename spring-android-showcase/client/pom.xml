@@ -173,7 +173,8 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -205,8 +206,8 @@
 	<repositories>
 		<!-- For testing against latest Spring snapshots -->
 		<repository>
-			<id>org.springframework.maven.snapshot</id>
-			<name>Spring Maven Snapshot Repository</name>
+			<id>springsource-snapshot</id>
+			<name>SpringSource Snapshot Repository</name>
 			<url>http://repo.springframework.org/snapshot</url>
 			<releases>
 				<enabled>false</enabled>
@@ -217,9 +218,18 @@
 		</repository>
 		<!-- For developing against latest Spring milestones -->
 		<repository>
-			<id>org.springframework.maven.milestone</id>
-			<name>Spring Maven Milestone Repository</name>
+			<id>springsource-milestone</id>
+			<name>SpringSource Milestone Repository</name>
 			<url>http://repo.springframework.org/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- For developing against latest Spring releases -->
+		<repository>
+			<id>springsource-repo</id>
+			<name>SpringSpring Repository</name>
+			<url>http://repo.springframework.org/release</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
