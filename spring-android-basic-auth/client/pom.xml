@@ -4,7 +4,7 @@
 
 	<groupId>org.springframework.android</groupId>
 	<artifactId>spring-android-basic-auth-client</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>1.0.0.RELEASE</version>
 	<packaging>apk</packaging>
 	<name>spring-android-basic-auth-client</name>
 	<url>http://www.springsource.org/spring-android</url>
@@ -21,7 +21,7 @@
 		<maven-eclipse-plugin-version>2.8</maven-eclipse-plugin-version>
 		<com.google.android-version>4.0.1.2</com.google.android-version>
 		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 2.2.1, 2.3.1, 2.3.3, 4.0.1.2 -->
-		<org.springframework.android-version>1.0.0.BUILD-SNAPSHOT</org.springframework.android-version>
+		<org.springframework.android-version>1.0.0.RELEASE</org.springframework.android-version>
 		<org.codehaus.jackson-version>1.9.7</org.codehaus.jackson-version>
 	</properties>
 
