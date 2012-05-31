@@ -7,7 +7,7 @@
 	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<packaging>apk</packaging>
 	<name>spring-android-news-reader</name>
-	<url>http://www.springsource.org</url>
+	<url>http://www.springsource.org/spring-android</url>
 	<organization>
 		<name>SpringSource</name>
 		<url>http://www.springsource.org</url>
@@ -44,6 +44,45 @@
 			<version>${com.google.code.android-rome-feed-reader-version}</version>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<!-- For developing with Android ROME Feed Reader -->
+		<repository>
+			<id>android-rome-feed-reader-repository</id>
+			<name>Android ROME Feed Reader Repository</name>
+			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
+		</repository>
+		<!-- For testing against latest Spring snapshots -->
+		<repository>
+			<id>springsource-snapshot</id>
+			<name>SpringSource Snapshot Repository</name>
+			<url>http://repo.springsource.org/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<!-- For developing against latest Spring milestones -->
+		<repository>
+			<id>springsource-milestone</id>
+			<name>SpringSource Milestone Repository</name>
+			<url>http://repo.springsource.org/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- For developing against latest Spring releases -->
+		<repository>
+			<id>springsource-repo</id>
+			<name>SpringSpring Repository</name>
+			<url>http://repo.springsource.org/release</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -111,44 +150,5 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<repositories>
-		<!-- For developing with Android ROME Feed Reader -->
-		<repository>
-			<id>android-rome-feed-reader-repository</id>
-			<name>Android ROME Feed Reader Repository</name>
-			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
-		</repository>
-		<!-- For testing against latest Spring snapshots -->
-		<repository>
-			<id>springsource-snapshot</id>
-			<name>SpringSource Snapshot Repository</name>
-			<url>http://repo.springframework.org/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<!-- For developing against latest Spring milestones -->
-		<repository>
-			<id>springsource-milestone</id>
-			<name>SpringSource Milestone Repository</name>
-			<url>http://repo.springframework.org/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<!-- For developing against latest Spring releases -->
-		<repository>
-			<id>springsource-repo</id>
-			<name>SpringSpring Repository</name>
-			<url>http://repo.springframework.org/release</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 </project>

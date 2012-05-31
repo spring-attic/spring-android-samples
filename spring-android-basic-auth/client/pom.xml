@@ -7,7 +7,7 @@
 	<version>1.0.0.BUILD-SNAPSHOT</version>
 	<packaging>apk</packaging>
 	<name>spring-android-basic-auth-client</name>
-	<url>http://www.springsource.org</url>
+	<url>http://www.springsource.org/spring-android</url>
 	<organization>
 		<name>SpringSource</name>
 		<url>http://www.springsource.org</url>
@@ -44,6 +44,39 @@
 			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<!-- For testing against latest Spring snapshots -->
+		<repository>
+			<id>springsource-snapshot</id>
+			<name>SpringSource Snapshot Repository</name>
+			<url>http://repo.springsource.org/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<!-- For developing against latest Spring milestones -->
+		<repository>
+			<id>springsource-milestone</id>
+			<name>SpringSource Milestone Repository</name>
+			<url>http://repo.springsource.org/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- For developing against latest Spring releases -->
+		<repository>
+			<id>springsource-repo</id>
+			<name>SpringSpring Repository</name>
+			<url>http://repo.springsource.org/release</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -111,38 +144,5 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<repositories>
-		<!-- For testing against latest Spring snapshots -->
-		<repository>
-			<id>springsource-snapshot</id>
-			<name>SpringSource Snapshot Repository</name>
-			<url>http://repo.springframework.org/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<!-- For developing against latest Spring milestones -->
-		<repository>
-			<id>springsource-milestone</id>
-			<name>SpringSource Milestone Repository</name>
-			<url>http://repo.springframework.org/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<!-- For developing against latest Spring releases -->
-		<repository>
-			<id>springsource-repo</id>
-			<name>SpringSpring Repository</name>
-			<url>http://repo.springframework.org/release</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 </project>
