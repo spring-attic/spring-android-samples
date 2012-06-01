@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,47 +24,42 @@ import android.app.ProgressDialog;
  */
 public abstract class AbstractAsyncActivity extends Activity implements AsyncActivity {
 
-    protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
+	protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
 
-    private ProgressDialog progressDialog;
+	private ProgressDialog progressDialog;
 
-    private boolean destroyed = false;
+	private boolean destroyed = false;
 
-    // ***************************************
-    // Activity methods
-    // ***************************************
-    @Override
-    public MainApplication getApplicationContext() {
-        return (MainApplication) super.getApplicationContext();
-    }
+	// ***************************************
+	// Activity methods
+	// ***************************************
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		this.destroyed = true;
+	}
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        destroyed = true;
-    }
+	// ***************************************
+	// Public methods
+	// ***************************************
+	public void showLoadingProgressDialog() {
+		this.showProgressDialog("Loading. Please wait...");
+	}
 
-    // ***************************************
-    // Public methods
-    // ***************************************
-    public void showLoadingProgressDialog() {
-        this.showProgressDialog("Loading. Please wait...");
-    }
+	public void showProgressDialog(CharSequence message) {
+		if (this.progressDialog == null) {
+			this.progressDialog = new ProgressDialog(this);
+			this.progressDialog.setIndeterminate(true);
+		}
 
-    public void showProgressDialog(CharSequence message) {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setIndeterminate(true);
-        }
+		this.progressDialog.setMessage(message);
+		this.progressDialog.show();
+	}
 
-        progressDialog.setMessage(message);
-        progressDialog.show();
-    }
-
-    public void dismissProgressDialog() {
-        if (progressDialog != null && !destroyed) {
-            progressDialog.dismiss();
-        }
-    }
+	public void dismissProgressDialog() {
+		if (this.progressDialog != null && !this.destroyed) {
+			this.progressDialog.dismiss();
+		}
+	}
 
 }

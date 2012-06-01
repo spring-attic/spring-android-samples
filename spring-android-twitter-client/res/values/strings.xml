@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SA Twitter Client</string>
+    <string name="twitter_description">Twitter example using Spring Social.</string>
+
+</resources>

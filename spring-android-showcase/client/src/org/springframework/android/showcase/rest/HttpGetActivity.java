@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,42 +28,42 @@ import android.widget.AdapterView.OnItemClickListener;
  */
 public class HttpGetActivity extends AbstractMenuActivity {
 
-    // ***************************************
-    // AbstractMenuActivity methods
-    // ***************************************
-    @Override
-    protected String getDescription() {
-        return getResources().getString(R.string.text_http_get_description);
-    }
+	// ***************************************
+	// AbstractMenuActivity methods
+	// ***************************************
+	@Override
+	protected String getDescription() {
+		return getResources().getString(R.string.text_http_get_description);
+	}
 
-    @Override
-    protected String[] getMenuItems() {
-        return getResources().getStringArray(R.array.http_get_activity_menu_items);
-    }
+	@Override
+	protected String[] getMenuItems() {
+		return getResources().getStringArray(R.array.http_get_activity_menu_items);
+	}
 
-    @Override
-    protected OnItemClickListener getMenuOnItemClickListener() {
-        return new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-                switch (position) {
-                case 0:
-                    startActivity(new Intent(parentView.getContext(), HttpGetJsonXmlActivity.class));
-                    break;
-                case 1:
-                    startActivity(new Intent(parentView.getContext(), HttpGetParametersActivity.class));
-                    break;
-                case 2:
-                    startActivity(new Intent(parentView.getContext(), GoogleSearchActivity.class));
-                    break;
-                case 3:
-                    startActivity(new Intent(parentView.getContext(), HttpGetGzipActivity.class));
-                    break;
-                case 4:
-                    startActivity(new Intent(parentView.getContext(), HttpGetSetRequestTimeoutActivity.class));
-                default:
-                    break;
-                }
-            }
-        };
-    }
+	@Override
+	protected OnItemClickListener getMenuOnItemClickListener() {
+		return new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+				switch (position) {
+				case 0:
+					startActivity(new Intent(parentView.getContext(), HttpGetJsonXmlActivity.class));
+					break;
+				case 1:
+					startActivity(new Intent(parentView.getContext(), HttpGetParametersActivity.class));
+					break;
+				case 2:
+					startActivity(new Intent(parentView.getContext(), GoogleSearchActivity.class));
+					break;
+				case 3:
+					startActivity(new Intent(parentView.getContext(), HttpGetGzipActivity.class));
+					break;
+				case 4:
+					startActivity(new Intent(parentView.getContext(), HttpGetSetRequestTimeoutActivity.class));
+				default:
+					break;
+				}
+			}
+		};
+	}
 }

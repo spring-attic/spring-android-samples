@@ -2,63 +2,39 @@
 <resources>
 
     <string name="app_name">SA Showcase</string>
-
     <string name="text_main">Select an option to view the associated example.</string>
-
     <string name="text_http_get_description">These examples make HTTP GET requests to the server.</string>
-
     <string name="text_http_get_json_xml_description">These examples retrieve a list of states from the
         example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use
-        the SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.
-    </string>
-
+        the SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
     <string name="text_http_get_google_search_description">Two examples of Google searches, where the first
-        marshals JSON using Jackson, and the second uses the Google Gson parser.
-    </string>
-
+        marshals JSON using Jackson, and the second uses the Google Gson parser.</string>
     <string name="text_http_get_gzip_description">These examples illustrate the use of gzip
         compression with an HTTP GET request. You can view the response headers to compare the
-        Content-Encoding, and Content-Size for the compressed versus uncompressed responses.
-    </string>
-
+        Content-Encoding, and Content-Size for the compressed versus uncompressed responses.</string>
     <string name="text_http_get_parameters_description">These examples pass a parameter to the
         RestTemplate instance to retrieve a state by its abbreviation. Use the
         MappingJacksonHttpMessageConverter to marshal JSON objects or use the
-        SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.
-    </string>
-
+        SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
     <string name="text_http_get_set_request_timeout_description">The HttpComponents Http Client has
         the option of setting a timeout when making http requests. This examples shows how to set the timeout
         when attempting to make a request to the example server. The server delay value will cause the server
         to delay its response for that many seconds. The request timeout will cause the request to timeout after
-        the specified number of seconds.
-    </string>
-
+        the specified number of seconds.</string>
     <string name="text_http_post_description">These examples make HTTP POST requests to the server.</string>
-
     <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.com.
         RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
         RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an
-        abstracted object model.
-    </string>
-
+        abstracted object model.</string>
     <string name="text_atom_description">These examples retrieve the ATOM feed from
         jira.springframework.org. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter
         or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports
-        RSS and ATOM using an abstracted object model.
-    </string>
-
-    <string name="twitter_description">Twitter example using Spring Social.</string>
-
-    <string name="facebook_description">Facebook example using Spring Social</string>
+        RSS and ATOM using an abstracted object model.</string>
 
     <string-array name="main_menu_items">
         <item>HTTP GET</item>
         <item>HTTP POST</item>
-        <item>Twitter</item>
-        <item>Facebook</item>
     </string-array>
-
     <string-array name="http_get_activity_menu_items">
         <item>JSON and XML</item>
         <item>Sending parameters</item>
@@ -66,23 +42,19 @@
         <item>Requesting gzip content</item>
         <item>Setting a Request Timeout</item>
     </string-array>
-
     <string-array name="http_get_json_xml_activity_menu_items">
         <item>Fetch JSON list of states</item>
         <item>Fetch XML list of states</item>
     </string-array>
-
     <string-array name="http_get_google_search_menu_items">
         <item>Google Search with Jackson</item>
         <item>Google Search with Gson</item>
     </string-array>
-
     <string-array name="http_get_gzip_activity_menu_items">
         <item>Compressed String</item>
         <item>Uncompressed String</item>
         <item>Compressed JSON</item>
     </string-array>
-
     <string-array name="http_post_activity_options">
         <item>String</item>
         <item>JSON and XML</item>

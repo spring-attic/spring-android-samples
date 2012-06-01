@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,38 +24,38 @@ import org.simpleframework.xml.Root;
 @Root(name = "state")
 public class State {
 
-    @Element
-    private String name;
+	@Element
+	private String name;
 
-    @Element
-    private String abbreviation;
+	@Element
+	private String abbreviation;
 
-    public State() {
-    }
+	public State() {
+	}
 
-    public State(String name, String abbreviation) {
-        this.name = name;
-        this.abbreviation = abbreviation;
-    }
+	public State(String name, String abbreviation) {
+		this.name = name;
+		this.abbreviation = abbreviation;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getAbbreviation() {
-        return abbreviation;
-    }
+	public String getAbbreviation() {
+		return this.abbreviation;
+	}
 
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
-    }
+	public void setAbbreviation(String abbreviation) {
+		this.abbreviation = abbreviation;
+	}
 
-    public String getFormattedName() {
-        return this.getName() + " (" + this.getAbbreviation() + ")";
-    }
+	public String getFormattedName() {
+		return this.getName() + " (" + this.getAbbreviation() + ")";
+	}
 
 }

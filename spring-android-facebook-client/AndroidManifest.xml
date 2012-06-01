@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.springframework.android.facebookclient"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="7" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MainApplication"
+        android:icon="@drawable/spring_android"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".FacebookActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FacebookWebOAuthActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true" />
+        <activity android:name=".FacebookProfileActivity" />
+        <activity android:name=".FacebookHomeFeedActivity" />
+        <activity android:name=".FacebookWallPostActivity" />
+    </application>
+
+</manifest>

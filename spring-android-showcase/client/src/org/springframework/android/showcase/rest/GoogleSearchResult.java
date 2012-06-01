@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +20,13 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 /**
  * @author Roy Clarkson
  */
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GoogleSearchResult {
 
 	private String title;
-	
+
 	private String url;
-	
+
 	private String content;
 
 	public void setTitle(String title) {
@@ -34,7 +34,7 @@ public class GoogleSearchResult {
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setUrl(String url) {
@@ -42,7 +42,7 @@ public class GoogleSearchResult {
 	}
 
 	public String getUrl() {
-		return url;
+		return this.url;
 	}
 
 	public void setContent(String content) {
@@ -50,7 +50,7 @@ public class GoogleSearchResult {
 	}
 
 	public String getContent() {
-		return content;
+		return this.content;
 	}
-	
+
 }

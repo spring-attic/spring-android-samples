@@ -34,96 +34,93 @@ import android.util.Log;
  */
 public class GoogleSearchGsonActivity extends AbstractAsyncListActivity {
 
-    protected static final String TAG = GoogleSearchGsonActivity.class.getSimpleName();
+	protected static final String TAG = GoogleSearchGsonActivity.class.getSimpleName();
 
-    private List<GoogleSearchResult> results;
+	private List<GoogleSearchResult> results;
 
-    // ***************************************
-    // Activity methods
-    // ***************************************
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+	// ***************************************
+	// Activity methods
+	// ***************************************
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
 
-    @Override
-    public void onStart() {
-        super.onStart();
+	@Override
+	public void onStart() {
+		super.onStart();
 
-        // when this activity starts, initiate an asynchronous HTTP GET request
-        new GoogleSearchTask().execute();
-    }
+		// when this activity starts, initiate an asynchronous HTTP GET request
+		new GoogleSearchTask().execute();
+	}
 
-    // ***************************************
-    // ListActivity methods
-    // ***************************************
-    @Override
-    protected void onListItemClick(android.widget.ListView l, android.view.View v, int position, long id) {
-        if (results == null) {
-            return;
-        }
+	// ***************************************
+	// ListActivity methods
+	// ***************************************
+	@Override
+	protected void onListItemClick(android.widget.ListView l, android.view.View v, int position, long id) {
+		if (this.results == null) {
+			return;
+		}
 
-        GoogleSearchResult result = results.get(position);
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(result.getUrl())));
-    }
+		GoogleSearchResult result = this.results.get(position);
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(result.getUrl())));
+	}
 
-    // ***************************************
-    // Private methods
-    // ***************************************
-    private void refreshResults(GoogleSearchResponse response) {
-        if (response == null) {
-            return;
-        }
+	// ***************************************
+	// Private methods
+	// ***************************************
+	private void refreshResults(GoogleSearchResponse response) {
+		if (response == null) {
+			return;
+		}
 
-        this.results = response.getResponseData().getResults();
-        setListAdapter(new GoogleSearchResultListAdapter(this, results));
-    }
+		this.results = response.getResponseData().getResults();
+		setListAdapter(new GoogleSearchResultListAdapter(this, this.results));
+	}
 
-    // ***************************************
-    // Private classes
-    // ***************************************
-    private class GoogleSearchTask extends AsyncTask<Void, Void, GoogleSearchResponse> {
+	// ***************************************
+	// Private classes
+	// ***************************************
+	private class GoogleSearchTask extends AsyncTask<Void, Void, GoogleSearchResponse> {
 
-        @Override
-        protected void onPreExecute() {
-            // before the network request begins, show a progress indicator
-            showLoadingProgressDialog();
-        }
+		@Override
+		protected void onPreExecute() {
+			showLoadingProgressDialog();
+		}
 
-        @Override
-        protected GoogleSearchResponse doInBackground(Void... params) {
-            try {
-                // The URL for making the GET request
-                final String url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={query}";
+		@Override
+		protected GoogleSearchResponse doInBackground(Void... params) {
+			try {
+				// The URL for making the GET request
+				final String url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={query}";
 
-                // Create a new RestTemplate instance
-                RestTemplate restTemplate = new RestTemplate();
+				// Create a new RestTemplate instance
+				RestTemplate restTemplate = new RestTemplate();
 
-                // Set a custom GsonHttpMessageConverter that supports the text/javascript media type
-                GsonHttpMessageConverter messageConverter = new GsonHttpMessageConverter();
-                messageConverter.setSupportedMediaTypes(Collections.singletonList(new MediaType("text", "javascript")));
-                restTemplate.getMessageConverters().add(messageConverter);
+				// Set a custom GsonHttpMessageConverter that supports the text/javascript media type
+				GsonHttpMessageConverter messageConverter = new GsonHttpMessageConverter();
+				messageConverter.setSupportedMediaTypes(Collections.singletonList(new MediaType("text", "javascript")));
+				restTemplate.getMessageConverters().add(messageConverter);
 
-                // Perform the HTTP GET request to the Google search API
-                GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class, "Google Android");
+				// Perform the HTTP GET request to the Google search API
+				GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class,
+						"Google Android");
 
-                return response;
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
-            }
+				return response;
+			} catch (Exception e) {
+				Log.e(TAG, e.getMessage(), e);
+			}
 
-            return null;
-        }
+			return null;
+		}
 
-        @Override
-        protected void onPostExecute(GoogleSearchResponse response) {
-            // hide the progress indicator when the network request is complete
-            dismissProgressDialog();
+		@Override
+		protected void onPostExecute(GoogleSearchResponse response) {
+			dismissProgressDialog();
+			refreshResults(response);
+		}
 
-            // return the Google results
-            refreshResults(response);
-        }
-
-    }
+	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,36 +26,36 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
 
-    @JsonProperty("from_user")
-    private String fromUser;
+	@JsonProperty("from_user")
+	private String fromUser;
 
-    @JsonProperty("created_at")
-    private Date createdAt;
+	@JsonProperty("created_at")
+	private Date createdAt;
 
-    private String text;
+	private String text;
 
-    public void setFromUser(String fromUser) {
-        this.fromUser = fromUser;
-    }
+	public void setFromUser(String fromUser) {
+		this.fromUser = fromUser;
+	}
 
-    public String getFromUser() {
-        return fromUser;
-    }
+	public String getFromUser() {
+		return this.fromUser;
+	}
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+	public Date getCreatedAt() {
+		return this.createdAt;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public String getText() {
+		return this.text;
+	}
 
 }

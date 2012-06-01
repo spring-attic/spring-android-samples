@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,29 +25,29 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GoogleSearchResponse {
 
-    private ResponseData responseData;
+	private ResponseData responseData;
 
-    public void setResponseData(ResponseData responseData) {
-        this.responseData = responseData;
-    }
+	public void setResponseData(ResponseData responseData) {
+		this.responseData = responseData;
+	}
 
-    public ResponseData getResponseData() {
-        return responseData;
-    }
+	public ResponseData getResponseData() {
+		return this.responseData;
+	}
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    static class ResponseData {
+	@JsonIgnoreProperties(ignoreUnknown = true)
+	static class ResponseData {
 
-        private List<GoogleSearchResult> results;
+		private List<GoogleSearchResult> results;
 
-        public void setResults(List<GoogleSearchResult> results) {
-            this.results = results;
-        }
+		public void setResults(List<GoogleSearchResult> results) {
+			this.results = results;
+		}
 
-        public List<GoogleSearchResult> getResults() {
-            return results;
-        }
+		public List<GoogleSearchResult> getResults() {
+			return this.results;
+		}
 
-    }
+	}
 
 }

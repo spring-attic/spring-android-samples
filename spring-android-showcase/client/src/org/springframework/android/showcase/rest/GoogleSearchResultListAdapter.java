@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,45 +31,45 @@ import android.widget.TextView;
  */
 public class GoogleSearchResultListAdapter extends BaseAdapter {
 
-    private List<GoogleSearchResult> results;
-    private final LayoutInflater layoutInflater;
+	private List<GoogleSearchResult> results;
+	private final LayoutInflater layoutInflater;
 
-    public GoogleSearchResultListAdapter(Context context, List<GoogleSearchResult> results) {
-        this.results = results;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
+	public GoogleSearchResultListAdapter(Context context, List<GoogleSearchResult> results) {
+		this.results = results;
+		this.layoutInflater = LayoutInflater.from(context);
+	}
 
-    public int getCount() {
-        return results != null ? results.size() : 0;
-    }
+	public int getCount() {
+		return this.results != null ? this.results.size() : 0;
+	}
 
-    public GoogleSearchResult getItem(int position) {
-        return results.get(position);
-    }
+	public GoogleSearchResult getItem(int position) {
+		return this.results.get(position);
+	}
 
-    public long getItemId(int position) {
-        return position;
-    }
+	public long getItemId(int position) {
+		return position;
+	}
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.google_search_results_list_item, parent, false);
-        }
+	public View getView(int position, View convertView, ViewGroup parent) {
+		if (convertView == null) {
+			convertView = this.layoutInflater.inflate(R.layout.google_search_results_list_item, parent, false);
+		}
 
-        GoogleSearchResult result = getItem(position);
-        if (result != null) {
-            TextView t = (TextView) convertView.findViewById(R.id.title);
-            t.setText(removeMarkup(result.getTitle()));
+		GoogleSearchResult result = getItem(position);
+		if (result != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.title);
+			t.setText(removeMarkup(result.getTitle()));
 
-            t = (TextView) convertView.findViewById(R.id.content);
-            t.setText(removeMarkup(result.getContent()));
-        }
+			t = (TextView) convertView.findViewById(R.id.content);
+			t.setText(removeMarkup(result.getContent()));
+		}
 
-        return convertView;
-    }
+		return convertView;
+	}
 
-    private String removeMarkup(String s) {
-        return s.replace("<b>", "").replace("</b>", "");
-    }
+	private String removeMarkup(String s) {
+		return s.replace("<b>", "").replace("</b>", "");
+	}
 
 }

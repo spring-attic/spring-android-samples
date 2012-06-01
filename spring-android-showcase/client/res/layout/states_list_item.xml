@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp" >
 
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:orientation="vertical"
-     android:padding="5dp"
-     >
+    <TextView
+        android:id="@+id/state_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-     <TextView  
-         android:id="@+id/state_name"
-         android:textSize="16sp"
-         android:textStyle="bold"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" 
-         />
-
- </LinearLayout>
+</LinearLayout>

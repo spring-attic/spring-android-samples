@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,22 +26,22 @@ import org.simpleframework.xml.Root;
 @Root(name = "states")
 public class StateList {
 
-    @ElementList(inline = true)
-    private List<State> states;
+	@ElementList(inline = true)
+	private List<State> states;
 
-    public StateList() {
-    }
+	public StateList() {
+	}
 
-    public StateList(List<State> states) {
-        this.states = states;
-    }
+	public StateList(List<State> states) {
+		this.states = states;
+	}
 
-    public List<State> getStates() {
-        return states;
-    }
+	public List<State> getStates() {
+		return this.states;
+	}
 
-    public void setStates(List<State> states) {
-        this.states = states;
-    }
+	public void setStates(List<State> states) {
+		this.states = states;
+	}
 
 }

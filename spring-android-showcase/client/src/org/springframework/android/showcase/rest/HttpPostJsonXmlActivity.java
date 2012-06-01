@@ -42,126 +42,123 @@ import android.widget.Toast;
  */
 public class HttpPostJsonXmlActivity extends AbstractAsyncActivity {
 
-    protected static final String TAG = HttpPostJsonXmlActivity.class.getSimpleName();
+	protected static final String TAG = HttpPostJsonXmlActivity.class.getSimpleName();
 
-    // ***************************************
-    // Activity methods
-    // ***************************************
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.http_post_json_xml_activity_layout);
+	// ***************************************
+	// Activity methods
+	// ***************************************
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.http_post_json_xml_activity_layout);
 
-        // Initiate the JSON POST request when the JSON button is clicked
-        final Button buttonJson = (Button) findViewById(R.id.button_post_json);
-        buttonJson.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new PostMessageTask().execute(MediaType.APPLICATION_JSON);
-            }
-        });
+		// Initiate the JSON POST request when the JSON button is clicked
+		final Button buttonJson = (Button) findViewById(R.id.button_post_json);
+		buttonJson.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				new PostMessageTask().execute(MediaType.APPLICATION_JSON);
+			}
+		});
 
-        // Initiate the XML POST request when the XML button is clicked
-        final Button buttonXml = (Button) findViewById(R.id.button_post_xml);
-        buttonXml.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new PostMessageTask().execute(MediaType.APPLICATION_XML);
-            }
-        });
-    }
+		// Initiate the XML POST request when the XML button is clicked
+		final Button buttonXml = (Button) findViewById(R.id.button_post_xml);
+		buttonXml.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				new PostMessageTask().execute(MediaType.APPLICATION_XML);
+			}
+		});
+	}
 
-    // ***************************************
-    // Private methods
-    // ***************************************
-    private void showResult(String result) {
-        if (result != null) {
-            // display a notification to the user with the response message
-            Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "I got null, something happened!", Toast.LENGTH_LONG).show();
-        }
-    }
+	// ***************************************
+	// Private methods
+	// ***************************************
+	private void showResult(String result) {
+		if (result != null) {
+			// display a notification to the user with the response message
+			Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+		} else {
+			Toast.makeText(this, "I got null, something happened!", Toast.LENGTH_LONG).show();
+		}
+	}
 
-    // ***************************************
-    // Private classes
-    // ***************************************
-    private class PostMessageTask extends AsyncTask<MediaType, Void, String> {
+	// ***************************************
+	// Private classes
+	// ***************************************
+	private class PostMessageTask extends AsyncTask<MediaType, Void, String> {
 
-        private Message message;
+		private Message message;
 
-        @Override
-        protected void onPreExecute() {
-            // before the network request begins, show a progress indicator
-            showLoadingProgressDialog();
+		@Override
+		protected void onPreExecute() {
+			showLoadingProgressDialog();
 
-            // build the message object
-            EditText editText = (EditText) findViewById(R.id.edit_text_message_id);
+			// build the message object
+			EditText editText = (EditText) findViewById(R.id.edit_text_message_id);
 
-            message = new Message();
+			message = new Message();
 
-            try {
-                message.setId(Integer.parseInt(editText.getText().toString()));
-            } catch (NumberFormatException e) {
-                message.setId(0);
-            }
+			try {
+				message.setId(Integer.parseInt(editText.getText().toString()));
+			} catch (NumberFormatException e) {
+				message.setId(0);
+			}
 
-            editText = (EditText) findViewById(R.id.edit_text_message_subject);
-            message.setSubject(editText.getText().toString());
+			editText = (EditText) findViewById(R.id.edit_text_message_subject);
+			message.setSubject(editText.getText().toString());
 
-            editText = (EditText) findViewById(R.id.edit_text_message_text);
-            message.setText(editText.getText().toString());
-        }
+			editText = (EditText) findViewById(R.id.edit_text_message_text);
+			message.setText(editText.getText().toString());
+		}
 
-        @Override
-        protected String doInBackground(MediaType... params) {
-            try {
-                if (params.length <= 0) {
-                    return null;
-                }
+		@Override
+		protected String doInBackground(MediaType... params) {
+			try {
+				if (params.length <= 0) {
+					return null;
+				}
 
-                MediaType mediaType = params[0];
+				MediaType mediaType = params[0];
 
-                // The URL for making the POST request
-                final String url = getString(R.string.base_uri) + "/sendmessage";
+				// The URL for making the POST request
+				final String url = getString(R.string.base_uri) + "/sendmessage";
 
-                HttpHeaders requestHeaders = new HttpHeaders();
+				HttpHeaders requestHeaders = new HttpHeaders();
 
-                // Sending a JSON or XML object i.e. "application/json" or "application/xml"
-                requestHeaders.setContentType(mediaType);
+				// Sending a JSON or XML object i.e. "application/json" or "application/xml"
+				requestHeaders.setContentType(mediaType);
 
-                // Populate the Message object to serialize and headers in an
-                // HttpEntity object to use for the request
-                HttpEntity<Message> requestEntity = new HttpEntity<Message>(message, requestHeaders);
+				// Populate the Message object to serialize and headers in an
+				// HttpEntity object to use for the request
+				HttpEntity<Message> requestEntity = new HttpEntity<Message>(message, requestHeaders);
 
-                // Create a new RestTemplate instance
-                RestTemplate restTemplate = new RestTemplate();
-            	restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-                if (mediaType == MediaType.APPLICATION_JSON) {
-                	restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-                } else if (mediaType == MediaType.APPLICATION_XML) {
-                	restTemplate.getMessageConverters().add(new SimpleXmlHttpMessageConverter());
-                }
+				// Create a new RestTemplate instance
+				RestTemplate restTemplate = new RestTemplate();
+				restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+				if (mediaType == MediaType.APPLICATION_JSON) {
+					restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+				} else if (mediaType == MediaType.APPLICATION_XML) {
+					restTemplate.getMessageConverters().add(new SimpleXmlHttpMessageConverter());
+				}
 
-                // Make the network request, posting the message, expecting a String in response from the server
-                ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+				// Make the network request, posting the message, expecting a String in response from the server
+				ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity,
+						String.class);
 
-                // Return the response body to display to the user
-                return response.getBody();
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
-            }
+				// Return the response body to display to the user
+				return response.getBody();
+			} catch (Exception e) {
+				Log.e(TAG, e.getMessage(), e);
+			}
 
-            return null;
-        }
+			return null;
+		}
 
-        @Override
-        protected void onPostExecute(String result) {
-            // after the network request completes, hid the progress indicator
-            dismissProgressDialog();
+		@Override
+		protected void onPostExecute(String result) {
+			dismissProgressDialog();
+			showResult(result);
+		}
 
-            // return the response body to the calling class
-            showResult(result);
-        }
-
-    }
+	}
 
 }

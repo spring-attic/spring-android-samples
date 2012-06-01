@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,50 +24,50 @@ import org.simpleframework.xml.Root;
 @Root
 public class Message {
 
-    @Element
-    private long id;
+	@Element
+	private long id;
 
-    @Element
-    private String subject;
+	@Element
+	private String subject;
 
-    @Element
-    private String text;
+	@Element
+	private String text;
 
-    public Message() {
-    }
+	public Message() {
+	}
 
-    public Message(long id, String subject, String text) {
-        this.id = id;
-        this.subject = subject;
-        this.text = text;
-    }
+	public Message(long id, String subject, String text) {
+		this.id = id;
+		this.subject = subject;
+		this.text = text;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return this.id;
+	}
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 
-    public String getSubject() {
-        return subject;
-    }
+	public String getSubject() {
+		return this.subject;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public String getText() {
+		return this.text;
+	}
 
-    public String toString() {
-        return "[Id:] " + this.getId() + " [Subject:] " + this.getSubject() + " [Text:] " + this.getText();
-    }
+	public String toString() {
+		return "[Id:] " + this.getId() + " [Subject:] " + this.getSubject() + " [Text:] " + this.getText();
+	}
 
 }

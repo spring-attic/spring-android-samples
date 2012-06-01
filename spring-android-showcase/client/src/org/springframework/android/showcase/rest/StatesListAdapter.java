@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 the original author or authors.
+ * Copyright 2011-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,38 +32,38 @@ import android.widget.TextView;
  */
 public class StatesListAdapter extends BaseAdapter {
 
-    private List<State> states;
-    private final LayoutInflater layoutInflater;
+	private List<State> states;
+	private final LayoutInflater layoutInflater;
 
-    public StatesListAdapter(Context context, List<State> states) {
-        this.states = states;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
+	public StatesListAdapter(Context context, List<State> states) {
+		this.states = states;
+		this.layoutInflater = LayoutInflater.from(context);
+	}
 
-    public int getCount() {
-        return states != null ? states.size() : 0;
-    }
+	public int getCount() {
+		return this.states != null ? states.size() : 0;
+	}
 
-    public State getItem(int position) {
-        return states.get(position);
-    }
+	public State getItem(int position) {
+		return this.states.get(position);
+	}
 
-    public long getItemId(int position) {
-        return position;
-    }
+	public long getItemId(int position) {
+		return position;
+	}
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.states_list_item, parent, false);
-        }
+	public View getView(int position, View convertView, ViewGroup parent) {
+		if (convertView == null) {
+			convertView = this.layoutInflater.inflate(R.layout.states_list_item, parent, false);
+		}
 
-        State state = getItem(position);
-        if (state != null) {
-            TextView t = (TextView) convertView.findViewById(R.id.state_name);
-            t.setText(state.getFormattedName());
-        }
+		State state = getItem(position);
+		if (state != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.state_name);
+			t.setText(state.getFormattedName());
+		}
 
-        return convertView;
-    }
+		return convertView;
+	}
 
 }

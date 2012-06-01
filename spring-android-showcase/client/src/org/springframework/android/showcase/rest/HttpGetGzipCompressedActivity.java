@@ -35,90 +35,88 @@ import android.widget.TextView;
  */
 public class HttpGetGzipCompressedActivity extends AbstractAsyncActivity {
 
-    // ***************************************
-    // Activity methods
-    // ***************************************
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.http_get_gzip_activity_layout);
-    }
+	// ***************************************
+	// Activity methods
+	// ***************************************
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.http_get_gzip_activity_layout);
+	}
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        new GzipRequestTask().execute();
-    }
+	@Override
+	public void onStart() {
+		super.onStart();
+		new GzipRequestTask().execute();
+	}
 
-    // ***************************************
-    // Private methods
-    // ***************************************
-    private void refreshResults(ResponseEntity<String> response) {
-        if (response == null) {
-            return;
-        }
+	// ***************************************
+	// Private methods
+	// ***************************************
+	private void refreshResults(ResponseEntity<String> response) {
+		if (response == null) {
+			return;
+		}
 
-        HttpHeaders headers = response.getHeaders();
-        StringBuilder sb = new StringBuilder();
-        sb.append("Date: ").append(headers.getFirst("Date")).append("\n");
-        sb.append("Status: ").append(headers.getFirst("Status")).append("\n");
-        sb.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\n");
-        sb.append("Content-Encoding: ").append(headers.getFirst("Content-Encoding")).append("\n");
-        sb.append("Content-Length: ").append(headers.getFirst("Content-Length")).append("\n");
+		HttpHeaders headers = response.getHeaders();
+		StringBuilder sb = new StringBuilder();
+		sb.append("Date: ").append(headers.getFirst("Date")).append("\n");
+		sb.append("Status: ").append(headers.getFirst("Status")).append("\n");
+		sb.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\n");
+		sb.append("Content-Encoding: ").append(headers.getFirst("Content-Encoding")).append("\n");
+		sb.append("Content-Length: ").append(headers.getFirst("Content-Length")).append("\n");
 
-        TextView textView = (TextView) findViewById(R.id.text_view_headers);
-        textView.setText(sb.toString());
+		TextView textView = (TextView) findViewById(R.id.text_view_headers);
+		textView.setText(sb.toString());
 
-        String results = response.getBody() + "\n";
+		String results = response.getBody() + "\n";
 
-        textView = (TextView) findViewById(R.id.text_view_results);
-        textView.setText(results);
-    }
+		textView = (TextView) findViewById(R.id.text_view_results);
+		textView.setText(results);
+	}
 
-    // ***************************************
-    // Private classes
-    // ***************************************
-    private class GzipRequestTask extends AsyncTask<Void, Void, ResponseEntity<String>> {
+	// ***************************************
+	// Private classes
+	// ***************************************
+	private class GzipRequestTask extends AsyncTask<Void, Void, ResponseEntity<String>> {
 
-        @Override
-        protected void onPreExecute() {
-            // before the network request begins, show a progress indicator
-            showLoadingProgressDialog();
-        }
+		@Override
+		protected void onPreExecute() {
+			showLoadingProgressDialog();
+		}
 
-        @Override
-        protected ResponseEntity<String> doInBackground(Void... params) {
-            try {
-                // The URL for making the GET request
-                final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
+		@Override
+		protected ResponseEntity<String> doInBackground(Void... params) {
+			try {
+				// The URL for making the GET request
+				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
 
-                // Add the gzip Accept-Encoding header to the request
-                HttpHeaders requestHeaders = new HttpHeaders();
-                requestHeaders.setAcceptEncoding(ContentCodingType.GZIP);
+				// Add the gzip Accept-Encoding header to the request
+				HttpHeaders requestHeaders = new HttpHeaders();
+				requestHeaders.setAcceptEncoding(ContentCodingType.GZIP);
 
-                // Create a new RestTemplate instance
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+				// Create a new RestTemplate instance
+				RestTemplate restTemplate = new RestTemplate();
+				restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 
-                // Perform the HTTP GET request
-                ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(requestHeaders), String.class, "SpringSource");
+				// Perform the HTTP GET request
+				ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(
+						requestHeaders), String.class, "SpringSource");
 
-                return response;
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
-            }
+				return response;
+			} catch (Exception e) {
+				Log.e(TAG, e.getMessage(), e);
+			}
 
-            return null;
-        }
+			return null;
+		}
 
-        @Override
-        protected void onPostExecute(ResponseEntity<String> result) {
-            // hide the progress indicator when the network request is complete
-            dismissProgressDialog();
+		@Override
+		protected void onPostExecute(ResponseEntity<String> result) {
+			dismissProgressDialog();
+			refreshResults(result);
+		}
 
-            refreshResults(result);
-        }
-
-    }
+	}
 
 }

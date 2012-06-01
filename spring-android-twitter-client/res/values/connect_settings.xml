@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="twitter_consumer_key">YR571S2JiVBOFyJS5MEg</string>
+    <string name="twitter_consumer_key_secret">Kb8hS0luftwCJX3qVoyiLUMfZDtK1EozFoUkjNLUMx4</string>
+    <string name="twitter_oauth_callback_url">x-org-springsource-android-twitterclient://twitter-oauth-response</string>
+
+</resources>
