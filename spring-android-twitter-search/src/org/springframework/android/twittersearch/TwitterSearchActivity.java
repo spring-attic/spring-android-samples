@@ -15,8 +15,6 @@
  */
 package org.springframework.android.twittersearch;
 
-import org.springsource.android.showcase.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

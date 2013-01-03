@@ -17,8 +17,6 @@ package org.springframework.android.twittersearch;
 
 import java.util.List;
 
-import org.springsource.android.showcase.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -17,7 +17,7 @@ package org.springframework.android.showcase.rest;
 
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * @author Roy Clarkson

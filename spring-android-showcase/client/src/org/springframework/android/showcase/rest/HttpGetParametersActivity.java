@@ -25,7 +25,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -124,7 +124,7 @@ public class HttpGetParametersActivity extends AbstractAsyncActivity {
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
 				if (mediaType.equals(MediaType.APPLICATION_JSON)) {
-					restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+					restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 				} else if (mediaType.equals(MediaType.APPLICATION_XML)) {
 					restTemplate.getMessageConverters().add(new SimpleXmlHttpMessageConverter());
 				}

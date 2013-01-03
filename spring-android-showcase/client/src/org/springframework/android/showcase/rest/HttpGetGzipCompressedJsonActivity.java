@@ -22,7 +22,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -98,7 +98,7 @@ public class HttpGetGzipCompressedJsonActivity extends AbstractAsyncActivity {
 
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate();
-				restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+				restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
 				// Perform the HTTP GET request
 				ResponseEntity<TwitterSearchResults> response = restTemplate.exchange(url, HttpMethod.GET,

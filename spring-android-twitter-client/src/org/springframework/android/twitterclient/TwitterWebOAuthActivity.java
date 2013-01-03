@@ -36,6 +36,7 @@ import android.os.Bundle;
  */
 public class TwitterWebOAuthActivity extends AbstractWebViewActivity {
 
+	@SuppressWarnings("unused")
 	private static final String TAG = TwitterWebOAuthActivity.class.getSimpleName();
 
 	private static final String REQUEST_TOKEN_KEY = "request_token";

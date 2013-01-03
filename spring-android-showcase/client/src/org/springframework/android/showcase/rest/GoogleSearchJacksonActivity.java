@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.springframework.android.showcase.AbstractAsyncListActivity;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.content.Intent;
@@ -99,7 +99,7 @@ public class GoogleSearchJacksonActivity extends AbstractAsyncListActivity {
 				RestTemplate restTemplate = new RestTemplate();
 
 				// Set a custom MappingJacksonHttpMessageConverter that supports the text/javascript media type
-				MappingJacksonHttpMessageConverter messageConverter = new MappingJacksonHttpMessageConverter();
+				MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
 				messageConverter.setSupportedMediaTypes(Collections.singletonList(new MediaType("text", "javascript")));
 				restTemplate.getMessageConverters().add(messageConverter);
 
