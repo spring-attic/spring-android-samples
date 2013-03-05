@@ -9,17 +9,17 @@ This repository contains sample projects illustrating usage of [Spring for Andro
 
 The following sample applications demonstrate the capabilities of [Spring for Android]. See the README in each directory for more information on the sample project and additional instructions.
 
-* spring-android-showcase - The showcase contains client and server apps, and illustrates the features of Spring for Android.
+* [spring-android-showcase] - The showcase contains client and server apps, and illustrates the features of Spring for Android.
 
-* spring-android-news-reader - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.
+* [spring-android-news-reader] - The news reader highlights the use of the Android ROME Feed Reader by retrieving RSS and Atom news feeds.
 
-* spring-android-twitter-search - The Twitter search app demonstrates an Android project including Spring for Android jars without the use of Maven's dependency management.
+* [spring-android-twitter-search] - The Twitter search app demonstrates an Android project including Spring for Android jars without the use of Maven's dependency management.
 
-* spring-android-twitter-client - A Twitter client demonstrating Spring Social on Android
+* [spring-android-twitter-client] - A Twitter client demonstrating Spring Social on Android
 
-* spring-android-facebook-client - A Facebook client demonstrating Spring Social on Android
+* [spring-android-facebook-client] - A Facebook client demonstrating Spring Social on Android
 
-* spring-android-basic-auth - These client and server applications show how to make Basic Auth requests using RestTemplate on Android and connecting to a Spring MVC site.
+* [spring-android-basic-auth] - These client and server applications show how to make Basic Auth requests using RestTemplate on Android and connecting to a Spring MVC site.
 
 
 ## Development Environment
@@ -144,6 +144,12 @@ You can also list the available virtual devices using the following command:
 [Android SDK]: http://developer.android.com/sdk/index.html
 [Maven]: http://maven.apache.org
 [Android Maven Plugin]: http://code.google.com/p/maven-android-plugin
+[spring-android-showcase]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-showcase
+[spring-android-news-reader]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-news-reader
+[spring-android-twitter-search]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-twitter-search
+[spring-android-twitter-client]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-twitter-client
+[spring-android-facebook-client]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-facebook-client
+[spring-android-basic-auth]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-basic-auth
 [Eclipse Plugin]: http://developer.android.com/sdk/eclipse-adt.html
 [installation details]: http://developer.android.com/sdk/installing.html
 [Android 2.1 SDK Platform]: http://developer.android.com/sdk/android-2.1.html
