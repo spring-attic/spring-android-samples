@@ -21,12 +21,12 @@ package org.springframework.android.facebookclient;
  */
 public interface AsyncActivity {
 
-    public MainApplication getApplicationContext();
+	public MainApplication getApplicationContext();
 
-    public void showLoadingProgressDialog();
+	public void showLoadingProgressDialog();
 
-    public void showProgressDialog(CharSequence message);
+	public void showProgressDialog(CharSequence message);
 
-    public void dismissProgressDialog();
+	public void dismissProgressDialog();
 
 }

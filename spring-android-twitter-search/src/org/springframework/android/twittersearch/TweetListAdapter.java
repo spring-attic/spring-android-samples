@@ -30,41 +30,41 @@ import android.widget.TextView;
  */
 public class TweetListAdapter extends BaseAdapter {
 
-    private List<Tweet> tweets;
-    private final LayoutInflater layoutInflater;
+	private List<Tweet> tweets;
+	private final LayoutInflater layoutInflater;
 
-    public TweetListAdapter(Context context, List<Tweet> tweets) {
-        this.tweets = tweets;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
+	public TweetListAdapter(Context context, List<Tweet> tweets) {
+		this.tweets = tweets;
+		this.layoutInflater = LayoutInflater.from(context);
+	}
 
-    public int getCount() {
-        return tweets != null ? tweets.size() : 0;
-    }
+	public int getCount() {
+		return tweets != null ? tweets.size() : 0;
+	}
 
-    public Tweet getItem(int position) {
-        return tweets.get(position);
-    }
+	public Tweet getItem(int position) {
+		return tweets.get(position);
+	}
 
-    public long getItemId(int position) {
-        return position;
-    }
+	public long getItemId(int position) {
+		return position;
+	}
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.twitter_timeline_list_item, parent, false);
-        }
+	public View getView(int position, View convertView, ViewGroup parent) {
+		if (convertView == null) {
+			convertView = layoutInflater.inflate(R.layout.twitter_timeline_list_item, parent, false);
+		}
 
-        Tweet tweet = getItem(position);
-        if (tweet != null) {
-            TextView t = (TextView) convertView.findViewById(R.id.tweet_from_user);
-            t.setText(tweet.getFromUser());
+		Tweet tweet = getItem(position);
+		if (tweet != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.tweet_from_user);
+			t.setText(tweet.getFromUser());
 
-            t = (TextView) convertView.findViewById(R.id.tweet_text);
-            t.setText(tweet.getText());
-        }
+			t = (TextView) convertView.findViewById(R.id.tweet_text);
+			t.setText(tweet.getText());
+		}
 
-        return convertView;
-    }
+		return convertView;
+	}
 
 }

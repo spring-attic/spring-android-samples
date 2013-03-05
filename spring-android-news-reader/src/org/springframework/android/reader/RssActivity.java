@@ -26,38 +26,38 @@ import android.widget.AdapterView.OnItemClickListener;
  */
 public class RssActivity extends AbstractMenuActivity {
 
-    // ***************************************
-    // AbstractMenuActivity methods
-    // ***************************************
-    @Override
-    protected String getDescription() {
-        return getResources().getString(R.string.text_rss_description);
-    }
+	// ***************************************
+	// AbstractMenuActivity methods
+	// ***************************************
+	@Override
+	protected String getDescription() {
+		return getResources().getString(R.string.text_rss_description);
+	}
 
-    @Override
-    protected String[] getMenuItems() {
-        return getResources().getStringArray(R.array.rss_activity_options);
-    }
+	@Override
+	protected String[] getMenuItems() {
+		return getResources().getStringArray(R.array.rss_activity_options);
+	}
 
-    @Override
-    protected OnItemClickListener getMenuOnItemClickListener() {
-        return new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-                Intent intent = new Intent();
+	@Override
+	protected OnItemClickListener getMenuOnItemClickListener() {
+		return new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+				Intent intent = new Intent();
 
-                switch (position) {
-                case 0:
-                    intent.setClass(parentView.getContext(), RssSyndFeedActivity.class);
-                    startActivity(intent);
-                    break;
-                case 1:
-                    intent.setClass(parentView.getContext(), RssChannelActivity.class);
-                    startActivity(intent);
-                    break;
-                default:
-                    break;
-                }
-            }
-        };
-    }
+				switch (position) {
+				case 0:
+					intent.setClass(parentView.getContext(), RssSyndFeedActivity.class);
+					startActivity(intent);
+					break;
+				case 1:
+					intent.setClass(parentView.getContext(), RssChannelActivity.class);
+					startActivity(intent);
+					break;
+				default:
+					break;
+				}
+			}
+		};
+	}
 }

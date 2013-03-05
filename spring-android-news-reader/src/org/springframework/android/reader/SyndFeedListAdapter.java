@@ -33,48 +33,48 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
  */
 public class SyndFeedListAdapter extends BaseAdapter {
 
-    private SyndFeed syndFeed;
-    private final LayoutInflater layoutInflater;
+	private SyndFeed syndFeed;
+	private final LayoutInflater layoutInflater;
 
-    public SyndFeedListAdapter(Context context, SyndFeed feed) {
-        this.syndFeed = feed;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
+	public SyndFeedListAdapter(Context context, SyndFeed feed) {
+		this.syndFeed = feed;
+		this.layoutInflater = LayoutInflater.from(context);
+	}
 
-    public int getCount() {
-        return syndFeed != null ? syndFeed.getEntries().size() : 0;
-    }
+	public int getCount() {
+		return syndFeed != null ? syndFeed.getEntries().size() : 0;
+	}
 
-    public SyndEntry getItem(int position) {
-        return (SyndEntry) syndFeed.getEntries().get(position);
-    }
+	public SyndEntry getItem(int position) {
+		return (SyndEntry) syndFeed.getEntries().get(position);
+	}
 
-    public long getItemId(int position) {
-        return position;
-    }
+	public long getItemId(int position) {
+		return position;
+	}
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        SyndEntry syndEntry = getItem(position);
+	public View getView(int position, View convertView, ViewGroup parent) {
+		SyndEntry syndEntry = getItem(position);
 
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
-        }
+		if (convertView == null) {
+			convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+		}
 
-        if (syndEntry != null) {
-            TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
-            t.setText(syndEntry.getTitle());
+		if (syndEntry != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
+			t.setText(syndEntry.getTitle());
 
-            t = (TextView) convertView.findViewById(R.id.synd_feed_date);
-            t.setText(syndEntry.getPublishedDate().toString());
+			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
+			t.setText(syndEntry.getPublishedDate().toString());
 
-            SyndContent description = syndEntry.getDescription();
-            if (description != null) {
-                t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-                t.setText(description.getValue());
-            }
-        }
+			SyndContent description = syndEntry.getDescription();
+			if (description != null) {
+				t = (TextView) convertView.findViewById(R.id.synd_feed_description);
+				t.setText(description.getValue());
+			}
+		}
 
-        return convertView;
-    }
+		return convertView;
+	}
 
 }

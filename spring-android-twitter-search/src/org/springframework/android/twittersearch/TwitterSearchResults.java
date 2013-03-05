@@ -26,14 +26,14 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TwitterSearchResults {
 
-    private List<Tweet> results;
+	private List<Tweet> results;
 
-    public void setResults(List<Tweet> results) {
-        this.results = results;
-    }
+	public void setResults(List<Tweet> results) {
+		this.results = results;
+	}
 
-    public List<Tweet> getResults() {
-        return results;
-    }
+	public List<Tweet> getResults() {
+		return results;
+	}
 
 }

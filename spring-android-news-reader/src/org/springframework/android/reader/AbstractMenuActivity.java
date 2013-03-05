@@ -25,29 +25,29 @@ import android.widget.TextView;
 
 public abstract class AbstractMenuActivity extends Activity {
 
-    // ***************************************
-    // Activity methods
-    // ***************************************
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_activity_layout);
+	// ***************************************
+	// Activity methods
+	// ***************************************
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.menu_activity_layout);
 
-        final TextView textViewDescription = (TextView) this.findViewById(R.id.text_view_description);
-        textViewDescription.setText(getDescription());
+		final TextView textViewDescription = (TextView) this.findViewById(R.id.text_view_description);
+		textViewDescription.setText(getDescription());
 
-        final ListView listViewMenu = (ListView) this.findViewById(R.id.list_view_menu_items);
-        listViewMenu.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getMenuItems()));
-        listViewMenu.setOnItemClickListener(getMenuOnItemClickListener());
-    }
+		final ListView listViewMenu = (ListView) this.findViewById(R.id.list_view_menu_items);
+		listViewMenu.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getMenuItems()));
+		listViewMenu.setOnItemClickListener(getMenuOnItemClickListener());
+	}
 
-    // ***************************************
-    // Abstract methods
-    // ***************************************
-    protected abstract String getDescription();
+	// ***************************************
+	// Abstract methods
+	// ***************************************
+	protected abstract String getDescription();
 
-    protected abstract String[] getMenuItems();
+	protected abstract String[] getMenuItems();
 
-    protected abstract OnItemClickListener getMenuOnItemClickListener();
+	protected abstract OnItemClickListener getMenuOnItemClickListener();
 
 }

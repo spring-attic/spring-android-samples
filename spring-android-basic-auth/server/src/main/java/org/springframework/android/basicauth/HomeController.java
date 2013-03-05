@@ -32,21 +32,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/*")
 public class HomeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    /**
-     * Simply selects the home view to render by returning its name.
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home() {
-        logger.info("Spring Android Basic Auth");
-        return "index";
-    }
-    
-    @RequestMapping(value = "/getmessage", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody Message getMessage() {
-    	logger.info("Accessing protected resource");
-    	return new Message(100, "Congratulations!", "You have accessed a Basic Auth protected resource.");
-    }
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home() {
+		logger.info("Spring Android Basic Auth");
+		return "index";
+	}
+
+	@RequestMapping(value = "/getmessage", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody Message getMessage() {
+		logger.info("Accessing protected resource");
+		return new Message(100, "Congratulations!", "You have accessed a Basic Auth protected resource.");
+	}
 
 }

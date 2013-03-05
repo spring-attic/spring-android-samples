@@ -37,100 +37,100 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.Syn
  */
 public class AtomSyndFeedActivity extends AbstractAsyncListActivity {
 
-    protected static final String TAG = AtomSyndFeedActivity.class.getSimpleName();
+	protected static final String TAG = AtomSyndFeedActivity.class.getSimpleName();
 
-    private SyndFeed feed;
+	private SyndFeed feed;
 
-    // ***************************************
-    // Activity methods
-    // ***************************************
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle(null);
+	// ***************************************
+	// Activity methods
+	// ***************************************
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setTitle(null);
 
-        // initiate the asynchronous network request
-        new DownloadAtomFeedTask().execute();
-    }
+		// initiate the asynchronous network request
+		new DownloadAtomFeedTask().execute();
+	}
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
+	@Override
+	public void onStart() {
+		super.onStart();
+	}
 
-    // ***************************************
-    // ListActivity methods
-    // ***************************************
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        if (feed == null) {
-            return;
-        }
+	// ***************************************
+	// ListActivity methods
+	// ***************************************
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		if (feed == null) {
+			return;
+		}
 
-        SyndEntry entry = (SyndEntry) feed.getEntries().get(position);
-        String link = entry.getLink();
-        Log.i(TAG, link);
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link));
-        this.startActivity(intent);
-    }
+		SyndEntry entry = (SyndEntry) feed.getEntries().get(position);
+		String link = entry.getLink();
+		Log.i(TAG, link);
+		Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link));
+		this.startActivity(intent);
+	}
 
-    // ***************************************
-    // Private methods
-    // ***************************************
-    private void refreshAtomFeed(SyndFeed feed) {
-        this.feed = feed;
+	// ***************************************
+	// Private methods
+	// ***************************************
+	private void refreshAtomFeed(SyndFeed feed) {
+		this.feed = feed;
 
-        if (feed == null) {
-            return;
-        }
+		if (feed == null) {
+			return;
+		}
 
-        setTitle(feed.getTitle());
+		setTitle(feed.getTitle());
 
-        SyndFeedListAdapter adapter = new SyndFeedListAdapter(this, feed);
-        setListAdapter(adapter);
-    }
+		SyndFeedListAdapter adapter = new SyndFeedListAdapter(this, feed);
+		setListAdapter(adapter);
+	}
 
-    // ***************************************
-    // Private classes
-    // ***************************************
-    private class DownloadAtomFeedTask extends AsyncTask<Void, Void, SyndFeed> {
+	// ***************************************
+	// Private classes
+	// ***************************************
+	private class DownloadAtomFeedTask extends AsyncTask<Void, Void, SyndFeed> {
 
-        @Override
-        protected void onPreExecute() {
-            // before the network request begins, show a progress indicator
-            showLoadingProgressDialog();
-        }
+		@Override
+		protected void onPreExecute() {
+			// before the network request begins, show a progress indicator
+			showLoadingProgressDialog();
+		}
 
-        @Override
-        protected SyndFeed doInBackground(Void... params) {
-            try {
-                // Create a new RestTemplate instance
-                RestTemplate restTemplate = new RestTemplate();
-                
-                // Add the SyndFeedHttpMessageConverter to the RestTemplate instance, since it is not automatically available
-                restTemplate.getMessageConverters().add(new SyndFeedHttpMessageConverter());
+		@Override
+		protected SyndFeed doInBackground(Void... params) {
+			try {
+				// Create a new RestTemplate instance
+				RestTemplate restTemplate = new RestTemplate();
 
-                // The URL for making the request
-                final String url = getString(R.string.atom_feed_url);
+				// Add the SyndFeedHttpMessageConverter to the RestTemplate instance, since it is not automatically available
+				restTemplate.getMessageConverters().add(new SyndFeedHttpMessageConverter());
 
-                // Initiate the request and return the results.
-                return restTemplate.getForObject(url, SyndFeed.class);
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
-            }
+				// The URL for making the request
+				final String url = getString(R.string.atom_feed_url);
 
-            return null;
-        }
+				// Initiate the request and return the results.
+				return restTemplate.getForObject(url, SyndFeed.class);
+			} catch (Exception e) {
+				Log.e(TAG, e.getMessage(), e);
+			}
 
-        @Override
-        protected void onPostExecute(SyndFeed feed) {
-            // hide the progress indicator when the network request is complete
-            dismissProgressDialog();
+			return null;
+		}
 
-            // return the feed list
-            refreshAtomFeed(feed);
-        }
+		@Override
+		protected void onPostExecute(SyndFeed feed) {
+			// hide the progress indicator when the network request is complete
+			dismissProgressDialog();
 
-    }
+			// return the feed list
+			refreshAtomFeed(feed);
+		}
+
+	}
 
 }

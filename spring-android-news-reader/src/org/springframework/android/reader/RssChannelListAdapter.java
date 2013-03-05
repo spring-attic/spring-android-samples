@@ -31,45 +31,45 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.rss.Item
  */
 public class RssChannelListAdapter extends BaseAdapter {
 
-    private Channel channel;
-    private final LayoutInflater layoutInflater;
+	private Channel channel;
+	private final LayoutInflater layoutInflater;
 
-    public RssChannelListAdapter(Context context, Channel channel) {
-        this.channel = channel;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
+	public RssChannelListAdapter(Context context, Channel channel) {
+		this.channel = channel;
+		this.layoutInflater = LayoutInflater.from(context);
+	}
 
-    public int getCount() {
-        return channel != null ? channel.getItems().size() : 0;
-    }
+	public int getCount() {
+		return channel != null ? channel.getItems().size() : 0;
+	}
 
-    public Object getItem(int position) {
-        return channel.getItems().get(position);
-    }
+	public Object getItem(int position) {
+		return channel.getItems().get(position);
+	}
 
-    public long getItemId(int position) {
-        return position;
-    }
+	public long getItemId(int position) {
+		return position;
+	}
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Item item = (Item) getItem(position);
+	public View getView(int position, View convertView, ViewGroup parent) {
+		Item item = (Item) getItem(position);
 
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
-        }
+		if (convertView == null) {
+			convertView = layoutInflater.inflate(R.layout.synd_feed_list_item, parent, false);
+		}
 
-        if (item != null) {
-            TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
-            t.setText(item.getTitle());
+		if (item != null) {
+			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
+			t.setText(item.getTitle());
 
-            t = (TextView) convertView.findViewById(R.id.synd_feed_date);
-            t.setText(item.getPubDate().toString());
+			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
+			t.setText(item.getPubDate().toString());
 
-            t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-            t.setText(item.getDescription().getValue());
-        }
+			t = (TextView) convertView.findViewById(R.id.synd_feed_description);
+			t.setText(item.getDescription().getValue());
+		}
 
-        return convertView;
-    }
+		return convertView;
+	}
 
 }

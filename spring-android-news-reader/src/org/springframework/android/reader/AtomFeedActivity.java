@@ -40,99 +40,99 @@ import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Lin
  */
 public class AtomFeedActivity extends AbstractAsyncListActivity {
 
-    protected static final String TAG = AtomFeedActivity.class.getSimpleName();
+	protected static final String TAG = AtomFeedActivity.class.getSimpleName();
 
-    private Feed feed;
+	private Feed feed;
 
-    // ***************************************
-    // Activity methods
-    // ***************************************
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle(null);
+	// ***************************************
+	// Activity methods
+	// ***************************************
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setTitle(null);
 
-        // initiate the asynchronous network request
-        new DownloadAtomFeedTask().execute();
-    }
+		// initiate the asynchronous network request
+		new DownloadAtomFeedTask().execute();
+	}
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
+	@Override
+	public void onStart() {
+		super.onStart();
+	}
 
-    // ***************************************
-    // ListActivity methods
-    // ***************************************
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        Entry entry = (Entry) feed.getEntries().get(position);
-        List<?> alternateLinks = entry.getAlternateLinks();
+	// ***************************************
+	// ListActivity methods
+	// ***************************************
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Entry entry = (Entry) feed.getEntries().get(position);
+		List<?> alternateLinks = entry.getAlternateLinks();
 
-        if (alternateLinks.size() > 0) {
-            Link link = (Link) alternateLinks.get(0);
-            Log.i(TAG, link.getHref());
-            Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link.getHref()));
-            this.startActivity(intent);
-        }
-    }
+		if (alternateLinks.size() > 0) {
+			Link link = (Link) alternateLinks.get(0);
+			Log.i(TAG, link.getHref());
+			Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(link.getHref()));
+			this.startActivity(intent);
+		}
+	}
 
-    // ***************************************
-    // Private methods
-    // ***************************************
-    private void refreshAtomFeed(Feed feed) {
-        this.feed = feed;
+	// ***************************************
+	// Private methods
+	// ***************************************
+	private void refreshAtomFeed(Feed feed) {
+		this.feed = feed;
 
-        if (feed == null) {
-            return;
-        }
+		if (feed == null) {
+			return;
+		}
 
-        setTitle(feed.getTitle());
-        AtomFeedListAdapter adapter = new AtomFeedListAdapter(this, feed);
-        setListAdapter(adapter);
-    }
+		setTitle(feed.getTitle());
+		AtomFeedListAdapter adapter = new AtomFeedListAdapter(this, feed);
+		setListAdapter(adapter);
+	}
 
-    // ***************************************
-    // Private classes
-    // ***************************************
-    private class DownloadAtomFeedTask extends AsyncTask<Void, Void, Feed> {
+	// ***************************************
+	// Private classes
+	// ***************************************
+	private class DownloadAtomFeedTask extends AsyncTask<Void, Void, Feed> {
 
-        @Override
-        protected void onPreExecute() {
-            // before the network request begins, show a progress indicator
-            showLoadingProgressDialog();
-        }
+		@Override
+		protected void onPreExecute() {
+			// before the network request begins, show a progress indicator
+			showLoadingProgressDialog();
+		}
 
-        @Override
-        protected Feed doInBackground(Void... params) {
-            try {
-                // Create a new RestTemplate instance
-                RestTemplate restTemplate = new RestTemplate();
-                
-                // Add the ATOM message converter to the RestTemplate instance, since it is not automatically available
-                restTemplate.getMessageConverters().add(new AtomFeedHttpMessageConverter());
+		@Override
+		protected Feed doInBackground(Void... params) {
+			try {
+				// Create a new RestTemplate instance
+				RestTemplate restTemplate = new RestTemplate();
 
-                // The URL for making the request
-                final String url = getString(R.string.atom_feed_url);
+				// Add the ATOM message converter to the RestTemplate instance, since it is not automatically available
+				restTemplate.getMessageConverters().add(new AtomFeedHttpMessageConverter());
 
-                // Initiate the request and return the results
-                return restTemplate.getForObject(url, Feed.class);
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
-            }
+				// The URL for making the request
+				final String url = getString(R.string.atom_feed_url);
 
-            return null;
-        }
+				// Initiate the request and return the results
+				return restTemplate.getForObject(url, Feed.class);
+			} catch (Exception e) {
+				Log.e(TAG, e.getMessage(), e);
+			}
 
-        @Override
-        protected void onPostExecute(Feed feed) {
-            // hide the progress indicator when the network request is complete
-            dismissProgressDialog();
+			return null;
+		}
 
-            // return the feed list
-            refreshAtomFeed(feed);
-        }
+		@Override
+		protected void onPostExecute(Feed feed) {
+			// hide the progress indicator when the network request is complete
+			dismissProgressDialog();
 
-    }
+			// return the feed list
+			refreshAtomFeed(feed);
+		}
+
+	}
 
 }
