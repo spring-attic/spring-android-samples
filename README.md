@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains sample projects illustrating usage of [Spring for Android]. Each project requires set up of the [Android SDK], command line tools, [Maven], the [Android Maven Plugin], and Android Maven artifacts such as Spring dependencies. This document walks through that setup.
+This repository contains sample projects illustrating usage of [Spring for Android]. Each project requires set up of the [Android SDK], command line tools, [Maven], the [Android Maven Plugin], and Android Maven artifacts such as Spring dependencies. This document walks through that setup. See [Spring for Android on GitHub] for more information about building from source.
 
 
 ## Sample Apps
@@ -144,6 +144,7 @@ You can also list the available virtual devices using the following command:
 [Android SDK]: http://developer.android.com/sdk/index.html
 [Maven]: http://maven.apache.org
 [Android Maven Plugin]: http://code.google.com/p/maven-android-plugin
+[Spring for Android on GitHub]: https://github.com/SpringSource/spring-android
 [spring-android-showcase]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-showcase
 [spring-android-news-reader]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-news-reader
 [spring-android-twitter-search]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-twitter-search
