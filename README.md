@@ -28,9 +28,9 @@ The [Android SDK] is required for developing Android applications. Google provid
 
 1. Download the correct version of the [Android SDK] for your operating system from the Android web site.
 
-1. Unzip the archive and place it in a location of your choosing. For example on a Mac, you may want to place it in the root of your user directory. See the download web site for additional [installation details].
+2. Unzip the archive and place it in a location of your choosing. For example on a Mac, you may want to place it in the root of your user directory. See the download web site for additional [installation details].
 
-2. Add Android to your path. The following is an example bash configuration on a OS X:
+3. Add Android to your path. The following is an example bash configuration on a OS X:
 
 	```sh
 	$ export ANDROID_HOME=~/android-sdk-macosx
@@ -51,9 +51,9 @@ The Android SDK download does not include any specific Android platform SDKs. In
 	
 2. Select the checkbox for "Tools"
 
-2. Select the checkbox for the latest Android SDK, "Android 4.2.2 (API 17)" as of this writing
+3. Select the checkbox for the latest Android SDK, "Android 4.2.2 (API 17)" as of this writing
 
-3. Click the **Install packages...** button to complete the download and installation.
+4. Click the **Install packages...** button to complete the download and installation.
 
 	> Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
