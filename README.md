@@ -30,20 +30,24 @@ The [Android SDK] is required for developing Android applications. Google provid
 
 1. Unzip the archive and place it in a location of your choosing. For example on a Mac, you may want to place it in the root of your user directory. See the download web site for additional [installation details].
 
-2. Add Android to your path. The following is an example .bash_profile on a OS X:
+2. Add Android to your path. The following is an example bash configuration on a OS X:
 
-		$ export ANDROID_HOME=~/android-sdk-macosx
-		$ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools'
+	```sh
+	$ export ANDROID_HOME=~/android-sdk-macosx
+	$ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+	```
 
 ### Install Android SDK Platform(s)
 
 The Android SDK download does not include any specific Android platform SDKs. In order to run the sample code you need to download and install the [Android 2.1 SDK Platform] or higher. You accomplish this by using the Android SDK and AVD Manager that was installed from the previous step.
 
-1. Open the Android SDK and AVD Manager window:
+1. Open the Android SDK Manager window:
 
-		$ android
+	```sh
+	$ android
+	```
 
-	_Note: if this command does not open the Android SDK and AVD Manager, then your path is not configured correctly._
+	> Note: if this command does not open the Android SDK Manager, then your path is not configured correctly.
 	
 2. Select the checkbox for "Tools"
 
@@ -51,7 +55,7 @@ The Android SDK download does not include any specific Android platform SDKs. In
 
 3. Click the **Install packages...** button to complete the download and installation.
 
-	_Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download._
+	> Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
 
 ## Configure an Android Virtual Device
@@ -60,13 +64,15 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
 
 1. Open the Android Virtual Device Manager window:
 
-		$ android avd
+	```sh
+	$ android avd
+	```
 
 2. Select the **New…** button
 
 3. Enter "Default" in the Name field
 
-	_Note: The Android Maven Plugin attempts to start an AVD with the name "Default" unless you specify an alternate emulator in the POM._
+	> Note: The Android Maven Plugin attempts to start an AVD with the name "Default" unless you specify an alternate emulator in the POM.
 	
 4. Select "Nexus 7" as the device
 
@@ -76,7 +82,7 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
 
 7. Click the **OK** button to finish.
 
-	_Note: The sample application is configured for Android 2.1 as the minimum version._
+	> Note: The sample application is configured for Android 2.1 as the minimum version.
 
 
 ## Build and Run the Android Client
@@ -85,40 +91,54 @@ The following instructions apply to each Android sample app. They should be exec
 
 1. Build the app:
 
-		$ mvn clean install		
+	```sh
+	$ mvn clean install
+	```
 
 2. Start the emulator using the Android Maven Plugin:
 
-		$ mvn android:emulator-start
+	```sh
+	$ mvn android:emulator-start
+	```
 
 	Alternatively, you can start the emulator using the Android command line tools:
 
-		$ emulator @Default
+	```sh
+	$ emulator @Default
+	```
 
-	_IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail._
+	> IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail.
 
 3. Deploy the app to the emulator:
 
-		$ mvn android:deploy
+	```sh
+	$ mvn android:deploy
+	```
 
-	_Note: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer._
+	> Note: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer.
 
 
 ## Troubleshooting Failed Deployment
 
 You can view realtime logging of the app using the following command:
 
-	$ adb logcat
+```sh
+$ adb logcat
+```
 
 If "mvn android:deploy" fails, try stopping and restarting the adb server:
 
-	$ adb kill-server
-	$ adb start-server
-	$ mvn android:deploy
+```sh
+$ adb kill-server
+$ adb start-server
+$ mvn android:deploy
+```
 
 You can also list the available virtual devices using the following command:
 
-	$ adb devices
+```sh
+$ adb devices
+```
 
 
 ## Contributing
