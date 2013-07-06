@@ -59,14 +59,19 @@ public class RssChannelListAdapter extends BaseAdapter {
 		}
 
 		if (item != null) {
-			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
-			t.setText(item.getTitle());
-
-			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
-			t.setText(item.getPubDate().toString());
-
-			t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-			t.setText(item.getDescription().getValue());
+			TextView textView;
+			if (item.getTitle() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_title);
+				textView.setText(item.getTitle());
+			}
+			if (item.getPubDate() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_date);
+				textView.setText(item.getPubDate().toString());
+			}
+			if (item.getDescription() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_description);
+				textView.setText(item.getDescription().getValue());
+			}
 		}
 
 		return convertView;

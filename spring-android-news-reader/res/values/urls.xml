@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="rss_feed_url">http://blog.springsource.com/feed</string>
-    <string name="atom_feed_url">https://jira.springframework.org/plugins/servlet/streams</string>
+
+    <string name="rss_feed_url">http://blog.springsource.org/feed/rss/</string>
+    <string name="atom_feed_url">http://blog.springsource.org/feed/atom/</string>
+
 </resources>

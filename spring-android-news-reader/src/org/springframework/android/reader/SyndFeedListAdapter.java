@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndContent;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndEntry;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.synd.SyndFeed;
 
@@ -61,16 +60,18 @@ public class SyndFeedListAdapter extends BaseAdapter {
 		}
 
 		if (syndEntry != null) {
-			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
-			t.setText(syndEntry.getTitle());
-
-			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
-			t.setText(syndEntry.getPublishedDate().toString());
-
-			SyndContent description = syndEntry.getDescription();
-			if (description != null) {
-				t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-				t.setText(description.getValue());
+			TextView textView;
+			if (syndEntry.getTitle() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_title);
+				textView.setText(syndEntry.getTitle());
+			}
+			if (syndEntry.getPublishedDate() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_date);
+				textView.setText(syndEntry.getPublishedDate().toString());
+			}
+			if (syndEntry.getDescription() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_description);
+				textView.setText(syndEntry.getDescription().getValue());
 			}
 		}
 

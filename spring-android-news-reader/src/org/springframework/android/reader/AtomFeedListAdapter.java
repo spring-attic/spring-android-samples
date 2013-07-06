@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Content;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Entry;
 import com.google.code.rome.android.repackaged.com.sun.syndication.feed.atom.Feed;
 
@@ -60,16 +59,18 @@ public class AtomFeedListAdapter extends BaseAdapter {
 		}
 
 		if (entry != null) {
-			TextView t = (TextView) convertView.findViewById(R.id.synd_feed_title);
-			t.setText(entry.getTitle());
-
-			t = (TextView) convertView.findViewById(R.id.synd_feed_date);
-			t.setText(entry.getPublished().toString());
-
-			Content summary = entry.getSummary();
-			if (summary != null) {
-				t = (TextView) convertView.findViewById(R.id.synd_feed_description);
-				t.setText(summary.getValue());
+			TextView textView;
+			if (entry.getTitle() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_title);
+				textView.setText(entry.getTitle());
+			}
+			if (entry.getPublished() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_date);
+				textView.setText(entry.getPublished().toString());
+			}
+			if (entry.getSummary() != null) {
+				textView = (TextView) convertView.findViewById(R.id.synd_feed_description);
+				textView.setText(entry.getSummary().getValue());
 			}
 		}
 

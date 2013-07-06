@@ -2,28 +2,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.springframework.android.reader"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="7" />
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="17" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application 
+    <application
+        android:allowBackup="false"
         android:icon="@drawable/spring_android"
-        android:label="@string/app_name">
-        <activity 
-            android:name=".MainActivity" 
-            android:label="@string/app_name">
+        android:label="@string/app_name" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-       	<activity android:name=".RssActivity" />
+        <activity android:name=".RssActivity" />
         <activity android:name=".RssChannelActivity" />
         <activity android:name=".RssSyndFeedActivity" />
-       	<activity android:name=".AtomActivity" />
-       	<activity android:name=".AtomFeedActivity" />
-     	<activity android:name=".AtomSyndFeedActivity" />
+        <activity android:name=".AtomActivity" />
+        <activity android:name=".AtomFeedActivity" />
+        <activity android:name=".AtomSyndFeedActivity" />
     </application>
 
-</manifest> 
+</manifest>
