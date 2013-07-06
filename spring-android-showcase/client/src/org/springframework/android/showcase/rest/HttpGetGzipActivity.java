@@ -31,7 +31,7 @@ public class HttpGetGzipActivity extends AbstractMenuActivity {
 
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_http_get_gzip_description);
+		return getResources().getString(R.string.http_get_gzip_description);
 	}
 
 	@Override

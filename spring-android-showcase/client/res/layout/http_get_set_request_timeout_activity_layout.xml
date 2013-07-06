@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="8dip"
-        android:text="@string/text_http_get_set_request_timeout_description" />
+        android:text="@string/http_get_set_request_timeout_description" />
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/label_server_delay"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dip"
-        android:text="Enter Server Delay in Seconds:" />
+        android:text="@string/enter_server_delay_in_seconds" />
 
     <EditText
         android:id="@+id/edit_text_server_delay"
@@ -29,11 +29,11 @@
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/label_request_timeout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dip"
-        android:text="Enter Request Timeout in Seconds:" />
+        android:text="@string/enter_request_timeout_in_seconds" />
 
     <EditText
         android:id="@+id/edit_text_request_timeout"
@@ -48,6 +48,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dip"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
 </LinearLayout>

@@ -10,12 +10,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dip"
-        android:text="Enter message text:" />
+        android:text="@string/enter_message_text" />
 
     <EditText
         android:id="@+id/edit_text_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="textShortMessage"
         android:padding="8dip"
         android:singleLine="true" />
 
@@ -23,6 +24,6 @@
         android:id="@+id/button_post_string"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Send" />
+        android:text="@string/send" />
 
 </LinearLayout>

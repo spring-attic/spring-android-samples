@@ -6,30 +6,32 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/label_id"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="Id (int):" />
+        android:text="@string/id_int" />
 
     <EditText
         android:id="@+id/edit_text_message_id"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:padding="8dip"
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/label_subject"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="Subject (String):" />
+        android:text="@string/subject_string" />
 
     <EditText
         android:id="@+id/edit_text_message_subject"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="textShortMessage"
         android:padding="8dip"
         android:singleLine="true" />
 
@@ -38,12 +40,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="Text (String):" />
+        android:text="@string/text_string" />
 
     <EditText
         android:id="@+id/edit_text_message_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="textShortMessage"
         android:padding="8dip"
         android:singleLine="true" />
 
@@ -51,6 +54,6 @@
         android:id="@+id/button_submit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
 </LinearLayout>

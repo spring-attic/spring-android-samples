@@ -11,19 +11,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="8dip"
-        android:text="@string/text_http_get_parameters_description" />
+        android:text="@string/http_get_parameters_description" />
 
     <TextView
         android:id="@+id/label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dip"
-        android:text="Enter State Abbreviation:" />
+        android:text="@string/enter_state_abbreviation" />
 
     <EditText
         android:id="@+id/edit_text_abbreviation"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="textCapCharacters"
         android:padding="8dip"
         android:singleLine="true" />
 
@@ -31,12 +32,12 @@
         android:id="@+id/button_json"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Fetch state with JSON" />
+        android:text="@string/fetch_state_with_json" />
 
     <Button
         android:id="@+id/button_xml"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Fetch state with XML" />
+        android:text="@string/fetch_state_with_xml" />
 
 </LinearLayout>

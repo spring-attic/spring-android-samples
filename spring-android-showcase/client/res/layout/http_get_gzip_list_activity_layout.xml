@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="8dip"
         android:paddingBottom="4dip"
-        android:text="Headers:"
+        android:text="@string/headers"
         android:textStyle="bold" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:padding="8dip"
         android:paddingBottom="4dip"
-        android:text="Results:"
+        android:text="@string/results"
         android:textStyle="bold" />
 
     <ListView

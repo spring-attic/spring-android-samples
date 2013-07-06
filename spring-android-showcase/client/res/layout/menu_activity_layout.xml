@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:padding="8dip" />
 
-    <AbsoluteLayout
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -20,6 +20,6 @@
             android:id="@+id/list_view_menu_items"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-    </AbsoluteLayout>
+    </FrameLayout>
 
 </LinearLayout>

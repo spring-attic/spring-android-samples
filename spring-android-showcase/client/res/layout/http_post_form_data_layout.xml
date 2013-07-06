@@ -10,12 +10,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dip"
-        android:text="This example posts multipart/form-data content to the example server." />
+        android:text="@string/http_post_form_data_description" />
 
     <Button
         android:id="@+id/button_post_form_data"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Send" />
+        android:text="@string/send" />
 
 </LinearLayout>

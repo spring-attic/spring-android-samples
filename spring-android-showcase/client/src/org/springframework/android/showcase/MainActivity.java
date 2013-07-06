@@ -35,7 +35,7 @@ public class MainActivity extends AbstractMenuActivity {
 	// ***************************************
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_main);
+		return getResources().getString(R.string.main_menu);
 	}
 
 	@Override

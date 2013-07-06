@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SA Showcase</string>
-    <string name="text_main">Select an option to view the associated example.</string>
-    <string name="text_http_get_description">These examples make HTTP GET requests to the server.</string>
-    <string name="text_http_get_json_xml_description">These examples retrieve a list of states from the
+    <string name="app_name">Spring Showcase</string>
+    <string name="main_menu">Select an option to view the associated example.</string>
+    <string name="http_get_description">These examples make HTTP GET requests to the server.</string>
+    <string name="http_get_json_xml_description">These examples retrieve a list of states from the
         example server. Use the MappingJacksonHttpMessageConverter to marshal JSON objects or use
         the SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
-    <string name="text_http_get_google_search_description">Two examples of Google searches, where the first
+    <string name="http_get_google_search_description">Two examples of Google searches, where the first
         marshals JSON using Jackson, and the second uses the Google Gson parser.</string>
-    <string name="text_http_get_gzip_description">These examples illustrate the use of gzip
+    <string name="http_get_gzip_description">These examples illustrate the use of gzip
         compression with an HTTP GET request. You can view the response headers to compare the
         Content-Encoding, and Content-Size for the compressed versus uncompressed responses.</string>
-    <string name="text_http_get_parameters_description">These examples pass a parameter to the
+    <string name="http_get_parameters_description">These examples pass a parameter to the
         RestTemplate instance to retrieve a state by its abbreviation. Use the
         MappingJacksonHttpMessageConverter to marshal JSON objects or use the
         SimpleXmlHttpMessageConverter to marshal XML objects via HTTP GET requests.</string>
-    <string name="text_http_get_set_request_timeout_description">The HttpComponents Http Client has
+    <string name="http_get_set_request_timeout_description">The HttpComponents Http Client has
         the option of setting a timeout when making http requests. This examples shows how to set the timeout
         when attempting to make a request to the example server. The server delay value will cause the server
         to delay its response for that many seconds. The request timeout will cause the request to timeout after
         the specified number of seconds.</string>
-    <string name="text_http_post_description">These examples make HTTP POST requests to the server.</string>
-    <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.com.
-        RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
-        RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an
-        abstracted object model.</string>
-    <string name="text_atom_description">These examples retrieve the ATOM feed from
-        jira.springframework.org. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter
-        or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports
-        RSS and ATOM using an abstracted object model.</string>
+    <string name="http_post_description">These examples make HTTP POST requests to the server.</string>
+    <string name="http_post_form_data_description">This example posts multipart/form-data content to the example server.</string>
+    <string name="enter_server_delay_in_seconds">Enter Server Delay in Seconds:</string>
+    <string name="enter_request_timeout_in_seconds">Enter Request Timeout in Seconds:</string>
+    <string name="submit">Submit</string>
+    <string name="send">Send</string>
+    <string name="id_int">Id (int):</string>
+    <string name="subject_string">Subject (String):</string>
+    <string name="text_string">Text (String):</string>
+    <string name="results">Results:</string>
+    <string name="headers">Headers:</string>
+    <string name="enter_state_abbreviation">Enter State Abbreviation:</string>
+    <string name="fetch_state_with_json">Fetch state with JSON</string>
+    <string name="fetch_state_with_xml">Fetch state with XML</string>
+    <string name="post_json">POST JSON</string>
+    <string name="post_xml">POST XML</string>
+    <string name="enter_message_text">Enter message text:</string>
 
     <string-array name="main_menu_items">
         <item>HTTP GET</item>

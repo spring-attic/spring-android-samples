@@ -34,7 +34,7 @@ public class HttpGetJsonXmlActivity extends AbstractMenuActivity {
 	// ***************************************
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_http_get_json_xml_description);
+		return getResources().getString(R.string.http_get_json_xml_description);
 	}
 
 	@Override

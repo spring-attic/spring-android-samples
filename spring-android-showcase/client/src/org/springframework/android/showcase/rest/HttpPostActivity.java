@@ -34,7 +34,7 @@ public class HttpPostActivity extends AbstractMenuActivity {
 	// ***************************************
 	@Override
 	protected String getDescription() {
-		return getResources().getString(R.string.text_http_post_description);
+		return getResources().getString(R.string.http_post_description);
 	}
 
 	@Override
