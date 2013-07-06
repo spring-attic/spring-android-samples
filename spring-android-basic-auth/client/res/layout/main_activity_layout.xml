@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_centerVertical="true"
-    >
-            
+    android:orientation="vertical" >
+
     <TextView
         android:id="@+id/label_username"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="Username:"
-        />
-        
+        android:text="@string/username" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="textNoSuggestions"
         android:padding="8dip"
-        android:singleLine="true"
-        />
-        
+        android:singleLine="true" />
+
     <TextView
         android:id="@+id/label_password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="Password:"
-        />
-        
+        android:text="@string/password" />
+
     <EditText
         android:id="@+id/password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:padding="8dip"
-        android:singleLine="true"
-        android:password="true"
-        />
-    
+        android:singleLine="true" />
+
     <Button
         android:id="@+id/submit"
-        android:text="Submit"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"        
-        />
-    
+        android:layout_height="wrap_content"
+        android:text="@string/submit" />
+
 </LinearLayout>

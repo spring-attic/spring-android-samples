@@ -27,6 +27,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
@@ -111,6 +112,9 @@ public class MainActivity extends AbstractAsyncActivity {
 			} catch (HttpClientErrorException e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
 				return new Message(0, e.getStatusText(), e.getLocalizedMessage());
+			} catch (ResourceAccessException e) {
+				Log.e(TAG, e.getLocalizedMessage(), e);
+				return new Message(0, e.getClass().getSimpleName(), e.getLocalizedMessage());
 			}
 		}
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SA Basic Auth</string>
+    <string name="app_name">Spring Basic Auth</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="submit">Submit</string>
 
 </resources>
