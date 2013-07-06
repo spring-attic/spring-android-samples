@@ -106,7 +106,7 @@ public class GoogleSearchGsonActivity extends AbstractAsyncListActivity {
 
 				// Perform the HTTP GET request to the Google search API
 				GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class,
-						"Google Android");
+						"Spring Framework");
 
 				return response;
 			} catch (Exception e) {

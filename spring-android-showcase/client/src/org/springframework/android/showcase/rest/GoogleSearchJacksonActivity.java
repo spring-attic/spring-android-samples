@@ -105,7 +105,7 @@ public class GoogleSearchJacksonActivity extends AbstractAsyncListActivity {
 				restTemplate.getMessageConverters().add(messageConverter);
 
 				// Perform the HTTP GET request to the Google search API
-				GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class, "VMware");
+				GoogleSearchResponse response = restTemplate.getForObject(url, GoogleSearchResponse.class, "GoPivotal");
 
 				return response;
 			} catch (Exception e) {
