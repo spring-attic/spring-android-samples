@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SA News Reader</string>
+    <string name="app_name">Spring News Reader</string>
     <string name="text_main">Select an option to view the associated example.</string>
     <string name="text_rss_description">These examples retrieve the RSS feed from blog.springsource.org.
         RSS feeds can be retrieved with the SyndFeedHttpMessageConverter or the more specific
