@@ -6,26 +6,27 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/label_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="User" />
+        android:text="@string/user" />
 
     <EditText
         android:id="@+id/edit_text_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
         android:maxLength="140"
         android:padding="8dip"
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/label_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="Message" />
+        android:text="@string/message" />
 
     <EditText
         android:id="@+id/edit_text_message"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:height="80dip"
+        android:inputType="textShortMessage"
         android:maxLength="140"
         android:padding="8dip" />
 
@@ -40,6 +42,6 @@
         android:id="@+id/button_tweet"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Send" />
+        android:text="@string/send" />
 
 </LinearLayout>

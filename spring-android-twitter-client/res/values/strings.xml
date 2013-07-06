@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SA Twitter Client</string>
+    <string name="app_name">Spring Twitter Client</string>
     <string name="twitter_description">Twitter example using Spring Social.</string>
+    <string name="user">User</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="whats_happening">What\'s happening?</string>
+    <string name="tweet">Tweet</string>
 
 </resources>

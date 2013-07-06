@@ -6,11 +6,11 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/label_tweet"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="4dip"
-        android:text="What&apos;s happening?" />
+        android:text="@string/whats_happening" />
 
     <EditText
         android:id="@+id/edit_text_tweet"
@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:height="80dip"
+        android:inputType="textShortMessage"
         android:maxLength="140"
         android:padding="8dip" />
 
@@ -25,6 +26,6 @@
         android:id="@+id/button_tweet"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Tweet" />
+        android:text="@string/tweet" />
 
 </LinearLayout>

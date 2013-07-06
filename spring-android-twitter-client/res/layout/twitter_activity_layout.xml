@@ -13,7 +13,7 @@
         android:padding="10dip"
         android:text="@string/twitter_description" />
 
-    <AbsoluteLayout
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -21,6 +21,6 @@
             android:id="@+id/twitter_activity_options_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-    </AbsoluteLayout>
+    </FrameLayout>
 
 </LinearLayout>
