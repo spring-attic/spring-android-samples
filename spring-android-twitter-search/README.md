@@ -8,17 +8,17 @@ The Spring for Android Twitter Search sample app demonstrates the use of [Spring
 
 1. Build the app in debug mode: 
 
-		$ ant debug
+        $ ant debug
 
 2. Start the emulator:
 
-		$ emulator @Default
+        $ emulator @Default
 
-	_IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail._
+    _IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail._
 
 3. Deploy the app to the emulator:
 
-		$ ant installd
+        $ ant installd
 
 4. From the emulator start the app
 
@@ -30,4 +30,4 @@ You may need to update the build.xml for your installed version of the Android S
 
 2. Update your project:
 
-		$ android update project -p <project_directory>
+        $ android update project -p <project_directory>

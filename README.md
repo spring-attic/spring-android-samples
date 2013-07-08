@@ -32,10 +32,10 @@ The [Android SDK] is required for developing Android applications. Google provid
 
 3. Add Android to your path. The following is an example bash configuration on a OS X:
 
-	```sh
-	$ export ANDROID_HOME=~/android-sdk-macosx
-	$ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-	```
+    ```sh
+    $ export ANDROID_HOME=~/android-sdk-macosx
+    $ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+    ```
 
 ### Install Android SDK Platform(s)
 
@@ -43,19 +43,19 @@ The Android SDK download does not include any specific Android platform SDKs. In
 
 1. Open the Android SDK Manager window:
 
-	```sh
-	$ android
-	```
+    ```sh
+    $ android
+    ```
 
-	> Note: if this command does not open the Android SDK Manager, then your path is not configured correctly.
-	
+    > Note: if this command does not open the Android SDK Manager, then your path is not configured correctly.
+    
 2. Select the checkbox for "Tools"
 
 3. Select the checkbox for the latest Android SDK, "Android 4.2.2 (API 17)" as of this writing
 
 4. Click the **Install packages...** button to complete the download and installation.
 
-	> Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
+    > Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
 
 ## Configure an Android Virtual Device
@@ -64,16 +64,16 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
 
 1. Open the Android Virtual Device Manager window:
 
-	```sh
-	$ android avd
-	```
+    ```sh
+    $ android avd
+    ```
 
 2. Select the **New…** button
 
 3. Enter "Default" in the Name field
 
-	> Note: The Android Maven Plugin attempts to start an AVD with the name "Default" unless you specify an alternate emulator in the POM.
-	
+    > Note: The Android Maven Plugin attempts to start an AVD with the name "Default" unless you specify an alternate emulator in the POM.
+    
 4. Select "Nexus 7" as the device
 
 5. Select "Android 4.2.2 - API Level 17" for the target
@@ -82,7 +82,7 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
 
 7. Click the **OK** button to finish.
 
-	> Note: The sample application is configured for Android 2.1 as the minimum version.
+    > Note: The sample application is configured for Android 2.1 as the minimum version.
 
 
 ## Build and Run the Android Client
@@ -91,31 +91,31 @@ The following instructions apply to each Android sample app. They should be exec
 
 1. Build the app:
 
-	```sh
-	$ mvn clean install
-	```
+    ```sh
+    $ mvn clean install
+    ```
 
 2. Start the emulator using the Android Maven Plugin:
 
-	```sh
-	$ mvn android:emulator-start
-	```
+    ```sh
+    $ mvn android:emulator-start
+    ```
 
-	Alternatively, you can start the emulator using the Android command line tools:
+    Alternatively, you can start the emulator using the Android command line tools:
 
-	```sh
-	$ emulator @Default
-	```
+    ```sh
+    $ emulator @Default
+    ```
 
-	> IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail.
+    > IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail.
 
 3. Deploy the app to the emulator:
 
-	```sh
-	$ mvn android:deploy
-	```
+    ```sh
+    $ mvn android:deploy
+    ```
 
-	> Note: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer.
+    > Note: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer.
 
 
 ## Troubleshooting Failed Deployment

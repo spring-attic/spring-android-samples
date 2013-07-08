@@ -27,7 +27,7 @@ This showcase includes an Android client and a Spring MVC server. Together these
 
 2. Build the app:
 
-		$ mvn clean install
+		$ mvn clean package
 
 3. Start the emulator using the Android Maven Plugin:
 
