@@ -48,12 +48,12 @@ public class FacebookWallPostActivity extends AbstractAsyncActivity {
 				.getApi();
 
 		// Initiate the POST request when the button is clicked
-		final Button button = (Button) findViewById(R.id.button_submit);
+		final Button button = (Button) findViewById(R.id.submit_button);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// hide the soft keypad
 				InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				EditText editText = (EditText) findViewById(R.id.edit_text_wall_post);
+				EditText editText = (EditText) findViewById(R.id.wall_post_text);
 				inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 				new PostTweetTask().execute();
 			}
@@ -80,7 +80,7 @@ public class FacebookWallPostActivity extends AbstractAsyncActivity {
 			showProgressDialog("Posting to Wall...");
 
 			// retrieve the text from the EditText field
-			EditText editText = (EditText) findViewById(R.id.edit_text_wall_post);
+			EditText editText = (EditText) findViewById(R.id.wall_post_text);
 			this.wallPostText = editText.getText().toString();
 		}
 

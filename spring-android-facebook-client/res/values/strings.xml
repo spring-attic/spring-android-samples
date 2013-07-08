@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SA Facebook Client</string>
-    
+    <string name="app_name">Spring Facebook Client</string>
     <string name="facebook_description">Facebook example using Spring Social</string>
+    <string name="wall_post_prompt">What\'s on your mind?</string>
+    <string name="submit">Submit</string>
 
 </resources>
