@@ -47,7 +47,7 @@ The Android SDK download does not include any specific Android platform SDKs. In
     $ android
     ```
 
-    > Note: if this command does not open the Android SDK Manager, then your path is not configured correctly.
+    > **Note**: if this command does not open the Android SDK Manager, then your path is not configured correctly.
     
 2. Select the checkbox for "Tools"
 
