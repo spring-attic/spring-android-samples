@@ -51,11 +51,11 @@ The Android SDK download does not include any specific Android platform SDKs. In
     
 2. Select the checkbox for "Tools"
 
-3. Select the checkbox for the latest Android SDK, "Android 4.2.2 (API 17)" as of this writing
+3. Select the checkbox for the latest Android SDK
 
 4. Click the **Install packages...** button to complete the download and installation.
 
-    > Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
+    > **Note**: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
 
 ## Configure an Android Virtual Device
@@ -72,7 +72,7 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
 
 3. Enter "Default" in the Name field
 
-    > Note: The Android Maven Plugin attempts to start an AVD with the name "Default" unless you specify an alternate emulator in the POM.
+    > **Note**: The Android Maven Plugin attempts to start an AVD with the name "Default" unless you specify an alternate emulator in the POM.
     
 4. Select "Nexus 7" as the device
 
@@ -82,20 +82,14 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
 
 7. Click the **OK** button to finish.
 
-    > Note: The sample application is configured for Android 2.1 as the minimum version.
+    > **Note**: The sample application is configured for Android 2.1 as the minimum version.
 
 
-## Build and Run the Android Client
+## Build and Run the App
 
 The following instructions apply to each Android sample app. They should be executed from within the sample app's directory, where the project's pom.xml is located.
 
-1. Build the app:
-
-    ```sh
-    $ mvn clean install
-    ```
-
-2. Start the emulator using the Android Maven Plugin:
+1. Start the emulator using the Android Maven Plugin:
 
     ```sh
     $ mvn android:emulator-start
@@ -107,26 +101,32 @@ The following instructions apply to each Android sample app. They should be exec
     $ emulator @Default
     ```
 
-    > IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail.
+    > **Important**: Ensure the emulator is fully initialized and ready or the deploy will fail.
 
-3. Deploy the app to the emulator:
+2. Build the app:
 
     ```sh
-    $ mvn android:deploy
+    $ mvn clean package
     ```
 
-    > Note: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer.
+3. Deploy and run the app:
+
+    ```sh
+    $ mvn android:deploy android:run
+    ```
+
+    > **Note**: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer.
 
 
-## Troubleshooting Failed Deployment
+## Troubleshoot Failed Deployment
 
-You can view realtime logging of the app using the following command:
+View realtime logging of the app using this command:
 
 ```sh
 $ adb logcat
 ```
 
-If "mvn android:deploy" fails, try stopping and restarting the adb server:
+If "mvn android:deploy" fails, stop and restart the adb server:
 
 ```sh
 $ adb kill-server
@@ -134,14 +134,14 @@ $ adb start-server
 $ mvn android:deploy
 ```
 
-You can also list the available virtual devices using the following command:
+List the available virtual devices using this command:
 
 ```sh
 $ adb devices
 ```
 
 
-## Contributing
+## Contribute
 
 [Pull requests] are welcome. See the [contributor guidelines] for details.
 

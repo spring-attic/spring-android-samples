@@ -2,54 +2,68 @@
 
 ## Introduction
 
-This sample includes an Android client and a Spring MVC server. Together these illustrate the interaction of the client and server when using [Spring for Android](http://www.springsource.org/spring-android) to make Basic Auth requests. This Android client project requires set up of the Android SDK. See the main README at the root of this repository for more information about configuring your environment.
+This sample includes an Android client and a Spring MVC server. Together these illustrate the interaction of the client and server when using [Spring for Android](http://www.springsource.org/spring-android) to make Basic Auth requests. This Android project requires set up of the Android SDK. See the main [README](../README.md) at the root of this repository for more information about configuring your environment.
+
 
 ## Build and Run the Server
 
 1. Navigate to the server directory:
 
-        $ cd spring-android-basic-auth/server
+    ```sh
+    $ cd server
+    ```
 
 2. Build the app:
 
-        $ mvn clean install
+    ```sh
+    $ mvn clean install
+    ```
 
 3. Deploy the .war to a Servlet 2.5 or > ServletContainer. This can be done via Maven on the command-line by running:
 
-        $ mvn tomcat:run
+    ```sh
+    $ mvn tomcat:run
+    ```
 
 
-## Build and Run the Android Client
+## Build and Run the Android App
 
 1. Navigate to the client directory:
 
-        $ cd spring-android-basic-auth/client
+    ```sh
+    $ cd client
+    ```
 
-2. Build the app:
+2. Start the emulator using the Android Maven Plugin:
 
-        $ mvn clean package
-
-3. Start the emulator using the Android Maven Plugin:
-
-        $ mvn android:emulator-start
+    ```sh
+    $ mvn android:emulator-start
+    ```
 
     Alternatively, you can start the emulator using the Android command line tools:
 
-        $ emulator @Default
+    ```sh
+    $ emulator @Default
+    ```
 
-    _IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail._
+    > **Important**: Ensure the emulator is fully initialized and ready or the deploy will fail.
 
-4. Deploy the app to the emulator:
+3. Build the app:
 
-        $ mvn android:deploy
+    ```sh
+    $ mvn clean package
+    ```
 
-5. Start the sample app:
+4. Deploy and run the app:
 
-        $ mvn android:run
-        
-    _Note: the Android Maven Plugin will attempt to deploy and run the app to all available devices, both emulators and physical devices attached to your computer._
+    ```sh
+    $ mvn android:deploy android:run
+    ```
 
-## Authenticating
+    > **Note**: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer.
+    
+
+## Authenticate
 
 The client app illustrates a very basic interaction with the server. It starts with a screen requesting a username and password. If you enter the correct credentials, the server responds with a success message that is displayed on the screen. If however, you enter incorrect credentials, the server will respond with an HTTP 401, and the corresponding exception details will be displayed on the screen.
 
@@ -58,5 +72,7 @@ The client app illustrates a very basic interaction with the server. It starts w
     
 The username and password are defined in the following Spring Security configuration file:
 
-    /src/main/resources/security.xml
+```sh
+/server/src/main/resources/security.xml
+```
     

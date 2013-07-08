@@ -2,11 +2,11 @@
 
 ## Introduction
 
-The Spring for Android News Reader sample app illustrates the use of [Spring for Android](http://www.springsource.org/spring-android) and the [Android ROME Feed Reader](http://code.google.com/p/android-rome-feed-reader/) to retrieve RSS and Atom news feeds. This project requires set up of the Android SDK. See the main README at the root of this repository for more information about configuring your environment.
+The Spring for Android News Reader sample app illustrates the use of [Spring for Android](http://www.springsource.org/spring-android) and the [Android ROME Feed Reader](http://code.google.com/p/android-rome-feed-reader/) to retrieve RSS and Atom news feeds. This project requires set up of the Android SDK. See the main [README](../README.md) at the root of this repository for more information about configuring your environment.
 
-## Build and run the Android client
+## Build and Run the Android App
 
-The following command will attempt to deploy and run the app to all available devices:
+This command will attempt to deploy and run the app to all available devices:
 
 ```sh
 $ mvn clean package android:deploy android:run

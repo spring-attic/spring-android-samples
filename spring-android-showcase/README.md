@@ -2,50 +2,63 @@
 
 ## Introduction
 
-This showcase includes an Android client and a Spring MVC server. Together these illustrate the interaction of the client and server when using [Spring for Android](http://www.springsource.org/spring-android).  This Android client project requires set up of the Android SDK. See the main README at the root of this repository for more information about configuring your environment.
+This showcase includes an Android client and a Spring MVC server. Together these illustrate the interaction of the client and server when using [Spring for Android](http://www.springsource.org/spring-android).  This Android project requires set up of the Android SDK. See the main [README](../README.md) at the root of this repository for more information about configuring your environment.
+
 
 ## Build and Run the Server
 
 1. Navigate to the server directory:
 
-		$ cd spring-android-showcase/server
+    ```sh
+    $ cd spring-android-showcase/server
+    ```
 
 2. Build the app:
 
-		$ mvn clean install
+    ```sh
+    $ mvn clean install
+    ```
 
 3. Deploy the .war to a Servlet 2.5 or > ServletContainer. This can be done via Maven on the command-line by running:
 
-		$ mvn tomcat:run
+    ```sh
+    $ mvn tomcat:run
+    ```
 
 
-## Build and Run the Android Client
+## Build and Run the App
 
 1. Navigate to the client directory:
 
-		$ cd spring-android-showcase/client
+    ```sh
+    $ cd client
+    ```
 
-2. Build the app:
+2. Start the emulator using the Android Maven Plugin:
 
-		$ mvn clean package
+    ```sh
+    $ mvn android:emulator-start
+    ```
 
-3. Start the emulator using the Android Maven Plugin:
+    Alternatively, you can start the emulator using the Android command line tools:
 
-		$ mvn android:emulator-start
+    ```sh
+    $ emulator @Default
+    ```
 
-	Alternatively, you can start the emulator using the Android command line tools:
+    > **Important**: Ensure the emulator is fully initialized and ready or the deploy will fail.
 
-		$ emulator @Default
+3. Build the app:
 
-	_IMPORTANT: Ensure the emulator is fully initialized and ready or the deploy will fail._
+    ```sh
+    $ mvn clean package
+    ```
 
-4. Deploy the app to the emulator:
+4. Deploy and run the app:
 
-		$ mvn android:deploy
+    ```sh
+    $ mvn android:deploy android:run
+    ```
 
-5. Start the sample app:
-
-		$ mvn android:run
-		
-	_Note: the Android Maven Plugin will attempt to deploy and run the app to all available devices, both emulators and physical devices attached to your computer._
+    > **Note**: the Android Maven Plugin will attempt to deploy the app to all available devices, both emulators and physical devices attached to your computer.
 
