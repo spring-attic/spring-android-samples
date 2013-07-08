@@ -25,9 +25,11 @@ import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Parameters;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
@@ -48,6 +50,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 	// ***************************************
 	// Activity methods
 	// ***************************************
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,7 +91,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 		return this.connectionFactory.getOAuthOperations().buildAuthorizeUrl(GrantType.IMPLICIT_GRANT, params);
 	}
 
-	private void displayFacebookOptions() {
+	private void displayFacebookMenuOptions() {
 		Intent intent = new Intent();
 		intent.setClass(this, FacebookActivity.class);
 		startActivity(intent);
@@ -108,7 +111,6 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
 			// parse the captured url
 			Uri uri = Uri.parse(url);
-
 			Log.d(TAG, url);
 
 			/*
@@ -121,8 +123,26 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 			 * 
 			 * #access_token=A&expires_in=0
 			 */
-			String uriFragment = uri.getFragment();
+			AccessGrant accessGrant = createAccessGrantFromUriFragment(uri.getFragment());
+			if (accessGrant != null) {
+				new CreateConnectionTask().execute(accessGrant);
+			}
 
+			/*
+			 * if there was an error with the oauth process, return the error description
+			 * 
+			 * The error query string will look like this:
+			 * 
+			 * ?error_reason=user_denied&error=access_denied&error_description=The +user+denied+your+request
+			 */
+			if (uri.getQueryParameter("error") != null) {
+				CharSequence errorReason = uri.getQueryParameter("error_description").replace("+", " ");
+				Toast.makeText(getApplicationContext(), errorReason, Toast.LENGTH_LONG).show();
+				displayFacebookMenuOptions();
+			}
+		}
+
+		private AccessGrant createAccessGrantFromUriFragment(String uriFragment) {
 			// confirm we have the fragment, and it has an access_token parameter
 			if (uriFragment != null && uriFragment.startsWith("access_token=")) {
 
@@ -143,33 +163,39 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 					String accessToken = accessTokenParam[1];
 
 					// create the connection and persist it to the repository
-					AccessGrant accessGrant = new AccessGrant(accessToken);
-					Connection<Facebook> connection = connectionFactory.createConnection(accessGrant);
-
-					try {
-						connectionRepository.addConnection(connection);
-					} catch (DuplicateConnectionException e) {
-						// connection already exists in repository!
-					}
+					return new AccessGrant(accessToken);
 				} catch (Exception e) {
 					// don't do anything if the parameters are not what is expected
+					Log.d(TAG, e.getLocalizedMessage(), e);
 				}
-
-				displayFacebookOptions();
 			}
-
-			/*
-			 * if there was an error with the oauth process, return the error description
-			 * 
-			 * The error query string will look like this:
-			 * 
-			 * ?error_reason=user_denied&error=access_denied&error_description=The +user+denied+your+request
-			 */
-			if (uri.getQueryParameter("error") != null) {
-				CharSequence errorReason = uri.getQueryParameter("error_description").replace("+", " ");
-				Toast.makeText(getApplicationContext(), errorReason, Toast.LENGTH_LONG).show();
-				displayFacebookOptions();
-			}
+			return null;
 		}
+
+	}
+
+	private class CreateConnectionTask extends AsyncTask<AccessGrant, Void, Void> {
+
+		@Override
+		protected Void doInBackground(AccessGrant... params) {
+			if (params[0] != null) {
+				// this method makes a network request to Facebook, so it must run off of the UI thread
+				Connection<Facebook> connection = connectionFactory.createConnection(params[0]);
+				try {
+					// persist connection to the repository
+					connectionRepository.addConnection(connection);
+				} catch (DuplicateConnectionException e) {
+					// connection already exists in repository!
+					Log.d(TAG, e.getLocalizedMessage(), e);
+				}
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			displayFacebookMenuOptions();
+		}
+
 	}
 }
