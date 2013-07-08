@@ -32,6 +32,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -71,6 +72,14 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 
 		// display the Facebook authorization page
 		getWebView().loadUrl(getAuthorizeUrl());
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		// clear the Facebook session cookie
+		CookieManager.getInstance().removeAllCookie();
 	}
 
 	// ***************************************
