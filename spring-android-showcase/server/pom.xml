@@ -152,9 +152,9 @@
 
 	<repositories>
 		<repository>
-			<id>springsource-repo</id>
-			<name>SpringSpring Repository</name>
-			<url>http://repo.springsource.org/release</url>
+			<id>spring-repo</id>
+			<name>Spring Repository</name>
+			<url>http://repo.spring.io/libs-release</url>
 		</repository>
 	</repositories>
 

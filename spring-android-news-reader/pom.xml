@@ -58,9 +58,9 @@
 			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
 		</repository>
 		<repository>
-			<id>springsource-repo</id>
-			<name>SpringSource Repository</name>
-			<url>http://repo.springsource.org/release</url>
+			<id>spring-repo</id>
+			<name>Spring Repository</name>
+			<url>http://repo.spring.io/libs-release</url>
 		</repository>
 	</repositories>
 
