@@ -8,11 +8,11 @@
 	<name>spring-android-showcase-server</name>
 	<version>0.1.0</version>
 	<packaging>war</packaging>
-	<url>http://www.springsource.org/spring-android</url>
+	<url>http://spring.io/projects/spring-android</url>
 	<inceptionYear>2010</inceptionYear>
 	<organization>
-		<name>SpringSource</name>
-		<url>http://www.springsource.org</url>
+		<name>Spring</name>
+		<url>http://spring.io</url>
 	</organization>
 
 	<properties>
