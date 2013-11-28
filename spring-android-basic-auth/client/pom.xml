@@ -4,7 +4,7 @@
 
 	<groupId>org.springframework.android</groupId>
 	<artifactId>spring-android-basic-auth-client</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<packaging>apk</packaging>
 	<name>spring-android-basic-auth-client</name>
 	<url>http://www.springsource.org/spring-android</url>

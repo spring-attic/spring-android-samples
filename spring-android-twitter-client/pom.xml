@@ -4,7 +4,7 @@
 
 	<groupId>org.springframework.android</groupId>
 	<artifactId>spring-android-twitter-client</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<packaging>apk</packaging>
 	<name>spring-android-twitter-client</name>
 	<url>http://www.springsource.org/spring-android</url>
