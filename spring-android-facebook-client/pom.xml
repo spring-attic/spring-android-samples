@@ -15,6 +15,9 @@
 	</organization>
 
 	<properties>
+		<!-- use UTF-8 for everything -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<android-platform>17</android-platform>
 		<android-maven-plugin-version>3.6.0</android-maven-plugin-version>
 		<maven-compiler-plugin-version>3.1</maven-compiler-plugin-version>
