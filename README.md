@@ -1,6 +1,6 @@
 # Spring for Android Samples
 
-This repository contains sample projects illustrating usage of [Spring for Android]. Each project requires set up of the [Android SDK], command line tools, [Maven], the [Android Maven Plugin], and Android Maven artifacts such as Spring dependencies. This document walks through that setup. See [Spring for Android on GitHub] for more information about building from source.
+This repository contains sample projects illustrating usage of [Spring for Android][spring-android]. Each project requires set up of the [Android SDK], command line tools, [Maven], the [Android Maven Plugin], and Android Maven artifacts such as Spring dependencies. This document walks through that setup. See [Spring for Android on GitHub] for more information about building from source.
 
 
 ## Sample Applications
@@ -148,9 +148,9 @@ $ adb devices
 
 ## Additional Resources
 
-* [Spring for Android project page]
-* [Android Maven Plugin Documentation]
-* [Android Developers web site]
+ - [Spring for Android project page][spring-android]
+ - [Android Maven Plugin Documentation]
+ - [Android Developers web site]
 
 
 ## License
@@ -158,24 +158,23 @@ $ adb devices
 [Spring for Android] is released under version 2.0 of the [Apache License].
 
 
-[Spring for Android]: http://www.springsource.org/spring-android
+[spring-android]: http://spring.io/projects/spring-android
 [Android SDK]: http://developer.android.com/sdk/index.html
 [Maven]: http://maven.apache.org
 [Android Maven Plugin]: http://code.google.com/p/maven-android-plugin
-[Spring for Android on GitHub]: https://github.com/SpringSource/spring-android
-[spring-android-showcase]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-showcase
-[spring-android-news-reader]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-news-reader
-[spring-android-twitter-search]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-twitter-search
-[spring-android-twitter-client]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-twitter-client
-[spring-android-facebook-client]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-facebook-client
-[spring-android-basic-auth]: https://github.com/SpringSource/spring-android-samples/tree/master/spring-android-basic-auth
+[Spring for Android on GitHub]: https://github.com/spring-projects/spring-android
+[spring-android-showcase]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-showcase
+[spring-android-news-reader]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-news-reader
+[spring-android-twitter-search]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-twitter-search
+[spring-android-twitter-client]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-twitter-client
+[spring-android-facebook-client]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-facebook-client
+[spring-android-basic-auth]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-basic-auth
 [Eclipse Plugin]: http://developer.android.com/sdk/eclipse-adt.html
 [installation details]: http://developer.android.com/sdk/installing.html
 [Android 2.1 SDK Platform]: http://developer.android.com/sdk/android-2.1.html
 [Managing Virtual Devices]: http://developer.android.com/tools/devices/index.html
 [Pull requests]: http://help.github.com/send-pull-requests
-[contributor guidelines]: https://github.com/SpringSource/spring-android/wiki/Contributor-Guidelines
-[Spring for Android project page]: http://www.springsource.org/spring-android
+[contributor guidelines]: https://github.com/spring-projects/spring-android/wiki/Contributor-Guidelines
 [Android Maven Plugin Documentation]: http://maven-android-plugin-m2site.googlecode.com/svn/plugin-info.html
 [Android Developers web site]: http://developer.android.com/index.html
 [Apache license]: http://www.apache.org/licenses/LICENSE-2.0
