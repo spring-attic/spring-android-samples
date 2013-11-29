@@ -1,7 +1,34 @@
-.DS_Store
-bin
-gen
-target
-.project
+# Operating System Files
+
+*.DS_Store
+Thumbs.db
+*.sw?
+.#*
+*#
+*~
+*.sublime-*
+
+# Build Artifacts
+
+.gradle/
+build/
+target/
+bin/
+gen/
+
+# Local Configuration File
+
+local.properties
+
+# Eclipse Project Files
+
 .classpath
-.settings
+.project
+.settings/
+
+# IntelliJ IDEA Files
+
+*.iml
+*.ipr
+*.iws
+*.idea
