@@ -30,30 +30,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TimerController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    /**
-     * Simulates a slow server response by delaying a specified number of seconds
-     * @return done message
-     */
-    @RequestMapping(value = "delay/{seconds}", method = RequestMethod.GET)
-    public @ResponseBody String delay(@PathVariable String seconds) {
+	/**
+	 * Simulates a slow server response by delaying a specified number of seconds
+	 * @return done message
+	 */
+	@RequestMapping(value = "delay/{seconds}", method = RequestMethod.GET)
+	public @ResponseBody String delay(@PathVariable String seconds) {
 
-        int delay = 15;
-        try {
-            delay = Integer.parseInt(seconds);
-            logger.info("Delaying response by " + delay + " seconds");
-        } catch (NumberFormatException e) {
-            logger.info("Bad input. Defaulting to " + delay + " seconds delay");
-        }
+		int delay = 15;
+		try {
+			delay = Integer.parseInt(seconds);
+			logger.info("Delaying response by " + delay + " seconds");
+		} catch (NumberFormatException e) {
+			logger.info("Bad input. Defaulting to " + delay + " seconds delay");
+		}
 
-        try {
-            Thread.sleep(delay * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+		try {
+			Thread.sleep(delay * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
-        return "Response delayed by " + delay + " seconds";
-    }
+		return "Response delayed by " + delay + " seconds";
+	}
 
 }
