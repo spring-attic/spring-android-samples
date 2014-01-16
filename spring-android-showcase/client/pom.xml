@@ -24,8 +24,6 @@
 		<java-version>1.6</java-version>
 		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
 		<com.google.android-version>4.1.1.4</com.google.android-version>
-		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 
-			2.2.1, 2.3.1, 2.3.3, 4.0.1.2, 4.1.1.4 -->
 		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
 		<com.fasterxml.jackson-version>2.1.2</com.fasterxml.jackson-version>
 		<com.google.code.gson-version>2.2.2</com.google.code.gson-version>
@@ -44,22 +42,16 @@
 			<artifactId>spring-android-rest-template</artifactId>
 			<version>${org.springframework.android-version}</version>
 		</dependency>
-		
-		<!-- Jackson JSON Processor -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${com.fasterxml.jackson-version}</version>
 		</dependency>
-		
-		<!-- Gson JSON Processor -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${com.google.code.gson-version}</version>
 		</dependency>
-		
-		<!-- Simple XML Processor -->
 		<dependency>
 			<groupId>org.simpleframework</groupId>
 			<artifactId>simple-xml</artifactId>

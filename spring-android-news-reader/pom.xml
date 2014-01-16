@@ -24,8 +24,6 @@
 		<java-version>1.6</java-version>
 		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
 		<com.google.android-version>4.1.1.4</com.google.android-version>
-		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 
-			2.2.1, 2.3.1, 2.3.3, 4.0.1.2, 4.1.1.4 -->
 		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
 		<com.google.code.android-rome-feed-reader-version>1.0.0-r2</com.google.code.android-rome-feed-reader-version>
 	</properties>
@@ -42,8 +40,6 @@
 			<artifactId>spring-android-rest-template</artifactId>
 			<version>${org.springframework.android-version}</version>
 		</dependency>
-		
-		<!-- Using ROME for RSS and ATOM feeds -->
 		<dependency>
 			<groupId>com.google.code.android-rome-feed-reader</groupId>
 			<artifactId>android-rome-feed-reader</artifactId>
