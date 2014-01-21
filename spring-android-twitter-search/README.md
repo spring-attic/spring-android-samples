@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Spring for Android Twitter Search sample app demonstrates the use of [Spring for Android](http://www.springsource.org/spring-android) to make a RESTful request to the Twitter search API, without the use of Maven dependency management. This project requires set up of the Android SDK, and uses Ant to build and deploy the app to the emulator. See the main README at the root of this repository for more information about configuring your environment.
+The Spring for Android Twitter Search sample app demonstrates the use of [Spring for Android](http://projects.spring.io/spring-android/) to make a RESTful request to the Twitter search API, without the use of Maven dependency management. This project requires set up of the Android SDK, and uses Ant to build and deploy the app to the emulator. See the main README at the root of this repository for more information about configuring your environment.
 
 ## Build and Run the Android App
 

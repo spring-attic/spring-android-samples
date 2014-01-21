@@ -155,7 +155,7 @@ $ adb devices
 
 ## License
 
-[Spring for Android] is released under version 2.0 of the [Apache License].
+[Spring for Android][spring-android] is released under version 2.0 of the [Apache License].
 
 
 [spring-android]: http://spring.io/projects/spring-android
