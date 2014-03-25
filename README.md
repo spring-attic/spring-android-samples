@@ -149,6 +149,7 @@ $ adb devices
 ## Additional Resources
 
  - [Spring for Android project page][spring-android]
+ - [Gradle Plugin User Guide]
  - [Android Maven Plugin Documentation]
  - [Android Developers web site]
 
@@ -175,6 +176,7 @@ $ adb devices
 [Managing Virtual Devices]: http://developer.android.com/tools/devices/index.html
 [Pull requests]: http://help.github.com/send-pull-requests
 [contributor guidelines]: https://github.com/spring-projects/spring-android/wiki/Contributor-Guidelines
+[Gradle Plugin User Guide]: http://tools.android.com/tech-docs/new-build-system/user-guide
 [Android Maven Plugin Documentation]: http://maven-android-plugin-m2site.googlecode.com/svn/plugin-info.html
 [Android Developers web site]: http://developer.android.com/index.html
 [Apache license]: http://www.apache.org/licenses/LICENSE-2.0
