@@ -13,16 +13,10 @@ This showcase includes an Android client and a Spring MVC server. Together these
     $ cd spring-android-showcase/server
     ```
 
-2. Build the app:
+2. Build and run the app:
 
     ```sh
-    $ mvn clean install
-    ```
-
-3. Deploy the .war to a Servlet 2.5 or > ServletContainer. This can be done via Maven on the command-line by running:
-
-    ```sh
-    $ mvn tomcat:run
+    $ ./gradlew build bootRun
     ```
 
 
