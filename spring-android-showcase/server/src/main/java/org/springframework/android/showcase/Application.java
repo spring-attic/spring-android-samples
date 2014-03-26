@@ -33,16 +33,16 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 public class Application {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
-    @Bean
-    MultipartConfigElement multipartConfigElement() {
-        MultiPartConfigFactory factory = new MultiPartConfigFactory();
-        factory.setMaxFileSize("128KB");
-        factory.setMaxRequestSize("128KB");
-        return factory.createMultipartConfig();
-    }
+	@Bean
+	MultipartConfigElement multipartConfigElement() {
+		MultiPartConfigFactory factory = new MultiPartConfigFactory();
+		factory.setMaxFileSize("128KB");
+		factory.setMaxRequestSize("128KB");
+		return factory.createMultipartConfig();
+	}
 
 }
