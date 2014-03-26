@@ -35,7 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class FileUploadController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
 	/**
 	 * Simply selects the view to render by returning its name.
