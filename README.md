@@ -1,6 +1,8 @@
-# Spring for Android Samples
+# Spring for Android Samples 
 
-This repository contains sample projects illustrating usage of [Spring for Android][spring-android]. Each project requires set up of the [Android SDK], command line tools, [Maven], the [Android Maven Plugin], and Android Maven artifacts such as Spring dependencies. This document walks through that setup. See [Spring for Android on GitHub] for more information about building from source.
+[!["Build Status"](https://build.spring.io/plugins/servlet/buildStatusImage/ANDROID-SAMPLES)](https://build.spring.io/browse/ANDROID-SAMPLES)
+
+This repository contains sample projects illustrating usage of [Spring for Android][spring-android]. Each project requires set up of the [Android SDK], command line tools, [Maven], the [Android Maven Plugin], and Android Maven artifacts such as Spring dependencies. Gradle build files are also available for each project. This document walks through the setup. See [Spring for Android on GitHub] for more information about building from source.
 
 
 ## Sample Applications
@@ -76,13 +78,15 @@ The following steps describe how to configure an Android Virtual Device (AVD) fo
     
 4. Select "Nexus 7" as the device
 
-5. Select "Android 4.2.2 - API Level 17" for the target
+5. Select the highest available API level for the target
+
+    > **Note**: The sample application is configured for Android 2.1 as the minimum version.
 
 6. Select "ARM (armeabi-v7a)" for the CPU
 
-7. Click the **OK** button to finish.
+	> **Note**: The Intel x86 Emulator Accelerator (HAXM) can be used for better performance.
 
-    > **Note**: The sample application is configured for Android 2.1 as the minimum version.
+7. Click the **OK** button to finish.
 
 
 ## Build and Run the App
