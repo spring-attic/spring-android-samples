@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.android.basicauth;
+package showcase;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +40,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		logger.info("Spring Android Basic Auth");
-		return "index";
+		return "home";
 	}
 
 	@RequestMapping(value = "/getmessage", method = RequestMethod.GET, produces = "application/json")

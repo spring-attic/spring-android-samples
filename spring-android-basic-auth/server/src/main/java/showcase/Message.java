@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.android.basicauth;
+package showcase;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "message")
 public class Message {
+
 	private long id;
 
 	private String subject;

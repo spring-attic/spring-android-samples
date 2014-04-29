@@ -1,0 +1,35 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url "http://repo.spring.io/libs-release" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+	}
+}
+
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "spring-boot"
+
+jar {
+	baseName = "spring-android-basic-auth-server"
+	version =  "0.1.0"
+}
+
+repositories {
+	mavenCentral()
+	maven { url "http://repo.spring.io/libs-release" }
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.springframework.boot:spring-boot-starter-security")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = "1.11"
+}

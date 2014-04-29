@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-package org.springframework.android.basicauth.config;
+package showcase;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
-@Configuration
-@ImportResource("classpath:security.xml")
-public class SecurityConfig {
-	
+/**
+ * @author Roy Clarkson
+ */
+@ComponentScan
+@EnableAutoConfiguration
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
 }

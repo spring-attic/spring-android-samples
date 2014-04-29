@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.android.basicauth;
+package showcase;
 
 /**
  * @author Roy Clarkson
