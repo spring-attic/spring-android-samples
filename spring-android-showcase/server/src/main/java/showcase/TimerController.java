@@ -14,30 +14,29 @@
  * limitations under the License.
  */
 
-package org.springframework.android.showcase;
+package showcase;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Roy Clarkson
  */
-@Controller
+@RestController
 public class TimerController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TimerController.class);
 
 	/**
 	 * Simulates a slow server response by delaying a specified number of seconds
 	 * @return done message
 	 */
 	@RequestMapping(value = "delay/{seconds}", method = RequestMethod.GET)
-	public @ResponseBody String delay(@PathVariable String seconds) {
+	public String delay(@PathVariable String seconds) {
 
 		int delay = 15;
 		try {

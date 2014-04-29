@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.android.showcase;
+package showcase;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

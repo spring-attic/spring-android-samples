@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.0.RC5</version>
+		<version>1.0.2.RELEASE</version>
 	</parent>
 
 	<dependencies>
@@ -19,13 +19,18 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring4</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<properties>
-		<start-class>org.springframework.android.showcase.Application</start-class>
+		<start-class>showcase.Application</start-class>
 	</properties>
 
 	<build>
@@ -39,15 +44,15 @@
 
 	<repositories>
 		<repository>
-			<id>spring-milestone</id>
-			<url>http://repo.spring.io/libs-milestone</url>
+			<id>spring-releases</id>
+			<url>http://repo.spring.io/libs-release</url>
 		</repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>spring-milestone</id>
-			<url>http://repo.spring.io/libs-milestone</url>
+			<id>spring-releases</id>
+			<url>http://repo.spring.io/libs-release</url>
 		</pluginRepository>
 	</pluginRepositories>
 

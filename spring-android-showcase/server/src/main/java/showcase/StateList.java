@@ -14,39 +14,33 @@
  * limitations under the License.
  */
 
-package org.springframework.android.showcase;
+package showcase;
 
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Roy Clarkson
  */
-@XmlRootElement(name = "state")
-public class State {
-	private String name;
-	private String abbreviation;
+@XmlRootElement(name = "states")
+public class StateList {
+	private List<State> states;
 
-	public State() {
+	public StateList() {
 	}
 
-	public State(String name, String abbreviation) {
-		this.name = name;
-		this.abbreviation = abbreviation;
+	public StateList(List<State> states) {
+		this.states = states;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	@XmlElement(name = "state")
+	public List<State> getStates() {
+		return states;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setAbbreviation(String abbreviation) {
-		this.abbreviation = abbreviation;
-	}
-
-	public String getAbbreviation() {
-		return abbreviation;
+	public void setStates(List<State> states) {
+		this.states = states;
 	}
 }
