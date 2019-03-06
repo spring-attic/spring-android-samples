@@ -7,11 +7,11 @@
 	<version>0.1.0</version>
 	<packaging>apk</packaging>
 	<name>spring-android-showcase-client</name>
-	<url>http://spring.io/projects/spring-android</url>
+	<url>https://spring.io/projects/spring-android</url>
 	<inceptionYear>2010</inceptionYear>
 	<organization>
 		<name>Spring</name>
-		<url>http://spring.io</url>
+		<url>https://spring.io</url>
 	</organization>
 
 	<properties>
@@ -79,7 +79,7 @@
 		<repository>
 			<id>spring-repo</id>
 			<name>Spring Repository</name>
-			<url>http://repo.spring.io/libs-release</url>
+			<url>https://repo.spring.io/libs-release</url>
 		</repository>
 	</repositories>
 
