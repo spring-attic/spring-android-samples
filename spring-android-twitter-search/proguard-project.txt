@@ -8,7 +8,7 @@
 # include property in project.properties.
 #
 # For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+#   https://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
 

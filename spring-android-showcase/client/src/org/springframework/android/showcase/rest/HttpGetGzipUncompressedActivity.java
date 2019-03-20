@@ -92,7 +92,7 @@ public class HttpGetGzipUncompressedActivity extends AbstractAsyncActivity {
 		protected ResponseEntity<String> doInBackground(Void... params) {
 			try {
 				// The URL for making the GET request
-				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
+				final String url = "https://search.twitter.com/search.json?q={query}&rpp=100";
 
 				// Add the Identity Accept-Encoding header to the request
 				// This disables gzip compression in Gingerbread (2.3) and newer

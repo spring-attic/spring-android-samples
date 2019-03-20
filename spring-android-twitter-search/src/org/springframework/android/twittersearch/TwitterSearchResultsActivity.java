@@ -129,7 +129,7 @@ public class TwitterSearchResultsActivity extends ListActivity {
 		protected ResponseEntity<TwitterSearchResults> doInBackground(String... params) {
 			try {
 				// The URL for making the GET request
-				final String url = "http://search.twitter.com/search.json?q={query}&rpp=20";
+				final String url = "https://search.twitter.com/search.json?q={query}&rpp=20";
 
 				// Add the gzip Accept-Encoding header to the request. This is not needed for Gingerbread and newer versions of Android
 				HttpHeaders requestHeaders = new HttpHeaders();

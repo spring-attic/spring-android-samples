@@ -91,7 +91,7 @@ public class HttpGetGzipCompressedJsonActivity extends AbstractAsyncActivity {
 		protected ResponseEntity<TwitterSearchResults> doInBackground(Void... params) {
 			try {
 				// The URL for making the GET request
-				final String url = "http://search.twitter.com/search.json?q={query}&rpp=100";
+				final String url = "https://search.twitter.com/search.json?q={query}&rpp=100";
 
 				// Add the gzip Accept-Encoding header to the request
 				HttpHeaders requestHeaders = new HttpHeaders();

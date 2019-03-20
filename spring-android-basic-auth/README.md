@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This sample includes an Android client and a Spring MVC server. Together these illustrate the interaction of the client and server when using [Spring for Android](http://projects.spring.io/spring-android/) to make Basic Auth requests. This Android project requires set up of the Android SDK. See the main [README](../README.md) at the root of this repository for more information about configuring your environment.
+This sample includes an Android client and a Spring MVC server. Together these illustrate the interaction of the client and server when using [Spring for Android](https://projects.spring.io/spring-android/) to make Basic Auth requests. This Android project requires set up of the Android SDK. See the main [README](../README.md) at the root of this repository for more information about configuring your environment.
 
 
 ## Build and Run the Server
