@@ -126,7 +126,7 @@ public class FacebookWebOAuthActivity extends AbstractWebViewActivity {
 			 * The access token is returned in the URI fragment of the URL. See the Desktop Apps section all the way 
 			 * at the bottom of this link:
 			 * 
-			 * http://developers.facebook.com/docs/authentication/
+			 * https://developers.facebook.com/docs/authentication/
 			 * 
 			 * The fragment will be formatted like this:
 			 * 

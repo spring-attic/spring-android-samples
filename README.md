@@ -163,10 +163,10 @@ $ adb devices
 [Spring for Android][spring-android] is released under version 2.0 of the [Apache License].
 
 
-[spring-android]: http://spring.io/projects/spring-android
-[Android SDK]: http://developer.android.com/sdk/index.html
-[Maven]: http://maven.apache.org
-[Android Maven Plugin]: http://code.google.com/p/maven-android-plugin
+[spring-android]: https://spring.io/projects/spring-android
+[Android SDK]: https://developer.android.com/sdk/index.html
+[Maven]: https://maven.apache.org
+[Android Maven Plugin]: https://code.google.com/p/maven-android-plugin
 [Spring for Android on GitHub]: https://github.com/spring-projects/spring-android
 [spring-android-showcase]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-showcase
 [spring-android-news-reader]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-news-reader
@@ -174,13 +174,13 @@ $ adb devices
 [spring-android-twitter-client]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-twitter-client
 [spring-android-facebook-client]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-facebook-client
 [spring-android-basic-auth]: https://github.com/spring-projects/spring-android-samples/tree/master/spring-android-basic-auth
-[Eclipse Plugin]: http://developer.android.com/sdk/eclipse-adt.html
-[installation details]: http://developer.android.com/sdk/installing.html
-[Android 2.1 SDK Platform]: http://developer.android.com/sdk/android-2.1.html
-[Managing Virtual Devices]: http://developer.android.com/tools/devices/index.html
-[Pull requests]: http://help.github.com/send-pull-requests
+[Eclipse Plugin]: https://developer.android.com/sdk/eclipse-adt.html
+[installation details]: https://developer.android.com/sdk/installing.html
+[Android 2.1 SDK Platform]: https://developer.android.com/sdk/android-2.1.html
+[Managing Virtual Devices]: https://developer.android.com/tools/devices/index.html
+[Pull requests]: https://help.github.com/send-pull-requests
 [contributor guidelines]: https://github.com/spring-projects/spring-android/wiki/Contributor-Guidelines
 [Gradle Plugin User Guide]: http://tools.android.com/tech-docs/new-build-system/user-guide
-[Android Maven Plugin Documentation]: http://maven-android-plugin-m2site.googlecode.com/svn/plugin-info.html
-[Android Developers web site]: http://developer.android.com/index.html
+[Android Maven Plugin Documentation]: https://maven-android-plugin-m2site.googlecode.com/svn/plugin-info.html
+[Android Developers web site]: https://developer.android.com/index.html
 [Apache license]: http://www.apache.org/licenses/LICENSE-2.0
