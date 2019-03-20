@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="base_uri">http://10.0.2.2:8080</string>
+    <string name="base_uri">https://10.0.2.2:8080</string>
 
 </resources>

@@ -8,7 +8,7 @@
         RssChannelHttpMessageConverter. The SyndFeed message converter supports RSS and ATOM using an
         abstracted object model.</string>
     <string name="text_atom_description">These examples retrieve the ATOM feed from
-        http://spring.io/blog.atom. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter
+        https://spring.io/blog.atom. ATOM feeds can be retrieved with the SyndFeedHttpMessageConverter
         or the more specific AtomFeedHttpMessageConverter. The SyndFeed message converter supports
         RSS and ATOM using an abstracted object model.</string>
 

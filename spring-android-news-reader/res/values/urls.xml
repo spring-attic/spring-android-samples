@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="rss_feed_url">http://blog.springsource.org/feed/rss/</string>
-    <string name="atom_feed_url">http://spring.io/blog.atom</string>
+    <string name="rss_feed_url">https://blog.springsource.org/feed/rss/</string>
+    <string name="atom_feed_url">https://spring.io/blog.atom</string>
 
 </resources>
