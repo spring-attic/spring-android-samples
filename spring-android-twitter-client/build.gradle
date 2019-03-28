@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        mavenCentral()
+        maven { url 'https://repo.maven.apache.org/maven2/' }
     }
 
     dependencies {
@@ -17,7 +17,7 @@ configurations.compile {
 }
 
 repositories {
-    mavenCentral()
+    maven { url 'https://repo.maven.apache.org/maven2/' }
     maven { url 'https://repo.spring.io/libs-release' }
 }
 
