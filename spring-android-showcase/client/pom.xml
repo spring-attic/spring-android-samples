@@ -25,7 +25,7 @@
 		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
 		<com.google.android-version>4.1.1.4</com.google.android-version>
 		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
-		<com.fasterxml.jackson-version>2.1.2</com.fasterxml.jackson-version>
+		<com.fasterxml.jackson-version>2.9.10.1</com.fasterxml.jackson-version>
 		<com.google.code.gson-version>2.2.2</com.google.code.gson-version>
 		<org.simpleframework-version>2.6.9</org.simpleframework-version>
 	</properties>
