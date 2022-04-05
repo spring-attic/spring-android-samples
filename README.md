@@ -183,4 +183,4 @@ $ adb devices
 [Gradle Plugin User Guide]: http://tools.android.com/tech-docs/new-build-system/user-guide
 [Android Maven Plugin Documentation]: https://maven-android-plugin-m2site.googlecode.com/svn/plugin-info.html
 [Android Developers web site]: https://developer.android.com/index.html
-[Apache license]: http://www.apache.org/licenses/LICENSE-2.0
+[Apache license]: https://www.apache.org/licenses/LICENSE-2.0
